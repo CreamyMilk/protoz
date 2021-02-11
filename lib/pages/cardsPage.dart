@@ -54,10 +54,10 @@ class _ListProductsState extends State<ListProducts> {
             width: MediaQuery.of(context).size.width,
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 4,
+                    mainAxisSpacing: 2,
                     crossAxisCount: 2,
                     childAspectRatio: 0.7,
-                    crossAxisSpacing: 8),
+                    crossAxisSpacing: 2),
                 padding: EdgeInsets.all(8.0),
                 itemCount: sampleData.length,
                 itemBuilder: (context, index) {
@@ -99,7 +99,7 @@ class ProductListingItem extends StatelessWidget {
               imageUrl,
               fit: BoxFit.fill,
               loadingBuilder: (context, child, progress) {
-                return progress == null ? child : CircularProgressIndicator();
+                return progress == null ? child : Container();
               },
             )),
       ),
