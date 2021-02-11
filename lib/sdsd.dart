@@ -17,12 +17,27 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'WELCOME TO\n AGRO CRM',
+            RichText(
+                text: TextSpan(children: [
+              TextSpan(
+                  text: "WELCOME\n",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 30.0)),
+              TextSpan(
+                  text: "AGRO CRM",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25.0)),
+            ])),
+            SizedBox(
+              height: 50,
             ),
             MaterialButton(
               minWidth: MediaQuery.of(context).size.width * 0.8,
-              height: 100,
+              height: 40,
               color: Colors.yellow,
               child: Text(
                 "Login",
@@ -32,9 +47,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).pushNamed('/login');
               },
             ),
+            SizedBox(
+              height: 10,
+            ),
             MaterialButton(
               minWidth: MediaQuery.of(context).size.width * 0.8,
-              height: 100,
+              height: 40,
               color: Colors.grey[350],
               child: Text(
                 "Register",

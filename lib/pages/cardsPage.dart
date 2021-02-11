@@ -4,7 +4,7 @@ class Service {
   final String imageUrl;
   final String name;
 
-  Service(this.imageUrl, this.name);
+  Service({this.imageUrl, this.name});
 }
 
 class ListProducts extends StatefulWidget {
@@ -16,23 +16,29 @@ class _ListProductsState extends State<ListProducts> {
   List<dynamic> choices;
   List<Service> sampleData = [
     Service(
-        "https://africasustainabilitymatters.com/wp-content/uploads/2020/11/Twiga_2.jpg",
-        "InputSuppliers"),
+        imageUrl:
+            "https://africasustainabilitymatters.com/wp-content/uploads/2020/11/Twiga_2.jpg",
+        name: "InputSuppliers"),
     Service(
-        "https://s3.amazonaws.com/newhobbyfarms.com/2020/01/9-plows-jeff-piper-flickr-e.jpg",
-        "Machinery"),
+        imageUrl:
+            "https://s3.amazonaws.com/newhobbyfarms.com/2020/01/9-plows-jeff-piper-flickr-e.jpg",
+        name: "Machinery"),
     Service(
-        "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
-        "Market Info"),
+        imageUrl:
+            "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
+        name: "Market Info"),
     Service(
-        "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
-        "Logistics"),
+        imageUrl:
+            "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
+        name: "Logistics"),
     Service(
-        "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
-        "Consoltancy"),
+        imageUrl:
+            "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
+        name: "Consoltancy"),
     Service(
-        "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
-        "Financing"),
+        imageUrl:
+            "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
+        name: "Financing"),
   ];
 
   @override
@@ -88,11 +94,16 @@ class ProductListingItem extends StatelessWidget {
         child: Container(
             height: MediaQuery.of(context).size.height * 0.21,
             color: Colors.transparent,
-            child: Image.network(imageUrl)),
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.fill,
+              loadingBuilder: (context, child, progress) {
+                return progress == null ? child : LinearProgressIndicator();
+              },
+            )),
       ),
       Spacer(),
       Text(prodname, style: TextStyle(fontWeight: FontWeight.bold)),
-      SizedBox(height: 50)
     ]);
   }
 }

@@ -36,7 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Column(
         children: [
           SizedBox(height: 30),
-          Text("Double-check your information just to be sure",
+          Text("Kindly Fill in your information below",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
@@ -149,6 +149,9 @@ class _RegisterPageState extends State<RegisterPage> {
               maxLines: 1,
             ),
           ),
+          SizedBox(
+            height: 15,
+          ),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: Row(
@@ -157,7 +160,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   SizedBox(width: 5),
                   Flexible(
                     flex: 2,
-                    child: Text("Role"),
+                    child: Text(
+                      "Role",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                   SizedBox(width: 25),
                   Flexible(
