@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
             RichText(
                 text: TextSpan(children: [
               TextSpan(
-                  text: "WELCOME\n",
+                  text: "WELCOME TO\n",
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w300,

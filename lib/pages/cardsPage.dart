@@ -47,7 +47,8 @@ class _ListProductsState extends State<ListProducts> {
         body: SafeArea(
       child: Column(
         children: [
-          Text("Welcome Oliver"),
+          Text("Welcome Oliver",
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20.0)),
           Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -92,18 +93,18 @@ class ProductListingItem extends StatelessWidget {
     return Column(children: [
       Card(
         child: Container(
-            height: MediaQuery.of(context).size.height * 0.21,
+            height: MediaQuery.of(context).size.height * 0.15,
             color: Colors.transparent,
             child: Image.network(
               imageUrl,
               fit: BoxFit.fill,
               loadingBuilder: (context, child, progress) {
-                return progress == null ? child : LinearProgressIndicator();
+                return progress == null ? child : CircularProgressIndicator();
               },
             )),
       ),
-      Spacer(),
-      Text(prodname, style: TextStyle(fontWeight: FontWeight.bold)),
+      Text(prodname,
+          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15.0)),
     ]);
   }
 }
