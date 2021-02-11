@@ -18,20 +18,21 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             RichText(
+                textAlign: TextAlign.center,
                 text: TextSpan(children: [
-              TextSpan(
-                  text: "WELCOME TO\n",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 30.0)),
-              TextSpan(
-                  text: "AGRO CRM",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25.0)),
-            ])),
+                  TextSpan(
+                      text: "WELCOME TO\n",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 30.0)),
+                  TextSpan(
+                      text: "AGRO CRM",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 25.0)),
+                ])),
             SizedBox(
               height: 50,
             ),
