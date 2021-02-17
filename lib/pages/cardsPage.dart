@@ -50,7 +50,7 @@ class _ListProductsState extends State<ListProducts> {
           Text("Welcome Oliver",
               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20.0)),
           Container(
-            height: MediaQuery.of(context).size.height *0.95,
+            height: MediaQuery.of(context).size.height * 0.95,
             width: MediaQuery.of(context).size.width,
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -91,17 +91,22 @@ class ProductListingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Card(
-        child: Container(
-            height: MediaQuery.of(context).size.height * 0.15,
-            color: Colors.transparent,
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.fill,
-              loadingBuilder: (context, child, progress) {
-                return progress == null ? child : Container();
-              },
-            )),
+      GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushNamed("/categories");
+        },
+        child: Card(
+          child: Container(
+              height: MediaQuery.of(context).size.height * 0.15,
+              color: Colors.transparent,
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.fill,
+                loadingBuilder: (context, child, progress) {
+                  return progress == null ? child : Container();
+                },
+              )),
+        ),
       ),
       Text(prodname,
           style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15.0)),
