@@ -36,17 +36,49 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 50,
             ),
-            MaterialButton(
-              minWidth: MediaQuery.of(context).size.width * 0.8,
-              height: 40,
-              color: Colors.yellow,
-              child: Text(
-                "Login",
-                style: TextStyle(color: Colors.black),
+            ExpansionTile(
+              trailing: SizedBox(
+                width: 1,
               ),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/login');
-              },
+              expandedCrossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                MaterialButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.8,
+                  height: 40,
+                  color: Colors.yellow,
+                  child: Text(
+                    "Login as member",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/login');
+                  },
+                ),
+                MaterialButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.8,
+                  height: 40,
+                  color: Colors.yellow,
+                  child: Text(
+                    "Login as member",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/login');
+                  },
+                ),
+              ],
+              title: MaterialButton(
+                minWidth: MediaQuery.of(context).size.width * 0.8,
+                height: 40,
+                color: Colors.yellow,
+                child: Text(
+                  "Login as member",
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/login');
+                },
+              ),
             ),
             SizedBox(
               height: 10,
@@ -56,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 40,
               color: Colors.grey[350],
               child: Text(
-                "Register",
+                "Register as member",
                 style: TextStyle(color: Colors.grey[900]),
               ),
               onPressed: () {

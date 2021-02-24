@@ -1,18 +1,56 @@
 import 'package:flutter/material.dart';
 
+import 'cardsPage.dart';
+
+// ignore: must_be_immutable
 class WalletsPageBase extends StatelessWidget {
+  ScrollController get n => ScrollController(initialScrollOffset: 150);
+  List<Service> sampleData = [
+    Service(
+        imageUrl:
+            "https://africasustainabilitymatters.com/wp-content/uploads/2020/11/Twiga_2.jpg",
+        name: "InputSuppliers"),
+    Service(
+        imageUrl:
+            "https://s3.amazonaws.com/newhobbyfarms.com/2020/01/9-plows-jeff-piper-flickr-e.jpg",
+        name: "Machinery"),
+    Service(
+        imageUrl:
+            "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
+        name: "Market Info"),
+    Service(
+        imageUrl:
+            "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
+        name: "Logistics"),
+    Service(
+        imageUrl:
+            "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
+        name: "Consoltancy"),
+    Service(
+        imageUrl:
+            "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
+        name: "Financing"),
+  ];
   @override
   Widget build(BuildContext context) {
-    TextStyle collButton = TextStyle(fontSize: 15, color: Colors.black);
+    //TextStyle collButton = TextStyle(fontSize: 15, color: Colors.black);
     return Scaffold(
-        body: CustomScrollView(slivers: [
+        body: CustomScrollView(controller: n, slivers: [
       SliverAppBar(
-        expandedHeight: 180,
-        floating: true,
-        pinned: true,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.exit_to_app,
+                color: Colors.black,
+              ))
+        ],
+        expandedHeight: 200,
+        floating: false,
+        pinned: false,
         centerTitle: true,
         title: Text(
-          "Hello",
+          "Welcome Oliver",
           style: TextStyle(color: Colors.white),
         ),
         flexibleSpace: FlexibleSpaceBar(
@@ -27,9 +65,9 @@ class WalletsPageBase extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: 50,
+                  height: 63,
                 ),
-                Text("@Kinyua",
+                Text("",
                     textScaleFactor: 1,
                     style: TextStyle(
                       fontSize: 10,
@@ -74,7 +112,6 @@ class WalletsPageBase extends StatelessWidget {
                   height: 20,
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 40),
                   padding: EdgeInsets.all(2.0),
                   height: 40,
                   decoration: BoxDecoration(color: Colors.transparent),
@@ -97,6 +134,7 @@ class WalletsPageBase extends StatelessWidget {
                         width: 10,
                       ),
                       FloatingActionButton(
+                        heroTag: "sd",
                         mini: true,
                         backgroundColor: Colors.lightBlueAccent,
                         child: Transform.rotate(
@@ -117,7 +155,11 @@ class WalletsPageBase extends StatelessWidget {
         ),
       ),
       SliverFillRemaining(
-        child: Text("Hello JOthamn"),
+        child: SingleChildScrollView(
+          child: NewWidget(
+            sampleData: sampleData,
+          ),
+        ),
       )
     ]));
   }

@@ -45,33 +45,45 @@ class _ListProductsState extends State<ListProducts> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: Column(
-        children: [
-          Text("Welcome Oliver",
-              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20.0)),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.95,
-            width: MediaQuery.of(context).size.width,
-            child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 1,
-                    crossAxisCount: 2,
-                    childAspectRatio: 1,
-                    crossAxisSpacing: 0.5),
-                padding: EdgeInsets.all(8.0),
-                itemCount: sampleData.length,
-                itemBuilder: (context, index) {
-                  return ProductListingItem(
-                    heros: index,
-                    prodname: sampleData[index].name,
-                    imageUrl: sampleData[index].imageUrl,
-                    productID: index,
-                  );
-                }),
-          ),
-        ],
-      ),
+      child: NewWidget(sampleData: sampleData),
     ));
+  }
+}
+
+class NewWidget extends StatelessWidget {
+  const NewWidget({
+    Key key,
+    @required this.sampleData,
+  }) : super(key: key);
+
+  final List<Service> sampleData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height * 0.95,
+          width: MediaQuery.of(context).size.width,
+          child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 1,
+                  crossAxisCount: 2,
+                  childAspectRatio: 1,
+                  crossAxisSpacing: 0.5),
+              padding: EdgeInsets.all(8.0),
+              itemCount: sampleData.length,
+              itemBuilder: (context, index) {
+                return ProductListingItem(
+                  heros: index,
+                  prodname: sampleData[index].name,
+                  imageUrl: sampleData[index].imageUrl,
+                  productID: index,
+                );
+              }),
+        ),
+      ],
+    );
   }
 }
 
