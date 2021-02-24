@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:proto/pages/cardsPage.dart';
 import 'package:proto/pages/categoriesList.dart';
 import 'package:proto/pages/categoryExpansion.dart';
 import 'package:proto/pages/register.dart';
 import 'package:proto/pages/seeds.dart';
+import 'package:proto/pages/walletsliver.dart';
 import 'package:proto/sdsd.dart';
 
 class RouteGenerator {
@@ -25,7 +25,7 @@ class RouteGenerator {
       case '/register':
         return MaterialPageRoute(builder: (ctx) => RegisterPage());
       case '/login':
-        return MaterialPageRoute(builder: (ctx) => ListProducts());
+        return MaterialPageRoute(builder: (ctx) => WalletsPageBase());
       case '/categories':
         return MaterialPageRoute(builder: (ctx) => ListTilezz());
       case '/ferter':
