@@ -44,9 +44,19 @@ class _ListProductsState extends State<ListProducts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          mini: true,
+          child: Icon(
+            Icons.bar_chart_sharp,
+            color: Colors.white,
+          ),
+          foregroundColor: Colors.black87,
+          heroTag: "jalo",
+          onPressed: () {},
+        ),
         body: SafeArea(
-      child: NewWidget(sampleData: sampleData),
-    ));
+          child: NewWidget(sampleData: sampleData),
+        ));
   }
 }
 

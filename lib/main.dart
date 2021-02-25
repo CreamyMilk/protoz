@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
               fontSizeFactor: 0.75,
               fontSizeDelta: 1.0,
             ),
-        primaryColor: Colors.black,
-        accentColor: Colors.amber,
+        primaryColor: Colors.teal,
+        accentColor: Colors.black54,
       ),
       darkTheme: ThemeData(
         textTheme: Theme.of(context).textTheme.apply(
