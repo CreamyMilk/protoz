@@ -46,8 +46,8 @@ class WalletsPageBase extends StatelessWidget {
               ))
         ],
         expandedHeight: 200,
-        floating: false,
-        pinned: false,
+        floating: true,
+        pinned: true,
         centerTitle: true,
         title: Text(
           "Welcome Oliver",

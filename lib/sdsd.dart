@@ -36,49 +36,17 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 50,
             ),
-            ExpansionTile(
-              trailing: SizedBox(
-                width: 1,
+            MaterialButton(
+              minWidth: MediaQuery.of(context).size.width * 0.8,
+              height: 40,
+              color: Colors.yellow,
+              child: Text(
+                "Login as member",
+                style: TextStyle(color: Colors.black),
               ),
-              expandedCrossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                MaterialButton(
-                  minWidth: MediaQuery.of(context).size.width * 0.8,
-                  height: 40,
-                  color: Colors.yellow,
-                  child: Text(
-                    "Login as member",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/login');
-                  },
-                ),
-                MaterialButton(
-                  minWidth: MediaQuery.of(context).size.width * 0.8,
-                  height: 40,
-                  color: Colors.yellow,
-                  child: Text(
-                    "Login as member",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/login');
-                  },
-                ),
-              ],
-              title: MaterialButton(
-                minWidth: MediaQuery.of(context).size.width * 0.8,
-                height: 40,
-                color: Colors.yellow,
-                child: Text(
-                  "Login as member",
-                  style: TextStyle(color: Colors.black),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/login');
-                },
-              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/login');
+              },
             ),
             SizedBox(
               height: 10,
