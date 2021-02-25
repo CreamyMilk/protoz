@@ -155,10 +155,8 @@ class WalletsPageBase extends StatelessWidget {
         ),
       ),
       SliverFillRemaining(
-        child: SingleChildScrollView(
-          child: NewWidget(
-            sampleData: sampleData,
-          ),
+        child: NewWidget(
+          sampleData: sampleData,
         ),
       )
     ]));
