@@ -35,7 +35,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent[100],
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -43,7 +43,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent[100],
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -51,7 +51,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -59,7 +59,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -67,7 +67,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.lightBlue,
                 gradient: Colors.lightBlue,
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -75,7 +75,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.lightBlueAccent,
                 gradient: Colors.lightBlueAccent,
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -83,7 +83,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -91,7 +91,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -99,7 +99,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.blue,
                 gradient: Colors.blue,
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -107,7 +107,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -115,7 +115,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-                routeName: "/seds",
+            routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",

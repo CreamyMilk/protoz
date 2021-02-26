@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:proto/widgets/awesomePopup.dart';
 
-class CategoryExpansion extends StatelessWidget {
+class ProductDetails extends StatelessWidget {
+  Widget _buildPopupDialog(BuildContext context) {
+    return AwesomePopup();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,10 +51,13 @@ class CategoryExpansion extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.network(
-                "https://images.orgill.com/large/7615198.JPG",
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.width * 0.5,
+              Hero(
+                tag:"fert",
+                child: Image.network(
+                  "https://images.orgill.com/large/7615198.JPG",
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.width * 0.5,
+                ),
               ),
               Column(
                 children: [
@@ -84,9 +92,10 @@ class CategoryExpansion extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 35),
           Column(
             children: [
+              Divider(),
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                 Text("Quantity",
                     style: TextStyle(
@@ -96,68 +105,40 @@ class CategoryExpansion extends StatelessWidget {
                 SizedBox(
                   width: 3,
                 ),
-                Row(
-                  children: [
-                    MaterialButton(
-                      minWidth: 20,
-                      height: 20,
-                      color: Colors.white,
-                      child: Text(
-                        "+",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/login');
-                      },
-                    ),
-                    Text("001"),
-                    MaterialButton(
-                      minWidth: 20,
-                      height: 20,
-                      color: Colors.white,
-                      onPressed: () {},
-                      child: Text(
-                        "+",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20),
-                      ),
-                    )
-                  ],
-                ),
+                Row(children: [
+                  FloatingActionButton(
+                    heroTag: "sdfjdfkjdsf",
+                    backgroundColor: Colors.black,
+                    child: Icon(Icons.add),
+                    mini: true,
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            _buildPopupDialog(context),
+                      );
+                    },
+                  ),
+                  Container(
+                      height: 50,
+                      width: 70,
+                      color: Colors.white60,
+                      child: Center(
+                          child: Text(
+                        "0",
+                        style: TextStyle(fontSize: 22),
+                      ))),
+                  FloatingActionButton(
+                      heroTag: "dsfkjdsfkjdf",
+                      backgroundColor: Colors.black,
+                      child: Icon(Icons.remove),
+                      mini: true,
+                      onPressed: () {}),
+                ]),
               ]),
               SizedBox(
                 height: 4,
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                Text("Location",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 22)),
-                SizedBox(
-                  width: 3,
-                ),
-                MaterialButton(
-                  minWidth: MediaQuery.of(context).size.width * 0.4,
-                  height: 40,
-                  color: Colors.white,
-                  child: Text(
-                    "Narok",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 20),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/login');
-                  },
-                ),
-              ]),
             ],
           )
         ],

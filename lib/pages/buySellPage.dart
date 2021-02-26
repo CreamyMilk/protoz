@@ -8,7 +8,7 @@ class BuySellPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 100,
+              height: 50,
             ),
             GestureDetector(
               onTap: (){
@@ -59,22 +59,16 @@ class ButtonBigi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(70),
+        color: Colors.greenAccent,
+        borderRadius: BorderRadius.circular(50),
       ),
       margin: EdgeInsets.symmetric(vertical: 20),
-      height: 300,
-      width: 400,
+      height: 200,
+      width: 300,
       child: Center(
-        child: InkWell(
-          focusColor: Colors.cyan,
-          borderRadius: BorderRadius.circular(70),
-          splashColor: Colors.red,
-          onTap: () {},
-          child: Text(
-          buttonText,
-          style: TextStyle(fontSize: 80),
-        ),
+        child: Text(
+        buttonText,
+        style: TextStyle(fontSize: 80),
         ),
       ),
     );
