@@ -23,7 +23,7 @@ class ListTilezz extends StatelessWidget {
             children: [
               ListTileNew(
                 barColor: Colors.orange,
-                gradient: Colors.deepOrange,
+                gradient: Colors.deepOrange[100],
                 routeName: "/ferter",
                 name: "Fertilizers",
                 imageUrl:
@@ -34,7 +34,7 @@ class ListTilezz extends StatelessWidget {
               ),
               ListTileNew(
                 barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent,
+                gradient: Colors.greenAccent[100],
                 routeName: "/seds",
                 name: "Seeds",
                 imageUrl:
@@ -42,7 +42,7 @@ class ListTilezz extends StatelessWidget {
               ),
               ListTileNew(
                 barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent,
+                gradient: Colors.greenAccent[100],
                 routeName: "/seds",
                 name: "Seeds",
                 imageUrl:
@@ -150,8 +150,8 @@ class ListTileNew extends StatelessWidget {
         print("Zukes");
       },
       child: Container(
-        height: 60,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        height: 80,
+        margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -163,10 +163,10 @@ class ListTileNew extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              margin: EdgeInsets.only(right: 5),
+              margin: EdgeInsets.only(right: 10),
               color: barColor,
-              width: 2,
-              height: 50,
+              width: 3,
+              height: 90,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 1.0),
@@ -191,7 +191,7 @@ class ListTileNew extends StatelessWidget {
               width: 10,
             ),
             Spacer(),
-            Radio(value: false, groupValue: null, onChanged: (bool p) {})
+            Radio(activeColor:Colors.white,value: false, groupValue: null, onChanged: (bool p) {})
           ],
         ),
       ),

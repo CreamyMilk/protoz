@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proto/widgets/awesomeFab.dart';
 
 import 'cardsPage.dart';
 
@@ -35,16 +36,7 @@ class WalletsPageBase extends StatelessWidget {
   Widget build(BuildContext context) {
     //TextStyle collButton = TextStyle(fontSize: 15, color: Colors.black);
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          mini: true,
-          child: Icon(
-            Icons.bar_chart_sharp,
-            color: Colors.white,
-          ),
-          foregroundColor: Colors.black87,
-          heroTag: "jalo",
-          onPressed: () {},
-        ),
+        floatingActionButton: AwesomeFab(),
         body: CustomScrollView(controller: n, slivers: [
           SliverAppBar(
             actions: [
@@ -56,7 +48,7 @@ class WalletsPageBase extends StatelessWidget {
                   ))
             ],
             expandedHeight: 200,
-            floating: true,
+            floating: false,
             pinned: true,
             centerTitle: true,
             title: Text(
@@ -94,14 +86,14 @@ class WalletsPageBase extends StatelessWidget {
                             Text("Potential",
                                 textScaleFactor: 1,
                                 style: TextStyle(
-                                    fontSize: 8, color: Colors.white70)),
+                                    fontSize: 10, color: Colors.white70)),
                             SizedBox(height: 3),
                             Text(
                               "KSH.15,255.00",
                               textScaleFactor: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w100),
                             ),
@@ -112,14 +104,14 @@ class WalletsPageBase extends StatelessWidget {
                             Text("Actual",
                                 textScaleFactor: 1,
                                 style: TextStyle(
-                                    fontSize: 6, color: Colors.white70)),
+                                    fontSize: 10, color: Colors.white70)),
                             SizedBox(height: 3),
                             Text(
                               "KSH.15,255.00",
                               textScaleFactor: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w100),
                             ),
@@ -181,7 +173,7 @@ class WalletsPageBase extends StatelessWidget {
                 childAspectRatio: 1,
                 crossAxisSpacing: 0.5),
             delegate: SliverChildBuilderDelegate((BuildContext ctx, int index) {
-              if (index < 5) {
+              if (index < 6) {
                 return ProductListingItem(
                   heros: index,
                   prodname: sampleData[index].name,

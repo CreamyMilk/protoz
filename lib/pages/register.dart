@@ -32,16 +32,19 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Create Account"),
+      ),
       body: Column(
         children: [
           SizedBox(height: 30),
-          Text("Kindly Fill in your information below",
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                  color: Colors.teal[400])),
-          SizedBox(height: 40),
+          // Text("Kindly Fill in your information below",
+          //     style: TextStyle(
+          //         fontWeight: FontWeight.w500,
+          //         fontSize: 20,
+          //         color: Colors.teal[400])),
+          // SizedBox(height: 40),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -53,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 }
               },
               decoration: const InputDecoration(
-                labelText: 'First Name',
+                labelText: 'Full Name',
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal)),
               ),
@@ -75,59 +78,54 @@ class _RegisterPageState extends State<RegisterPage> {
                 focusColor: Colors.teal,
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal)),
-                labelText: 'Last Name',
+                labelText: 'ID No',
+              ),
+              maxLines: 1,
+            ),
+          ),
+                    SizedBox(height: 10),
+          buildContainer(),
+
+          SizedBox(height: 10),
+          
+                    Container(
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            child: TextFormField(
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Required";
+                } else {
+                  return null;
+                }
+              },
+              decoration: const InputDecoration(
+                focusColor: Colors.teal,
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal)),
+                labelText: 'Email',
               ),
               maxLines: 1,
             ),
           ),
           SizedBox(height: 10),
-          Container(
+                    Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(width: 5),
-                  Flexible(
-                    flex: 2,
-                    child: TextFormField(
-                      keyboardType: TextInputType.datetime,
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Required";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Country',
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal)),
-                      ),
-                      maxLines: 1,
-                    ),
-                  ),
-                  SizedBox(width: 25),
-                  Flexible(
-                    flex: 10,
-                    child: TextFormField(
-                      keyboardType: TextInputType.datetime,
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Required";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Enter Phone number',
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal)),
-                      ),
-                      maxLines: 1,
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                ]),
+            child: TextFormField(
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Required";
+                } else {
+                  return null;
+                }
+              },
+              decoration: const InputDecoration(
+                focusColor: Colors.teal,
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal)),
+                labelText: 'Address',
+              ),
+              maxLines: 1,
+            ),
           ),
           SizedBox(height: 10),
           Container(
@@ -199,8 +197,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 ],
               )),
           Spacer(),
-          MaterialButton(onPressed: () {
-            Navigator.of(context).pushNamed("/login");
+          Text("Complete registration cost is 100/=",style: TextStyle(color:Colors.black),),
+          SizedBox(height: 100,),
+          MaterialButton(
+            
+            color: Colors.white,
+            child: Text("Complete Registration"),
+            onPressed: () {
+            Navigator.of(context).pushNamed("/buysell");
           }),
           SizedBox(
             height: 10,
@@ -208,5 +212,57 @@ class _RegisterPageState extends State<RegisterPage> {
         ],
       ),
     );
+  }
+
+  Container buildContainer() {
+    return Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(width: 5),
+                Flexible(
+                  flex: 2,
+                  child: TextFormField(
+                    
+                    keyboardType: TextInputType.datetime,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Required";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Country',
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.teal)),
+                    ),
+                    maxLines: 1,
+                  ),
+                ),
+                SizedBox(width: 25),
+                Flexible(
+                  flex: 10,
+                  child: TextFormField(
+                    keyboardType: TextInputType.datetime,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Required";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Enter Phone number',
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.teal)),
+                    ),
+                    maxLines: 1,
+                  ),
+                ),
+                SizedBox(width: 5),
+              ]),
+        );
   }
 }

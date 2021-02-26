@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:proto/pages/buySellPage.dart';
 import 'package:proto/pages/categoriesList.dart';
 import 'package:proto/pages/categoryExpansion.dart';
+import 'package:proto/pages/logopage.dart';
 import 'package:proto/pages/register.dart';
 import 'package:proto/pages/seeds.dart';
 import 'package:proto/pages/walletsliver.dart';
@@ -13,7 +15,9 @@ class RouteGenerator {
     //final args = settings.arguments;
 
     switch (settings.name) {
-      case '/':
+        case '/':
+        return MaterialPageRoute(builder: (ctx) => LogoPage());
+      case '/login':
         return MaterialPageRoute(
             builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
                 value: SystemUiOverlayStyle(
@@ -22,12 +26,16 @@ class RouteGenerator {
                     systemNavigationBarColor: Colors.white),
                 child: MyHomePage(title: "I")));
 
+      case '/buysell':
+        return MaterialPageRoute(builder: (ctx) => BuySellPage());
       case '/register':
         return MaterialPageRoute(builder: (ctx) => RegisterPage());
-      case '/login':
+      case '/home':
         return MaterialPageRoute(builder: (ctx) => WalletsPageBase());
       case '/categories':
         return MaterialPageRoute(builder: (ctx) => ListTilezz());
+         case '/buyer':
+        return MaterialPageRoute(builder: (ctx) => WalletsPageBase());
       case '/ferter':
         return MaterialPageRoute(builder: (ctx) => CategoryExpansion());
       case '/seds':

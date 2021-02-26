@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
               fontSizeFactor: 0.75,
               fontSizeDelta: 1.0,
             ),
-        primaryColor: Colors.teal,
+        primaryColor: Colors.blue[900],
         accentColor: Colors.black54,
       ),
       darkTheme: ThemeData(
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
               fontSizeFactor: 0.75,
               fontSizeDelta: 1.0,
             ),
-        primaryColor: Colors.black,
+        primaryColor: Colors.teal,
         accentColor: Colors.amber,
       ),
       onGenerateRoute: RouteGenerator.generateRoute,
