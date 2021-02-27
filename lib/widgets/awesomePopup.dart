@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AwesomePopup extends StatelessWidget {
@@ -15,38 +14,51 @@ class AwesomePopup extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text("Hello"),
-           Dismissible(
-        key: Key("sdsd"),
-        onDismissed: (direction) {},
-        child: Card(
+          ListTile(
+            leading: Icon(Icons.car_rental),
+            dense: true,
+            visualDensity: VisualDensity(horizontal: .001, vertical: .001),
+            //tileColor: Colors.pink,
+            onTap: () {},
+            title: Text("Delivery Cost",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 22)),
+            trailing: Switch(
+              activeColor: Colors.black,
+              value: true,
+              onChanged: (bool value) {},
+            ),
+          ),
+          Dismissible(
+            movementDuration: const Duration(seconds: 5),
+            secondaryBackground: Container(
+              color: Colors.amber,
+            ),
+            background: Container(
+              color: Colors.pink,
+            ),
+            key: Key("sdsd"),
+            onDismissed: (direction) {},
             child: Container(
                 height: 50,
-                child: Row(children: [
-                  Hero(
-                    tag: 'button 1',
+                child: Container(
+                    padding: EdgeInsets.all(8.0),
+                    width: 500,
+                    height: 50,
+                    color: Color(0xfffecf0a),
                     child: InkWell(
-                      onTap: () {
-                        print("meme");
-                      },
-                      child: Container(
-                          padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                          width: 90,
-                          height: 50,
-                          color: Color(0xfffecf0a),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Row(
-                              children: [
-                                Text("Buy Now"),
-                                Spacer(),
-                                Icon(Icons.assignment_turned_in),
-                              ],
-                            ),
-                          )),
-                    ),
-                  ),
-                ]))),
-      ),
+                      onTap: () {},
+                      child: Row(
+                        children: [
+                          Text("Slide To>>>>>"),
+                          Spacer(),
+                          Icon(Icons.pool)
+                        ],
+                      ),
+                    ))),
+          ),
         ],
       ),
       actions: <Widget>[

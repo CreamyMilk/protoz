@@ -9,40 +9,48 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Dismissible(
-        key: Key("sdsd"),
-        onDismissed: (direction) {},
-        child: Card(
-            child: Container(
-                height: 50,
-                child: Row(children: [
-                  Hero(
-                    tag: 'button 1',
-                    child: InkWell(
-                      onTap: () {
-                        print("meme");
-                      },
-                      child: Container(
-                          padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                          width: 90,
-                          height: 50,
-                          color: Color(0xfffecf0a),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Row(
-                              children: [
-                                Text("Buy Now"),
-                                Spacer(),
-                                Icon(Icons.assignment_turned_in),
-                              ],
-                            ),
-                          )),
-                    ),
-                  ),
-                ]))),
-      ),
+      floatingActionButton: FloatingActionButton.extended(
+          heroTag: "fe",
+          // icon: Icon(Icons.money),
+          backgroundColor: Colors.yellow,
+          splashColor: Colors.white,
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => _buildPopupDialog(context),
+            );
+          },
+          label: Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Checkout",
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text(
+                  "\$3.58",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            ),
+          )),
       appBar: AppBar(
-        title: Text("Fertilizers"),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black,
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          "Product Name",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: SafeArea(
           child: Column(
@@ -52,7 +60,7 @@ class ProductDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Hero(
-                tag:"fert",
+                tag: "fert",
                 child: Image.network(
                   "https://images.orgill.com/large/7615198.JPG",
                   width: MediaQuery.of(context).size.width * 0.5,
@@ -61,30 +69,33 @@ class ProductDetails extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Text("Name: Oliver",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20)),
+                  SizedBox(
+                    child: Text("Simple\n Manufature Name",
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20)),
+                  ),
                   Text(
                       "descrition sdfsfsfdasdf\nsdfsafasfsdfasdfasdfasdf\nsdfasfdsfsafdfasfasdfasdfsafasdf\n\n\n"),
-                  Text("Narok"),
-                  RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text: "Ksh.",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 25)),
-                        TextSpan(
-                            text: "5,000",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 25)),
-                      ])),
+                  // Text("Narok"),
+                  // RichText(
+                  //     textAlign: TextAlign.center,
+                  //     text: TextSpan(children: [
+                  //       TextSpan(
+                  //           text: "@.",
+                  //           style: TextStyle(
+                  //               color: Colors.black,
+                  //               fontWeight: FontWeight.w400,
+                  //               fontSize: 25)),
+                  //       TextSpan(
+                  //           text: "5,000",
+                  //           style: TextStyle(
+                  //               color: Colors.black,
+                  //               fontWeight: FontWeight.w100,
+                  //               fontSize: 25)),
+                  //     ])),
                 ],
               ),
               SizedBox(
@@ -96,48 +107,96 @@ class ProductDetails extends StatelessWidget {
           Column(
             children: [
               Divider(),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                Text("Quantity",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 22)),
-                SizedBox(
-                  width: 3,
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Quantity",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 22)),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Row(children: [
+                          FloatingActionButton(
+                            splashColor: Colors.black,
+                            heroTag: "sdfjdfkjdsf",
+                            backgroundColor: Colors.yellow,
+                            child: Icon(Icons.remove, color: Colors.black),
+                            mini: true,
+                            onPressed: () {},
+                          ),
+                          Container(
+                              height: 50,
+                              width: 70,
+                              color: Colors.white60,
+                              child: Center(
+                                  child: Text(
+                                "01",
+                                style: TextStyle(fontSize: 22),
+                              ))),
+                          FloatingActionButton(
+                              splashColor: Colors.white,
+                              heroTag: "dsfkjdsfkjdf",
+                              backgroundColor: Colors.yellow,
+                              child: Icon(Icons.add, color: Colors.black),
+                              mini: true,
+                              onPressed: () {}),
+                        ]),
+                        // SwitchListTile(value: false, onChanged: (bool me) {}),
+                      ]),
                 ),
-                Row(children: [
-                  FloatingActionButton(
-                    heroTag: "sdfjdfkjdsf",
-                    backgroundColor: Colors.black,
-                    child: Icon(Icons.add),
-                    mini: true,
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) =>
-                            _buildPopupDialog(context),
-                      );
-                    },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                child: Card(
+                  child: ListTile(
+                    dense: true,
+                    visualDensity:
+                        VisualDensity(horizontal: .001, vertical: .001),
+                    //tileColor: Colors.pink,
+                    onTap: () {},
+                    title: Text("Delivery Cost",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 22)),
+                    trailing: Switch(
+                      activeColor: Colors.amber[900],
+                      value: true,
+                      onChanged: (bool value) {},
+                    ),
                   ),
-                  Container(
-                      height: 50,
-                      width: 70,
-                      color: Colors.white60,
-                      child: Center(
-                          child: Text(
-                        "0",
-                        style: TextStyle(fontSize: 22),
-                      ))),
-                  FloatingActionButton(
-                      heroTag: "dsfkjdsfkjdf",
-                      backgroundColor: Colors.black,
-                      child: Icon(Icons.remove),
-                      mini: true,
-                      onPressed: () {}),
-                ]),
-              ]),
-              SizedBox(
-                height: 4,
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                margin: EdgeInsets.only(top: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Total:",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25,
+                      ),
+                    ),
+                    Text(
+                      "\$25.97",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 30,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           )
