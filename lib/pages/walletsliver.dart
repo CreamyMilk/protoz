@@ -131,6 +131,7 @@ class WalletsPageBase extends StatelessWidget {
                         children: [
                           FloatingActionButton(
                             mini: true,
+                            heroTag: null,
                             backgroundColor: Colors.pink,
                             child: Transform.rotate(
                               angle: 2,

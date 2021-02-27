@@ -11,36 +11,50 @@ class BuySellPage extends StatelessWidget {
               height: 50,
             ),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).pushNamed("/buyer");
               },
               child: ButtonBigi(
                 buttonText: "Buy",
-          
               ),
             ),
-            ButtonBigi(
-              buttonText: "Sell",
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed("/sellpage");
+              },
+              child: ButtonBigi(
+                buttonText: "Sell",
+              ),
             ),
-            SizedBox(height: 40,),
+            SizedBox(
+              height: 40,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 MaterialButton(
-                          minWidth: MediaQuery.of(context).size.width * 0.3,
-                  height: 100,
-                  color: Colors.yellow,
+                  minWidth: MediaQuery.of(context).size.width * 0.3,
+                  height: 60,
+                  color: Colors.black,
                   onPressed: () {
-                    Navigator.of(context).pushNamed("/");
+                    Navigator.of(context).pushNamed("/bl");
                   },
-                  child: Text("Balance"),
+                  child: Text(
+                    "B/L",
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
                 ),
-               MaterialButton(
-                          minWidth: MediaQuery.of(context).size.width * 0.3,
-                  height: 100,
-                  color: Colors.yellow,
-                  onPressed: () {},
-                  child: Text("LOAN"),
+                MaterialButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.3,
+                  height: 60,
+                  color: Colors.black,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("/sellpage");
+                  },
+                  child: Text(
+                    "LOAN",
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
                 ),
               ],
             )
@@ -67,8 +81,8 @@ class ButtonBigi extends StatelessWidget {
       width: 300,
       child: Center(
         child: Text(
-        buttonText,
-        style: TextStyle(fontSize: 80),
+          buttonText,
+          style: TextStyle(fontSize: 80),
         ),
       ),
     );

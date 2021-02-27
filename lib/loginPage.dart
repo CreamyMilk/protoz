@@ -17,7 +17,12 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Hero(tag:"logo",child: Icon(Icons.filter_drama,size: 100,)),
+            child: Hero(
+                tag: "logo",
+                child: Icon(
+                  Icons.filter_drama,
+                  size: 100,
+                )),
           ),
           Center(
             child: Column(
@@ -51,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(color: Colors.black),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/home');
+                    Navigator.of(context).pushNamed('/buysell');
                   },
                 ),
                 SizedBox(

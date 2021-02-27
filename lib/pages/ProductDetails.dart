@@ -10,7 +10,7 @@ class ProductDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-          heroTag: "fe",
+          heroTag: "fer",
           // icon: Icon(Icons.money),
           backgroundColor: Colors.yellow,
           splashColor: Colors.white,

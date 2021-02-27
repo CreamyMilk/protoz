@@ -7,7 +7,9 @@ class ProductList extends StatelessWidget {
       appBar: AppBar(),
       body: ListView(
         children: [
-          ProductListItem(),
+          ProductListItem(heroName: "fert", buttonHero: "fer"),
+          ProductListItem(heroName: "feewret", buttonHero: "fwererer"),
+          ProductListItem(heroName: "ferewrwer", buttonHero: "feewrwerr"),
           // ProductListItem(),
           // ProductListItem(),
           // ProductListItem(),
@@ -24,6 +26,11 @@ class ProductList extends StatelessWidget {
 }
 
 class ProductListItem extends StatelessWidget {
+  final String heroName;
+  final String buttonHero;
+
+  const ProductListItem({Key key, @required this.heroName, this.buttonHero})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -39,7 +46,7 @@ class ProductListItem extends StatelessWidget {
                 Navigator.of(context).pushNamed("/pdetails");
               },
               child: Hero(
-                tag: "fert",
+                tag: heroName,
                 child: Image.network(
                   "https://images.orgill.com/large/7615198.JPG",
                   width: 150,
@@ -71,7 +78,7 @@ class ProductListItem extends StatelessWidget {
                   ),
                   Spacer(),
                   Hero(
-                    tag: "fe",
+                    tag: buttonHero,
                     child: MaterialButton(
                       color: Colors.green[300],
                       onPressed: () {
