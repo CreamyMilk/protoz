@@ -22,14 +22,14 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue[900],
         accentColor: Colors.black54,
       ),
-      darkTheme: ThemeData(
-        textTheme: Theme.of(context).textTheme.apply(
-              fontSizeFactor: 0.75,
-              fontSizeDelta: 1.0,
-            ),
-        primaryColor: Colors.teal,
-        accentColor: Colors.amber,
-      ),
+      // darkTheme: ThemeData(
+      //   textTheme: Theme.of(context).textTheme.apply(
+      //         fontSizeFactor: 0.75,
+      //         fontSizeDelta: 1.0,
+      //       ),
+      //   primaryColor: Colors.teal,
+      //   accentColor: Colors.amber,
+      // ),
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: '/',
     );

@@ -38,135 +38,7 @@ class WalletsPageBase extends StatelessWidget {
     return Scaffold(
         floatingActionButton: AwesomeFab(),
         body: CustomScrollView(controller: n, slivers: [
-          SliverAppBar(
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.exit_to_app,
-                    color: Colors.black,
-                  ))
-            ],
-            expandedHeight: 200,
-            floating: false,
-            pinned: true,
-            centerTitle: true,
-            title: Text(
-              "Welcome Oliver",
-              style: TextStyle(color: Colors.white),
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: false,
-              background: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomRight,
-                      colors: [Color.fromRGBO(22, 82, 240, 1), Colors.white]),
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 63,
-                    ),
-                    Text("",
-                        textScaleFactor: 1,
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.white54,
-                        )),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          children: [
-                            Text("Potential",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.white70)),
-                            SizedBox(height: 3),
-                            Text(
-                              "KSH.15,255.00",
-                              textScaleFactor: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w100),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text("Actual",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.white70)),
-                            SizedBox(height: 3),
-                            Text(
-                              "KSH.15,255.00",
-                              textScaleFactor: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w100),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(2.0),
-                      height: 40,
-                      decoration: BoxDecoration(color: Colors.transparent),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          FloatingActionButton(
-                            mini: true,
-                            heroTag: null,
-                            backgroundColor: Colors.pink,
-                            child: Transform.rotate(
-                              angle: 2,
-                              child: Icon(
-                                Icons.arrow_back_outlined,
-                                size: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                            onPressed: () {},
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          FloatingActionButton(
-                            heroTag: "sd",
-                            mini: true,
-                            backgroundColor: Colors.teal,
-                            child: Transform.rotate(
-                              angle: 31,
-                              child: Icon(
-                                Icons.payments,
-                                color: Colors.white,
-                              ),
-                            ),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
+          WalletsAppBar(),
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 1,
@@ -186,10 +58,149 @@ class WalletsPageBase extends StatelessWidget {
             }),
           ),
           // SliverFillRemaining(
-          //   child: NewWidget(
+          //   child: WalletsAppBar(
           //     sampleData: sampleData,
           //   ),
           // )
         ]));
+  }
+}
+
+class WalletsAppBar extends StatelessWidget {
+  const WalletsAppBar({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      actions: [
+        IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.exit_to_app,
+              color: Colors.black,
+            ))
+      ],
+      expandedHeight: 200,
+      floating: false,
+      pinned: true,
+      centerTitle: true,
+      title: Text(
+        "Welcome Oliver",
+        style: TextStyle(color: Colors.white),
+      ),
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: false,
+        background: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomRight,
+                colors: [Color.fromRGBO(22, 82, 240, 1), Colors.white]),
+          ),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 63,
+              ),
+              Text("",
+                  textScaleFactor: 1,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.white54,
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Text("Potential",
+                          textScaleFactor: 1,
+                          style:
+                              TextStyle(fontSize: 10, color: Colors.white70)),
+                      SizedBox(height: 3),
+                      Text(
+                        "KSH.15,255.00",
+                        textScaleFactor: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w100),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text("Actual",
+                          textScaleFactor: 1,
+                          style:
+                              TextStyle(fontSize: 10, color: Colors.white70)),
+                      SizedBox(height: 3),
+                      Text(
+                        "KSH.15,255.00",
+                        textScaleFactor: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w100),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                padding: EdgeInsets.all(2.0),
+                height: 40,
+                decoration: BoxDecoration(color: Colors.transparent),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    FloatingActionButton(
+                      mini: true,
+                      heroTag: null,
+                      backgroundColor: Colors.pink,
+                      child: Transform.rotate(
+                        angle: 2,
+                        child: Icon(
+                          Icons.arrow_back_outlined,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {},
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    FloatingActionButton(
+                      heroTag: "sd",
+                      mini: true,
+                      backgroundColor: Colors.teal,
+                      child: Transform.rotate(
+                        angle: 31,
+                        child: Icon(
+                          Icons.payments,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

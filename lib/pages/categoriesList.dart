@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:proto/widgets/awesomeFab.dart';
 
 class ListTilezz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        mini: true,
-        child: Icon(
-          Icons.bar_chart_sharp,
-          color: Colors.white,
-        ),
-        foregroundColor: Colors.black87,
-        heroTag: "jalo",
-        onPressed: () {},
-      ),
+      floatingActionButton: AwesomeFab(),
       appBar: AppBar(
         title: Text("InputSuppliers"),
       ),
@@ -24,7 +16,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.orange,
                 gradient: Colors.deepOrange[100],
-                routeName: "/ferter",
+                routeName: "/products",
                 name: "Fertilizers",
                 imageUrl:
                     "https://burgerfarms.com/wp-content/gallery/fertilizers-plant-food/Organic-Fertilizers.JPG",
@@ -35,7 +27,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent[100],
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -43,7 +35,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent[100],
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -51,7 +43,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -59,7 +51,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -67,7 +59,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.lightBlue,
                 gradient: Colors.lightBlue,
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -75,7 +67,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.lightBlueAccent,
                 gradient: Colors.lightBlueAccent,
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -83,7 +75,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -91,7 +83,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -99,7 +91,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.blue,
                 gradient: Colors.blue,
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -107,7 +99,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -115,7 +107,7 @@ class ListTilezz extends StatelessWidget {
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent,
-            routeName: "/products",
+                routeName: "/products",
                 name: "Seeds",
                 imageUrl:
                     "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
@@ -191,7 +183,11 @@ class ListTileNew extends StatelessWidget {
               width: 10,
             ),
             Spacer(),
-            Radio(activeColor:Colors.white,value: false, groupValue: null, onChanged: (bool p) {})
+            Radio(
+                activeColor: Colors.white,
+                value: false,
+                groupValue: null,
+                onChanged: (bool p) {})
           ],
         ),
       ),

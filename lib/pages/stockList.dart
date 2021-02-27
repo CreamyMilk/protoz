@@ -63,7 +63,7 @@ class _InventoryListState extends State<InventoryList> {
                       //     .shrineTooltipCloseCart,
                     ),
                     Text(
-                      "Cart",
+                      "You Current Stock List",
                       style:
                           TextStyle(fontWeight: FontWeight.w500, fontSize: 13),
                     ),
@@ -283,6 +283,7 @@ class ShoppingCartRow extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(
                   Icons.edit_outlined,
+                  color: Colors.black,
                   size: 15,
                 ),
                 onPressed: () {
@@ -321,7 +322,7 @@ class ShoppingCartRow extends StatelessWidget {
                                 Expanded(
                                   child: Text("Quantity:  $quantity",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w400,
                                           fontSize: 23)),
                                 ),
                                 Text(
@@ -335,7 +336,7 @@ class ShoppingCartRow extends StatelessWidget {
                             Text(
                               product.name(context),
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w400),
+                                  fontSize: 18, fontWeight: FontWeight.w400),
                             ),
                           ],
                         ),

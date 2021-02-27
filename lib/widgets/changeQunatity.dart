@@ -16,14 +16,14 @@ class ChangeQunatityPopUp extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Current Stock -> 900",
+            "Current Stock of seeds -> 900",
             style: TextStyle(fontSize: 15),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 20, left: 10),
                 height: 30,
                 width: 60,
                 child: Text(

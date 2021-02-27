@@ -27,11 +27,11 @@ class ProductDetails extends StatelessWidget {
               children: [
                 Text(
                   "Checkout",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
                 Text(
                   "\$3.58",
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
               ],
             ),

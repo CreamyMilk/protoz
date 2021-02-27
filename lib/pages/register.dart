@@ -32,6 +32,22 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.white30,
+        onPressed: () {
+          Navigator.of(context).pushNamed("/buysell");
+        },
+        label: Container(
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Complete Registration",
+                  style: TextStyle(color: Colors.white, fontSize: 25)),
+            ],
+          ),
+        ),
+      ),
       appBar: AppBar(
         centerTitle: true,
         title: Text("Create Account"),
@@ -83,12 +99,12 @@ class _RegisterPageState extends State<RegisterPage> {
               maxLines: 1,
             ),
           ),
-                    SizedBox(height: 10),
+          SizedBox(height: 10),
           buildContainer(),
 
           SizedBox(height: 10),
-          
-                    Container(
+
+          Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
               validator: (value) {
@@ -108,7 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           SizedBox(height: 10),
-                    Container(
+          Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
               validator: (value) {
@@ -197,18 +213,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 ],
               )),
           Spacer(),
-          Text("Complete registration cost is 100/=",style: TextStyle(color:Colors.black),),
-          SizedBox(height: 100,),
-          MaterialButton(
-            
-            color: Colors.white,
-            child: Text("Complete Registration"),
-            onPressed: () {
-            Navigator.of(context).pushNamed("/buysell");
-          }),
+          Text(
+            "Complete registration cost is 100/=",
+            style: TextStyle(color: Colors.black),
+          ),
           SizedBox(
-            height: 10,
-          )
+            height: 100,
+          ),
         ],
       ),
     );
@@ -216,53 +227,50 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Container buildContainer() {
     return Container(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                SizedBox(width: 5),
-                Flexible(
-                  flex: 2,
-                  child: TextFormField(
-                    
-                    keyboardType: TextInputType.datetime,
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return "Required";
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: const InputDecoration(
-                      labelText: 'Country',
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.teal)),
-                    ),
-                    maxLines: 1,
-                  ),
-                ),
-                SizedBox(width: 25),
-                Flexible(
-                  flex: 10,
-                  child: TextFormField(
-                    keyboardType: TextInputType.datetime,
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return "Required";
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: const InputDecoration(
-                      labelText: 'Enter Phone number',
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.teal)),
-                    ),
-                    maxLines: 1,
-                  ),
-                ),
-                SizedBox(width: 5),
-              ]),
-        );
+      padding: EdgeInsets.only(left: 24.0, right: 24.0),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        SizedBox(width: 5),
+        Flexible(
+          flex: 2,
+          child: TextFormField(
+            keyboardType: TextInputType.datetime,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              labelText: 'Country',
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+            ),
+            maxLines: 1,
+          ),
+        ),
+        SizedBox(width: 25),
+        Flexible(
+          flex: 10,
+          child: TextFormField(
+            keyboardType: TextInputType.datetime,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              labelText: 'Enter Phone number',
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+            ),
+            maxLines: 1,
+          ),
+        ),
+        SizedBox(width: 5),
+      ]),
+    );
   }
 }

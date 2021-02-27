@@ -13,6 +13,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    
       body: Stack(
         children: [
           Padding(
@@ -21,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 tag: "logo",
                 child: Icon(
                   Icons.filter_drama,
-                  size: 100,
+                  size: 50,
                 )),
           ),
           Center(
