@@ -1,21 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:proto/pages/blConsoltants.dart';
-import 'package:proto/pages/blPage.dart';
-import 'package:proto/pages/blVets.dart';
-import 'package:proto/pages/blVetsCalls.dart';
-import 'package:proto/pages/buySellPage.dart';
-import 'package:proto/pages/categoriesList.dart';
-import 'package:proto/pages/ProductDetails.dart';
-import 'package:proto/pages/stockList.dart';
-import 'package:proto/pages/logopage.dart';
-import 'package:proto/pages/newProducts.dart';
-import 'package:proto/pages/productsList.dart';
-import 'package:proto/pages/register.dart';
-import 'package:proto/pages/seeds.dart';
-import 'package:proto/pages/walletsliver.dart';
-import 'package:proto/loginPage.dart';
+import 'package:proto/pages/bl/blConsoltants.dart';
+import 'package:proto/pages/bl/blPage.dart';
+import 'package:proto/pages/bl/blVets.dart';
+import 'package:proto/pages/bl/blVetsCalls.dart';
+import 'package:proto/pages/startup/buySellPage.dart';
+import 'package:proto/pages/buyerpages/categoriesList.dart';
+import 'package:proto/pages/buyerpages/ProductDetails.dart';
+import 'package:proto/pages/sellerpages/stockList.dart';
+import 'package:proto/pages/startup/loginPage.dart';
+import 'package:proto/transactionPage.dart';
+import 'package:proto/widgets/logopage.dart';
+import 'package:proto/pages/sellerpages/newProducts.dart';
+import 'package:proto/pages/buyerpages/productsList.dart';
+import 'package:proto/pages/registration.dart/register.dart';
+import 'package:proto/widgets/walletsliver.dart';
 import 'package:proto/widgets/youtubeWebView.dart';
 
 class RouteGenerator {
@@ -37,6 +37,8 @@ class RouteGenerator {
 
       case '/buysell':
         return MaterialPageRoute(builder: (ctx) => BuySellPage());
+      case '/transaction':
+        return MaterialPageRoute(builder: (ctx) => TransactionClass());
       case '/youtube':
         return MaterialPageRoute(builder: (ctx) => YoutubeWebView());
       case '/bl':
@@ -65,8 +67,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (ctx) => WalletsPageBase());
       case '/ferter':
         return MaterialPageRoute(builder: (ctx) => ProductDetails());
-      case '/seds':
-        return MaterialPageRoute(builder: (ctx) => SeedsExpansion());
+
       default:
         return _errorRoute();
     }

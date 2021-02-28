@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proto/widgets/awesomeFab.dart';
+import 'package:proto/widgets/popups/awesomeFab.dart';
 
-import 'cardsPage.dart';
+import '../pages/buyerpages/cardsPage.dart';
 
 // ignore: must_be_immutable
 class WalletsPageBase extends StatelessWidget {

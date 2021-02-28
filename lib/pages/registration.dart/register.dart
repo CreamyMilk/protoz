@@ -33,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.white30,
+        backgroundColor: Colors.white,
         onPressed: () {
           Navigator.of(context).pushNamed("/buysell");
         },
@@ -43,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Complete Registration",
-                  style: TextStyle(color: Colors.white, fontSize: 25)),
+                  style: TextStyle(color: Colors.black, fontSize: 25)),
             ],
           ),
         ),

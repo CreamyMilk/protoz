@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proto/widgets/awesomePopup.dart';
+import 'package:proto/widgets/popups/awesomePopup.dart';
 
 class ProductDetails extends StatelessWidget {
   Widget _buildPopupDialog(BuildContext context) {

@@ -19,6 +19,7 @@ class YoutubeWebViewState extends State<YoutubeWebView> {
   @override
   Widget build(BuildContext context) {
     return WebView(
+      javascriptMode: JavascriptMode.unrestricted,
       initialUrl: 'https://www.youtube.com/',
     );
   }

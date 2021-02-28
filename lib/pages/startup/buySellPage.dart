@@ -49,7 +49,7 @@ class BuySellPage extends StatelessWidget {
                   height: 60,
                   color: Colors.black,
                   onPressed: () {
-                    Navigator.of(context).pushNamed("/sellpage");
+                    Navigator.of(context).pushNamed("/transaction");
                   },
                   child: Text(
                     "LOAN",
