@@ -228,7 +228,7 @@ class HeaderAvatar extends StatelessWidget {
                 foregroundColor: Colors.blue,
                 child: Text("MW"),
                 backgroundColor: Colors.blue[50],
-                minRadius: 10,
+                minRadius: 15,
                 maxRadius: 30,
               ),
             ),
