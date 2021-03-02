@@ -5,6 +5,7 @@ import 'package:proto/pages/bl/blConsoltants.dart';
 import 'package:proto/pages/bl/blPage.dart';
 import 'package:proto/pages/bl/blVets.dart';
 import 'package:proto/pages/bl/blVetsCalls.dart';
+import 'package:proto/pages/profile.dart';
 import 'package:proto/pages/startup/buySellPage.dart';
 import 'package:proto/pages/buyerpages/categoriesList.dart';
 import 'package:proto/pages/buyerpages/ProductDetails.dart';
@@ -15,6 +16,7 @@ import 'package:proto/widgets/logopage.dart';
 import 'package:proto/pages/sellerpages/newProducts.dart';
 import 'package:proto/pages/buyerpages/productsList.dart';
 import 'package:proto/pages/registration.dart/register.dart';
+import 'package:proto/widgets/tab_controler.dart';
 import 'package:proto/widgets/walletsliver.dart';
 import 'package:proto/widgets/youtubeWebView.dart';
 
@@ -60,7 +62,7 @@ class RouteGenerator {
       case '/register':
         return MaterialPageRoute(builder: (ctx) => RegisterPage());
       case '/home':
-        return MaterialPageRoute(builder: (ctx) => WalletsPageBase());
+        return MaterialPageRoute(builder: (ctx) => BaseTabView());
       case '/categories':
         return MaterialPageRoute(builder: (ctx) => ListTilezz());
       case '/buyer':
@@ -68,6 +70,8 @@ class RouteGenerator {
       case '/ferter':
         return MaterialPageRoute(builder: (ctx) => ProductDetails());
 
+      case '/profile':
+        return MaterialPageRoute(builder: (ctx) => ProfilePage());
       default:
         return _errorRoute();
     }

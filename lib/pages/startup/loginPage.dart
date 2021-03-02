@@ -13,7 +13,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       body: Stack(
         children: [
           Padding(
@@ -57,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(color: Colors.black),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/buysell');
+                    Navigator.of(context).pushNamed('/home');
                   },
                 ),
                 SizedBox(

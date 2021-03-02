@@ -11,29 +11,12 @@ class InventoryList extends StatefulWidget {
 }
 
 class _InventoryListState extends State<InventoryList> {
-  // List<Widget> _createShoppingCartRows() {
-  //   return [
-  //     ShoppingCartRow(
-  //       product: Product(
-  //           category: "null",
-  //           id: 1,
-  //           isFeatured: true,
-  //           name: (_) {
-  //             return "Item Name";
-  //           },
-  //           price: 11),
-  //       quantity: 3,
-  //       onPressed: () {
-  //         // model.removeItemFromCart(id);
-  //       },
-  //     ),
-  //   ];
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: "tabFab",
+        backgroundColor: Colors.black,
         onPressed: () {
           Navigator.of(context).pushNamed("/addProduct");
         },
@@ -305,12 +288,11 @@ class ShoppingCartRow extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(
-                        product.imageURL,
-                        fit: BoxFit.cover,
+                      Container(
+                        color: Colors.pink,
                         width: 75,
                         height: 75,
-                        excludeFromSemantics: true,
+                        // excludeFromSemantics: true,
                       ),
                       const SizedBox(width: 16),
                       Expanded(
@@ -323,7 +305,7 @@ class ShoppingCartRow extends StatelessWidget {
                                   child: Text("Quantity:  $quantity",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 23)),
+                                          fontSize: 20)),
                                 ),
                                 Text(
                                   "x \$${product.price}",
@@ -336,7 +318,7 @@ class ShoppingCartRow extends StatelessWidget {
                             Text(
                               product.name(context),
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w400),
+                                  fontSize: 14, fontWeight: FontWeight.w400),
                             ),
                           ],
                         ),

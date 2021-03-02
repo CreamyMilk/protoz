@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
               fontSizeFactor: 0.75,
               fontSizeDelta: 1.0,
             ),
-        primaryColor: Colors.blue[900],
+        primaryColor: Colors.teal[900],
         accentColor: Colors.black54,
       ),
       // darkTheme: ThemeData(

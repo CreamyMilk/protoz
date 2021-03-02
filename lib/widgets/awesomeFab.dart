@@ -5,6 +5,9 @@ class AwesomeFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SpeedDial(
+      heroTag: "tabFab",
+      buttonSize: 51,
+      iconTheme: IconThemeData(size: 10),
       animatedIcon: AnimatedIcons.menu_close,
       animatedIconTheme: IconThemeData(size: 22.0),
       // child: Icon(Icons.add),
@@ -37,6 +40,7 @@ class AwesomeFab extends StatelessWidget {
           labelBackgroundColor: Colors.lightGreen,
         ),
         SpeedDialChild(
+          foregroundColor: Colors.white,
           child:
               Icon(Icons.account_balance_wallet_outlined, color: Colors.black),
           backgroundColor: Colors.yellowAccent,

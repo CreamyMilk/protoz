@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proto/widgets/popups/awesomeFab.dart';
+import 'package:proto/widgets/awesomeFab.dart';
 
 import '../pages/buyerpages/cardsPage.dart';
 
@@ -36,6 +36,7 @@ class WalletsPageBase extends StatelessWidget {
   Widget build(BuildContext context) {
     //TextStyle collButton = TextStyle(fontSize: 15, color: Colors.black);
     return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
         floatingActionButton: AwesomeFab(),
         body: CustomScrollView(controller: n, slivers: [
           WalletsAppBar(),
@@ -70,17 +71,40 @@ class WalletsAppBar extends StatelessWidget {
   const WalletsAppBar({
     Key key,
   }) : super(key: key);
-
+//pishori basmati milk bread50 240,250
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      leading: Center(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed("/profile");
+          },
+          child: Container(
+            padding: EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.teal,
+            ),
+            child: Text("JK"),
+          ),
+        ),
+      ),
       actions: [
         IconButton(
             onPressed: () {},
             icon: Icon(
-              Icons.exit_to_app,
-              color: Colors.black,
-            ))
+              Icons.qr_code_outlined,
+              color: Colors.white70,
+              size: 19,
+            )),
+        IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.notifications_active_outlined,
+              size: 19,
+              color: Colors.white70,
+            )),
       ],
       expandedHeight: 200,
       floating: false,
@@ -97,7 +121,7 @@ class WalletsAppBar extends StatelessWidget {
             gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomRight,
-                colors: [Color.fromRGBO(22, 82, 240, 1), Colors.white]),
+                colors: [Colors.teal, Colors.white]),
           ),
           child: Column(
             children: [
