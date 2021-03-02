@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:proto/pages/bl/blPage.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
+import 'package:proto/pages/transactionPage.dart';
 
-import 'package:proto/widgets/walletsliver.dart';
+import 'package:proto/pages/walletsliver.dart';
 
 class BaseTabView extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _BaseTabViewState extends State<BaseTabView> {
   final _tabs = [
     WalletsPageBase(),
     InventoryList(),
-    InventoryList(),
+    TransactionClass(),
     BLPage(),
     WalletsPageBase(),
   ];

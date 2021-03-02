@@ -33,30 +33,33 @@ class TransactionClass extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 20, right: 10),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(19)),
-                      child: Icon(Icons.refresh_outlined,
-                          size: 20, color: Colors.black87),
-                    ),
-                    Text(
-                      "REVERSE",
-                      style: TextStyle(fontSize: 10, color: Colors.black),
-                    ),
-                    Text(
-                      "Transcation",
-                      style: TextStyle(fontSize: 10, color: Colors.black),
-                    ),
-                  ],
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  margin: EdgeInsets.only(left: 20, right: 10),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(19)),
+                        child: Icon(Icons.refresh_outlined,
+                            size: 20, color: Colors.black87),
+                      ),
+                      Text(
+                        "REVERSE",
+                        style: TextStyle(fontSize: 10, color: Colors.black),
+                      ),
+                      Text(
+                        "Transcation",
+                        style: TextStyle(fontSize: 10, color: Colors.black),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -129,17 +132,17 @@ class TransactionClass extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "MARGRET WAMBUI WAIRIMU",
+                      "KINYUA JOTHAM KABASA",
                       style: TextStyle(
                           color: Colors.grey[500],
                           fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                          fontSize: 20),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "-Ksh. 4000.00",
+                      "+Ksh. 169501.00",
                       style: TextStyle(
                           color: Colors.black87,
                           fontSize: 30,
@@ -167,7 +170,7 @@ class TransactionClass extends StatelessWidget {
               ),
               Spacer(),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Column(
@@ -179,7 +182,7 @@ class TransactionClass extends StatelessWidget {
                             color: Colors.grey, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "922628",
+                        "922666",
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       )
@@ -227,7 +230,7 @@ class HeaderAvatar extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: CircleAvatar(
                 foregroundColor: Colors.blue,
-                child: Text("MW"),
+                child: Text("JK"),
                 backgroundColor: Colors.blue[50],
                 minRadius: 15,
                 maxRadius: 30,

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:proto/widgets/popups/changeQunatityPopup.dart';
 
-const _startColumnWidth = 60.0;
-const _ordinalSortKeyName = 'shopping_cart';
+const _startColumnWidth = 45.0;
 
 class InventoryList extends StatefulWidget {
   @override
@@ -20,115 +19,119 @@ class _InventoryListState extends State<InventoryList> {
         onPressed: () {
           Navigator.of(context).pushNamed("/addProduct");
         },
-        label: Text("Add New Product"),
+        label: Text("New Product"),
         icon: Icon(Icons.category_rounded),
       ),
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Container(
-            child: Stack(
+      appBar: AppBar(
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.search_off,
+              color: Colors.black,
+            ),
+          )
+        ],
+        title: Row(
           children: [
-            ListView(children: [
-              Semantics(
-                sortKey: const OrdinalSortKey(0, name: _ordinalSortKeyName),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: _startColumnWidth,
-                      child: IconButton(
-                        icon: const Icon(Icons.keyboard_arrow_down),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      //ExpandingBottomSheet.of(context).close(),
-                      // tooltip: GalleryLocalizations.of(context)
-                      //     .shrineTooltipCloseCart,
-                    ),
-                    Text(
-                      "You Current Stock List",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 13),
-                    ),
-                    const SizedBox(width: 16),
-                    Text(
-                      "\${storeP.numberOfProducts()} ITEMS",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w300, fontSize: 11),
-                    ),
-                    Spacer(),
-                    IconButton(icon: Icon(Icons.search_off), onPressed: () {})
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              //Consumer<StoreProvider>(builder: (context, storeP, child) {
-              Container(
-                  height: 600,
-                  child: ListView.builder(
-                      itemCount: 13,
-                      itemBuilder: (context, index) {
-                        //Cart Builder
-                        //final allKeys = storeP.cart.keys.toList();
-                        //final String productID = allKeys[index];
-                        // final dynamic cartItem =
-                        //     storeP.cart[productID]["details"];
-                        // print(cartItem);
-                        if (true) {
-                          return ShoppingCartRow(
-                            product: Product(
-                              imageURL:
-                                  "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-                              category: "dat",
-                              id: "234324",
-                              isFeatured: true,
-                              name: (_) {
-                                return "sdfdf";
-                              },
-                              price: 23,
-                            ),
-                            quantity: 5,
-                            onPressed: () {
-                              //storeP.removeFromCart(productID);
-                            },
-                          );
-                        }
-                      })),
-              // } else {
-              //   return Container();
-              // }
-
-              // const SizedBox(height: 10),
-              //ShoppingCartSummary(),
-              //const SizedBox(height: 100),
-            ]),
-            // PositionedDirectional(
-            //   bottom: 16,
-            //   start: 16,
-            //   end: 16,
-            //   child: ElevatedButton(
-            //     style: ElevatedButton.styleFrom(
-            //       shape: const BeveledRectangleBorder(
-            //         borderRadius: BorderRadius.all(Radius.circular(7)),
-            //       ),
-            //       primary: Colors.green[400],
-            //     ),
-            //     child: Padding(
-            //       padding: const EdgeInsets.symmetric(vertical: 12),
-            //       child: Text(
-            //         "CHECKOUT",
-            //         style: TextStyle(letterSpacing: 1.0),
-            //       ),
-            //     ),
-            //     onPressed: () {
-            //       // model.clearCart();
-            //       // ExpandingBottomSheet.of(context).close();
-            //     },
-            //   ),
-            // ),
+            Text(
+              "Current Stock",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 13),
+            ),
+            const SizedBox(width: 16),
+            Text(
+              "10 ITEMS",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 11),
+            ),
           ],
-        )),
+        ),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(
+            Icons.keyboard_arrow_down,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
+      body: SafeArea(
+          child: Container(
+        child: Stack(children: [
+          //Consumer<StoreProvider>(builder: (context, storeP, child) {
+          Container(
+              margin: EdgeInsets.only(top: 16),
+              height: MediaQuery.of(context).size.height * .9,
+              child: ListView.builder(
+                  itemCount: 13,
+                  itemBuilder: (context, index) {
+                    //Cart Builder
+                    //final allKeys = storeP.cart.keys.toList();
+                    //final String productID = allKeys[index];
+                    // final dynamic cartItem =
+                    //     storeP.cart[productID]["details"];
+                    // print(cartItem);
+                    if (true) {
+                      return ShoppingCartRow(
+                        product: Product(
+                          imageURL:
+                              "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
+                          category: "dat",
+                          id: "234324",
+                          isFeatured: true,
+                          name: (_) {
+                            return "Description";
+                          },
+                          price: 23,
+                        ),
+                        quantity: 5,
+                        onPressed: () {
+                          //storeP.removeFromCart(productID);
+                        },
+                      );
+                    }
+                  })),
+          // } else {
+          //   return Container();
+          // }
+
+          // const SizedBox(height: 10),
+          //ShoppingCartSummary(),
+          //const SizedBox(height: 100),
+        ]),
+        // PositionedDirectional(
+        //   bottom: 16,
+        //   start: 16,
+        //   end: 16,
+        //   child: ElevatedButton(
+        //     style: ElevatedButton.styleFrom(
+        //       shape: const BeveledRectangleBorder(
+        //         borderRadius: BorderRadius.all(Radius.circular(7)),
+        //       ),
+        //       primary: Colors.green[400],
+        //     ),
+        //     child: Padding(
+        //       padding: const EdgeInsets.symmetric(vertical: 12),
+        //       child: Text(
+        //         "CHECKOUT",
+        //         style: TextStyle(letterSpacing: 1.0),
+        //       ),
+        //     ),
+        //     onPressed: () {
+        //       // model.clearCart();
+        //       // ExpandingBottomSheet.of(context).close();
+        //     },
+        //   ),
+        // ),
+      )),
     );
   }
 }
@@ -251,7 +254,7 @@ class ShoppingCartRow extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.only(bottom: 5),
       child: Row(
         key: ValueKey<String>(product.id), //Changed Types for better parsing
         crossAxisAlignment: CrossAxisAlignment.start,

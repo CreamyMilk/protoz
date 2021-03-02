@@ -32,7 +32,6 @@ class AddProductsPage extends StatelessWidget {
       ),
       appBar: AppBar(
         centerTitle: true,
-        leading: Container(),
         actions: [
           IconButton(
               icon: Icon(
@@ -65,8 +64,9 @@ class AddProductsPage extends StatelessWidget {
             TextField(
                 keyboardType: TextInputType.url,
                 decoration: InputDecoration(
-                  labelText: "Image SRC",
-                  hintText: "Imag URL",
+                  suffixIcon: Icon(Icons.camera_alt_outlined),
+                  labelText: "Image src",
+                  hintText: "Image url",
                   border: OutlineInputBorder(),
                 )),
             SizedBox(

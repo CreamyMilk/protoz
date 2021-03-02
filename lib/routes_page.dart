@@ -11,13 +11,13 @@ import 'package:proto/pages/buyerpages/categoriesList.dart';
 import 'package:proto/pages/buyerpages/ProductDetails.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
 import 'package:proto/pages/startup/loginPage.dart';
-import 'package:proto/transactionPage.dart';
+import 'package:proto/pages/transactionPage.dart';
 import 'package:proto/widgets/logopage.dart';
 import 'package:proto/pages/sellerpages/newProducts.dart';
 import 'package:proto/pages/buyerpages/productsList.dart';
 import 'package:proto/pages/registration.dart/register.dart';
 import 'package:proto/widgets/tab_controler.dart';
-import 'package:proto/widgets/walletsliver.dart';
+import 'package:proto/pages/walletsliver.dart';
 import 'package:proto/widgets/youtubeWebView.dart';
 
 class RouteGenerator {

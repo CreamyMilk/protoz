@@ -1,33 +1,33 @@
+// ignore: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/widgets/awesomeFab.dart';
-
-import '../pages/buyerpages/cardsPage.dart';
 
 // ignore: must_be_immutable
 class WalletsPageBase extends StatelessWidget {
   ScrollController get n => ScrollController(initialScrollOffset: 150);
-  List<Service> sampleData = [
-    Service(
+  List<Services> sampleData = [
+    Services(
         imageUrl:
             "https://africasustainabilitymatters.com/wp-content/uploads/2020/11/Twiga_2.jpg",
         name: "InputSuppliers"),
-    Service(
+    Services(
         imageUrl:
             "https://s3.amazonaws.com/newhobbyfarms.com/2020/01/9-plows-jeff-piper-flickr-e.jpg",
         name: "Machinery"),
-    Service(
+    Services(
         imageUrl:
             "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
         name: "Market Info"),
-    Service(
+    Services(
         imageUrl:
             "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
         name: "Logistics"),
-    Service(
+    Services(
         imageUrl:
             "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
         name: "Consoltancy"),
-    Service(
+    Services(
         imageUrl:
             "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
         name: "Financing"),
@@ -111,7 +111,7 @@ class WalletsAppBar extends StatelessWidget {
       pinned: true,
       centerTitle: true,
       title: Text(
-        "Welcome Oliver",
+        "Welcome",
         style: TextStyle(color: Colors.white),
       ),
       flexibleSpace: FlexibleSpaceBar(
