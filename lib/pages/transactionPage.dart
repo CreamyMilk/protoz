@@ -114,83 +114,88 @@ class TransactionClass extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Card(
-          clipBehavior: Clip.antiAlias,
-          elevation: 2,
-          margin: EdgeInsets.symmetric(horizontal: 30),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100.0)),
-            padding: EdgeInsets.only(bottom: 20),
-            height: MediaQuery.of(context).size.height * 0.42,
-            width: MediaQuery.of(context).size.width,
-            child: Column(children: [
-              HeaderAvatar(),
-              Container(
-                margin: EdgeInsets.only(top: 30),
-                child: Column(
-                  children: [
-                    Text(
-                      "KINYUA JOTHAM KABASA",
-                      style: TextStyle(
-                          color: Colors.grey[500],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "+Ksh. 169501.00",
-                      style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w300),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Chip(
-                        padding: EdgeInsets.all(0),
-                        backgroundColor: Color.fromRGBO(225, 255, 255, 0.9),
-                        label: Text(
-                          "TRANSACTION ID:0V0DF0DDFDF",
-                          style: TextStyle(
-                            fontSize: 8,
-                            // fontWeight: FontWeight.w100,
-                            color: Colors.greenAccent[400],
-                          ),
-                        )),
-                    SizedBox(
-                      height: 5,
-                    ),
-                  ],
-                ),
-              ),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed("/transaction");
+          },
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            elevation: 2,
+            margin: EdgeInsets.symmetric(horizontal: 30),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(100.0)),
+              padding: EdgeInsets.only(bottom: 20),
+              height: MediaQuery.of(context).size.height * 0.42,
+              width: MediaQuery.of(context).size.width,
+              child: Column(children: [
+                HeaderAvatar(),
+                Container(
+                  margin: EdgeInsets.only(top: 30),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Till Number",
+                        "KINYUA JOTHAM KABASA",
                         style: TextStyle(
-                            color: Colors.grey, fontWeight: FontWeight.bold),
+                            color: Colors.grey[500],
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Text(
-                        "922666",
+                        "+Ksh. 169501.00",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      )
+                            color: Colors.black87,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w300),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Chip(
+                          padding: EdgeInsets.all(0),
+                          backgroundColor: Color.fromRGBO(225, 255, 255, 0.9),
+                          label: Text(
+                            "TRANSACTION ID:0V0DF0DDFDF",
+                            style: TextStyle(
+                              fontSize: 8,
+                              // fontWeight: FontWeight.w100,
+                              color: Colors.greenAccent[400],
+                            ),
+                          )),
+                      SizedBox(
+                        height: 5,
+                      ),
                     ],
                   ),
                 ),
-              ),
-            ]),
+                Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Till Number",
+                          style: TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "922666",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ]),
+            ),
           ),
         ),
       ),

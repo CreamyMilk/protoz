@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:proto/pages/bl/blConsoltants.dart';
 import 'package:proto/pages/bl/blPage.dart';
 import 'package:proto/pages/bl/blVets.dart';
@@ -29,13 +28,9 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (ctx) => LogoPage());
       case '/login':
-        return MaterialPageRoute(
-            builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
-                value: SystemUiOverlayStyle(
-                    statusBarColor: Colors.transparent,
-                    statusBarIconBrightness: Brightness.dark,
-                    systemNavigationBarColor: Colors.white),
-                child: MyHomePage(title: "I")));
+        return MaterialPageRoute(builder: (ctx) => MyHomePage(title: "I"));
+      case '/home':
+        return MaterialPageRoute(builder: (ctx) => BaseTabView());
 
       case '/buysell':
         return MaterialPageRoute(builder: (ctx) => BuySellPage());
@@ -61,8 +56,6 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (ctx) => ProductList());
       case '/register':
         return MaterialPageRoute(builder: (ctx) => RegisterPage());
-      case '/home':
-        return MaterialPageRoute(builder: (ctx) => BaseTabView());
       case '/categories':
         return MaterialPageRoute(builder: (ctx) => ListTilezz());
       case '/buyer':
