@@ -55,13 +55,13 @@ class _ListProductsState extends State<ListProducts> {
           onPressed: () {},
         ),
         body: SafeArea(
-          child: NewWidget(sampleData: sampleData),
+          child: HomeGrid(sampleData: sampleData),
         ));
   }
 }
 
-class NewWidget extends StatelessWidget {
-  const NewWidget({
+class HomeGrid extends StatelessWidget {
+  const HomeGrid({
     Key key,
     @required this.sampleData,
   }) : super(key: key);

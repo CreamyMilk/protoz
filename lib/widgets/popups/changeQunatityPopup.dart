@@ -11,7 +11,7 @@ class ChangeQunatityPopUp extends StatelessWidget {
       title: const Text(
         'Stock Editor',
       ),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -27,7 +27,7 @@ class ChangeQunatityPopUp extends StatelessWidget {
                 height: 30,
                 width: 60,
                 child: Text(
-                  "New STOCK",
+                  "New Stock",
                 ),
               ),
               Container(

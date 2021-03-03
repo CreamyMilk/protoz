@@ -29,15 +29,15 @@ class _BaseTabViewState extends State<BaseTabView> {
   @override
   Widget build(BuildContext context) {
     //var text = Text("Home",
-    //  style: TextStyle(color: _activetab != 0 ? Colors.black : Colors.blue));
+    //  style: TextStyle(color: _activetab != 0 ? Colors.grey : Colors.blue));
     var homeItem = BottomNavigationBarItem(
         // ignore: deprecated_member_use
         label: "Home",
-        icon: Icon(Icons.home_outlined, color: Colors.black),
+        icon: Icon(Icons.home_outlined, color: Colors.grey[500]),
         activeIcon: Icon(Icons.home, color: Colors.teal));
     var serviceItem = BottomNavigationBarItem(
         label: "Sell",
-        icon: Icon(Icons.shop_two_outlined, color: Colors.black),
+        icon: Icon(Icons.shop_two_outlined, color: Colors.grey),
         activeIcon: Icon(
           Icons.shop_two_rounded,
           color: Colors.teal,
@@ -46,22 +46,22 @@ class _BaseTabViewState extends State<BaseTabView> {
         label: "Wallet",
         icon: Hero(
             tag: "wallet",
-            child: Icon(Icons.attach_money_rounded, color: Colors.black)),
+            child: Icon(Icons.attach_money_rounded, color: Colors.grey)),
         activeIcon: Icon(Icons.attach_money_outlined, color: Colors.teal));
     var shopItem = BottomNavigationBarItem(
         label: "Training",
-        icon: Icon(Icons.school_outlined, color: Colors.black),
+        icon: Icon(Icons.school_outlined, color: Colors.grey),
         activeIcon: Icon(Icons.school, color: Colors.teal));
     var callItem = BottomNavigationBarItem(
         label: "Profile",
-        icon: Icon(Icons.contact_phone_outlined, color: Colors.black),
+        icon: Icon(Icons.contact_phone_outlined, color: Colors.grey),
         activeIcon: Icon(Icons.contact_phone, color: Colors.teal));
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.transparent,
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.light,
       ),
       child: WillPopScope(
         onWillPop: () async => false,

@@ -1,11 +1,12 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 
 // ignore: must_be_immutable
 class WalletsPageBase extends StatelessWidget {
-  ScrollController get n => ScrollController(initialScrollOffset: 150);
+  //ScrollController get n => ScrollController(initialScrollOffset: 150);
   List<Services> sampleData = [
     Services(
         imageUrl:
@@ -38,32 +39,35 @@ class WalletsPageBase extends StatelessWidget {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
         floatingActionButton: AwesomeFab(),
-        body: CustomScrollView(controller: n, slivers: [
-          WalletsAppBar(),
-          SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 1,
-                crossAxisCount: 2,
-                childAspectRatio: 1,
-                crossAxisSpacing: 0.5),
-            delegate: SliverChildBuilderDelegate((BuildContext ctx, int index) {
-              if (index < 6) {
-                return ProductListingItem(
-                  heros: index,
-                  prodname: sampleData[index].name,
-                  imageUrl: sampleData[index].imageUrl,
-                  productID: index,
-                );
-              }
-              return null;
-            }),
-          ),
-          // SliverFillRemaining(
-          //   child: WalletsAppBar(
-          //     sampleData: sampleData,
-          //   ),
-          // )
-        ]));
+        body: CustomScrollView(
+            //controller: n,
+            slivers: [
+              WalletsAppBar(),
+              SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 1,
+                    crossAxisCount: 2,
+                    childAspectRatio: 1,
+                    crossAxisSpacing: 0.5),
+                delegate:
+                    SliverChildBuilderDelegate((BuildContext ctx, int index) {
+                  if (index < 6) {
+                    return ProductListingItem(
+                      heros: index,
+                      prodname: sampleData[index].name,
+                      imageUrl: sampleData[index].imageUrl,
+                      productID: index,
+                    );
+                  }
+                  return null;
+                }),
+              ),
+              // SliverFillRemaining(
+              //   child: WalletsAppBar(
+              //     sampleData: sampleData,
+              //   ),
+              // )
+            ]));
   }
 }
 
@@ -75,6 +79,11 @@ class WalletsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.teal,
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+      ),
       leading: Center(
         child: GestureDetector(
           onTap: () {
@@ -166,7 +175,7 @@ class WalletsAppBar extends StatelessWidget {
                               TextStyle(fontSize: 10, color: Colors.white70)),
                       SizedBox(height: 3),
                       Text(
-                        "KSH.15,255.00",
+                        "KSH.175,275.00",
                         textScaleFactor: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -191,7 +200,7 @@ class WalletsAppBar extends StatelessWidget {
                     FloatingActionButton(
                       mini: true,
                       heroTag: null,
-                      backgroundColor: Colors.pink,
+                      backgroundColor: Colors.pinkAccent,
                       child: Transform.rotate(
                         angle: 2,
                         child: Icon(
