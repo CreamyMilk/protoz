@@ -60,8 +60,8 @@ class _BaseTabViewState extends State<BaseTabView> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.transparent,
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
+        statusBarColor: Colors.teal,
+        statusBarIconBrightness: Brightness.dark,
       ),
       child: WillPopScope(
         onWillPop: () async => false,

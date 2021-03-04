@@ -1,6 +1,5 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 
@@ -79,11 +78,6 @@ class WalletsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.teal,
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
-      ),
       leading: Center(
         child: GestureDetector(
           onTap: () {
