@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:proto/pages/bl/blConsoltants.dart';
 import 'package:proto/pages/bl/blPage.dart';
 import 'package:proto/pages/bl/blVets.dart';
@@ -34,7 +35,13 @@ class RouteGenerator {
       case '/login':
         return MaterialPageRoute(builder: (ctx) => LoginFormPage());
       case '/home':
-        return MaterialPageRoute(builder: (ctx) => BaseTabView());
+        return CupertinoPageRoute(
+            builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle(
+                    statusBarColor: Colors.transparent,
+                    statusBarIconBrightness: Brightness.dark,
+                    systemNavigationBarColor: Colors.white),
+                child: BaseTabView()));
       case '/buysell':
         return MaterialPageRoute(builder: (ctx) => BuySellPage());
       case '/transaction':

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:proto/pages/bl/blPage.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
@@ -11,9 +12,9 @@ class BaseTabView extends StatefulWidget {
   _BaseTabViewState createState() => _BaseTabViewState();
 }
 
-class _BaseTabViewState extends State<BaseTabView>   with SingleTickerProviderStateMixin  {
-   TabController tabController;
-  
+class _BaseTabViewState extends State<BaseTabView>
+    with SingleTickerProviderStateMixin {
+  TabController tabController;
 
   final _tabs = [
     WalletsPageBase(),
@@ -26,7 +27,7 @@ class _BaseTabViewState extends State<BaseTabView>   with SingleTickerProviderSt
   @override
   void initState() {
     _activetab = 0;
-     setState(() {
+    setState(() {
       tabController = TabController(vsync: this, length: 5, initialIndex: 0);
     });
     super.initState();
@@ -38,45 +39,48 @@ class _BaseTabViewState extends State<BaseTabView>   with SingleTickerProviderSt
     //  style: TextStyle(color: _activetab != 0 ? Colors.grey[400] : Colors.blue));
     var homeItem = SalomonBottomBarItem(
         // ignore: deprecated_member_use
-          title: Text("Home"),
+        title: Text("Home"),
         icon: Icon(Icons.home_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.home, color: Colors.teal));
     var serviceItem = SalomonBottomBarItem(
-          title: Text("Sell"),
+        title: Text("Sell"),
         icon: Icon(Icons.shop_two_outlined, color: Colors.grey[400]),
         activeIcon: Icon(
           Icons.shop_two_rounded,
           color: Colors.teal,
         ));
     var krainItem = SalomonBottomBarItem(
-          title: Text("Wallet"),
+        title: Text("Wallet"),
         icon: Icon(Icons.attach_money_rounded, color: Colors.grey[400]),
         activeIcon: Icon(Icons.attach_money_outlined, color: Colors.teal));
     var shopItem = SalomonBottomBarItem(
-
-          title: Text("Training"),
+        title: Text("Training"),
         icon: Icon(Icons.school_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.school, color: Colors.teal));
     var callItem = SalomonBottomBarItem(
-          title: Text("Profile"),
+        title: Text("Profile"),
         icon: Icon(Icons.contact_phone_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.contact_phone, color: Colors.teal));
-
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  statusBarColor: Colors.white, // status bar color
+));
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        
         bottomNavigationBar: SalomonBottomBar(
-         
-          
             selectedItemColor: Colors.teal,
-         
             currentIndex: _activetab,
-            onTap:(index) => setState(() { 
-              _activetab=index;
-              tabController.animateTo(index);}),
+            onTap: (index) => setState(() {
+                  _activetab = index;
+                  tabController.animateTo(index);
+                }),
             items: [homeItem, serviceItem, krainItem, shopItem, callItem]),
-        body: SafeArea(child:TabBarView(  controller: tabController,
-              physics: NeverScrollableScrollPhysics(),children: _tabs)),
+        body: SafeArea(
+            child: TabBarView(
+                controller: tabController,
+                physics: NeverScrollableScrollPhysics(),
+                children: _tabs)),
       ),
     );
   }
