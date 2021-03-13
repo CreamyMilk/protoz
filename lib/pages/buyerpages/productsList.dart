@@ -62,15 +62,18 @@ class ProductListItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Simple Product Name",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 30),
+                  FittedBox(
+                  fit:BoxFit.scaleDown,
+                    child: Text(
+                      "Simple Product Name",
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 25),
+                    ),
                   ),
                   Text(
                     "Simple Marketing/Packing",
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 15),
                   ),
                   Text(
                     "\$.48.20",

@@ -26,6 +26,7 @@ dependencies:
   flutter_speed_dial:
   webview_flutter: ^1.0.7
   url_launcher:
+  google_fonts: ^1.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

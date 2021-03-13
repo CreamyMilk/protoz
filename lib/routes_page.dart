@@ -4,17 +4,19 @@ import 'package:proto/pages/bl/blConsoltants.dart';
 import 'package:proto/pages/bl/blPage.dart';
 import 'package:proto/pages/bl/blVets.dart';
 import 'package:proto/pages/bl/blVetsCalls.dart';
+import 'package:proto/pages/login/loginForm.dart';
 import 'package:proto/pages/profile.dart';
+import 'package:proto/pages/registration/register.dart';
 import 'package:proto/pages/startup/buySellPage.dart';
 import 'package:proto/pages/buyerpages/categoriesList.dart';
 import 'package:proto/pages/buyerpages/ProductDetails.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
-import 'package:proto/pages/startup/loginPage.dart';
+import 'package:proto/pages/startup/homePage.dart';
 import 'package:proto/pages/transactionPage.dart';
 import 'package:proto/widgets/logopage.dart';
 import 'package:proto/pages/sellerpages/newProducts.dart';
 import 'package:proto/pages/buyerpages/productsList.dart';
-import 'package:proto/pages/registration.dart/register.dart';
+
 import 'package:proto/widgets/tab_controler.dart';
 import 'package:proto/pages/walletsliver.dart';
 import 'package:proto/widgets/youtubeWebView.dart';
@@ -27,8 +29,10 @@ class RouteGenerator {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (ctx) => LogoPage());
+      case '/startup':
+        return MaterialPageRoute(builder: (ctx) => HomePage());
       case '/login':
-        return MaterialPageRoute(builder: (ctx) => MyHomePage(title: "I"));
+        return MaterialPageRoute(builder: (ctx) => LoginFormPage());
       case '/home':
         return MaterialPageRoute(builder: (ctx) => BaseTabView());
       case '/buysell':

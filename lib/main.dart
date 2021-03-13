@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/routes_page.dart';
 
 void main() async {
@@ -7,7 +8,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final String appTitle = 'Polo';
+  final String appTitle = 'Agro|CRM';
 
   @override
   Widget build(BuildContext context) {
@@ -15,21 +16,12 @@ class MyApp extends StatelessWidget {
       title: appTitle,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: Theme.of(context).textTheme.apply(
-              fontSizeFactor: 0.75,
-              fontSizeDelta: 1.0,
-            ),
-        primaryColor: Colors.teal[900],
-        accentColor: Colors.black54,
+          textTheme: GoogleFonts.nunitoTextTheme(
+            Theme.of(context).textTheme,
+          ),
+        primaryColor: Colors.teal,
+        accentColor: Colors.tealAccent[800],
       ),
-      // darkTheme: ThemeData(
-      //   textTheme: Theme.of(context).textTheme.apply(
-      //         fontSizeFactor: 0.75,
-      //         fontSizeDelta: 1.0,
-      //       ),
-      //   primaryColor: Colors.teal,
-      //   accentColor: Colors.amber,
-      // ),
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: '/',
     );

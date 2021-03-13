@@ -6,12 +6,13 @@ class LogoPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          Navigator.of(context).pushNamed("/login");
+          Navigator.of(context).pushNamed("/startup");
         },
       ),
       body: Center(child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child:Hero(tag:"logo",child: Icon(Icons.filter_drama,size: 100,),),
+            child:Hero(tag:"logo",child: Icon(Icons.toll_outlined,size: 100,),),
+
           ),),
     );
   }

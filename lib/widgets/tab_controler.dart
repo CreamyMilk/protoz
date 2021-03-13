@@ -11,7 +11,10 @@ class BaseTabView extends StatefulWidget {
   _BaseTabViewState createState() => _BaseTabViewState();
 }
 
-class _BaseTabViewState extends State<BaseTabView> {
+class _BaseTabViewState extends State<BaseTabView>   with SingleTickerProviderStateMixin  {
+   TabController tabController;
+  
+
   final _tabs = [
     WalletsPageBase(),
     InventoryList(),
@@ -23,21 +26,24 @@ class _BaseTabViewState extends State<BaseTabView> {
   @override
   void initState() {
     _activetab = 0;
+     setState(() {
+      tabController = TabController(vsync: this, length: 5, initialIndex: 0);
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     //var text = Text("Home",
-    //  style: TextStyle(color: _activetab != 0 ? Colors.grey : Colors.blue));
+    //  style: TextStyle(color: _activetab != 0 ? Colors.grey[400] : Colors.blue));
     var homeItem = BottomNavigationBarItem(
         // ignore: deprecated_member_use
         label: "Home",
-        icon: Icon(Icons.home_outlined, color: Colors.grey[500]),
+        icon: Icon(Icons.home_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.home, color: Colors.teal));
     var serviceItem = BottomNavigationBarItem(
         label: "Sell",
-        icon: Icon(Icons.shop_two_outlined, color: Colors.grey),
+        icon: Icon(Icons.shop_two_outlined, color: Colors.grey[400]),
         activeIcon: Icon(
           Icons.shop_two_rounded,
           color: Colors.teal,
@@ -46,15 +52,15 @@ class _BaseTabViewState extends State<BaseTabView> {
         label: "Wallet",
         icon: Hero(
             tag: "wallet",
-            child: Icon(Icons.attach_money_rounded, color: Colors.grey)),
+            child: Icon(Icons.attach_money_rounded, color: Colors.grey[400])),
         activeIcon: Icon(Icons.attach_money_outlined, color: Colors.teal));
     var shopItem = BottomNavigationBarItem(
         label: "Training",
-        icon: Icon(Icons.school_outlined, color: Colors.grey),
+        icon: Icon(Icons.school_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.school, color: Colors.teal));
     var callItem = BottomNavigationBarItem(
         label: "Profile",
-        icon: Icon(Icons.contact_phone_outlined, color: Colors.grey),
+        icon: Icon(Icons.contact_phone_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.contact_phone, color: Colors.teal));
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -67,26 +73,20 @@ class _BaseTabViewState extends State<BaseTabView> {
         onWillPop: () async => false,
         child: Scaffold(
           bottomNavigationBar: BottomNavigationBar(
+            
               selectedFontSize: 12,
-              unselectedFontSize: 10,
+              unselectedFontSize: 8,
               iconSize: 20,
               backgroundColor: Colors.white,
               selectedItemColor: Colors.teal,
               type: BottomNavigationBarType.fixed,
               currentIndex: _activetab,
-              onTap: (index) {
-                if (index < _activetab) {
-                  setState(() {
-                    _activetab = index;
-                  });
-                } else {
-                  setState(() {
-                    _activetab = index;
-                  });
-                }
-              },
+              onTap:(index) => setState(() { 
+                _activetab=index;
+                tabController.animateTo(index);}),
               items: [homeItem, serviceItem, krainItem, shopItem, callItem]),
-          body: SafeArea(child: _tabs[_activetab]),
+          body: SafeArea(child:TabBarView(  controller: tabController,
+                physics: NeverScrollableScrollPhysics(),children: _tabs)),
         ),
       ),
     );

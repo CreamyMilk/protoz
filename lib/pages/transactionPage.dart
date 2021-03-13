@@ -153,7 +153,7 @@ class TransactionClass extends StatelessWidget {
                             fontWeight: FontWeight.w300),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Chip(
                           padding: EdgeInsets.all(0),
@@ -166,9 +166,7 @@ class TransactionClass extends StatelessWidget {
                               color: Colors.greenAccent[400],
                             ),
                           )),
-                      SizedBox(
-                        height: 5,
-                      ),
+             
                     ],
                   ),
                 ),
@@ -212,8 +210,14 @@ class HeaderAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
+      decoration: BoxDecoration(
+  gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.grey[50] ,Colors.grey[100],Colors.grey[50]]),
+      ),
       width: MediaQuery.of(context).size.width,
-      color: Colors.grey[50],
+     
       child: Stack(
         // ignore: deprecated_member_use
         overflow: Overflow.visible,

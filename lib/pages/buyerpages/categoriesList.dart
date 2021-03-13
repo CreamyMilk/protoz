@@ -7,7 +7,11 @@ class ListTilezz extends StatelessWidget {
     return Scaffold(
       floatingActionButton: AwesomeFab(),
       appBar: AppBar(
-        title: Text("InputSuppliers"),
+        leading: IconButton(icon:Icon(Icons.arrow_back),color:Colors.black87, onPressed: () { Navigator.of(context).pop(); },),
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        title: Text("InputSuppliers",style: TextStyle(color: Colors.black87),),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -136,22 +140,23 @@ class ListTileNew extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).pushNamed(routeName);
-        print("Zukes");
-      },
-      child: Container(
-        height: 80,
-        margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          gradient: LinearGradient(
-              begin: Alignment.bottomRight,
-              end: Alignment.centerLeft,
-              colors: [gradient, Colors.white]),
-        ),
+    return Container(
+      
+      height: 80,
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        // borderRadius: BorderRadius.circular(10),
+        gradient: LinearGradient(
+            begin: Alignment.bottomRight,
+            end: Alignment.centerLeft,
+            colors: [gradient, Colors.white]),
+      ),
+      child: InkWell(
+         onTap: () {
+      Navigator.of(context).pushNamed(routeName);
+      print("Zukes");
+    },
         child: Row(
           children: [
             Container(
@@ -164,8 +169,8 @@ class ListTileNew extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 1.0),
               child: Image.network(
                 imageUrl,
-                width: 50,
-                height: 50,
+                width: 60,
+                height: 60,
               ),
             ),
             SizedBox(width: 20),
