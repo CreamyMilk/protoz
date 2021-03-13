@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/widgets/awesomeFab.dart';
+import 'package:proto/widgets/qrScannerButton.dart';
 
 // ignore: must_be_immutable
 class WalletsPageBase extends StatelessWidget {
@@ -96,13 +97,7 @@ class WalletsAppBar extends StatelessWidget {
         ),
       ),
       actions: [
-        IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.qr_code_outlined,
-              color: Colors.black26,
-              size: 19,
-            )),
+        QrCodeScannerIcon(),
         IconButton(
             onPressed: () {},
             icon: Icon(

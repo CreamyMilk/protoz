@@ -38,7 +38,6 @@ class _BaseTabViewState extends State<BaseTabView>
     //var text = Text("Home",
     //  style: TextStyle(color: _activetab != 0 ? Colors.grey[400] : Colors.blue));
     var homeItem = SalomonBottomBarItem(
-        // ignore: deprecated_member_use
         title: Text("Home"),
         icon: Icon(Icons.home_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.home, color: Colors.teal));
@@ -61,13 +60,9 @@ class _BaseTabViewState extends State<BaseTabView>
         title: Text("Profile"),
         icon: Icon(Icons.contact_phone_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.contact_phone, color: Colors.teal));
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-  statusBarColor: Colors.white, // status bar color
-));
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        
         bottomNavigationBar: SalomonBottomBar(
             selectedItemColor: Colors.teal,
             currentIndex: _activetab,
