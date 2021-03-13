@@ -11,6 +11,7 @@ class AddProductsPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.lightGreen,
+        shape: RoundedRectangleBorder(),
         onPressed: () {
           showDialog(
             context: context,

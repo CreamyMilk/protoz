@@ -16,7 +16,7 @@ class ChangeQunatityPopUp extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Current Stock of seeds -> 900",
+            "Current := 900",
             style: TextStyle(fontSize: 15),
           ),
           Row(
@@ -27,7 +27,7 @@ class ChangeQunatityPopUp extends StatelessWidget {
                 height: 30,
                 width: 60,
                 child: Text(
-                  "New Stock",
+                  "New ",
                 ),
               ),
               Container(

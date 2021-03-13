@@ -101,7 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   autofocus: false),
             ),
           ),
-          const YMargin(10),
+          const YMargin(30),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
@@ -135,7 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   autofocus: false),
             ),
           ),
-          const YMargin(10),
+          const YMargin(30),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
@@ -169,7 +169,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   autofocus: false),
             ),
           ),
-          const YMargin(10),
+          const YMargin(30),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
@@ -203,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   autofocus: false),
             ),
           ),
-          const YMargin(10),
+          const YMargin(30),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(

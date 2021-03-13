@@ -46,7 +46,7 @@ class WalletsPageBase extends StatelessWidget {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisSpacing: 1,
                     crossAxisCount: 2,
-                    childAspectRatio: 1,
+                    childAspectRatio: 1.4,
                     crossAxisSpacing: 0.5),
                 delegate:
                     SliverChildBuilderDelegate((BuildContext ctx, int index) {
@@ -78,6 +78,8 @@ class WalletsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      elevation: 1,
+      backgroundColor: Colors.tealAccent,
       leading: Center(
         child: GestureDetector(
           onTap: () {
@@ -87,7 +89,7 @@ class WalletsAppBar extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.teal,
+              color: Colors.black87,
             ),
             child: Text("JK"),
           ),
@@ -98,7 +100,7 @@ class WalletsAppBar extends StatelessWidget {
             onPressed: () {},
             icon: Icon(
               Icons.qr_code_outlined,
-              color: Colors.white70,
+              color: Colors.black26,
               size: 19,
             )),
         IconButton(
@@ -106,7 +108,7 @@ class WalletsAppBar extends StatelessWidget {
             icon: Icon(
               Icons.notifications_active_outlined,
               size: 19,
-              color: Colors.white70,
+              color: Colors.black26,
             )),
       ],
       expandedHeight: 200,
@@ -115,7 +117,7 @@ class WalletsAppBar extends StatelessWidget {
       centerTitle: true,
       title: Text(
         "Welcome",
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.black87),
       ),
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: false,
@@ -124,7 +126,7 @@ class WalletsAppBar extends StatelessWidget {
             gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomRight,
-                colors: [Colors.teal, Colors.white]),
+                colors: [Colors.tealAccent, Colors.white]),
           ),
           child: Column(
             children: [
@@ -145,10 +147,10 @@ class WalletsAppBar extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Text("Potential",
+                      Text("Current",
                           textScaleFactor: 1,
                           style:
-                              TextStyle(fontSize: 10, color: Colors.white70)),
+                              TextStyle(fontSize: 10, color: Colors.black87)),
                       SizedBox(height: 3),
                       Text(
                         "KSH.15,255.00",
@@ -156,7 +158,7 @@ class WalletsAppBar extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             fontSize: 20,
-                            color: Colors.white,
+                            color: Colors.black87,
                             fontWeight: FontWeight.w100),
                       ),
                     ],
@@ -166,7 +168,7 @@ class WalletsAppBar extends StatelessWidget {
                       Text("Actual",
                           textScaleFactor: 1,
                           style:
-                              TextStyle(fontSize: 10, color: Colors.white70)),
+                              TextStyle(fontSize: 10, color: Colors.black87)),
                       SizedBox(height: 3),
                       Text(
                         "KSH.175,275.00",
@@ -174,7 +176,7 @@ class WalletsAppBar extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             fontSize: 20,
-                            color: Colors.white,
+                            color: Colors.black87,
                             fontWeight: FontWeight.w100),
                       ),
                     ],
@@ -194,7 +196,7 @@ class WalletsAppBar extends StatelessWidget {
                     FloatingActionButton(
                       mini: true,
                       heroTag: null,
-                      backgroundColor: Colors.pinkAccent,
+                      backgroundColor: Colors.green,
                       child: Transform.rotate(
                         angle: 2,
                         child: Icon(

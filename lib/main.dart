@@ -20,7 +20,10 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         primaryColor: Colors.teal,
-        accentColor: Colors.tealAccent[800],
+        // floatingActionButtonTheme:FloatingActionButtonThemeData(
+
+        // ),
+        accentColor: Colors.tealAccent,
       ),
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: '/',

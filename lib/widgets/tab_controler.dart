@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:proto/pages/bl/blPage.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
 import 'package:proto/pages/transactionPage.dart';
@@ -36,58 +36,47 @@ class _BaseTabViewState extends State<BaseTabView>   with SingleTickerProviderSt
   Widget build(BuildContext context) {
     //var text = Text("Home",
     //  style: TextStyle(color: _activetab != 0 ? Colors.grey[400] : Colors.blue));
-    var homeItem = BottomNavigationBarItem(
+    var homeItem = SalomonBottomBarItem(
         // ignore: deprecated_member_use
-        label: "Home",
+          title: Text("Home"),
         icon: Icon(Icons.home_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.home, color: Colors.teal));
-    var serviceItem = BottomNavigationBarItem(
-        label: "Sell",
+    var serviceItem = SalomonBottomBarItem(
+          title: Text("Sell"),
         icon: Icon(Icons.shop_two_outlined, color: Colors.grey[400]),
         activeIcon: Icon(
           Icons.shop_two_rounded,
           color: Colors.teal,
         ));
-    var krainItem = BottomNavigationBarItem(
-        label: "Wallet",
-        icon: Hero(
-            tag: "wallet",
-            child: Icon(Icons.attach_money_rounded, color: Colors.grey[400])),
+    var krainItem = SalomonBottomBarItem(
+          title: Text("Wallet"),
+        icon: Icon(Icons.attach_money_rounded, color: Colors.grey[400]),
         activeIcon: Icon(Icons.attach_money_outlined, color: Colors.teal));
-    var shopItem = BottomNavigationBarItem(
-        label: "Training",
+    var shopItem = SalomonBottomBarItem(
+
+          title: Text("Training"),
         icon: Icon(Icons.school_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.school, color: Colors.teal));
-    var callItem = BottomNavigationBarItem(
-        label: "Profile",
+    var callItem = SalomonBottomBarItem(
+          title: Text("Profile"),
         icon: Icon(Icons.contact_phone_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.contact_phone, color: Colors.teal));
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.transparent,
-        statusBarColor: Colors.teal,
-        statusBarIconBrightness: Brightness.dark,
-      ),
-      child: WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-          bottomNavigationBar: BottomNavigationBar(
-            
-              selectedFontSize: 12,
-              unselectedFontSize: 8,
-              iconSize: 20,
-              backgroundColor: Colors.white,
-              selectedItemColor: Colors.teal,
-              type: BottomNavigationBarType.fixed,
-              currentIndex: _activetab,
-              onTap:(index) => setState(() { 
-                _activetab=index;
-                tabController.animateTo(index);}),
-              items: [homeItem, serviceItem, krainItem, shopItem, callItem]),
-          body: SafeArea(child:TabBarView(  controller: tabController,
-                physics: NeverScrollableScrollPhysics(),children: _tabs)),
-        ),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        bottomNavigationBar: SalomonBottomBar(
+         
+          
+            selectedItemColor: Colors.teal,
+         
+            currentIndex: _activetab,
+            onTap:(index) => setState(() { 
+              _activetab=index;
+              tabController.animateTo(index);}),
+            items: [homeItem, serviceItem, krainItem, shopItem, callItem]),
+        body: SafeArea(child:TabBarView(  controller: tabController,
+              physics: NeverScrollableScrollPhysics(),children: _tabs)),
       ),
     );
   }

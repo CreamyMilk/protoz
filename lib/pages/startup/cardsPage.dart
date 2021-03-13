@@ -120,7 +120,7 @@ class ProductListingItem extends StatelessWidget {
         child: Card(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.15,
-            color: Colors.lightGreen,
+            color: Colors.pink,
           ),
           // child: Image.network(
           //   imageUrl,

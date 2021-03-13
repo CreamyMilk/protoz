@@ -19,8 +19,8 @@ class _InventoryListState extends State<InventoryList> {
         onPressed: () {
           Navigator.of(context).pushNamed("/addProduct");
         },
-        label: Text("New Product"),
-        icon: Icon(Icons.category_rounded),
+        label: Text("New Product",style: TextStyle(color: Colors.white),),
+        icon: Icon(Icons.add,color: Colors.white,),
       ),
       appBar: AppBar(
         elevation: 0,

@@ -20,13 +20,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-            appBar:AppBar(
-              backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(icon:Icon(Icons.arrow_back,size:20,color: Colors.grey,),onPressed: (){
-          Navigator.of(context).pop();
-        },)
-      ),
+
       body: Center(
         child: ListView(
           children: <Widget>[
@@ -131,7 +125,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                        "  provider?.errorMessage ?? ''",
+                        "  samepl errorMessage ",
                           style: GoogleFonts.nunito(
                               color: Colors.redAccent,
                               fontSize: 11,
@@ -145,7 +139,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                        height: 45,
+                        height: 50,
                         width: screenWidth(context, percent: 0.8),
                         decoration: BoxDecoration(
                           color: Colors.tealAccent[400],
@@ -166,7 +160,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                             "Submit",
                             style: GoogleFonts.nunito(
                                 color: Colors.white,
-                                fontSize: 14,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w400),
                           ),
                         ),

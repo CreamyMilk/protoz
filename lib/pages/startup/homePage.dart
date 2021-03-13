@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                   style: GoogleFonts.lato(
                       color: Colors.grey,
                       fontSize: 30,
-                      fontWeight: FontWeight.w200),
+                      fontWeight: FontWeight.w300),
                 ),
               ],
             ),
@@ -55,8 +55,9 @@ class _HomePageState extends State<HomePage> {
                           blurRadius: 30)
                     ],
                   ),
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
+              
+                  child: MaterialButton(
+                    elevation: 0,
                           onPressed: () {
                       Navigator.of(context).pushNamed("/login");
                     },
