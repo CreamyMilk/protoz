@@ -49,7 +49,7 @@ class ContactsListPage extends StatelessWidget {
           children: [
             Align(alignment: Alignment.centerLeft, child: Text("Favorites")),
             Container(
-              height: 75,
+              height: 70,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 15,
@@ -63,11 +63,11 @@ class ContactsListPage extends StatelessWidget {
                   leading: CircleAvatar(
                     child: Icon(
                       Icons.dialpad,
-                      size: 14,
+                      size: 17,
                       color: Colors.white,
                     ),
-                    minRadius: 15,
-                    maxRadius: 15,
+                    minRadius: 18,
+                    maxRadius: 18,
                     backgroundColor: Colors.blue[600],
                   ),
                   onTap: () {},
@@ -80,11 +80,11 @@ class ContactsListPage extends StatelessWidget {
                   leading: CircleAvatar(
                     child: Icon(
                       Icons.qr_code_rounded,
-                      size: 16,
+                      size: 17,
                       color: Colors.white,
                     ),
-                    minRadius: 15,
-                    maxRadius: 15,
+                    minRadius: 18,
+                    maxRadius: 18,
                     backgroundColor: Colors.green,
                   ),
                   onTap: () {
@@ -97,9 +97,9 @@ class ContactsListPage extends StatelessWidget {
                 ),
               ],
             ),
-            Align(alignment: Alignment.centerLeft, child: Text("All Contacts")),
-            const YMargin(10),
+             Align(alignment: Alignment.centerLeft, child: Text("All Contacts")),
             ListView.builder(
+               physics: ScrollPhysics(),
                 itemCount: 50,
                 shrinkWrap: true,
                 itemExtent: 50,
@@ -136,6 +136,8 @@ class ContactsListPage extends StatelessWidget {
   }
 }
 
+
+
 class FavoriteTile extends StatelessWidget {
   const FavoriteTile({
     Key key,
@@ -150,10 +152,10 @@ class FavoriteTile extends StatelessWidget {
             CircleAvatar(
               child: Text(
                 "JK",
-                style: TextStyle(fontSize: 10),
+                style: TextStyle(fontSize: 11),
               ),
-              minRadius: 16,
-              maxRadius: 16,
+              minRadius: 18,
+              maxRadius: 18,
               backgroundColor: Color(0xfffe8fffa),
             ),
             const YMargin(2),
