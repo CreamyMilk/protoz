@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:proto/pages/bl/blPage.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';

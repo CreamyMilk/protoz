@@ -47,7 +47,7 @@ class WalletsPageBase extends StatelessWidget {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisSpacing: 1,
                     crossAxisCount: 2,
-                    childAspectRatio: 1.4,
+                    childAspectRatio: 1,
                     crossAxisSpacing: 0.5),
                 delegate:
                     SliverChildBuilderDelegate((BuildContext ctx, int index) {
@@ -80,7 +80,7 @@ class WalletsAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       elevation: 1,
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: Colors.white,
       leading: Center(
         child: GestureDetector(
           onTap: () {
@@ -121,7 +121,7 @@ class WalletsAppBar extends StatelessWidget {
             gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomRight,
-                colors: [Colors.tealAccent, Colors.white]),
+                colors: [Colors.white, Colors.white]),
           ),
           child: Column(
             children: [

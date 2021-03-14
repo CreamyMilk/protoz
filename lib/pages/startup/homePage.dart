@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                   // ignore: deprecated_member_use
                   child: FlatButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed("/register");
+                      Navigator.of(context).pushNamed("/kraform");
                     },
                     color: Colors.white,
                     child: Text(

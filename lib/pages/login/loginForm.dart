@@ -154,6 +154,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         child: MaterialButton(
                           elevation: 0,
                           onPressed: () {
+                            Navigator.of(context).pushNamed("/home");
                             //provider.startLoginFormPager(context);
                           },
                           child: Text(

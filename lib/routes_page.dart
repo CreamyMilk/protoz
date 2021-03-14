@@ -13,14 +13,16 @@ import 'package:proto/pages/buyerpages/categoriesList.dart';
 import 'package:proto/pages/buyerpages/ProductDetails.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
 import 'package:proto/pages/startup/homePage.dart';
+import 'package:proto/pages/stepperForm/registerStepper.dart';
 import 'package:proto/pages/transactionPage.dart';
+import 'package:proto/providers/stepperFormProvider.dart';
 import 'package:proto/widgets/logopage.dart';
 import 'package:proto/pages/sellerpages/newProducts.dart';
 import 'package:proto/pages/buyerpages/productsList.dart';
-
 import 'package:proto/widgets/tab_controler.dart';
 import 'package:proto/pages/walletsliver.dart';
 import 'package:proto/widgets/youtubeWebView.dart';
+import 'package:provider/provider.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -42,6 +44,15 @@ class RouteGenerator {
                     statusBarIconBrightness: Brightness.dark,
                     systemNavigationBarColor: Colors.white),
                 child: BaseTabView()));
+       case '/kraform':
+        return MaterialPageRoute(
+            builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
+                create: (context) => KraFormProvider(),
+                child: AnnotatedRegion<SystemUiOverlayStyle>(
+                    value: SystemUiOverlayStyle(
+                        statusBarColor: Colors.teal[400],
+                        systemNavigationBarColor: Colors.white),
+                    child: BaseForm())));
       case '/buysell':
         return MaterialPageRoute(builder: (ctx) => BuySellPage());
       case '/transaction':
