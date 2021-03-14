@@ -19,7 +19,7 @@ class _InventoryListState extends State<InventoryList> {
         onPressed: () {
           Navigator.of(context).pushNamed("/addProduct");
         },
-        label: Text("New Product",style: TextStyle(color: Colors.white),),
+        label: Text("New ",style: TextStyle(color: Colors.white),),
         icon: Icon(Icons.add,color: Colors.white,),
       ),
       appBar: AppBar(
@@ -261,12 +261,7 @@ class ShoppingCartRow extends StatelessWidget {
         children: [
           Container(
             width: _startColumnWidth,
-            child: FloatingActionButton(
-              heroTag: null,
-              //shape: DiamondBorder(),
-              backgroundColor: Colors.white,
-              mini: true,
-              child: IconButton(
+            child:  IconButton(
                 icon: const Icon(
                   Icons.edit_outlined,
                   color: Colors.black,
@@ -280,9 +275,7 @@ class ShoppingCartRow extends StatelessWidget {
                   );
                 },
               ),
-              onPressed: () {},
             ),
-          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsetsDirectional.only(end: 16),
@@ -293,8 +286,8 @@ class ShoppingCartRow extends StatelessWidget {
                     children: [
                       Container(
                         color: Colors.pink,
-                        width: 75,
-                        height: 75,
+                        width: 70,
+                        height: 70,
                         // excludeFromSemantics: true,
                       ),
                       const SizedBox(width: 16),
@@ -308,13 +301,13 @@ class ShoppingCartRow extends StatelessWidget {
                                   child: Text("Quantity:  $quantity",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 20)),
+                                          fontSize: 18)),
                                 ),
                                 Text(
                                   "x \$${product.price}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w200,
-                                      fontSize: 25),
+                                      fontSize: 20),
                                 ),
                               ],
                             ),

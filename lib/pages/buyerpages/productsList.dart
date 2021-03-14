@@ -4,7 +4,14 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(icon:Icon(Icons.arrow_back),color:Colors.black87, onPressed: () { Navigator.of(context).pop(); },),
+        
+        elevation: 1,
+       backgroundColor:Colors.white,
+        centerTitle:true,
+        title:Text("Ferterlizers",style:TextStyle(color:Colors.black87)),
+      ),
       body: ListView(
         children: [
           ProductListItem(heroName: "fert", buttonHero: "fer"),
