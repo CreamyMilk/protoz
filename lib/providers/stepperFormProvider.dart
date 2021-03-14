@@ -21,7 +21,7 @@ class KraFormProvider extends ChangeNotifier {
   String year;
   String countrycode;
   String phoneNumber;
-  String krapin;
+  String krapin="DEFAULT";
   bool terms = false;
 
   void nameFields(String a, String b) {

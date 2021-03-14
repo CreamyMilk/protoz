@@ -52,7 +52,7 @@ class _BaseFormState extends State<BaseForm> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         shape: RoundedRectangleBorder(),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor:Colors.greenAccent[400],
         onPressed: () {
           if (activePage == 0) {
             hbox.nfSubmit();
@@ -74,9 +74,9 @@ class _BaseFormState extends State<BaseForm> {
             : null,
         label: Text(
             (activePage != pages.length - 1
-                ? "       NEXT        "
-                : "       Pay Now        "),
-            style: TextStyle(color: Colors.white, fontSize: 12)),
+                ? "      NEXT       "
+                : "      Pay Now       "),
+            style: TextStyle(color: Colors.white, fontSize: 15)),
       ),
     );
   }

@@ -32,7 +32,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only( top: 20),
+      padding: const EdgeInsets.only( top: 1),
       alignment: Alignment.center,
       child: Column(
         children: <Widget>[
@@ -89,14 +89,14 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
 
   Widget _calcButton(BuildContext context,String value) {
     return InkWell(
-        borderRadius: BorderRadius.circular(45),
+        borderRadius: BorderRadius.circular(40),
         onTap: () {
           widget.onKeyboardTap(value);
         },
         child: Container(
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width *0.2,
-          height: 70,
+          height: 50,
           child: Text(
             value,
             style: TextStyle(

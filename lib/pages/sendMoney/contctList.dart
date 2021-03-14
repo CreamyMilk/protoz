@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/qrScannerButton.dart';
 
+
 class ContactsListPage extends StatelessWidget {
+  final List<Color> lightColors = [
+    Color(0xfffe8fffa),
+    Color.fromRGBO(200, 255, 255, 0.7),
+    Color(0xfffe8fffa),];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +52,7 @@ class ContactsListPage extends StatelessWidget {
         height: screenHeight(context),
         child: ListView(
           children: [
-            Align(alignment: Alignment.centerLeft, child: Text("Favorites")),
+            Padding(padding:EdgeInsets.only(left:10),child: Align(alignment: Alignment.centerLeft, child: Text("Favorites"))),
             Container(
               height: 70,
               child: ListView.builder(
@@ -70,11 +75,13 @@ class ContactsListPage extends StatelessWidget {
                     maxRadius: 18,
                     backgroundColor: Colors.blue[600],
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushNamed("/enteramount");
+                  },
                   contentPadding: EdgeInsets.only(left: 10, bottom: 12.0),
                   minLeadingWidth: 30,
                   dense: true,
-                  title: Text("Enter Phone Number"),
+                  title: Text("Enter Phone Number",style: TextStyle(color:Colors.blue[900]),),
                 ),
                 ListTile(
                   leading: CircleAvatar(
@@ -97,17 +104,17 @@ class ContactsListPage extends StatelessWidget {
                 ),
               ],
             ),
-             Align(alignment: Alignment.centerLeft, child: Text("All Contacts")),
+             Padding(padding:EdgeInsets.only(left:10),child: Align(alignment: Alignment.centerLeft, child: Text("All Contacts"))),
             ListView.builder(
                physics: ScrollPhysics(),
                 itemCount: 50,
                 shrinkWrap: true,
-                itemExtent: 50,
+                itemExtent: 60,
                 itemBuilder: (context, index) {
                   return ListTile(
                     isThreeLine: true,
                     leading: Transform.translate(
-                      offset: const Offset(0, -10),
+                      offset: const Offset(0, -5),
                       child: CircleAvatar(
                         child: Text(
                           "JK",
@@ -115,10 +122,12 @@ class ContactsListPage extends StatelessWidget {
                         ),
                         minRadius: 20,
                         maxRadius: 20,
-                        backgroundColor: Color(0xfffe8fffa),
+                        backgroundColor: lightColors[index % 3],
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                        Navigator.of(context).pushNamed("/enteramount");
+                    },
                     contentPadding: EdgeInsets.only(left: 10, bottom: 12.0),
                     minLeadingWidth: 30,
                     // horizontalTitleGap: 0.1,
@@ -145,25 +154,31 @@ class FavoriteTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            CircleAvatar(
-              child: Text(
-                "JK",
-                style: TextStyle(fontSize: 11),
+    return GestureDetector(
+      onTap: (){
+          Navigator.of(context).pushNamed("/enteramount");
+      }
+      ,
+      child: Container(
+          margin: EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              CircleAvatar(
+                child: Text(
+                  "JK",
+                  style: TextStyle(fontSize: 11),
+                ),
+                minRadius: 20,
+                maxRadius: 20,
+                backgroundColor: Color(0xfffe8fffa),
               ),
-              minRadius: 18,
-              maxRadius: 18,
-              backgroundColor: Color(0xfffe8fffa),
-            ),
-            const YMargin(2),
-            Text("John",
-                style: TextStyle(
-                  fontSize: 10,
-                ))
-          ],
-        ));
+              const YMargin(2),
+              Text("John",
+                  style: TextStyle(
+                    fontSize: 10,
+                  ))
+            ],
+          )),
+    );
   }
 }

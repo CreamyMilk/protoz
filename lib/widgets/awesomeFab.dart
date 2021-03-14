@@ -5,16 +5,15 @@ class AwesomeFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SpeedDial(
+      
+      backgroundColor: Colors.white,
+      foregroundColor: Colors.black87,
       heroTag: "tabFab",
       buttonSize: 51,
       iconTheme: IconThemeData(size: 10),
       animatedIcon: AnimatedIcons.menu_close,
-      animatedIconTheme: IconThemeData(size: 22.0),
-      // child: Icon(Icons.add),
-      onOpen: () => print('OPENING DIAL'),
-      onClose: () => print('DIAL CLOSED'),
-      //visible: dialVisible,
-      curve: Curves.easeIn,
+      animatedIconTheme: IconThemeData(size: 20.0),
+      curve: Curves.bounceInOut,
       children: [
         SpeedDialChild(
           child: Icon(Icons.person_outline_sharp, color: Colors.white),

@@ -20,14 +20,13 @@ class _BaseTabViewState extends State<BaseTabView>
     InventoryList(),
     TransactionClass(),
     BLPage(),
-    WalletsPageBase(),
   ];
   int _activetab;
   @override
   void initState() {
     _activetab = 0;
     setState(() {
-      tabController = TabController(vsync: this, length: 5, initialIndex: 0);
+      tabController = TabController(vsync: this, length: 4, initialIndex: 0);
     });
     super.initState();
   }
@@ -55,10 +54,7 @@ class _BaseTabViewState extends State<BaseTabView>
         title: Text("Training"),
         icon: Icon(Icons.school_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.school, color: Colors.teal));
-    var callItem = SalomonBottomBarItem(
-        title: Text("Profile"),
-        icon: Icon(Icons.contact_phone_outlined, color: Colors.grey[400]),
-        activeIcon: Icon(Icons.contact_phone, color: Colors.teal));
+  
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -69,7 +65,7 @@ class _BaseTabViewState extends State<BaseTabView>
                   _activetab = index;
                   tabController.animateTo(index);
                 }),
-            items: [homeItem, serviceItem, krainItem, shopItem, callItem]),
+            items: [homeItem, serviceItem, krainItem, shopItem]),
         body: SafeArea(
             child: TabBarView(
                 controller: tabController,
