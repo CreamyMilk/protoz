@@ -8,6 +8,7 @@ import 'package:proto/pages/bl/blVetsCalls.dart';
 import 'package:proto/pages/login/loginForm.dart';
 import 'package:proto/pages/profile.dart';
 import 'package:proto/pages/registration/register.dart';
+import 'package:proto/pages/sendMoney/contctList.dart';
 import 'package:proto/pages/startup/buySellPage.dart';
 import 'package:proto/pages/buyerpages/categoriesList.dart';
 import 'package:proto/pages/buyerpages/ProductDetails.dart';
@@ -53,6 +54,8 @@ class RouteGenerator {
                         statusBarColor: Colors.teal[400],
                         systemNavigationBarColor: Colors.white),
                     child: BaseForm())));
+      case '/contactList':
+        return CupertinoPageRoute(builder: (ctx) => ContactsListPage());
       case '/buysell':
         return MaterialPageRoute(builder: (ctx) => BuySellPage());
       case '/transaction':

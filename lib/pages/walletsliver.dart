@@ -200,7 +200,9 @@ class WalletsAppBar extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/contactList");
+                      },
                     ),
                     SizedBox(
                       width: 10,
