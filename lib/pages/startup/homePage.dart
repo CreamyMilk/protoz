@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/utils/sizedMargins.dart';
 
-
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -55,13 +54,12 @@ class _HomePageState extends State<HomePage> {
                           blurRadius: 30)
                     ],
                   ),
-              
                   child: MaterialButton(
+                    color: Colors.tealAccent[400],
                     elevation: 0,
-                          onPressed: () {
+                    onPressed: () {
                       Navigator.of(context).pushNamed("/login");
                     },
-            
                     child: Text(
                       "Login",
                       style: GoogleFonts.nunito(

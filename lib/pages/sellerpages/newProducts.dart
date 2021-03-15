@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proto/popups/addProdPopup.dart';
 import 'package:proto/utils/sizedMargins.dart';
-import 'package:proto/widgets/popups/addProdPopup.dart';
 
 class AddProductsPage extends StatelessWidget {
   Widget _buildPopupDialog(BuildContext context) {
@@ -14,7 +15,7 @@ class AddProductsPage extends StatelessWidget {
         backgroundColor: Colors.lightGreen,
         shape: RoundedRectangleBorder(),
         onPressed: () {
-          showDialog(
+          showCupertinoDialog(
             context: context,
             builder: (BuildContext context) => _buildPopupDialog(context),
           );

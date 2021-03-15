@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:proto/widgets/popups/changeQunatityPopup.dart';
+import 'package:proto/popups/changeQunatityPopup.dart';
 
 const _startColumnWidth = 45.0;
 
@@ -268,7 +269,7 @@ class ShoppingCartRow extends StatelessWidget {
                   size: 15,
                 ),
                 onPressed: () {
-                  showDialog(
+                  showCupertinoDialog(
                     context: context,
                     builder: (BuildContext context) =>
                         _buildPopupDialog(context),

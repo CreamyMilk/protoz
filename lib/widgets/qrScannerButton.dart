@@ -1,7 +1,8 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:proto/widgets/popups/qrErrorPopup.dart';
+import 'package:proto/popups/qrErrorPopup.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class QrCodeScannerIcon extends StatelessWidget{
  @override
@@ -23,6 +24,7 @@ class QrCodeScannerIcon extends StatelessWidget{
     
       if (result != null) {
         showSuccessDialog(context,result:result.rawContent);
+        parseQrCode(result.rawContent);
       }
     } on PlatformException catch (e) {
       var result = ScanResult(
@@ -38,4 +40,13 @@ class QrCodeScannerIcon extends StatelessWidget{
       showErrorDialog(context, error: result.rawContent);
     }
   }  
- 
+
+void parseQrCode(String qrData) async{
+  if(qrData.startsWith("http")){
+    //If the scanned code is a url
+    if(await canLaunch(qrData)){
+      launch(qrData);
+    }
+  }
+
+}

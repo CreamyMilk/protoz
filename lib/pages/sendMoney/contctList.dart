@@ -54,7 +54,7 @@ class ContactsListPage extends StatelessWidget {
           children: [
             Padding(padding:EdgeInsets.only(left:10),child: Align(alignment: Alignment.centerLeft, child: Text("Favorites"))),
             Container(
-              height: 70,
+              height: 150,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 15,
@@ -82,6 +82,24 @@ class ContactsListPage extends StatelessWidget {
                   minLeadingWidth: 30,
                   dense: true,
                   title: Text("Enter Phone Number",style: TextStyle(color:Colors.blue[900]),),
+                ),                ListTile(
+                  leading: CircleAvatar(
+                    child: Icon(
+                      Icons.account_balance_wallet_outlined,
+                      size: 17,
+                      color: Colors.white,
+                    ),
+                    minRadius: 18,
+                    maxRadius: 18,
+                    backgroundColor: Colors.blue[600],
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pushNamed("/enteramount");
+                  },
+                  contentPadding: EdgeInsets.only(left: 10, bottom: 12.0),
+                  minLeadingWidth: 30,
+                  dense: true,
+                  title: Text("Send TO Mpesa",style: TextStyle(color:Colors.blue[900]),),
                 ),
                 ListTile(
                   leading: CircleAvatar(

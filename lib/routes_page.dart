@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:proto/pages/bl/blConsoltants.dart';
-import 'package:proto/pages/bl/blPage.dart';
-import 'package:proto/pages/bl/blVets.dart';
-import 'package:proto/pages/bl/blVetsCalls.dart';
 import 'package:proto/pages/login/loginForm.dart';
 import 'package:proto/pages/profile.dart';
 import 'package:proto/pages/registration/register.dart';
 import 'package:proto/pages/sendMoney/contctList.dart';
 import 'package:proto/pages/sendMoney/enteramount.dart';
-import 'package:proto/pages/startup/buySellPage.dart';
+import 'package:proto/pages/services/blConsoltants.dart';
+import 'package:proto/pages/services/blPage.dart';
+import 'package:proto/pages/services/blVets.dart';
+import 'package:proto/pages/services/blVetsCalls.dart';
 import 'package:proto/pages/buyerpages/categoriesList.dart';
 import 'package:proto/pages/buyerpages/ProductDetails.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
@@ -59,8 +58,6 @@ class RouteGenerator {
         return CupertinoPageRoute(builder: (ctx) => ContactsListPage());
        case '/enteramount':
         return MaterialPageRoute(builder: (ctx) => EnterAmountPage());
-      case '/buysell':
-        return MaterialPageRoute(builder: (ctx) => BuySellPage());
       case '/transaction':
         return MaterialPageRoute(builder: (ctx) => TransactionClass());
       case '/youtube':

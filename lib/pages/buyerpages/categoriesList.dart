@@ -27,7 +27,7 @@ class ListTilezz extends StatelessWidget {
               ),
               SizedBox(
                 height: 1,
-              ),
+             ),
               ListTileNew(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent[100],

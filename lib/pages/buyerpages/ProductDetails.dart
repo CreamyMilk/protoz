@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:proto/widgets/popups/awesomePopup.dart';
+import 'package:proto/popups/awesomePopup.dart';
 
 class ProductDetails extends StatelessWidget {
   Widget _buildPopupDialog(BuildContext context) {
@@ -15,7 +16,7 @@ class ProductDetails extends StatelessWidget {
           backgroundColor: Colors.yellow,
           splashColor: Colors.white,
           onPressed: () {
-            showDialog(
+            showCupertinoDialog(
               context: context,
               builder: (BuildContext context) => _buildPopupDialog(context),
             );

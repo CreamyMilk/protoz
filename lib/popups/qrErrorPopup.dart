@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/utils/sizedMargins.dart';
 
-showErrorDialog(BuildContext context, {String error}) => showDialog(
+showErrorDialog(BuildContext context, {String error}) => showCupertinoDialog(
     context: context,
     builder: (BuildContext context) {
       return Dialog(
@@ -43,7 +44,7 @@ showErrorDialog(BuildContext context, {String error}) => showDialog(
         ),
       );
     });
-showSuccessDialog(BuildContext context, {String result}) => showDialog(
+showSuccessDialog(BuildContext context, {String result}) => showCupertinoDialog(
     context: context,
     builder: (BuildContext context) {
       return Dialog(
