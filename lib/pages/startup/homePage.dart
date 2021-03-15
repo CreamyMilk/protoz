@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   "AGRO ",
                   style: GoogleFonts.nunito(
-                      color: Colors.greenAccent,
+                      color: Colors.tealAccent[400],
                       fontSize: 30,
                       fontWeight: FontWeight.w800),
                 ),

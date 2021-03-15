@@ -51,8 +51,7 @@ class _BaseFormState extends State<BaseForm> {
       body: pages[activePage],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        shape: RoundedRectangleBorder(),
-        backgroundColor:Colors.greenAccent[400],
+        backgroundColor:Colors.lightGreen,
         onPressed: () {
           if (activePage == 0) {
             hbox.nfSubmit();

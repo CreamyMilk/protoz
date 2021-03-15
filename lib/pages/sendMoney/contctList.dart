@@ -6,8 +6,13 @@ import 'package:proto/widgets/qrScannerButton.dart';
 class ContactsListPage extends StatelessWidget {
   final List<Color> lightColors = [
     Color(0xfffe8fffa),
-    Color.fromRGBO(200, 255, 255, 0.7),
-    Color(0xfffe8fffa),];
+    Colors.pink[50],
+    Colors.deepPurple[50],];
+
+   final List<Color> foregroundColor= [
+     Colors.blue,
+    Colors.pink,
+    Colors.deepPurple[900],];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +59,7 @@ class ContactsListPage extends StatelessWidget {
           children: [
             Padding(padding:EdgeInsets.only(left:10),child: Align(alignment: Alignment.centerLeft, child: Text("Favorites"))),
             Container(
-              height: 150,
+              height: 80,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 15,
@@ -85,13 +90,13 @@ class ContactsListPage extends StatelessWidget {
                 ),                ListTile(
                   leading: CircleAvatar(
                     child: Icon(
-                      Icons.account_balance_wallet_outlined,
+                      Icons.phone_android_sharp,
                       size: 17,
                       color: Colors.white,
                     ),
                     minRadius: 18,
                     maxRadius: 18,
-                    backgroundColor: Colors.blue[600],
+                    backgroundColor: Colors.greenAccent[400],
                   ),
                   onTap: () {
                     Navigator.of(context).pushNamed("/enteramount");
@@ -99,7 +104,7 @@ class ContactsListPage extends StatelessWidget {
                   contentPadding: EdgeInsets.only(left: 10, bottom: 12.0),
                   minLeadingWidth: 30,
                   dense: true,
-                  title: Text("Send TO Mpesa",style: TextStyle(color:Colors.blue[900]),),
+                  title: Text("Send To Mpesa",style: TextStyle(color:Colors.greenAccent[700]),),
                 ),
                 ListTile(
                   leading: CircleAvatar(
@@ -110,7 +115,7 @@ class ContactsListPage extends StatelessWidget {
                     ),
                     minRadius: 18,
                     maxRadius: 18,
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.pink,
                   ),
                   onTap: () {
                     initateScan(context);
@@ -118,7 +123,7 @@ class ContactsListPage extends StatelessWidget {
                   contentPadding: EdgeInsets.only(left: 10, bottom: 12.0),
                   minLeadingWidth: 30,
                   dense: true,
-                  title: Text("SCAN QR CODE"),
+                  title: Text("Scan QR CODE",style: TextStyle(color:Colors.pinkAccent[700])),
                 ),
               ],
             ),
@@ -134,6 +139,7 @@ class ContactsListPage extends StatelessWidget {
                     leading: Transform.translate(
                       offset: const Offset(0, -5),
                       child: CircleAvatar(
+                        foregroundColor: foregroundColor[index %3],
                         child: Text(
                           "JK",
                           style: TextStyle(fontSize: 10),
@@ -181,14 +187,12 @@ class FavoriteTile extends StatelessWidget {
           margin: EdgeInsets.all(8.0),
           child: Column(
             children: [
-              CircleAvatar(
-                child: Text(
-                  "JK",
-                  style: TextStyle(fontSize: 11),
-                ),
+            CircleAvatar(
+                foregroundColor: Colors.blue,
+                child: Text("JK",style: TextStyle(fontSize: 11)),
+                backgroundColor: Colors.blue[50],
                 minRadius: 20,
                 maxRadius: 20,
-                backgroundColor: Color(0xfffe8fffa),
               ),
               const YMargin(2),
               Text("John",

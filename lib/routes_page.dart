@@ -6,6 +6,7 @@ import 'package:proto/pages/profile.dart';
 import 'package:proto/pages/registration/register.dart';
 import 'package:proto/pages/sendMoney/contctList.dart';
 import 'package:proto/pages/sendMoney/enteramount.dart';
+import 'package:proto/pages/sendMoney/pinentrypage.dart';
 import 'package:proto/pages/services/blConsoltants.dart';
 import 'package:proto/pages/services/blPage.dart';
 import 'package:proto/pages/services/blVets.dart';
@@ -56,7 +57,9 @@ class RouteGenerator {
                     child: BaseForm())));
       case '/contactList':
         return CupertinoPageRoute(builder: (ctx) => ContactsListPage());
-       case '/enteramount':
+      case '/pin':
+        return MaterialPageRoute(builder: (ctx) => EnterPinPage());
+      case '/enteramount':
         return MaterialPageRoute(builder: (ctx) => EnterAmountPage());
       case '/transaction':
         return MaterialPageRoute(builder: (ctx) => TransactionClass());

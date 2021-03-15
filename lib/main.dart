@@ -16,13 +16,12 @@ class MyApp extends StatelessWidget {
       title: appTitle,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          textTheme: GoogleFonts.nunitoTextTheme(
-            Theme.of(context).textTheme,
-          ),
+        textTheme: GoogleFonts.nunitoTextTheme(
+          Theme.of(context).textTheme,
+        ),
         primaryColor: Colors.teal,
         // floatingActionButtonTheme:FloatingActionButtonThemeData(
 
-        // ),
         accentColor: Colors.tealAccent,
       ),
       onGenerateRoute: RouteGenerator.generateRoute,

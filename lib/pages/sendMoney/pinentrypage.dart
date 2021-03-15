@@ -3,17 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/keypadwidget.dart';
 
-class EnterAmountPage extends StatefulWidget {
+class EnterPinPage extends StatefulWidget {
   @override
-  _EnterAmountPageState createState() => _EnterAmountPageState();
+  _EnterPinPageState createState() => _EnterPinPageState();
 }
 
-class _EnterAmountPageState extends State<EnterAmountPage> {
-  String amount = "";
+class _EnterPinPageState extends State<EnterPinPage> {
+  String pincode = "";
 
   @override
   void initState() {
-    amount = "10000";
+    pincode = "";
     super.initState();
   }
 
@@ -26,8 +26,9 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Mr. Kinyua",
-          style: TextStyle(color: Colors.blueGrey),
+          "Enter Pin",
+          
+          style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black87),
         ),
       ),
       body: Column(children: [
@@ -36,27 +37,20 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
             textAlign: TextAlign.center,
             text: TextSpan(children: [
               TextSpan(
-                  text: "Ksh.",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20.0)),
-              TextSpan(
-                  text:
-                      "${amount.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
+                  text: "$pincode",
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
                       fontSize: 35.0)),
             ])),
         Spacer(),
-        AnimatedContainer(
+         AnimatedContainer(
           duration: Duration(seconds: 1),
           height: 50,
           width: screenWidth(context, percent: 0.8),
           decoration: BoxDecoration(
             color:
-                amount.length > 1 ? Colors.greenAccent[400] : Colors.grey[200],
+                pincode.length ==4 ? Colors.greenAccent[400] : Colors.grey[200],
             boxShadow: [
               BoxShadow(
                   color: Colors.grey[400].withOpacity(0.3),
@@ -66,14 +60,14 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
           ),
           // ignore: deprecated_member_use
           child: FlatButton(
-                        onPressed:amount.length > 1?(){
+                        onPressed:pincode.length > 1?(){
                           Navigator.of(context).pushNamed("/pin");
                         } : (){},
             color: Colors.transparent,
             child: Text(
-              amount.length > 1 ? "Send Now ->" : "Enter Amount",
+              pincode.length != 4 ?  "Chapisha Pin Brathe":"Verifying ->",
               style: GoogleFonts.nunito(
-                  color: amount.length > 1 ? Colors.white : Colors.blueGrey,
+                  color: pincode.length == 4 ? Colors.white : Colors.blueGrey,
                   fontSize: 20,
                   fontWeight: FontWeight.w400),
             ),
@@ -81,15 +75,10 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
         ),
         NumericKeyboard(
             rightButtonFn: () {
-              if (amount.length == 1) {
+              if (pincode.length > 0) {
+                pincode = pincode.substring(0, pincode.length - 1);
                 setState(() {
-                  amount = "0";
-                });
-              }
-              if (amount.length > 1) {
-                amount = amount.substring(0, amount.length - 1);
-                setState(() {
-                  amount = amount;
+                  pincode = pincode;
                 });
               }
             },
@@ -99,10 +88,13 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
               print(text);
               setState(
                 () {
-                  if (amount == "0") {
-                    amount = text;
-                  } else if (amount.length < 12) {
-                    amount += text;
+                  if (pincode.length < 4) {
+                    pincode += "*";
+                  }
+                  if (pincode.length == 4) {
+                    Future.delayed(Duration(seconds: 2), () {
+                      Navigator.of(context).pushNamed("/transaction");
+                    });
                   }
                 },
               );

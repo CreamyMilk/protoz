@@ -117,20 +117,22 @@ class ProductListingItem extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed("/categories");
         },
-        child: Card(
+
+          child: Image.network(
+            imageUrl,
+            height: MediaQuery.of(context).size.height * 0.15,
+            width:  MediaQuery.of(context).size.height * 0.45,
+            fit: BoxFit.fill,
+            loadingBuilder: (context, child, progress) {
+              return progress == null ?         child: Card(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.15,
             color: Colors.black54,
+          ));})
+            
           ),
-          // child: Image.network(
-          //   imageUrl,
-          //   fit: BoxFit.fill,
-          //   loadingBuilder: (context, child, progress) {
-          //     return progress == null ? child : Container();
-          //   },
-          // )),
-        ),
-      ),
+        
+      
       Text(prodname,
           style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15.0)),
     ]);

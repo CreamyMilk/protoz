@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proto/utils/sizedMargins.dart';
 
 class TransactionClass extends StatelessWidget {
+  final String amount = "15000.00";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,36 +138,37 @@ class TransactionClass extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        "KINYUA JOTHAM KABASA",
+                        "KINYUA JOTHAM",
                         style: TextStyle(
-                            color: Colors.grey[500],
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w300,
+
+                            fontSize: 18),
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        "+Ksh. 169501.00",
-                        style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w300),
-                      ),
+                             RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(children: [
+              TextSpan(
+                  text: "+Ksh.",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 15.0)),
+              TextSpan(
+                  text:
+                      "${amount.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 24.0)),
+            ])),
                       SizedBox(
                         height: 10,
                       ),
-                      Chip(
-                          padding: EdgeInsets.all(0),
-                          backgroundColor: Color.fromRGBO(225, 255, 255, 0.9),
-                          label: Text(
-                            "TRANSACTION ID:0V0DF0DDFDF",
-                            style: TextStyle(
-                              fontSize: 8,
-                              // fontWeight: FontWeight.w100,
-                              color: Colors.greenAccent[400],
-                            ),
-                          )),
+      
              
                     ],
                   ),
@@ -179,14 +182,14 @@ class TransactionClass extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Till Number",
+                          "Transacrion ID",
                           style: TextStyle(
-                              color: Colors.grey, fontWeight: FontWeight.bold),
+                              color: Colors.grey, fontWeight: FontWeight.w100),
                         ),
                         Text(
-                          "922666",
+                          "0xLGODAT",
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                              fontSize: 15, fontWeight: FontWeight.w700),
                         )
                       ],
                     ),
@@ -216,7 +219,7 @@ class HeaderAvatar extends StatelessWidget {
                 end: Alignment.centerRight,
                 colors: [Colors.grey[50] ,Colors.grey[100],Colors.grey[50]]),
       ),
-      width: MediaQuery.of(context).size.width,
+      width:  screenWidth(context),
      
       child: Stack(
         // ignore: deprecated_member_use
