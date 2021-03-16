@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 
@@ -167,11 +168,15 @@ class ListTileNew extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 1.0),
-              child: Image.network(
-                imageUrl,
+              child: CachedNetworkImage(
+      imageUrl:imageUrl,
                 width: 60,
                 height: 60,
-              ),
+              
+        placeholder: (context, url) => CircularProgressIndicator(),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+     ),
+                
             ),
             SizedBox(width: 20),
             Column(

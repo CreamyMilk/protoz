@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class BLConsoltantsList extends StatelessWidget {
@@ -99,7 +100,8 @@ class BLConsoltantsTile extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 1.0),
-              child: Image.network(
+              child: CachedNetworkImage(
+        imageUrl: 
                 imageUrl,
                 width: 50,
                 height: 50,

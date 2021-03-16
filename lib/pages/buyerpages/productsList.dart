@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductList extends StatelessWidget {
@@ -54,7 +55,8 @@ class ProductListItem extends StatelessWidget {
               },
               child: Hero(
                 tag: heroName,
-                child: Image.network(
+                child: CachedNetworkImage(
+        imageUrl: 
                   "https://images.orgill.com/large/7615198.JPG",
                   width: 150,
                   // color: Colors.pink,

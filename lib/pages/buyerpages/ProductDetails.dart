@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/popups/awesomePopup.dart';
+import 'package:proto/utils/sizedMargins.dart';
 
 class ProductDetails extends StatelessWidget {
   Widget _buildPopupDialog(BuildContext context) {
@@ -62,10 +64,10 @@ class ProductDetails extends StatelessWidget {
             children: [
               Hero(
                 tag: "fert",
-                child: Image.network(
-                  "https://images.orgill.com/large/7615198.JPG",
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  height: MediaQuery.of(context).size.width * 0.5,
+                child:CachedNetworkImage(
+        imageUrl: "https://images.orgill.com/large/7615198.JPG",
+                  width: screenWidth(context,percent: 0.5),
+                  height:  screenWidth(context,percent:0.5) ,
                 ),
               ),
               Column(

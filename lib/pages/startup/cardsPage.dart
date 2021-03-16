@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class Services {
@@ -117,18 +118,18 @@ class ProductListingItem extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushNamed("/categories");
           },
-          child: Image.network(imageUrl,
-              height: MediaQuery.of(context).size.height * 0.29,
-              width: MediaQuery.of(context).size.height * 0.45,
-              fit: BoxFit.fill, loadingBuilder: (context, child, progress) {
-            return progress == null
-                ? child
-                : Card(
-                    child: Container(
-                    height: MediaQuery.of(context).size.height * 0.29,
-                    color: Colors.black54,
-                  ));
-          })),
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            height: MediaQuery.of(context).size.height * 0.29,
+            width: MediaQuery.of(context).size.height * 0.45,
+            placeholder: (context, String p) {
+              return Card(
+                  child: Container(
+                height: MediaQuery.of(context).size.height * 0.29,
+                color: Colors.black54,
+              ));
+            },
+          )),
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: Align(
