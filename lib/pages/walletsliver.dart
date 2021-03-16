@@ -45,10 +45,10 @@ class WalletsPageBase extends StatelessWidget {
               WalletsAppBar(),
               SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 1,
-                    crossAxisCount: 2,
-                    childAspectRatio: 1,
-                    crossAxisSpacing: 0.5),
+                    mainAxisSpacing: 0,
+                    crossAxisCount: 1,
+                    childAspectRatio: 1.4,
+                    crossAxisSpacing: 0),
                 delegate:
                     SliverChildBuilderDelegate((BuildContext ctx, int index) {
                   if (index < 6) {
@@ -79,7 +79,7 @@ class WalletsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      elevation: 1,
+      elevation: 0,
       backgroundColor: Colors.white,
       leading: Center(
         child: GestureDetector(

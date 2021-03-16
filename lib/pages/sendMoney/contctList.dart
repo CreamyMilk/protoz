@@ -80,6 +80,7 @@ class ContactsListPage extends StatelessWidget {
                     maxRadius: 18,
                     backgroundColor: Colors.blue[600],
                   ),
+                  
                   onTap: () {
                     Navigator.of(context).pushNamed("/enteramount");
                   },

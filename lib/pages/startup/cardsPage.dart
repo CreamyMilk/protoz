@@ -114,27 +114,29 @@ class ProductListingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       GestureDetector(
-        onTap: () {
-          Navigator.of(context).pushNamed("/categories");
-        },
-
-          child: Image.network(
-            imageUrl,
-            height: MediaQuery.of(context).size.height * 0.15,
-            width:  MediaQuery.of(context).size.height * 0.45,
-            fit: BoxFit.fill,
-            loadingBuilder: (context, child, progress) {
-              return progress == null ?         child: Card(
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.15,
-            color: Colors.black54,
-          ));})
-            
-          ),
-        
-      
-      Text(prodname,
-          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15.0)),
+          onTap: () {
+            Navigator.of(context).pushNamed("/categories");
+          },
+          child: Image.network(imageUrl,
+              height: MediaQuery.of(context).size.height * 0.29,
+              width: MediaQuery.of(context).size.height * 0.45,
+              fit: BoxFit.fill, loadingBuilder: (context, child, progress) {
+            return progress == null
+                ? child
+                : Card(
+                    child: Container(
+                    height: MediaQuery.of(context).size.height * 0.29,
+                    color: Colors.black54,
+                  ));
+          })),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Align(
+          alignment: Alignment.bottomLeft,
+          child: Text(prodname,
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20.0)),
+        ),
+      ),
     ]);
   }
 }
