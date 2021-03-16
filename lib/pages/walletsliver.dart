@@ -18,16 +18,16 @@ class WalletsPageBase extends StatelessWidget {
         name: "Machinery"),
     Services(
         imageUrl:
-            "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
-        name: "Market Info"),
-    Services(
-        imageUrl:
             "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
         name: "Logistics"),
     Services(
         imageUrl:
             "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
         name: "Consoltancy"),
+    Services(
+        imageUrl:
+            "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
+        name: "Market Info"),
     Services(
         imageUrl:
             "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
@@ -47,7 +47,7 @@ class WalletsPageBase extends StatelessWidget {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisSpacing: 0,
                     crossAxisCount: 1,
-                    childAspectRatio: 1.4,
+                    childAspectRatio: 2,
                     crossAxisSpacing: 0),
                 delegate:
                     SliverChildBuilderDelegate((BuildContext ctx, int index) {

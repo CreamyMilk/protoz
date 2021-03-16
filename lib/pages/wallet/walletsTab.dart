@@ -99,7 +99,7 @@ class WalletsTab extends StatelessWidget {
                               TextSpan(
                                   text: "5000.00",
                                   style: TextStyle(
-                                      color: Colors.tealAccent[400],
+                                      color: Colors.greenAccent[400],
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18.0)),
                             ]))

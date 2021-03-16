@@ -120,13 +120,14 @@ class ProductListingItem extends StatelessWidget {
           },
           child: CachedNetworkImage(
             imageUrl: imageUrl,
-            height: MediaQuery.of(context).size.height * 0.29,
-            width: MediaQuery.of(context).size.height * 0.45,
+            fit: BoxFit.fitWidth,
+            height: MediaQuery.of(context).size.height * 0.2,
+            width: MediaQuery.of(context).size.width * 0.95,
             placeholder: (context, String p) {
               return Card(
                   child: Container(
-                height: MediaQuery.of(context).size.height * 0.29,
-                color: Colors.black54,
+                height: MediaQuery.of(context).size.height * 0.2,
+                color: Colors.grey[50],
               ));
             },
           )),
