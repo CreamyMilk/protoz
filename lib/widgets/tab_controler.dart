@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:proto/pages/services/blPage.dart';
 import 'package:proto/pages/wallet/walletsTab.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -14,7 +15,12 @@ class BaseTabView extends StatefulWidget {
 class _BaseTabViewState extends State<BaseTabView>
     with SingleTickerProviderStateMixin {
   TabController tabController;
-
+  final overLayColors = [
+    Colors.white,
+    Colors.white,
+    Colors.tealAccent[400],
+    Colors.white
+  ];
   final _tabs = [
     WalletsPageBase(),
     InventoryList(),
@@ -57,20 +63,28 @@ class _BaseTabViewState extends State<BaseTabView>
   
     return WillPopScope(
       onWillPop: () async => false,
-      child: Scaffold(
-        bottomNavigationBar: SalomonBottomBar(
-            selectedItemColor: Colors.teal,
-            currentIndex: _activetab,
-            onTap: (index) => setState(() {
-                  _activetab = index;
-                  tabController.animateTo(index);
-                }),
-            items: [homeItem, serviceItem, krainItem, shopItem]),
-        body: SafeArea(
-            child: TabBarView(
-                controller: tabController,
-                physics: NeverScrollableScrollPhysics(),
-                children: _tabs)),
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+         value:SystemUiOverlayStyle(
+       statusBarColor: overLayColors[_activetab], //i like transaparent :-)
+       systemNavigationBarColor: Colors.white, // navigation bar color
+       statusBarIconBrightness: Brightness.dark, // status bar icons' color
+       systemNavigationBarIconBrightness:Brightness.dark, //navigation bar icons' color
+),
+        child: Scaffold(
+          bottomNavigationBar: SalomonBottomBar(
+              selectedItemColor: Colors.teal,
+              currentIndex: _activetab,
+              onTap: (index) => setState(() {
+                    _activetab = index;
+                    tabController.animateTo(index);
+                  }),
+              items: [homeItem, serviceItem, krainItem, shopItem]),
+          body: SafeArea(
+              child: TabBarView(
+                  controller: tabController,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: _tabs)),
+        ),
       ),
     );
   }

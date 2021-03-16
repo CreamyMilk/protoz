@@ -56,7 +56,13 @@ class RouteGenerator {
                         systemNavigationBarColor: Colors.white),
                     child: BaseForm())));
       case '/contactList':
-        return CupertinoPageRoute(builder: (ctx) => ContactsListPage());
+        return CupertinoPageRoute(            builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
+                create: (context) => KraFormProvider(),
+                child: AnnotatedRegion<SystemUiOverlayStyle>(
+                    value: SystemUiOverlayStyle(
+                        statusBarColor: Colors.white,
+                        systemNavigationBarColor: Colors.white),
+                    child: ContactsListPage())));
       case '/pin':
         return MaterialPageRoute(builder: (ctx) => EnterPinPage());
       case '/enteramount':

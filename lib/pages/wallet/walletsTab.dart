@@ -172,7 +172,7 @@ class WalletsAppBar extends StatelessWidget {
                 colors: [Colors.tealAccent[400], Colors.tealAccent[400]]),
           ),
           child: Container(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.only(left:14.0,bottom: 8.0),
             child: Column(
               children: [
                 SizedBox(
@@ -215,9 +215,9 @@ class WalletsAppBar extends StatelessWidget {
                                     fontWeight: FontWeight.w500),
                               ),
                               FloatingActionButton(
+                                mini: true,
                                 heroTag: null,
                                 backgroundColor: Colors.black,
-                                mini: true,
                                 onPressed: () {
                                   Navigator.of(context)
                                       .pushNamed("/contactList");
@@ -225,7 +225,7 @@ class WalletsAppBar extends StatelessWidget {
                                 child: Container(
                                   child: Icon(
                                     Icons.swap_calls,
-                                    size: 20,
+                                    size: 25,
                                     color: Colors.white,
                                   ),
                                 ),
