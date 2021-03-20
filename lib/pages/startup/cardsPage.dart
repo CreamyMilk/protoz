@@ -113,32 +113,34 @@ class ProductListingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      GestureDetector(
-          onTap: () {
-            Navigator.of(context).pushNamed("/categories");
-          },
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            fit: BoxFit.fitWidth,
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width * 0.95,
-            placeholder: (context, String p) {
-              return Card(
-                  child: Container(
-                height: MediaQuery.of(context).size.height * 0.2,
-                color: Colors.grey[50],
-              ));
+    return Card(
+      child: Column(children: [
+        GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed("/categories");
             },
-          )),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Align(
-          alignment: Alignment.bottomLeft,
-          child: Text(prodname,
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20.0)),
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              fit: BoxFit.fitWidth,
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.95,
+              placeholder: (context, String p) {
+                return Card(
+                    child: Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  color: Colors.grey[50],
+                ));
+              },
+            )),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Align(
+            alignment: Alignment.bottomLeft,
+            child: Text(prodname,
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20.0)),
+          ),
         ),
-      ),
-    ]);
+      ]),
+    );
   }
 }

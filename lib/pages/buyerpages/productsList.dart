@@ -64,45 +64,47 @@ class ProductListItem extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 10),
               // color: Colors.yellow,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FittedBox(
-                  fit:BoxFit.scaleDown,
-                    child: Text(
-                      "Simple Product Name",
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 25),
-                    ),
-                  ),
-                  Text(
-                    "Simple Marketing/Packing",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  Text(
-                    "\$.48.20",
-                    style: TextStyle(color: Colors.deepPurple, fontSize: 20),
-                  ),
-                  Spacer(),
-                  Hero(
-                    tag: buttonHero,
-                    child: MaterialButton(
-                      color: Colors.green[300],
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("/pdetails");
-                      },
+              child: Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
                       child: Text(
-                        "Buy",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        "Simple Product Name",
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 25),
                       ),
                     ),
-                  )
-                ],
+                    Flexible(child:
+                    Text(
+                      "Simple Marketing/Packing",
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    ),
+                    Text(
+                      "\$.48.20",
+                      style: TextStyle(color: Colors.deepPurple, fontSize: 20),
+                    ),
+                    Spacer(),
+                    Hero(
+                      tag: buttonHero,
+                      child: MaterialButton(
+                        color: Colors.green[300],
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("/pdetails");
+                        },
+                        child: Text(
+                          "Buy",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             )
           ],
