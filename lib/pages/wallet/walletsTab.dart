@@ -2,120 +2,90 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/popups/addProdPopup.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/qrScannerButton.dart';
 
 // ignore: must_be_immutable
 class WalletsTab extends StatelessWidget {
-  //ScrollController get n => ScrollController(initialScrollOffset: 150);
-  List<Services> sampleData = [
-    Services(
-        imageUrl:
-            "https://africasustainabilitymatters.com/wp-content/uploads/2020/11/Twiga_2.jpg",
-        name: "InputSuppliers"),
-    Services(
-        imageUrl:
-            "https://s3.amazonaws.com/newhobbyfarms.com/2020/01/9-plows-jeff-piper-flickr-e.jpg",
-        name: "Machinery"),
-    Services(
-        imageUrl:
-            "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
-        name: "Market Info"),
-    Services(
-        imageUrl:
-            "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
-        name: "Logistics"),
-    Services(
-        imageUrl:
-            "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
-        name: "Consoltancy"),
-    Services(
-        imageUrl:
-            "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
-        name: "Financing"),
-  ];
-    Widget _buildPopupDialog(BuildContext context) {
+  Widget _buildPopupDialog(BuildContext context) {
     return AppProductPopUp();
   }
 
   @override
   Widget build(BuildContext context) {
-    //TextStyle collButton = TextStyle(fontSize: 15, color: Colors.black);
     return Scaffold(
         body: CustomScrollView(
 
             //controller: n,
             slivers: [
-              WalletsAppBar(),
+          WalletsAppBar(),
 
-              SliverList(
-                delegate:
-                    SliverChildBuilderDelegate((BuildContext ctx, int index) {
-                  if (index == 0) {
-                    return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        "Transactions",
-                        style: GoogleFonts.quicksand(
-                            fontWeight: FontWeight.w500, fontSize: 25),
+          SliverList(
+            delegate: SliverChildBuilderDelegate((BuildContext ctx, int index) {
+              if (index == 0) {
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    "Transactions",
+                    style: GoogleFonts.quicksand(
+                        fontWeight: FontWeight.w500, fontSize: 25),
+                  ),
+                );
+              }
+              if (index < 600) {
+                return ListTile(
+                    dense: true,
+                    onTap: () {
+                      showCupertinoDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            _buildPopupDialog(context),
+                      );
+                    },
+                    leading: CircleAvatar(
+                      child: Icon(
+                        Icons.money,
+                        size: 17,
+                        color: Colors.orange,
                       ),
-                    );
-                  }
-                  if (index < 600) {
-                    return ListTile(
-                        dense: true,
-                        onTap: () {
-                              showCupertinoDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        _buildPopupDialog(context),
-                  );
-                        },
-                        leading: CircleAvatar(
-                          child: Icon(
-                            Icons.money,
-                            size: 17,
-                            color: Colors.orange,
-                          ),
-                          minRadius: 18,
-                          maxRadius: 18,
-                          backgroundColor: Colors.orange[50],
-                        ),
-                        // heros: index,
+                      minRadius: 18,
+                      maxRadius: 18,
+                      backgroundColor: Colors.orange[50],
+                    ),
+                    // heros: index,
 
-                        title: Text("${sampleData[1].name}"),
-                        subtitle: Text("John KImani"),
-                        trailing: RichText(
-                            textAlign: TextAlign.end,
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: "+Ksh.\n",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 10.0)),
-                              TextSpan(
-                                  text: "5000.00",
-                                  style: TextStyle(
-                                      color: Colors.greenAccent[400],
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18.0)),
-                            ]))
-                        // imageUrl: sampleData[index].imageUrl,
-                        // productID: index,
-                        );
-                  }
-                  return null;
-                }),
-              ),
-              // SliverFillRemaining(
-              //   child: WalletsAppBar(
-              //     sampleData: sampleData,
-              //   ),
-              // )
-            ]));
+                    title: Text("Housing"),
+                    subtitle: Text("John KImani"),
+                    trailing: RichText(
+                        textAlign: TextAlign.end,
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: "+Ksh.\n",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 10.0)),
+                          TextSpan(
+                              text: "5000.00",
+                              style: TextStyle(
+                                  color: Colors.greenAccent[400],
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18.0)),
+                        ]))
+                    // imageUrl: sampleData[index].imageUrl,
+                    // productID: index,
+                    );
+              }
+              return null;
+            }),
+          ),
+          // SliverFillRemaining(
+          //   child: WalletsAppBar(
+          //     sampleData: sampleData,
+          //   ),
+          // )
+        ]));
   }
 }
 
@@ -172,7 +142,7 @@ class WalletsAppBar extends StatelessWidget {
                 colors: [Colors.tealAccent[400], Colors.tealAccent[400]]),
           ),
           child: Container(
-            padding: EdgeInsets.only(left:14.0,bottom: 8.0),
+            padding: EdgeInsets.only(left: 14.0, bottom: 8.0),
             child: Column(
               children: [
                 SizedBox(

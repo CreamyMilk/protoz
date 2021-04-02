@@ -90,6 +90,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                     child: Text(
                       "New Registration",
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.nunito(
                           color: Colors.greenAccent,
                           fontSize: 15,

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/widgets/awesomeFab.dart';
+import 'package:proto/widgets/depositBottomSheet.dart';
 import 'package:proto/widgets/qrScannerButton.dart';
 
 // ignore: must_be_immutable
@@ -218,7 +219,9 @@ class WalletsAppBar extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                      settingModalBottomSheet(context, "10");
+                      },
                     ),
                   ],
                 ),

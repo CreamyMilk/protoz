@@ -18,7 +18,7 @@ import 'package:proto/pages/startup/homePage.dart';
 import 'package:proto/pages/stepperForm/registerStepper.dart';
 import 'package:proto/pages/transactionPage.dart';
 import 'package:proto/providers/stepperFormProvider.dart';
-import 'package:proto/widgets/logopage.dart';
+import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/sellerpages/newProducts.dart';
 import 'package:proto/pages/buyerpages/productsList.dart';
 import 'package:proto/widgets/tab_controler.dart';
