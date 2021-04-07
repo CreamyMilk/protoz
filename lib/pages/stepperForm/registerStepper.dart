@@ -51,7 +51,7 @@ class _BaseFormState extends State<BaseForm> {
                       valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                       backgroundColor: Colors.teal[600],
                       value: 0.20 * (activePage + 1))))),
-      body: SingleChildScrollView(child: pages[activePage]),
+      body: pages[activePage],
       // floatingActionButton: FloatingActionButton.extended(
       //   backgroundColor:Colors.lightGreen,
       //   onPressed: () {
