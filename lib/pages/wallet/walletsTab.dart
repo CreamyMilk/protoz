@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -67,7 +69,8 @@ class WalletsTab extends StatelessWidget {
                                   fontWeight: FontWeight.w300,
                                   fontSize: 10.0)),
                           TextSpan(
-                              text: "5000.00",
+                              text: "${Random().nextInt(100000).toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                              
                               style: TextStyle(
                                   color: Colors.greenAccent[400],
                                   fontWeight: FontWeight.w400,

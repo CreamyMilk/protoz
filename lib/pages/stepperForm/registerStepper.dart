@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/providers/stepperFormProvider.dart';
+import 'package:proto/utils/sizedMargins.dart';
 import 'package:provider/provider.dart';
 
 class BaseForm extends StatefulWidget {
@@ -46,37 +48,37 @@ class _BaseFormState extends State<BaseForm> {
               child: Container(
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: LinearProgressIndicator(
+                      valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                       backgroundColor: Colors.teal[600],
                       value: 0.20 * (activePage + 1))))),
-      body: pages[activePage],
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor:Colors.lightGreen,
-        onPressed: () {
-          if (activePage == 0) {
-            hbox.nfSubmit();
-          } else if (activePage == 1) {
-            hbox.bfSubmit();
-          } else if (activePage == 2) {
-            hbox.phSubmit();
-          } else if (activePage == 3) {
-            hbox.krSubmit();
-          } else {
-            if (activePage != pages.length - 1) {
-              hbox.increment();
-              print("okokok");
-            }
-          }
-        },
-        icon: activePage == pages.length - 1
-            ? Icon(Icons.check_circle_outline, color: Colors.white)
-            : null,
-        label: Text(
-            (activePage != pages.length - 1
-                ? "      NEXT       "
-                : "      Pay Now       "),
-            style: TextStyle(color: Colors.white, fontSize: 15)),
-      ),
+      body: SingleChildScrollView(child: pages[activePage]),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   backgroundColor:Colors.lightGreen,
+      //   onPressed: () {
+      //     if (activePage == 0) {
+      //       hbox.nfSubmit();
+      //     } else if (activePage == 1) {
+      //       hbox.bfSubmit();
+      //     } else if (activePage == 2) {
+      //       hbox.phSubmit();
+      //     } else if (activePage == 3) {
+      //       hbox.krSubmit();
+      //     } else {
+      //       if (activePage != pages.length - 1) {
+      //         hbox.increment();
+      //         print("okokok");
+      //       }
+      //     }
+      //   },
+      //   icon: activePage == pages.length - 1
+      //       ? Icon(Icons.check_circle_outline, color: Colors.white)
+      //       : null,
+      //   label: Text(
+      //       (activePage != pages.length - 1
+      //           ? "      NEXT       "
+      //           : "      Pay Now       "),
+      //       style: TextStyle(color: Colors.white, fontSize: 15)),
+      // ),
     );
   }
 }
@@ -142,6 +144,12 @@ class NameForm extends StatelessWidget {
               maxLines: 1,
             ),
           ),
+          Spacer(),
+          ButtonBasis(
+            buttonFuntion: (){
+               hbox.nfSubmit();
+            },
+          ),
         ],
       ),
     );
@@ -161,7 +169,7 @@ class BirthForm extends StatelessWidget {
       showCupertinoModalPopup(
           context: ctx,
           builder: (_) => Container(
-                height: 300,
+                height: screenHeight(context,percent: 0.4),
                 color: Color.fromARGB(255, 255, 255, 255),
                 child: Column(
                   children: [
@@ -265,9 +273,15 @@ class BirthForm extends StatelessWidget {
                 maxLines: 1,
               ),
             ),
-            SizedBox(width: 5),
+           
           ]),
-        )
+        ),
+          Spacer(),
+          ButtonBasis(
+            buttonFuntion: (){
+               hbox.bfSubmit();
+            },
+          ),
       ]),
     );
   }
@@ -352,7 +366,13 @@ class NumberForm extends StatelessWidget {
                 SizedBox(width: 5),
               ],
             ),
-          )
+          ),
+           Spacer(),
+          ButtonBasis(
+            buttonFuntion: (){
+               fstore.phSubmit();
+            },
+          ),
         ],
       ),
     );
@@ -402,7 +422,14 @@ class IDForm extends StatelessWidget {
           //     print("Completed: " + pin);
           //   },
           // ),
-        )
+        ),
+
+         Spacer(),
+          ButtonBasis(
+            buttonFuntion: (){
+             fstore.krSubmit();
+            },
+          ),
       ]),
     );
   }
@@ -548,8 +575,58 @@ class DoubleCheckPage extends StatelessWidget {
                 Text("By proceeding you agree to our Terms and Conditions")
               ],
             )),
+             Spacer(),
+          ButtonBasis(
+            isLastPage: true,
+            buttonFuntion: (){
+               fstore.nfSubmit();
+            },
+          ),
       ],
     );
   }
 }
 
+class ButtonBasis extends StatelessWidget {
+  final void Function() buttonFuntion;
+  final bool isLastPage ;
+  const ButtonBasis({Key key,this.isLastPage:false,@required this.buttonFuntion, }) : super(key: key); 
+  @override 
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              height: 45,
+              width:isLastPage? screenWidth(context, percent: 0.5): screenWidth(context, percent: 0.35),
+              decoration: BoxDecoration(
+                color: isLastPage ? Colors.tealAccent[400]:Colors.lightGreen,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey[400].withOpacity(0.5),
+                      offset: Offset(0, 13),
+                      blurRadius: 30)
+                ],
+              ),
+              // ignore: deprecated_member_use
+              child: MaterialButton(
+                elevation: 0,
+                onPressed: buttonFuntion,
+                child: Text(
+                  isLastPage ? "Pay Now" :"Next",
+                  style: GoogleFonts.nunito(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const YMargin(10)
+      ],
+    );
+  }
+}

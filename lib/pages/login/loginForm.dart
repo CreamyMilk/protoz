@@ -20,7 +20,6 @@ class _LoginFormPageState extends State<LoginFormPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-
       body: Center(
         child: ListView(
           children: <Widget>[

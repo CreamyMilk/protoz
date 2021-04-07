@@ -13,6 +13,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.white.withOpacity(.95),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                       "Login",
                       style: GoogleFonts.nunito(
                           color: Colors.white,
-                          fontSize: 15,
+                          fontSize: 18,
                           fontWeight: FontWeight.w400),
                     ),
                   ),
@@ -93,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.nunito(
                           color: Colors.greenAccent,
-                          fontSize: 15,
+                          fontSize: 18,
                           fontWeight: FontWeight.w400),
                     ),
                   ),

@@ -8,36 +8,33 @@ class AwesomePopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new AlertDialog(
-      title: const Text('Popup example'),
+      title: const Text('Slide to confirm Payment'),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Hello"),
-          ListTile(
-            leading: Icon(Icons.car_rental),
-            dense: true,
-            visualDensity: VisualDensity(horizontal: .001, vertical: .001),
-            //tileColor: Colors.pink,
-            onTap: () {},
-            title: Text("Delivery Cost",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 22)),
-            trailing: Switch(
-              activeColor: Colors.black,
-              value: true,
-              onChanged: (bool value) {},
-            ),
-          ),
+         
+          // ListTile(
+           
+          //   dense: true,
+            
+          //   //tileColor: Colors.pink,
+          //   onTap: () {},
+          //   title: Text("Delivery Cost",
+          //       style: TextStyle(
+          //           color: Colors.black,
+          //           fontWeight: FontWeight.w500,
+          //           fontSize: 15)),
+
+          // ),
           Dismissible(
             movementDuration: const Duration(seconds: 5),
             secondaryBackground: Container(
-              color: Colors.amber,
+              color: Colors.pink,
             ),
             background: Container(
-              color: Colors.pink,
+              child: Icon(Icons.thumb_up_outlined),
+              color: Colors.amber,
             ),
             key: Key("sdsd"),
             onDismissed: (direction) {},
@@ -47,14 +44,14 @@ class AwesomePopup extends StatelessWidget {
                     padding: EdgeInsets.all(8.0),
                     width: 500,
                     height: 50,
-                    color: Color(0xfffecf0a),
+                    color: Colors.lightGreenAccent,
                     child: InkWell(
                       onTap: () {},
                       child: Row(
                         children: [
-                          Text("Slide To>>>>>"),
+                          Text("Pay 48.50 "),
                           Spacer(),
-                          Icon(Icons.pool)
+                          Icon(Icons.send_outlined)
                         ],
                       ),
                     ))),

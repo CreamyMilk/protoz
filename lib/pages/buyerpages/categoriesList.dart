@@ -6,8 +6,12 @@ class ListTilezz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       floatingActionButton: AwesomeFab(),
       appBar: AppBar(
+        actions: [IconButton(icon:Icon( Icons.search,color:Colors.black), onPressed: () {  
+          print("Seraching");
+        },)],
         leading: IconButton(icon:Icon(Icons.arrow_back),color:Colors.black87, onPressed: () { Navigator.of(context).pop(); },),
         elevation: 0,
         centerTitle: true,
@@ -146,12 +150,19 @@ class ListTileNew extends StatelessWidget {
       height: 80,
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       padding: EdgeInsets.all(8),
+      
       decoration: BoxDecoration(
+       boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey[400].withOpacity(0.3),
+                          offset: Offset(0, 13),
+                          blurRadius: 30)
+                    ],
         // borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
             begin: Alignment.bottomRight,
             end: Alignment.centerLeft,
-            colors: [gradient, Colors.white]),
+            colors: [Colors.white70, Colors.white]),
       ),
       child: InkWell(
          onTap: () {
@@ -193,11 +204,6 @@ class ListTileNew extends StatelessWidget {
               width: 10,
             ),
             Spacer(),
-            Radio(
-                activeColor: Colors.white,
-                value: false,
-                groupValue: null,
-                onChanged: (bool p) {})
           ],
         ),
       ),

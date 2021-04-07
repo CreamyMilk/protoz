@@ -191,7 +191,7 @@ class ProductDetails extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "\$25.97",
+                      "48.50",
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,

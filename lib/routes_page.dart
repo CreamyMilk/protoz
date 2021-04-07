@@ -56,7 +56,9 @@ class RouteGenerator {
                         systemNavigationBarColor: Colors.white),
                     child: BaseForm())));
       case '/contactList':
-        return CupertinoPageRoute(            builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
+        return CupertinoPageRoute(   
+          fullscreenDialog: true,
+                   builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
                 create: (context) => KraFormProvider(),
                 child: AnnotatedRegion<SystemUiOverlayStyle>(
                     value: SystemUiOverlayStyle(

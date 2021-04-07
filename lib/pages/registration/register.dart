@@ -34,7 +34,6 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       floatingActionButton: FloatingActionButton.extended(
         shape: RoundedRectangleBorder(),
         elevation: 0,
@@ -321,11 +320,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 ],
               )),
           Spacer(),
-          
+
           const YMargin(100),
         ],
       ),
     );
   }
-
 }
+

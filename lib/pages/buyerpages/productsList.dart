@@ -7,7 +7,7 @@ class ProductList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(icon:Icon(Icons.arrow_back),color:Colors.black87, onPressed: () { Navigator.of(context).pop(); },),
-        
+  actions: [IconButton(icon:Icon(Icons.search), onPressed: () {  },)],
         elevation: 1,
        backgroundColor:Colors.white,
         centerTitle:true,
@@ -85,10 +85,21 @@ class ProductListItem extends StatelessWidget {
                       style: TextStyle(fontSize: 15),
                     ),
                     ),
-                    Text(
-                      "\$.48.20",
-                      style: TextStyle(color: Colors.deepPurple, fontSize: 20),
-                    ),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(children: [
+                        TextSpan(
+                            text: "Ksh.",
+                            style: TextStyle(
+                                color: Colors.deepPurple[200],
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13)),
+                        TextSpan(
+                           text:"48.20",
+                      style: TextStyle(color: Colors.deepPurple,fontWeight: FontWeight.w400, fontSize: 18),
+                  
+                      )])),
+                 
                     Spacer(),
                     Hero(
                       tag: buttonHero,
