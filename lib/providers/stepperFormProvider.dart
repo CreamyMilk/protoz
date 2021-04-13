@@ -79,6 +79,11 @@ class KraFormProvider extends ChangeNotifier {
       //print("Text fiels Values are $t $d");
     }
   }
+  void finalSubmit() {
+      phoneNumber = phController.text;
+    }
+  
+
 
   void krSubmit() {
     if (krapin.length > 6) {
@@ -91,4 +96,5 @@ class KraFormProvider extends ChangeNotifier {
     terms = value;
     notifyListeners();
   }
+  
 }

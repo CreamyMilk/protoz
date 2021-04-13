@@ -1,9 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:proto/models/paymentResponseModel.dart';
+import 'package:proto/popups/registrationPopup.dart';
 
-void settingModalBottomSheet(context, amountDue) {
+void kplzModalBottomSheet(context, amountDue) {
   showModalBottomSheet(
     isScrollControlled: true,
     shape: RoundedRectangleBorder(
@@ -17,83 +20,259 @@ void settingModalBottomSheet(context, amountDue) {
   );
 }
 
-class PaymentTile extends StatefulWidget {
-  @override
-  _PaymentTileState createState() => _PaymentTileState();
+String convertTo07(String f) {
+  String no;
+  String pl;
+  String t5;
+  no = f.replaceAll(new RegExp(r"\s+"), "");
+  pl = no.replaceAll(new RegExp(r"\+"), "");
+  t5 = pl.replaceAll(new RegExp(r"2547"), "07");
+  return t5;
 }
 
-class _PaymentTileState extends State<PaymentTile> {
-  bool _enabled = true;
+void choiceAction(String choice) {
+  print(choice);
+  Navigator.of(null).pushNamed('/randomUser');
+}
+
+String validateAmount(String value) {
+  if (!(value.length > 4) && value.isNotEmpty) {
+    if (value[0] != "0") {
+      return "Allow purchases up to Ksh 9,999";
+    }
+    return null;
+  }
+  return null;
+}
+
+String validatePassword(String value) {
+  if (!(value.length > 9) && value.isNotEmpty) {
+    if (value[0] != "0") {
+      return "Mobile number should be in the format 07xx";
+    }
+    return null;
+  }
+  return null;
+}
+
+class PaymentBottomSheet extends StatefulWidget {
+  @override
+  _PaymentBottomSheetState createState() => _PaymentBottomSheetState();
+}
+
+class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
+  // Box<dynamic> userHiveBox;
+  final TextEditingController _phoneficontroller = TextEditingController();
+  final TextEditingController _amountficontroller = TextEditingController();
+  String mobile="0";
+  String amountDue = "1";
+  String visualAmount="1";
+  String accountName="test";
+  // @override
+  // void initState() {
+  //   userHiveBox = Hive.box('user');
+  //   var temp = userHiveBox.get('rent', defaultValue: {
+  //     'rentDue': 0,
+  //     'account': 'err',
+  //     'month': "null",
+  //     "rentStatus": false
+  //   }); //Add default for non complains
+  //   mobile = userHiveBox.get('mobile', defaultValue: "");
+  //   accountName = "#po" + temp["account"];
+  //   visualAmount = amountDue.replaceAllMapped(
+  //       new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        MaterialButton(
-          minWidth: 25,
-          height: 30,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              side: _enabled
-                  ? BorderSide(color: Colors.red)
-                  : BorderSide(color: Colors.grey)),
-          elevation: 3.0,
-          padding: EdgeInsets.all(10.0),
-          color: Colors.white,
-          onPressed: () {
-            setState(() {
-              _enabled = !_enabled;
-            });
-          },
-          child: ColorFiltered(
-            colorFilter: _enabled
-                ? ColorFilter.mode(
-                    Colors.transparent,
-                    BlendMode.multiply,
-                  )
-                : ColorFilter.matrix(<double>[
-                    0.2126,
-                    0.7152,
-                    0.0722,
-                    0,
-                    0,
-                    0.2126,
-                    0.7152,
-                    0.0722,
-                    0,
-                    0,
-                    0.2126,
-                    0.7152,
-                    0.0722,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    0,
-                  ]),
-            child: Container(
-              width: 45,
-              height: 35,
-              child: Image.asset(
-                'assets/mpesa.png',
-                fit: BoxFit.scaleDown,
-                width: 10,
-                height: 5,
+    return SingleChildScrollView(
+      child: Padding(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: Container(
+          margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+          decoration: BoxDecoration(),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.bolt),
+                  Text(
+                    "Wallet Deposit",
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20),
+                  ),
+                  SizedBox()
+                ],
               ),
-            ),
+              Divider(),
+              SizedBox(height: 5),
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Ksh :",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "$visualAmount",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          "Number:",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 16),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          mobile,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: Text(
+              //     "Select Payment Method",
+              //     style: TextStyle(fontWeight: FontWeight.w800),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 5,
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   children: [
+              //     PaymentTile(),
+              //     // SizedBox(
+              //     //   width: 10,
+              //     // ),
+              //     // PaymentTile(),
+              //   ],
+              // ),
+              SizedBox(
+                height: 20,
+              ),
+
+              TextField(
+                autofocus: true,
+                onChanged: (value) {
+                  print(value);
+                  setState(() {
+                    visualAmount = value;
+                    amountDue = value;
+                  });
+                },
+                controller: _amountficontroller,
+                decoration: InputDecoration(
+                  isDense: true,
+                  border: OutlineInputBorder(gapPadding: 0.9),
+                  labelText: 'Amount',
+                  hintText: 'In shillings',
+                  errorText: validateAmount(_phoneficontroller.text),
+                  prefixText: "",
+                ),
+                keyboardType: TextInputType.numberWithOptions(),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Running low on Cash ?",
+                  style: TextStyle(color:Colors.white,fontWeight: FontWeight.w400, fontSize: 15),
+
+                ),
+              ),
+              TextField(
+                autofocus: true,
+                onChanged: (value) {
+                  print(value);
+                  setState(() {
+                    mobile = value;
+                  });
+                },
+                controller: _phoneficontroller,
+                decoration: InputDecoration(
+                  isDense: true,
+                  border: OutlineInputBorder(gapPadding: 0.2),
+                  hintText: 'Enter Phone Number',
+                  errorText: validatePassword(_phoneficontroller.text),
+                  prefixText: "",
+                ),
+                keyboardType: TextInputType.numberWithOptions(),
+              ),
+              SizedBox(height: 10),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  child: MaterialButton(
+                    height: 40,
+                    minWidth: MediaQuery.of(context).size.width * .95,
+                    onPressed: () async {
+                      await _sendPayment(
+                          mobile, amountDue, accountName, context);
+                    },
+                    color: Colors.black,
+                    child: Text(
+                      "Deposit $amountDue",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    autofocus: true,
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
-}
+
+
 
 Future _sendPayment(mobile, amountDue, accName, ctx) async {
-  //final FirebaseMessaging _fcm = FirebaseMessaging();
-  //v2 work with paymentapi responses
+  Widget _buildPopupDialog(BuildContext context) {
+    return RegistrationPopUp();
+  }
+
+  PaymentResponse data;
 
   try {
+      Navigator.pop(ctx);
+    String fcmToken = "no";
     final response = await http.post(
       ("https://googlesecureotp.herokuapp.com/" + "payment"),
       headers: {
@@ -107,228 +286,27 @@ Future _sendPayment(mobile, amountDue, accName, ctx) async {
           "amount": amountDue,
           "userID": accName ?? "Error",
           "socketID": "mee",
+          "notifToken": fcmToken
         },
       ),
     );
-    print("$response");
+    print("$accName");
+    var myjson = json.decode(response.body);
+    print(fcmToken);
+    print("Mobile $mobile");
+    print("Amount $amountDue");
+    data = PaymentResponse.fromJson(myjson);
+    print(data.paymentCode);
+    if (data.description=="0"){
+
+      print("Req Sent Well"); 
+    }
   } catch (SocketException) {
     print("msEE HAUNA WIFI");
-    showDialog(
-      //Text(message['notification']['title']
+    showCupertinoDialog(
       context: ctx,
-      builder: (ctx) => AlertDialog(
-        title: AspectRatio(
-          aspectRatio: 1.5,
-          child: Text("ap"),
-        ),
-      ),
+      builder: (BuildContext context) => _buildPopupDialog(context),
     );
   }
 }
-
-String validatePassword(String value) {
-  if (!(value.length > 9) && value.isNotEmpty) {
-    if (value[0] != "0") {
-      return "Mobile number should be in the format 07xx";
-    }
-    return null;
-  }
-  return null;
-}
-
-String convertTo07(String f) {
-  String no;
-  String pl;
-  String t5;
-  no = f.replaceAll(new RegExp(r"\s+"), "");
-  pl = no.replaceAll(new RegExp(r"\+"), "");
-  t5 = pl.replaceAll(new RegExp(r"2547"), "07");
-  return t5;
-}
-
-class PaymentBottomSheet extends StatefulWidget {
-  @override
-  _PaymentBottomSheetState createState() => _PaymentBottomSheetState();
-}
-
-class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
-  final TextEditingController _testcontroller = TextEditingController();
-  String mobile;
-  String amountDue;
-  String visualAmount;
-  String accountName;
-  @override
-  void initState() {
-    var temp = {
-      'rentDue': 0,
-      'account': 'err',
-      'month': "null",
-      "rentStatus": false
-    }; //Add default for non complains
-    mobile = "";
-    amountDue = temp["rentDue"].toString();
-    accountName = temp["account"];
-    visualAmount = amountDue.replaceAllMapped(
-        new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Padding(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Container(
-        margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
-        decoration: BoxDecoration(),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(Icons.arrow_downward),
-                Text(
-                  "Rent Payment",
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20),
-                ),
-                SizedBox()
-              ],
-            ),
-            Divider(),
-            SizedBox(height: 5),
-            Row(
-              children: [
-                Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Amount:",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 20),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "$visualAmount",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w100,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        "Number:",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 20),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        mobile,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w100, fontSize: 20),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Select Payment Method",
-                style: TextStyle(fontWeight: FontWeight.w800),
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                PaymentTile(),
-                // SizedBox(
-                //   width: 10,
-                // ),
-                // PaymentTile(),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Running low on Cash ?",
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
-              ),
-            ),
-            TextField(
-              autofocus: true,
-              onChanged: (value) {
-                print(value);
-                setState(() {
-                  mobile = value;
-                });
-              },
-              controller: _testcontroller,
-              decoration: InputDecoration(
-                isDense: true,
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.contacts),
-                  onPressed: () async {
-//                          await FlutterContactPicker.pickPhoneContact();
-
-                    setState(() {
-                      _testcontroller.text = convertTo07("25479888888");
-                      mobile = "";
-                    });
-                  },
-                ),
-                border: OutlineInputBorder(gapPadding: 0.5),
-                hintText: 'Ask somone else to pay',
-                errorText: validatePassword(_testcontroller.text),
-                prefixText: "",
-              ),
-              keyboardType: TextInputType.numberWithOptions(),
-            ),
-            SizedBox(height: 10),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                child: MaterialButton(
-                  height: 45,
-                  minWidth: MediaQuery.of(context).size.width * .95,
-                  onPressed: () async {
-                    Navigator.pop(context);
-                    await _sendPayment(mobile, amountDue, accountName, context);
-                  },
-                  color: Colors.black,
-                  child: Text(
-                    "Pay $amountDue",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  autofocus: true,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ));
-  }
 }

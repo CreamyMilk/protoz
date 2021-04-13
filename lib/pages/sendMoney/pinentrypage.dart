@@ -65,7 +65,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
                         } : (){},
             color: Colors.transparent,
             child: Text(
-              pincode.length != 4 ?  "Chapisha Pin Brathe":"Verifying ->",
+              pincode.length != 4 ?  "Enter Pin ":"Verifying ->",
               style: GoogleFonts.nunito(
                   color: pincode.length == 4 ? Colors.white : Colors.blueGrey,
                   fontSize: 20,

@@ -220,7 +220,7 @@ class WalletsAppBar extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                      settingModalBottomSheet(context, "10");
+                      kplzModalBottomSheet(context, "10");
                       },
                     ),
                   ],
