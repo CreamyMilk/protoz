@@ -430,6 +430,7 @@ class IdentificationForm extends StatelessWidget {
                    Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
+              keyboardType: TextInputType.number,
               controller: fstore.idController,
               validator: (value) {
                 if (value.isEmpty) {
@@ -707,7 +708,7 @@ class DoubleCheckPage extends StatelessWidget {
       flex: 2,
       child: TextFormField(
         initialValue: fstore.countrycode,
-        keyboardType: TextInputType.datetime,
+        keyboardType: TextInputType.number,
         validator: (value) {
           if (value.isEmpty) {
             return "Required";
