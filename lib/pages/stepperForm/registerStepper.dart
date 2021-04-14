@@ -25,7 +25,9 @@ class _BaseFormState extends State<BaseForm> {
     NameForm(),
     BirthForm(),
     NumberForm(),
-    IDForm(),
+    IdentificationForm(),
+    PasswordForm(),
+    RoleForm(),
     DoubleCheckPage(),
   ];
 
@@ -55,7 +57,7 @@ class _BaseFormState extends State<BaseForm> {
                       valueColor:
                           const AlwaysStoppedAnimation<Color>(Colors.white),
                       backgroundColor: Colors.teal[600],
-                      value: 0.20 * (activePage + 1))))),
+                      value: (1/7) * (activePage + 1))))),
       body: pages[activePage],
       // floatingActionButton: FloatingActionButton.extended(
       //   backgroundColor:Colors.lightGreen,
@@ -96,19 +98,19 @@ class NameForm extends StatelessWidget {
       key: hbox.nameKey,
       child: Column(
         children: [
-          SizedBox(height: 30),
+          const YMargin(30),
           Text("Lets Register you to the AgroCrm",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
                   color: Colors.teal[400])),
-          SizedBox(height: 15),
+          const YMargin(15),
           Text("Whats is your name ?",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-          SizedBox(height: 15),
+          const YMargin(15),
           Text("Just as it appears on your National ID",
               style: TextStyle(fontSize: 12, color: Colors.grey)),
-          SizedBox(height: 50),
+          const YMargin(50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -128,7 +130,27 @@ class NameForm extends StatelessWidget {
               maxLines: 1,
             ),
           ),
-          SizedBox(height: 10),
+          const YMargin(10),
+          Container(
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            child: TextFormField(
+              controller: hbox.mnContorller,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Required";
+                } else {
+                  return null;
+                }
+              },
+              decoration: const InputDecoration(
+                labelText: 'Middle Name',
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal)),
+              ),
+              maxLines: 1,
+            ),
+          ),
+          const YMargin(10),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -167,14 +189,13 @@ class BirthForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hbox = Provider.of<KraFormProvider>(context);
-
     // Show the modal that contains the CupertinoDatePicker
     void _showDatePicker(ctx) {
       // showCupertinoModalPopup is a built-in function of the cupertino library
       showCupertinoModalPopup(
           context: ctx,
           builder: (_) => Container(
-                height: screenHeight(context, percent: 0.4),
+                height: screenHeight(context, percent: 0.36),
                 color: Color.fromARGB(255, 255, 255, 255),
                 child: Column(
                   children: [
@@ -189,7 +210,6 @@ class BirthForm extends StatelessWidget {
                             hbox.dController.text = "${val.day}";
                           }),
                     ),
-
                     // Close the modal
                     CupertinoButton(
                       child: Text('OK'),
@@ -199,7 +219,6 @@ class BirthForm extends StatelessWidget {
                 ),
               ));
     }
-
     return Form(
       key: hbox.birthKey,
       child: Column(children: [
@@ -360,130 +379,58 @@ class NumberForm extends StatelessWidget {
                     },
                     decoration: const InputDecoration(
                       counterText: "",
-                        labelText: 'Enter Phone number',
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal)),
-                      ),
-                      maxLines: 1,
+                      labelText: 'Enter Phone number',
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.teal)),
                     ),
+                    maxLines: 1,
                   ),
-                  SizedBox(width: 5),
-                ],
-              ),
-            ),
-            Spacer(),
-            ButtonBasis(
-              buttonFuntion: () {
-                fstore.phSubmit();
-              },
-            ),
-          ],
-        ),
-      );
-    }
-  }
-
-  class IDForm extends StatefulWidget {
-    const IDForm({Key key}) : super(key: key);
-
-    @override
-    _IDFormState createState() => _IDFormState();
-  }
-
-  class _IDFormState extends State<IDForm> {
-    List<DropdownMenuItem<String>> temp = [];
-    List<String> options = [
-      "Farmer ",
-      "Agro input supplier",
-      "Farm Products Consumer",
-      "Logistics",
-      "Market Information",
-      "Consultany Services"
-    ];
-    String _role;
-
-    @override
-    void initState() {
-      options.forEach((t) {
-        temp.add(DropdownMenuItem<String>(
-          value: t,
-          child: Text(t),
-        ));
-      });
-      super.initState();
-    }
-
-    @override
-    Widget build(BuildContext context) {
-      final fstore = Provider.of<KraFormProvider>(context);
-      return Form(
-        key: fstore.kraKey,
-        child: Column(children: [
-          SizedBox(height: 30),
-          Text("Almost there!",
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                  color: Colors.teal[400])),
-          SizedBox(height: 5),
-          Text("Final personal check",
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 19,
-                  color: Colors.teal[400])),
-          SizedBox(height: 15),
-          Text("Kindly choose the role you are registering for",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-          SizedBox(height: 15),
-          Text("Select One",
-              style: TextStyle(fontSize: 12, color: Colors.grey)),
-          SizedBox(height: 50),
-          Container(
-            padding: EdgeInsets.only(left: 60, right: 60),
-            child: Container(
-              width: screenWidth(context, percent: 0.70),
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: DropdownButtonFormField(
-                elevation: 1,
-                items: temp,
-                value: _role,
-                onChanged: (String value) {
-                  fstore.krapin = value;  
-                  setState(() {
-                    _role = value;
-                  });
-                },
-              ),
+                ),
+                SizedBox(width: 5),
+              ],
             ),
           ),
           Spacer(),
           ButtonBasis(
             buttonFuntion: () {
-              fstore.krSubmit();
+              fstore.phSubmit();
             },
           ),
-        ]),
-      );
-    }
+        ],
+      ),
+    );
   }
+}
 
-  class DoubleCheckPage extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      final fstore = Provider.of<KraFormProvider>(context);
-      return Column(
+class IdentificationForm extends StatelessWidget {
+  const IdentificationForm({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final fstore = Provider.of<KraFormProvider>(context);
+
+    final name = fstore.firstName;
+    return Form(
+      key: fstore.idKey,
+      child: Column(
         children: [
           SizedBox(height: 30),
-          Text("Double-check your information just to be sure",
+          Text("Ok $name !",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
                   color: Colors.teal[400])),
-          SizedBox(height: 40),
-          Container(
+          SizedBox(height: 15),
+          Text("Whats is your Identification Card Number ?",
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+          SizedBox(height: 15),
+          Text("",
+              style: TextStyle(fontSize: 12, color: Colors.grey)),
+          SizedBox(height: 50),
+                   Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
-              initialValue: fstore.firstName,
+              controller: fstore.idController,
               validator: (value) {
                 if (value.isEmpty) {
                   return "Required";
@@ -492,21 +439,79 @@ class NumberForm extends StatelessWidget {
                 }
               },
               decoration: const InputDecoration(
-                labelText: 'First Name',
+                labelText: 'ID Number',
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal)),
               ),
               maxLines: 1,
             ),
           ),
-          SizedBox(height: 10),
+          Spacer(),
+          ButtonBasis(
+            buttonFuntion: () {
+              fstore.idSubmit();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PasswordForm extends StatelessWidget {
+  const PasswordForm({Key key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    final hbox = Provider.of<KraFormProvider>(context);
+    return Form(
+      key: hbox.passwordFormKey,
+      child: Column(
+        children: [
+          const YMargin(30),
+          Text("Secure your AgroCrm account",
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  color: Colors.teal[400])),
+          const YMargin(15),
+          Text("Kndly Enter your preferd password ?",
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+          const YMargin(15),
+          Text("Don't share your password with any one",
+              style: TextStyle(fontSize: 12, color: Colors.grey)),
+          const YMargin(50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
-              initialValue: fstore.lastName,
+              obscureText: true,
+              controller: hbox.passwordController,
               validator: (value) {
                 if (value.isEmpty) {
                   return "Required";
+                } else {
+                  return null;
+                }
+              },
+              decoration: const InputDecoration(
+                labelText: 'Passowrd',
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal)),
+              ),
+              maxLines: 1,
+            ),
+          ),
+       
+          const YMargin(10),
+          Container(
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            child: TextFormField(
+              obscureText: true,
+              controller: hbox.clonePasswordController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Required";
+                }else if(value != hbox.passwordController.text){
+                  return "Password do not match";
                 } else {
                   return null;
                 }
@@ -515,116 +520,311 @@ class NumberForm extends StatelessWidget {
                 focusColor: Colors.teal,
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal)),
-                labelText: 'Last Name',
+                labelText: 'Confirm Password',
               ),
               maxLines: 1,
             ),
           ),
-          SizedBox(height: 10),
-          Container(
-            padding: EdgeInsets.only(left: 24.0, right: 24.0),
-            child:
-                Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-              SizedBox(width: 5),
-              Flexible(
-                flex: 2,
-                child: TextFormField(
-                  initialValue: fstore.countrycode,
-                  keyboardType: TextInputType.datetime,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return "Required";
-                    } else {
-                      return null;
-                    }
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Country',
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.teal)),
-                  ),
-                  maxLines: 1,
-                ),
-              ),
-              SizedBox(width: 25),
-              Flexible(
-                flex: 10,
-                child: TextFormField(
-                  controller: fstore.phController,
-                  keyboardType: TextInputType.datetime,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return "Required";
-                    } else {
-                      return null;
-                    }
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Enter Phone number',
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.teal)),
-                ),
-                maxLines: 1,
-              ),
-            ),
-            SizedBox(width: 5),
-          ]),
-        ),
-        SizedBox(height: 10),
-        Container(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          child: TextFormField(
-            initialValue: fstore.krapin,
-            validator: (value) {
-              if (value.isEmpty) {
-                return "Required";
-              } else {
-                return null;
-              }
+          Spacer(),
+          ButtonBasis(
+            buttonFuntion: () {
+              hbox.passwordFormSubmit();
             },
-            decoration: const InputDecoration(
-              focusColor: Colors.teal,
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal)),
-              labelText: 'ROLE',
-            ),
-            maxLines: 1,
           ),
-        ),
-        SizedBox(height: 50),
-        Container(
-            padding: EdgeInsets.only( right: 10.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Checkbox(
-                    activeColor: Colors.teal,
-                    value: fstore.terms,
-                    onChanged: (v) {
-                      fstore.termsAccept(v);
-                    }),
-                Text("By proceeding you agree to our Terms and Conditions")
-              ],
-            )),
-        Spacer(),
-        ButtonBasis(
-          isLastPage: true,
-          buttonFuntion: () {
-            fstore.finalSubmit();
-            zendPayment(fstore.phoneNumber,"100",fstore.phoneNumber,context);
-          },
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
 
+class RoleForm extends StatefulWidget {
+const RoleForm({Key key}) : super(key: key);
 
-Future zendPayment(String mobile,String amountDue,String accName,BuildContext ctx) async {
+  @override
+  _RoleFormState createState() => _RoleFormState();
+}
+
+class _RoleFormState extends State<RoleForm> {
+  List<DropdownMenuItem<String>> temp = [];
+  List<String> options = [
+    "Farmer ",
+    "Agro input supplier",
+    "Farm Products Consumer",
+    "Logistics",
+    "Market Information",
+    "Consultany Services"
+  ];
+  String _role;
+
+  @override
+  void initState() {
+    options.forEach((t) {
+      temp.add(DropdownMenuItem<String>(
+        value: t,
+        child: Text(t),
+      ));
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final fstore = Provider.of<KraFormProvider>(context);
+    return Form(
+      key: fstore.kraKey,
+      child: Column(children: [
+        SizedBox(height: 30),
+        Text("Almost there!",
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 20,
+                color: Colors.teal[400])),
+        SizedBox(height: 5),
+        Text("Final personal check",
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 19,
+                color: Colors.teal[400])),
+        SizedBox(height: 15),
+        Text("Kindly choose the role you are registering for",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+        SizedBox(height: 15),
+        Text("Select One", style: TextStyle(fontSize: 12, color: Colors.grey)),
+        SizedBox(height: 50),
+        Container(
+          padding: EdgeInsets.only(left: 60, right: 60),
+          child: Container(
+            width: screenWidth(context, percent: 0.70),
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: DropdownButtonFormField(
+              elevation: 1,
+              items: temp,
+              value: _role,
+              onChanged: (String value) {
+                fstore.krapin = value;
+                setState(() {
+                  _role = value;
+                });
+              },
+            ),
+          ),
+        ),
+        Spacer(),
+        ButtonBasis(
+          buttonFuntion: () {
+            fstore.krSubmit();
+          },
+        ),
+      ]),
+    );
+  }
+}
+
+class DoubleCheckPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final fstore = Provider.of<KraFormProvider>(context);
+    return ListView(
+       padding: EdgeInsets.only(left:8.0,right:10.0),
+     shrinkWrap: true,
+      children: [
+      SizedBox(height: 30),
+      Text("Double-check your information just to be sure",
+      textAlign: TextAlign.center,
+    style: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 20,
+        color: Colors.teal[400])),
+      SizedBox(height: 40),
+      Container(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child: TextFormField(
+    initialValue: fstore.firstName,
+    validator: (value) {
+      if (value.isEmpty) {
+        return "Required";
+      } else {
+        return null;
+      }
+    },
+    decoration: const InputDecoration(
+      labelText: 'First Name',
+      focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal)),
+    ),
+    maxLines: 1,
+        ),
+      ),
+      SizedBox(height: 10),
+      Container(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child: TextFormField(
+    initialValue: fstore.middleName,
+    validator: (value) {
+      if (value.isEmpty) {
+        return "Required";
+      } else {
+        return null;
+      }
+    },
+    decoration: const InputDecoration(
+      focusColor: Colors.teal,
+      focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal)),
+      labelText: 'Middle Name',
+    ),
+    maxLines: 1,
+        ),
+      ),
+      SizedBox(height: 10),
+      Container(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child: TextFormField(
+    initialValue: fstore.lastName,
+    validator: (value) {
+      if (value.isEmpty) {
+        return "Required";
+      } else {
+        return null;
+      }
+    },
+    decoration: const InputDecoration(
+      focusColor: Colors.teal,
+      focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal)),
+      labelText: 'Last Name',
+    ),
+    maxLines: 1,
+        ),
+      ),
+      SizedBox(height: 10),
+      Container(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child:
+      Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+    SizedBox(width: 5),
+    Flexible(
+      flex: 2,
+      child: TextFormField(
+        initialValue: fstore.countrycode,
+        keyboardType: TextInputType.datetime,
+        validator: (value) {
+          if (value.isEmpty) {
+            return "Required";
+          } else {
+            return null;
+          }
+        },
+        decoration: const InputDecoration(
+          labelText: 'Country',
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.teal)),
+        ),
+        maxLines: 1,
+      ),
+    ),
+    SizedBox(width: 25),
+    Flexible(
+      flex: 10,
+      child: TextFormField(
+        controller: fstore.phController,
+        keyboardType: TextInputType.datetime,
+        validator: (value) {
+          if (value.isEmpty) {
+            return "Required";
+          } else {
+            return null;
+          }
+        },
+        decoration: const InputDecoration(
+          labelText: 'Enter Phone number',
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.teal)),
+        ),
+        maxLines: 1,
+      ),
+    ),
+    SizedBox(width: 5),
+        ]),
+      ),
+
+
+            Container(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child: TextFormField(
+    initialValue: fstore.middleName,
+    validator: (value) {
+      if (value.isEmpty) {
+        return "Required";
+      } else {
+        return null;
+      }
+    },
+    decoration: const InputDecoration(
+      focusColor: Colors.teal,
+      focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal)),
+      labelText: 'ID Number',
+    ),
+    maxLines: 1,
+        ),
+      ),
+      SizedBox(height: 10),
+      Container(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child: TextFormField(
+    initialValue: fstore.krapin,
+    validator: (value) {
+      if (value.isEmpty) {
+        return "Required";
+      } else {
+        return null;
+      }
+    },
+    decoration: const InputDecoration(
+      focusColor: Colors.teal,
+      focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.teal)),
+      labelText: 'ROLE',
+    ),
+    maxLines: 1,
+        ),
+      ),
+      SizedBox(height: 50),
+      Container(
+    padding: EdgeInsets.only(right: 10.0),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Checkbox(
+            activeColor: Colors.teal,
+            value: true,
+            onChanged: (v) {
+              fstore.termsAccept(v);
+            }),
+        Text("By proceeding you agree to our Terms and Conditions")
+      ],
+    )),
+      Spacer(),
+      ButtonBasis(
+        isLastPage: true,
+        buttonFuntion: () {
+    fstore.finalSubmit();
+    zendPayment(fstore.phoneNumber, "100", fstore.phoneNumber, context);
+        },
+      ),
+      ],
+        );
+  }
+}
+
+Future zendPayment(
+    String mobile, String amountDue, String accName, BuildContext ctx) async {
   Widget _buildPopupDialog(BuildContext context) {
     return RegistrationPopUp();
   }
- PaymentResponse data;
+
+  PaymentResponse data;
   try {
     String fcmToken = "no";
     final response = await post(
@@ -649,7 +849,7 @@ Future zendPayment(String mobile,String amountDue,String accName,BuildContext ct
     print(fcmToken);
     data = PaymentResponse.fromJson(myjson);
     print(data.paymentCode);
-    if (data.description == "0"){
+    if (data.description == "0") {
       showCupertinoDialog(
         context: ctx,
         builder: (BuildContext context) => _buildPopupDialog(context),
@@ -659,7 +859,7 @@ Future zendPayment(String mobile,String amountDue,String accName,BuildContext ct
     print("msEE HAUNA WIFI");
     showCupertinoDialog(
       context: ctx,
-      builder: (BuildContext context) =>ErrorPopUP(),
+      builder: (BuildContext context) => ErrorPopUP(),
     );
   }
 }
