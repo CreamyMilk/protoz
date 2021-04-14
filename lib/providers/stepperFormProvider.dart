@@ -36,7 +36,7 @@ class KraFormProvider extends ChangeNotifier {
   String countrycode;
   String phoneNumber;
   String password;
-  String krapin="DEFAULT";
+  String role="DEFAULT";
   bool terms = true;
 
   void nameFields(String a, String b) {
@@ -53,7 +53,7 @@ class KraFormProvider extends ChangeNotifier {
   }
 
   void kraFields(String t) {
-    krapin = t;
+    role = t;
     notifyListeners();
   }
 
@@ -105,7 +105,9 @@ class KraFormProvider extends ChangeNotifier {
       //print("Text fiels Values are $t $d");
     }
   }
-
+  String getBirth(){
+    return 'Y-$year M-$month D-$day';
+  }
   void phSubmit() {
     if (phoneKey.currentState.validate()) {
       countrycode = cnController.text;
@@ -121,7 +123,7 @@ class KraFormProvider extends ChangeNotifier {
 
 
   void krSubmit() {
-    if (krapin.length > 6) {
+    if (role.length > 6) {
       increment();
     }
     //print("Text fiels Values are $t $d");

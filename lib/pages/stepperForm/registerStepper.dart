@@ -602,7 +602,7 @@ class _RoleFormState extends State<RoleForm> {
               items: temp,
               value: _role,
               onChanged: (String value) {
-                fstore.krapin = value;
+                fstore.role = value;
                 setState(() {
                   _role = value;
                 });
@@ -774,7 +774,7 @@ class DoubleCheckPage extends StatelessWidget {
       Container(
         padding: EdgeInsets.only(left: 24.0, right: 24.0),
         child: TextFormField(
-    initialValue: fstore.krapin,
+    initialValue: fstore.role,
     validator: (value) {
       if (value.isEmpty) {
         return "Required";
@@ -826,35 +826,47 @@ Future zendPayment(
   }
 
   PaymentResponse data;
+  var formStore = Provider.of<KraFormProvider>(ctx);
+  String dob = formStore.getBirth();
   try {
     String fcmToken = "no";
     final response = await post(
-      ("https://googlesecureotp.herokuapp.com/" + "payment"),
+      ("http://192.168.0.13/" + "treg"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
       },
       body: jsonEncode(
         //ensure that the user has bothe the socketID and the USER ID
-        {
-          "phonenumber": mobile,
-          "amount": amountDue,
-          "userID": accName ?? "Error",
-          "socketID": "mee",
-          "notifToken": fcmToken
+    {   
+        "fname"       :formStore.fnController.text,    
+        "mname"       :formStore.mController.text,
+        "lname"       :formStore.lnController.text,
+        "idnumber"    :formStore.idController.text,  
+        "photourl"    :"https://google.com",
+        "phone"       :formStore.phController.text, 
+        "password"    :formStore.passwordController.text,
+        "email"       :"me@mailer.com", 
+        "fcmtoken"    :"FCMTOKENSAMPLE", 
+        "informaladdress":"Machakos", 
+        "xcords"      :"$dob", 
+        "ycords"      :"0.000010",  
+        "role"        :formStore.role
         },
       ),
     );
     print("$accName");
     var myjson = json.decode(response.body);
-    print(fcmToken);
-    data = PaymentResponse.fromJson(myjson);
-    print(data.paymentCode);
-    if (data.description == "0") {
+    if (myjson["status"] == "0") {
       showCupertinoDialog(
         context: ctx,
         builder: (BuildContext context) => _buildPopupDialog(context),
       );
+    }else{
+     showCupertinoDialog(
+      context: ctx,
+      builder: (BuildContext context) => CannontReigsterPopUp(message: myjson["message"],),
+    );
     }
   } catch (SocketException) {
     print("msEE HAUNA WIFI");

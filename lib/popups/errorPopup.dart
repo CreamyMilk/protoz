@@ -36,3 +36,32 @@ class ErrorPopUP extends StatelessWidget {
     );
   }
 }
+
+class CannontReigsterPopUp extends StatelessWidget {
+  final String message;
+
+  const CannontReigsterPopUp({Key key, @required this.message}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Cannot Register Account'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Kindly try again"),
+          Text(message)
+        ],
+      ),
+      actions: <Widget>[
+        MaterialButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+}
