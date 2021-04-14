@@ -149,7 +149,7 @@ class WalletsAppBar extends StatelessWidget {
                               TextStyle(fontSize: 10, color: Colors.black87)),
                       SizedBox(height: 3),
                       Text(
-                        "KSH.15,255.00",
+                        "KSH.0.00",
                         textScaleFactor: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -167,7 +167,7 @@ class WalletsAppBar extends StatelessWidget {
                               TextStyle(fontSize: 10, color: Colors.black87)),
                       SizedBox(height: 3),
                       Text(
-                        "KSH.175,275.00",
+                        "KSH.0.00",
                         textScaleFactor: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

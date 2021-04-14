@@ -805,7 +805,7 @@ class DoubleCheckPage extends StatelessWidget {
         Text("By proceeding you agree to our Terms and Conditions")
       ],
     )),
-      Spacer(),
+      const YMargin(60),
       ButtonBasis(
         isLastPage: true,
         buttonFuntion: () {
