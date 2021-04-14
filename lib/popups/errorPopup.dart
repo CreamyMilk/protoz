@@ -44,12 +44,12 @@ class CannontReigsterPopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new AlertDialog(
-      title: const Text('Cannot Register Account'),
+      title: const Text('Error Register Account'),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Kindly try again"),
+          Text("Kindly confirm the form details and try again"),
           Text(message)
         ],
       ),

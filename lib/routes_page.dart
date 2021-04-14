@@ -17,6 +17,7 @@ import 'package:proto/pages/sellerpages/stockList.dart';
 import 'package:proto/pages/startup/homePage.dart';
 import 'package:proto/pages/stepperForm/registerStepper.dart';
 import 'package:proto/pages/transactionPage.dart';
+import 'package:proto/providers/loginProvider.dart';
 import 'package:proto/providers/stepperFormProvider.dart';
 import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/sellerpages/newProducts.dart';
@@ -37,7 +38,11 @@ class RouteGenerator {
       case '/startup':
         return MaterialPageRoute(builder: (ctx) => HomePage());
       case '/login':
-        return MaterialPageRoute(builder: (ctx) => LoginFormPage());
+      return MaterialPageRoute(
+            builder: (ctx) => ChangeNotifierProvider<LoginFormProvider>(
+                create: (context) => LoginFormProvider(),
+                child:LoginFormPage()));
+
       case '/home':
         return CupertinoPageRoute(
             builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(

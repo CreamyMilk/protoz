@@ -49,54 +49,52 @@ class AddProductsPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextField(
-                  decoration: InputDecoration(
-                labelText: "Category",
-                hintText: "Catergory",
-                border: OutlineInputBorder(),
-              )),
-              const YMargin(10),
-              TextField(
-                  decoration: InputDecoration(
-                labelText: "Sub Category",
-                hintText: "Sub Category",
-                border: OutlineInputBorder(),
-              )),
-              const YMargin(10),
-              TextField(
-                  keyboardType: TextInputType.url,
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.camera_alt_outlined),
-                    labelText: "Image src",
-                    hintText: "Image url",
-                    border: OutlineInputBorder(),
-                  )),
-              SizedBox(
-                height: 10,
-              ),
-              Branding(),
-              const YMargin(10),
-              TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: "Price",
-                    hintText: "Price",
-                    border: OutlineInputBorder(),
-                  )),
-              const YMargin(10),
-              TextField(
-                  decoration: InputDecoration(
-                labelText: "Description",
-                hintText: "Description",
-                border: OutlineInputBorder(),
-              )),
-              const YMargin(80),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            TextField(
+                decoration: InputDecoration(
+              labelText: "Category",
+              hintText: "Catergory",
+              border: OutlineInputBorder(),
+            )),
+            const YMargin(10),
+            TextField(
+                decoration: InputDecoration(
+              labelText: "Sub Category",
+              hintText: "Sub Category",
+              border: OutlineInputBorder(),
+            )),
+            const YMargin(10),
+            TextField(
+                keyboardType: TextInputType.url,
+                decoration: InputDecoration(
+                  suffixIcon: Icon(Icons.camera_alt_outlined),
+                  labelText: "Image src",
+                  hintText: "Image url",
+                  border: OutlineInputBorder(),
+                )),
+            SizedBox(
+              height: 10,
+            ),
+            Branding(),
+            const YMargin(10),
+            TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: "Price",
+                  hintText: "Price",
+                  border: OutlineInputBorder(),
+                )),
+            const YMargin(10),
+            TextField(
+                decoration: InputDecoration(
+              labelText: "Description",
+              hintText: "Description",
+              border: OutlineInputBorder(),
+            )),
+            const YMargin(80),
+          ],
         ),
       ),
     );

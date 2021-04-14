@@ -192,11 +192,11 @@ class WalletsAppBar extends StatelessWidget {
                     FloatingActionButton(
                       mini: true,
                       heroTag: null,
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.teal,
                       child: Transform.rotate(
-                        angle: 2,
+                        angle: 31,
                         child: Icon(
-                          Icons.arrow_back_outlined,
+                          Icons.payments,
                           size: 20,
                           color: Colors.white,
                         ),
@@ -211,11 +211,11 @@ class WalletsAppBar extends StatelessWidget {
                     FloatingActionButton(
                       heroTag: "sd",
                       mini: true,
-                      backgroundColor: Colors.teal,
+                      backgroundColor: Colors.green,
                       child: Transform.rotate(
-                        angle: 31,
+                        angle: 0,
                         child: Icon(
-                          Icons.payments,
+                          Icons.add,
                           color: Colors.white,
                         ),
                       ),

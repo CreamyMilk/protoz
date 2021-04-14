@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
-import 'package:proto/models/paymentResponseModel.dart';
 import 'package:proto/popups/errorPopup.dart';
 import 'package:proto/popups/registrationPopup.dart';
 import 'package:proto/providers/stepperFormProvider.dart';
@@ -59,33 +58,6 @@ class _BaseFormState extends State<BaseForm> {
                       backgroundColor: Colors.teal[600],
                       value: (1/7) * (activePage + 1))))),
       body: pages[activePage],
-      // floatingActionButton: FloatingActionButton.extended(
-      //   backgroundColor:Colors.lightGreen,
-      //   onPressed: () {
-      //     if (activePage == 0) {
-      //       hbox.nfSubmit();
-      //     } else if (activePage == 1) {
-      //       hbox.bfSubmit();
-      //     } else if (activePage == 2) {
-      //       hbox.phSubmit();
-      //     } else if (activePage == 3) {
-      //       hbox.krSubmit();
-      //     } else {
-      //       if (activePage != pages.length - 1) {
-      //         hbox.increment();
-      //         print("okokok");
-      //       }
-      //     }
-      //   },
-      //   icon: activePage == pages.length - 1
-      //       ? Icon(Icons.check_circle_outline, color: Colors.white)
-      //       : null,
-      //   label: Text(
-      //       (activePage != pages.length - 1
-      //           ? "      NEXT       "
-      //           : "      Pay Now       "),
-      //       style: TextStyle(color: Colors.white, fontSize: 15)),
-      // ),
     );
   }
 }
@@ -415,13 +387,13 @@ class IdentificationForm extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 30),
-          Text("Ok $name !",
+          Text("Just one more thing $name !",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
                   color: Colors.teal[400])),
           SizedBox(height: 15),
-          Text("Whats is your Identification Card Number ?",
+          Text("Whats your Identification Card Number ?",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
           SizedBox(height: 15),
           Text("",
@@ -484,6 +456,8 @@ class PasswordForm extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
+              maxLength: 4,
+              keyboardType: TextInputType.number,
               obscureText: true,
               controller: hbox.passwordController,
               validator: (value) {
@@ -494,7 +468,7 @@ class PasswordForm extends StatelessWidget {
                 }
               },
               decoration: const InputDecoration(
-                labelText: 'Passowrd',
+                labelText: 'Password',
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal)),
               ),
@@ -506,6 +480,8 @@ class PasswordForm extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
+              maxLength: 4,
+              keyboardType: TextInputType.number,
               obscureText: true,
               controller: hbox.clonePasswordController,
               validator: (value) {
@@ -806,7 +782,7 @@ class DoubleCheckPage extends StatelessWidget {
         Text("By proceeding you agree to our Terms and Conditions")
       ],
     )),
-      const YMargin(60),
+      const YMargin(70),
       ButtonBasis(
         isLastPage: true,
         buttonFuntion: () {
@@ -824,14 +800,25 @@ Future zendPayment(
   Widget _buildPopupDialog(BuildContext context) {
     return RegistrationPopUp();
   }
+String zerototwo(String phone ) {
+  if (phone.length > 0) { 
+    if (phone[0] == "0") {
+      return "254${phone.substring(1)}";
+    } else if (phone[0] == "+") {
+      return phone.substring(1);
+    } else {
+      return phone;
+    }   
+  } else {
+    return "0000000000";
+  }
+}
 
-  PaymentResponse data;
-  var formStore = Provider.of<KraFormProvider>(ctx);
+  var formStore = Provider.of<KraFormProvider>(ctx,listen:false);
   String dob = formStore.getBirth();
   try {
-    String fcmToken = "no";
     final response = await post(
-      ("http://192.168.0.13/" + "treg"),
+      ("http://192.168.0.13:3000/" + "treg"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
@@ -844,7 +831,7 @@ Future zendPayment(
         "lname"       :formStore.lnController.text,
         "idnumber"    :formStore.idController.text,  
         "photourl"    :"https://google.com",
-        "phone"       :formStore.phController.text, 
+        "phone"       :zerototwo(formStore.phController.text), 
         "password"    :formStore.passwordController.text,
         "email"       :"me@mailer.com", 
         "fcmtoken"    :"FCMTOKENSAMPLE", 
@@ -857,7 +844,7 @@ Future zendPayment(
     );
     print("$accName");
     var myjson = json.decode(response.body);
-    if (myjson["status"] == "0") {
+    if (myjson["status"] == 0) {
       showCupertinoDialog(
         context: ctx,
         builder: (BuildContext context) => _buildPopupDialog(context),
