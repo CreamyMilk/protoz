@@ -1,10 +1,12 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:proto/constants.dart' as Constants;
 import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 import 'package:proto/widgets/depositBottomSheet.dart';
 import 'package:proto/widgets/qrScannerButton.dart';
-
+import 'package:hive_flutter/hive_flutter.dart';
 // ignore: must_be_immutable
 class WalletsPageBase extends StatelessWidget {
   //ScrollController get n => ScrollController(initialScrollOffset: 150);
@@ -148,14 +150,19 @@ class WalletsAppBar extends StatelessWidget {
                           style:
                               TextStyle(fontSize: 10, color: Colors.black87)),
                       SizedBox(height: 3),
-                      Text(
-                        "KSH.0.00",
-                        textScaleFactor: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w100),
+                      ValueListenableBuilder(
+                        valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+                        builder: (BuildContext context, box, Widget child) {
+                         return Text(
+                            "KSH.${box.get("balance",defaultValue:"--")}",
+                            textScaleFactor: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w100),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -220,7 +227,7 @@ class WalletsAppBar extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                      kplzModalBottomSheet(context, "10");
+                        kplzModalBottomSheet(context, "10");
                       },
                     ),
                   ],

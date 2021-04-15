@@ -30,6 +30,8 @@ dependencies:
   salomon_bottom_bar: ^3.0.0
   barcode_scan: any
   provider:
+  hive:
+  hive_flutter:
   cached_network_image: ^2.5.1
   http:
 

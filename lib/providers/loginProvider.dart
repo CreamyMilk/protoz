@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:http/http.dart';
+import 'package:proto/constants.dart' as Constants;
 import 'package:proto/popups/errorPopup.dart';
 import 'package:proto/popups/registrationPopup.dart';
 
@@ -15,17 +17,17 @@ class LoginFormProvider extends ChangeNotifier {
   bool showError = false;
   bool loading = false;
 
-  void attemptLogin(BuildContext ctx)async {
+  void attemptLogin(BuildContext ctx) async {
     if (usernameController.text != "" && passwordController.text != "") {
       loading = true;
       showError = false;
-      await sendLoginRequest(ctx);
-    
+      notifyListeners();
+      sendLoginRequest(ctx);
     } else {
       loading = false;
       showError = true;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   String zerototwo(String phone) {
@@ -43,10 +45,6 @@ class LoginFormProvider extends ChangeNotifier {
   }
 
   Future sendLoginRequest(BuildContext ctx) async {
-    Widget _buildPopupDialog(BuildContext context) {
-      return RegistrationPopUp();
-    }
-
     try {
       final response = await post(
         ("http://192.168.0.13:3000/" + "login"),
@@ -64,14 +62,16 @@ class LoginFormProvider extends ChangeNotifier {
       );
       var myjson = json.decode(response.body);
       if (myjson["status"] == 0) {
-        showCupertinoDialog(
-          context: ctx,
-          builder: (BuildContext context) => _buildPopupDialog(context),
-        );
+        var box = Hive.box(Constants.UserBoxName) ;
+        String initals = "PP";
+        box.put('name',myjson["fullname"]);
+        box.put('phonenumber',myjson["phonenumber"]);
+        box.put('walletname',myjson["walletname"]);
+        box.put('balance',myjson["balance"]);
+        box.put('role',myjson["role"]);
         Navigator.of(ctx).pushNamed("/home");
       } else {
         loading = false;
-        usernameController.text = "";
         passwordController.text = "";
         notifyListeners();
         showCupertinoDialog(
@@ -82,11 +82,8 @@ class LoginFormProvider extends ChangeNotifier {
         );
       }
     } catch (SocketException) {
-        loading = false;
-        usernameController.text = "";
-        passwordController.text = "";
-        notifyListeners();
-
+      loading = false;
+      notifyListeners();
     }
   }
 }
