@@ -15,11 +15,11 @@ class LoginFormProvider extends ChangeNotifier {
   bool showError = false;
   bool loading = false;
 
-  void attemptLogin(BuildContext ctx) {
+  void attemptLogin(BuildContext ctx)async {
     if (usernameController.text != "" && passwordController.text != "") {
       loading = true;
       showError = false;
-      sendLoginRequest(ctx);
+      await sendLoginRequest(ctx);
     
     } else {
       loading = false;
@@ -82,14 +82,11 @@ class LoginFormProvider extends ChangeNotifier {
         );
       }
     } catch (SocketException) {
-          loading = false;
+        loading = false;
         usernameController.text = "";
         passwordController.text = "";
         notifyListeners();
-      showCupertinoDialog(
-        context: ctx,
-        builder: (BuildContext context) => ErrorPopUP(),
-      );
+
     }
   }
 }
