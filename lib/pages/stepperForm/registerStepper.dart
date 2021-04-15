@@ -818,7 +818,7 @@ String zerototwo(String phone ) {
   String dob = formStore.getBirth();
   try {
     final response = await post(
-      ("http://192.168.0.13:3000/" + "treg"),
+      ("http://34.72.168.188:3000/" + "treg"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
