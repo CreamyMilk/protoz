@@ -54,15 +54,17 @@ class ContactsListPage extends StatelessWidget {
         ),
       ),
       body: Container(
+      
         height: screenHeight(context),
         child: ListView(
           children: [
-            Padding(padding:EdgeInsets.only(left:10),child: Align(alignment: Alignment.centerLeft, child: Text("Favorites"))),
+            Padding(padding:EdgeInsets.only(left:19),child: Align(alignment: Alignment.centerLeft, child: Text("Favorites"))),
             Container(
+              padding:EdgeInsets.only(left:10),
               height: 80,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 15,
+                  itemCount: 4,
                   itemBuilder: (context, index) {
                     return FavoriteTile();
                   }),
@@ -82,7 +84,7 @@ class ContactsListPage extends StatelessWidget {
                   ),
                   
                   onTap: () {
-                    Navigator.of(context).pushNamed("/enteramount");
+                    Navigator.of(context).pushNamed("/enterphone");
                   },
                   contentPadding: EdgeInsets.only(left: 10, bottom: 12.0),
                   minLeadingWidth: 30,
@@ -100,7 +102,7 @@ class ContactsListPage extends StatelessWidget {
                     backgroundColor: Colors.greenAccent[400],
                   ),
                   onTap: () {
-                    Navigator.of(context).pushNamed("/enteramount");
+                    Navigator.of(context).pushNamed("/enterphone");
                   },
                   contentPadding: EdgeInsets.only(left: 10, bottom: 12.0),
                   minLeadingWidth: 30,
@@ -185,7 +187,7 @@ class FavoriteTile extends StatelessWidget {
       }
       ,
       child: Container(
-          margin: EdgeInsets.all(8.0),
+          margin: EdgeInsets.all(10.0),
           child: Column(
             children: [
             CircleAvatar(

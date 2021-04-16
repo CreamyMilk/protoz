@@ -1,4 +1,3 @@
-// ignore: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart' as Constants;
@@ -7,6 +6,7 @@ import 'package:proto/widgets/awesomeFab.dart';
 import 'package:proto/widgets/depositBottomSheet.dart';
 import 'package:proto/widgets/qrScannerButton.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 // ignore: must_be_immutable
 class WalletsPageBase extends StatelessWidget {
   //ScrollController get n => ScrollController(initialScrollOffset: 150);
@@ -65,11 +65,6 @@ class WalletsPageBase extends StatelessWidget {
                   return null;
                 }),
               ),
-              // SliverFillRemaining(
-              //   child: WalletsAppBar(
-              //     sampleData: sampleData,
-              //   ),
-              // )
             ]));
   }
 }
@@ -95,7 +90,14 @@ class WalletsAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               color: Colors.black87,
             ),
-            child: Text("JK"),
+            child: ValueListenableBuilder(
+              valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+              builder: (BuildContext context, box, Widget child) {
+                return Text(
+                  "${box.get(Constants.InitalsStore, defaultValue: "P")}",
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -151,10 +153,11 @@ class WalletsAppBar extends StatelessWidget {
                               TextStyle(fontSize: 10, color: Colors.black87)),
                       SizedBox(height: 3),
                       ValueListenableBuilder(
-                        valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+                        valueListenable:
+                            Hive.box(Constants.UserBoxName).listenable(),
                         builder: (BuildContext context, box, Widget child) {
-                         return Text(
-                            "KSH.${box.get("balance",defaultValue:"--")}",
+                          return Text(
+                            "KSH.${box.get(Constants.BalanceStore, defaultValue: "--")}",
                             textScaleFactor: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -227,7 +230,7 @@ class WalletsAppBar extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        kplzModalBottomSheet(context, "10");
+                        depositModalBottomSheet(context, "10");
                       },
                     ),
                   ],

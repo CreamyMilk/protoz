@@ -7,7 +7,6 @@ import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:proto/constants.dart' as Constants;
 import 'package:proto/popups/errorPopup.dart';
-import 'package:proto/popups/registrationPopup.dart';
 
 class LoginFormProvider extends ChangeNotifier {
   TextEditingController usernameController = TextEditingController();
@@ -43,7 +42,14 @@ class LoginFormProvider extends ChangeNotifier {
       return "0000000000";
     }
   }
-
+  String getInitals(String l){
+   List<String> name = l.split(" ");
+  if(name.length > 1){
+    return(name[0].substring(0,1).toUpperCase()+name[name.length - 1 ].substring(0,1).toUpperCase());  
+  }else{
+   return name[0].substring(0,1).toUpperCase();  
+  }
+}
   Future sendLoginRequest(BuildContext ctx) async {
     try {
       final response = await post(
@@ -63,12 +69,13 @@ class LoginFormProvider extends ChangeNotifier {
       var myjson = json.decode(response.body);
       if (myjson["status"] == 0) {
         var box = Hive.box(Constants.UserBoxName) ;
-        String initals = "PP";
-        box.put('name',myjson["fullname"]);
-        box.put('phonenumber',myjson["phonenumber"]);
-        box.put('walletname',myjson["walletname"]);
-        box.put('balance',myjson["balance"]);
-        box.put('role',myjson["role"]);
+        String initals = getInitals(myjson["fullname"]);
+        box.put(Constants.FullnameStore,myjson["fullname"]);
+        box.put(Constants.InitalsStore,initals);
+        box.put(Constants.PhoneNumberStore,myjson["phonenumber"]);
+        box.put(Constants.WalletNameStore,myjson["walletname"]);
+        box.put(Constants.BalanceStore,myjson["balance"]);
+        box.put(Constants.RoleStore,myjson["role"]);
         Navigator.of(ctx).pushNamed("/home");
       } else {
         loading = false;

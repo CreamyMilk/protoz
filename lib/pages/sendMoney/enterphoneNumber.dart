@@ -5,19 +5,18 @@ import 'package:proto/constants.dart' as Constants;
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/keypadwidget.dart';
 
-class EnterAmountPage extends StatefulWidget {
+class EnterPhoneNumberPage extends StatefulWidget {
   @override
-  _EnterAmountPageState createState() => _EnterAmountPageState();
+  _EnterPhoneNumberPageState createState() => _EnterPhoneNumberPageState();
 }
 
-class _EnterAmountPageState extends State<EnterAmountPage> {
-  String amount = "";
+class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
+  String phoneNumber = "";
   Box<dynamic> box;
-
   @override
   void initState() {
+    phoneNumber = "07";
     box = Hive.box(Constants.UserBoxName);
-    amount = "100";
     super.initState();
   }
 
@@ -30,7 +29,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Mr. Recepient",
+          "Fetched Name from API",
           style: TextStyle(color: Colors.blueGrey),
         ),
       ),
@@ -40,14 +39,14 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
             textAlign: TextAlign.center,
             text: TextSpan(children: [
               TextSpan(
-                  text: "Ksh.",
+                  text: "",
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w300,
                       fontSize: 20.0)),
               TextSpan(
                   text:
-                      "${amount.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
+                  "$phoneNumber",
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
@@ -60,7 +59,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
           width: screenWidth(context, percent: 0.8),
           decoration: BoxDecoration(
             color:
-                amount.length > 1 ? Colors.greenAccent[400] : Colors.grey[200],
+                phoneNumber.length > 9 ? Colors.greenAccent[400] : Colors.grey[200],
             boxShadow: [
               BoxShadow(
                   color: Colors.grey[400].withOpacity(0.3),
@@ -70,15 +69,15 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
           ),
           // ignore: deprecated_member_use
           child: FlatButton(
-                        onPressed:amount.length > 1?(){
-                          box.put(Constants.AmountToSendStore,amount);
-                          Navigator.of(context).pushNamed("/pin");
+                        onPressed:phoneNumber.length > 9?(){
+                          box.put(Constants.SenderNumberStore,phoneNumber);
+                          Navigator.of(context).pushNamed("/enteramount");
                         } : (){},
             color: Colors.transparent,
             child: Text(
-              amount.length > 1 ? "Continue   ->" : "Enter Amount",
+              phoneNumber.length > 9 ? "Continue  ->" : "Enter Phone Number",
               style: GoogleFonts.nunito(
-                  color: amount.length > 1 ? Colors.white : Colors.blueGrey,
+                  color: phoneNumber.length > 9 ? Colors.white : Colors.blueGrey,
                   fontSize: 20,
                   fontWeight: FontWeight.w400),
             ),
@@ -86,15 +85,15 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
         ),
         NumericKeyboard(
             rightButtonFn: () {
-              if (amount.length == 1) {
+              if (phoneNumber.length == 1) {
                 setState(() {
-                  amount = "0";
+                  phoneNumber = "07";
                 });
               }
-              if (amount.length > 1) {
-                amount = amount.substring(0, amount.length - 1);
+              if (phoneNumber.length > 1) {
+                phoneNumber = phoneNumber.substring(0, phoneNumber.length - 1);
                 setState(() {
-                  amount = amount;
+                  phoneNumber = phoneNumber;
                 });
               }
             },
@@ -104,10 +103,10 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
               print(text);
               setState(
                 () {
-                  if (amount == "0") {
-                    amount = text;
-                  } else if (amount.length < 12) {
-                    amount += text;
+                  if (phoneNumber == "0") {
+                    phoneNumber += text;
+                  } else if (phoneNumber.length < 10) {
+                    phoneNumber += text;
                   }
                 },
               );

@@ -6,6 +6,7 @@ import 'package:proto/pages/profile.dart';
 import 'package:proto/pages/registration/register.dart';
 import 'package:proto/pages/sendMoney/contctList.dart';
 import 'package:proto/pages/sendMoney/enteramount.dart';
+import 'package:proto/pages/sendMoney/enterphoneNumber.dart';
 import 'package:proto/pages/sendMoney/pinentrypage.dart';
 import 'package:proto/pages/services/blConsoltants.dart';
 import 'package:proto/pages/services/blPage.dart';
@@ -23,7 +24,7 @@ import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/sellerpages/newProducts.dart';
 import 'package:proto/pages/buyerpages/productsList.dart';
 import 'package:proto/widgets/tab_controler.dart';
-import 'package:proto/pages/walletsliver.dart';
+import 'package:proto/widgets/walletsliver.dart';
 import 'package:proto/widgets/youtubeWebView.dart';
 import 'package:provider/provider.dart';
 
@@ -38,10 +39,10 @@ class RouteGenerator {
       case '/startup':
         return MaterialPageRoute(builder: (ctx) => HomePage());
       case '/login':
-      return MaterialPageRoute(
+        return MaterialPageRoute(
             builder: (ctx) => ChangeNotifierProvider<LoginFormProvider>(
                 create: (context) => LoginFormProvider(),
-                child:LoginFormPage()));
+                child: LoginFormPage()));
 
       case '/home':
         return CupertinoPageRoute(
@@ -51,7 +52,7 @@ class RouteGenerator {
                     statusBarIconBrightness: Brightness.dark,
                     systemNavigationBarColor: Colors.white),
                 child: BaseTabView()));
-       case '/kraform':
+      case '/kraform':
         return MaterialPageRoute(
             builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
                 create: (context) => KraFormProvider(),
@@ -61,15 +62,17 @@ class RouteGenerator {
                         systemNavigationBarColor: Colors.white),
                     child: BaseForm())));
       case '/contactList':
-        return CupertinoPageRoute(   
-          fullscreenDialog: true,
-                   builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
+        return CupertinoPageRoute(
+            fullscreenDialog: true,
+            builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
                 create: (context) => KraFormProvider(),
                 child: AnnotatedRegion<SystemUiOverlayStyle>(
                     value: SystemUiOverlayStyle(
                         statusBarColor: Colors.white,
                         systemNavigationBarColor: Colors.white),
                     child: ContactsListPage())));
+      case '/enterphone':
+        return MaterialPageRoute(builder: (ctx) => EnterPhoneNumberPage());
       case '/pin':
         return MaterialPageRoute(builder: (ctx) => EnterPinPage());
       case '/enteramount':

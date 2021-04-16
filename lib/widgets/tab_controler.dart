@@ -5,7 +5,7 @@ import 'package:proto/pages/wallet/walletsTab.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
 
-import 'package:proto/pages/walletsliver.dart';
+import 'package:proto/widgets/walletsliver.dart';
 
 class BaseTabView extends StatefulWidget {
   @override

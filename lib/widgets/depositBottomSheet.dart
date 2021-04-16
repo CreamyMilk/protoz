@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
+import 'package:proto/constants.dart' as Constants;
 import 'package:proto/models/paymentResponseModel.dart';
 import 'package:proto/popups/registrationPopup.dart';
 
-void kplzModalBottomSheet(context, amountDue) {
+void depositModalBottomSheet(context, amountDue) {
   showModalBottomSheet(
     isScrollControlled: true,
     shape: RoundedRectangleBorder(
@@ -61,28 +63,20 @@ class PaymentBottomSheet extends StatefulWidget {
 }
 
 class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
-  // Box<dynamic> userHiveBox;
+  Box<dynamic> userHiveBox;
   final TextEditingController _phoneficontroller = TextEditingController();
   final TextEditingController _amountficontroller = TextEditingController();
   String mobile="0";
-  String amountDue = "1";
-  String visualAmount="1";
-  String accountName="test";
-  // @override
-  // void initState() {
-  //   userHiveBox = Hive.box('user');
-  //   var temp = userHiveBox.get('rent', defaultValue: {
-  //     'rentDue': 0,
-  //     'account': 'err',
-  //     'month': "null",
-  //     "rentStatus": false
-  //   }); //Add default for non complains
-  //   mobile = userHiveBox.get('mobile', defaultValue: "");
-  //   accountName = "#po" + temp["account"];
-  //   visualAmount = amountDue.replaceAllMapped(
-  //       new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
-  //   super.initState();
-  // }
+  String amountDue = "10";
+  String visualAmount="10";
+  String walletName="";
+  @override
+  void initState() {
+    userHiveBox = Hive.box(Constants.UserBoxName);
+    mobile     = userHiveBox.get(Constants.PhoneNumberStore, defaultValue: "");
+    walletName = userHiveBox.get(Constants.WalletNameStore,defaultValue: "");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +141,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                       ),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: Text(
+                                               child: Text(
                           mobile,
                           style: TextStyle(
                               fontWeight: FontWeight.w300, fontSize: 15),
@@ -157,29 +151,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                   ),
                 ],
               ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // Align(
-              //   alignment: Alignment.centerLeft,
-              //   child: Text(
-              //     "Select Payment Method",
-              //     style: TextStyle(fontWeight: FontWeight.w800),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 5,
-              // ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.start,
-              //   children: [
-              //     PaymentTile(),
-              //     // SizedBox(
-              //     //   width: 10,
-              //     // ),
-              //     // PaymentTile(),
-              //   ],
-              // ),
+          
               SizedBox(
                 height: 20,
               ),
@@ -215,7 +187,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
 
                 ),
               ),
-              TextField(
+              TextFormField(
                 autofocus: true,
                 onChanged: (value) {
                   print(value);
@@ -223,6 +195,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                     mobile = value;
                   });
                 },
+                
                 controller: _phoneficontroller,
                 decoration: InputDecoration(
                   isDense: true,
@@ -242,7 +215,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                     minWidth: MediaQuery.of(context).size.width * .95,
                     onPressed: () async {
                       await _sendPayment(
-                          mobile, amountDue, accountName, context);
+                          mobile, amountDue, walletName ,context);
                     },
                     color: Colors.black,
                     child: Text(
@@ -263,7 +236,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
 
 
 
-Future _sendPayment(mobile, amountDue, accName, ctx) async {
+Future _sendPayment(mobile, amount, String walletName,BuildContext ctx) async {
   Widget _buildPopupDialog(BuildContext context) {
     return RegistrationPopUp();
   }
@@ -274,25 +247,22 @@ Future _sendPayment(mobile, amountDue, accName, ctx) async {
       Navigator.pop(ctx);
     String fcmToken = "no";
     final response = await http.post(
-      ("https://googlesecureotp.herokuapp.com/" + "payment"),
+      ("http://192.168.0.13:3000/"+"wallet/deposit"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
       },
       body: jsonEncode(
-        //ensure that the user has bothe the socketID and the USER ID
         {
+          "walletname":walletName,
           "phonenumber": mobile,
-          "amount": amountDue,
-          "userID": accName ?? "Error",
-          "socketID": "mee",
-          "notifToken": fcmToken
+          "fcmtoken":fcmToken,
+          "amount": amount
         },
       ),
     );
-    print("$accName");
     var myjson = json.decode(response.body);
-    print(fcmToken);
+    print(myjson);
     print("Mobile $mobile");
     print("Amount $amountDue");
     data = PaymentResponse.fromJson(myjson);
