@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 10,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "AGROBANKCONN",
+            "database": "agrodb",
+            "username": "root",
+            "password": "test_pass"
+        }
+    ]
+}

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import "package:proto/constants.dart" as Constants;
 
 class LogoPage extends StatefulWidget {
   @override
@@ -6,10 +8,14 @@ class LogoPage extends StatefulWidget {
 }
 
 class _LogoPageState extends State<LogoPage> {
+  Box<dynamic> hiveBox =  Hive.box(Constants.UserBoxName);
   void autoNavigate(BuildContext context){
+    bool isLoggedIn = hiveBox.get(Constants.IsLoggedInStore,defaultValue:false);
     //Handle Token Confirmation here
-    Future.delayed(Duration(seconds: 2),(){
-          Navigator.of(context).pushReplacementNamed("/startup");
+    Future.delayed(Duration(seconds: 3),(){
+       !isLoggedIn?
+        Navigator.of(context).pushReplacementNamed("/startup")
+       : Navigator.of(context).pushReplacementNamed("/home");
   });
   
   }

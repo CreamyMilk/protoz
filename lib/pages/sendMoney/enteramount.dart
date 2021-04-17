@@ -70,8 +70,8 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
           ),
           // ignore: deprecated_member_use
           child: FlatButton(
-                        onPressed:amount.length > 1?(){
-                          box.put(Constants.AmountToSendStore,amount);
+                        onPressed:amount.length > 1?()async{
+                          await box.put(Constants.AmountToSendStore,amount);
                           Navigator.of(context).pushNamed("/pin");
                         } : (){},
             color: Colors.transparent,

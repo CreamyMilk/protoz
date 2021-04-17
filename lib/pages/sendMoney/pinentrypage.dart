@@ -73,7 +73,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
             child: FlatButton(
               onPressed: pincode.length > 1
                   ? () {
-                    sendMoneyRequest(pincode,context);
+                      sendMoneyRequest(pincode, context);
                       Navigator.of(context).pushNamed("/pin");
                     }
                   : () {},
@@ -127,17 +127,19 @@ Future sendMoneyRequest(String pin, BuildContext ctx) async {
         //ensure that the user has bothe the socketID and the USER ID
         {
           "from": box.get(Constants.WalletNameStore),
-          "to": box.get(Constants.SenderNumberStore),
-          "amount": int.parse(box.get(Constants.AmountToSendStore))
+          "to": Constants.zerototwo(box.get(Constants.SenderNumberStore)),
+          "amount": int.parse(box.get(Constants.AmountToSendStore)),
+          "pin": pin
         },
       ),
     );
     var myjson = json.decode(response.body);
     if (myjson["status"] == 0) {
+      box.put(Constants.BalanceStore, myjson["newbalance"]);
       showCupertinoDialog(
           context: ctx,
           builder: (BuildContext context) => SuccesfulSentMoneyPopUp());
-      Navigator.of(ctx).pushNamed("/home");
+      // Navigator.of(ctx).pushNamed("/home");
     } else {
       showCupertinoDialog(
           context: ctx,

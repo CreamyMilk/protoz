@@ -76,6 +76,7 @@ class LoginFormProvider extends ChangeNotifier {
         box.put(Constants.WalletNameStore,myjson["walletname"]);
         box.put(Constants.BalanceStore,myjson["balance"]);
         box.put(Constants.RoleStore,myjson["role"]);
+        box.put(Constants.IsLoggedInStore,true);
         Navigator.of(ctx).pushNamed("/home");
       } else {
         loading = false;
