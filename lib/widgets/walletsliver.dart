@@ -157,7 +157,7 @@ class WalletsAppBar extends StatelessWidget {
                             Hive.box(Constants.UserBoxName).listenable(),
                         builder: (BuildContext context, box, Widget child) {
                           return Text(
-                            "KSH.${box.get(Constants.BalanceStore, defaultValue: "--")}",
+                            "KSH.${box.get(Constants.BalanceStore, defaultValue: "00").toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
                             textScaleFactor: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(

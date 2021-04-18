@@ -74,7 +74,6 @@ class _EnterPinPageState extends State<EnterPinPage> {
               onPressed: pincode.length > 1
                   ? () {
                       sendMoneyRequest(pincode, context);
-                      Navigator.of(context).pushNamed("/pin");
                     }
                   : () {},
               color: Colors.transparent,
@@ -127,7 +126,7 @@ Future sendMoneyRequest(String pin, BuildContext ctx) async {
         //ensure that the user has bothe the socketID and the USER ID
         {
           "from": box.get(Constants.WalletNameStore),
-          "to": Constants.zerototwo(box.get(Constants.SenderNumberStore)),
+          "to": Constants.zerototwo(box.get(Constants.ReceiverNumberStore)),
           "amount": int.parse(box.get(Constants.AmountToSendStore)),
           "pin": pin
         },

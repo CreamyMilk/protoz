@@ -8,7 +8,7 @@ const String BalanceStore = "balance";
 const String RoleStore = "role";
 const String InitalsStore = "initals";
 
-const String SenderNumberStore = "sendstore";
+const String ReceiverNumberStore = "sendstore";
 const String AmountToSendStore = "amountstore";
 
 String zerototwo(String phone) {

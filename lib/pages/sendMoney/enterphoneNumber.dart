@@ -45,8 +45,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
                       fontWeight: FontWeight.w300,
                       fontSize: 20.0)),
               TextSpan(
-                  text:
-                  "$phoneNumber",
+                  text: "$phoneNumber",
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
@@ -58,8 +57,9 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
           height: 50,
           width: screenWidth(context, percent: 0.8),
           decoration: BoxDecoration(
-            color:
-                phoneNumber.length > 9 ? Colors.greenAccent[400] : Colors.grey[200],
+            color: phoneNumber.length > 9
+                ? Colors.greenAccent[400]
+                : Colors.grey[200],
             boxShadow: [
               BoxShadow(
                   color: Colors.grey[400].withOpacity(0.3),
@@ -69,15 +69,18 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
           ),
           // ignore: deprecated_member_use
           child: FlatButton(
-                        onPressed:phoneNumber.length > 9?(){
-                          box.put(Constants.SenderNumberStore,phoneNumber);
-                          Navigator.of(context).pushNamed("/enteramount");
-                        } : (){},
+            onPressed: phoneNumber.length > 9
+                ? () {
+                    box.put(Constants.ReceiverNumberStore, phoneNumber);
+                    Navigator.of(context).pushNamed("/enteramount");
+                  }
+                : () {},
             color: Colors.transparent,
             child: Text(
               phoneNumber.length > 9 ? "Continue  ->" : "Enter Phone Number",
               style: GoogleFonts.nunito(
-                  color: phoneNumber.length > 9 ? Colors.white : Colors.blueGrey,
+                  color:
+                      phoneNumber.length > 9 ? Colors.white : Colors.blueGrey,
                   fontSize: 20,
                   fontWeight: FontWeight.w400),
             ),

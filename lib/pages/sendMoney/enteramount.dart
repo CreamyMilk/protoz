@@ -1,7 +1,14 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
+import 'package:http/http.dart';
 import 'package:proto/constants.dart' as Constants;
+import 'package:proto/pages/sendMoney/confirmdetails.dart';
+import 'package:proto/popups/errorPopup.dart';
+import 'package:proto/popups/unregisterdPopup.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/keypadwidget.dart';
 
@@ -13,11 +20,12 @@ class EnterAmountPage extends StatefulWidget {
 class _EnterAmountPageState extends State<EnterAmountPage> {
   String amount = "";
   Box<dynamic> box;
-
+  bool loading = false;
   @override
   void initState() {
     box = Hive.box(Constants.UserBoxName);
     amount = "100";
+    loading = false;
     super.initState();
   }
 
@@ -47,14 +55,14 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
                       fontSize: 20.0)),
               TextSpan(
                   text:
-                      "${amount.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
+                      "${amount.replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
                       fontSize: 35.0)),
             ])),
         Spacer(),
-        AnimatedContainer(
+       loading?CircularProgressIndicator(): AnimatedContainer(
           duration: Duration(seconds: 1),
           height: 50,
           width: screenWidth(context, percent: 0.8),
@@ -70,10 +78,13 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
           ),
           // ignore: deprecated_member_use
           child: FlatButton(
-                        onPressed:amount.length > 1?()async{
-                          await box.put(Constants.AmountToSendStore,amount);
-                          Navigator.of(context).pushNamed("/pin");
-                        } : (){},
+            onPressed: amount.length > 1
+                ? () async {
+                    await box.put(Constants.AmountToSendStore, amount);
+                    _getRatesAndUserName(context);
+                    setState(() { loading=true;});
+                  }
+                : () {},
             color: Colors.transparent,
             child: Text(
               amount.length > 1 ? "Continue   ->" : "Enter Amount",
@@ -114,5 +125,65 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
             })
       ]),
     );
+  }
+
+  Future _getRatesAndUserName(ctx) async {
+    var box = Hive.box(Constants.UserBoxName);
+    try {
+      final response = await post(
+        ("http://192.168.0.13:3000/" + "wallet/verify"),
+        headers: {
+          "Accept": "application/json",
+          "content-type": "application/json",
+        },
+        body: jsonEncode(
+          //ensure that the user has bothe the socketID and the USER ID
+          {
+            "phonenumber":
+                Constants.zerototwo(box.get(Constants.ReceiverNumberStore)),
+            "amount": int.parse(box.get(Constants.AmountToSendStore))
+          },
+        ),
+      );
+      var myjson = json.decode(response.body);
+      if (myjson["status"] == 0) {
+        setState((){
+          loading=false;
+        } );
+        Navigator.of(ctx).push(MaterialPageRoute(builder: (contxt) {
+          return ConfirmPage(
+            amount:int.parse( box.get(Constants.AmountToSendStore)),
+            receiverName: myjson["username"],
+            fees: myjson["rates"],
+            receiverPhone: box.get(Constants.ReceiverNumberStore),
+          );
+        }));
+        // Navigator.of(ctx).pushNamed("/home");
+      } else if (myjson["status"] == -19) {
+         setState((){
+          loading=false;
+        } );
+        showCupertinoDialog(
+            context: ctx,
+            builder: (BuildContext context) => UnregisteredPopUp());
+      } else {
+           setState((){
+          loading=false;
+        } );
+      
+        showCupertinoDialog(
+            context: ctx,
+            builder: (BuildContext context) => CustomErrorPopup(
+                  message: response.body,
+                ));
+      }
+    } catch (SocketException) {
+         setState((){
+          loading=false;
+        } );
+      
+      showCupertinoDialog(
+          context: ctx, builder: (BuildContext context) => ErrorPopUP());
+    }
   }
 }
