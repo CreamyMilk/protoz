@@ -5,7 +5,7 @@ import 'package:proto/pages/wallet/walletsTab.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
 
-import 'package:proto/widgets/walletsliver.dart';
+import 'package:proto/pages/startup/homedashboard.dart';
 
 class BaseTabView extends StatefulWidget {
   @override
@@ -60,16 +60,17 @@ class _BaseTabViewState extends State<BaseTabView>
         title: Text("Training"),
         icon: Icon(Icons.school_outlined, color: Colors.grey[400]),
         activeIcon: Icon(Icons.school, color: Colors.teal));
-  
+
     return WillPopScope(
       onWillPop: () async => false,
       child: AnnotatedRegion<SystemUiOverlayStyle>(
-         value:SystemUiOverlayStyle(
-       statusBarColor: overLayColors[_activetab], //i like transaparent :-)
-       systemNavigationBarColor: Colors.white, // navigation bar color
-       statusBarIconBrightness: Brightness.dark, // status bar icons' color
-       systemNavigationBarIconBrightness:Brightness.dark, //navigation bar icons' color
-),
+        value: SystemUiOverlayStyle(
+          statusBarColor: overLayColors[_activetab], //i like transaparent :-)
+          systemNavigationBarColor: Colors.white, // navigation bar color
+          statusBarIconBrightness: Brightness.dark, // status bar icons' color
+          systemNavigationBarIconBrightness:
+              Brightness.dark, //navigation bar icons' color
+        ),
         child: Scaffold(
           bottomNavigationBar: SalomonBottomBar(
               selectedItemColor: Colors.teal,

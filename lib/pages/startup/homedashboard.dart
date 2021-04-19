@@ -2,14 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart' as Constants;
 import 'package:proto/pages/startup/cardsPage.dart';
+import 'package:proto/pages/wallet/getTransactionsFuture.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 import 'package:proto/widgets/depositBottomSheet.dart';
 import 'package:proto/widgets/qrScannerButton.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 // ignore: must_be_immutable
-class WalletsPageBase extends StatelessWidget {
+class WalletsPageBase extends StatefulWidget {
   //ScrollController get n => ScrollController(initialScrollOffset: 150);
+  @override
+  _WalletsPageBaseState createState() => _WalletsPageBaseState();
+}
+
+class _WalletsPageBaseState extends State<WalletsPageBase> {
+  @override
+  void initState() {
+    getLatestTransaction();
+    super.initState();
+  }
+
   List<Services> sampleData = [
     Services(
         imageUrl:
@@ -36,6 +48,7 @@ class WalletsPageBase extends StatelessWidget {
             "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
         name: "Financing"),
   ];
+
   @override
   Widget build(BuildContext context) {
     //TextStyle collButton = TextStyle(fontSize: 15, color: Colors.black);
@@ -111,7 +124,7 @@ class WalletsAppBar extends StatelessWidget {
               color: Colors.black26,
             )),
       ],
-      expandedHeight: 200,
+      expandedHeight: 172,
       floating: false,
       pinned: true,
       centerTitle: true,
@@ -129,6 +142,8 @@ class WalletsAppBar extends StatelessWidget {
                 colors: [Colors.white, Colors.white]),
           ),
           child: Column(
+               mainAxisAlignment:MainAxisAlignment.start,
+               crossAxisAlignment:CrossAxisAlignment.start ,
             children: [
               SizedBox(
                 height: 63,
@@ -143,11 +158,13 @@ class WalletsAppBar extends StatelessWidget {
                 height: 10,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  SizedBox(width:20),
                   Column(
+               crossAxisAlignment : CrossAxisAlignment.start,
                     children: [
-                      Text("Current",
+                      Text("Current Orders",
                           textScaleFactor: 1,
                           style:
                               TextStyle(fontSize: 10, color: Colors.black87)),
@@ -169,70 +186,34 @@ class WalletsAppBar extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text("Actual",
-                          textScaleFactor: 1,
-                          style:
-                              TextStyle(fontSize: 10, color: Colors.black87)),
-                      SizedBox(height: 3),
-                      Text(
-                        "KSH.0.00",
-                        textScaleFactor: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w100),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: EdgeInsets.all(2.0),
-                height: 40,
-                decoration: BoxDecoration(color: Colors.transparent),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    FloatingActionButton(
-                      mini: true,
-                      heroTag: null,
-                      backgroundColor: Colors.teal,
-                      child: Transform.rotate(
-                        angle: 31,
-                        child: Icon(
-                          Icons.payments,
-                          size: 20,
-                          color: Colors.white,
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("/contactList");
-                      },
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    FloatingActionButton(
+                  Spacer(),
+  FloatingActionButton(
+      elevation:0 ,
                       heroTag: "sd",
                       mini: true,
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.white,
                       child: Transform.rotate(
                         angle: 0,
                         child: Icon(
                           Icons.add,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                       onPressed: () {
                         depositModalBottomSheet(context, "10");
                       },
                     ),
+
+                                 ],
+              ),
+              Container(
+                padding: EdgeInsets.all(2.0),
+                height: 40,
+                decoration: BoxDecoration(color: Colors.transparent),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                     
                   ],
                 ),
               )

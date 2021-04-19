@@ -4,91 +4,105 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:proto/constants.dart' as Constants;
+import 'package:proto/pages/wallet/getTransactionsFuture.dart';
 import 'package:proto/popups/addProdPopup.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/qrScannerButton.dart';
 
-// ignore: must_be_immutable
-class WalletsTab extends StatelessWidget {
+class WalletsTab extends StatefulWidget {
+  @override
+  _WalletsTabState createState() => _WalletsTabState();
+}
+
+class _WalletsTabState extends State<WalletsTab> {
   Widget _buildPopupDialog(BuildContext context) {
     return AppProductPopUp();
   }
 
   @override
+  void initState() {
+    getLatestTransaction();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+//    getLatestTransaction(context);
+
     return Scaffold(
-        body: CustomScrollView(
-
-            //controller: n,
-            slivers: [
-          WalletsAppBar(),
-
-          SliverList(
-            delegate: SliverChildBuilderDelegate((BuildContext ctx, int index) {
-              if (index == 0) {
-                return Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "Transactions",
-                    style: GoogleFonts.quicksand(
-                        fontWeight: FontWeight.w500, fontSize: 25),
-                  ),
-                );
-              }
-              if (index < 600) {
-                return ListTile(
-                    dense: true,
-                    onTap: () {
-                      showCupertinoDialog(
-                        context: context,
-                        builder: (BuildContext context) =>
-                            _buildPopupDialog(context),
-                      );
-                    },
-                    leading: CircleAvatar(
-                      child: Icon(
-                        Icons.money,
-                        size: 17,
-                        color: Colors.orange,
-                      ),
-                      minRadius: 18,
-                      maxRadius: 18,
-                      backgroundColor: Colors.orange[50],
+        body: CustomScrollView(slivers: [
+      WalletsAppBar(),
+      ValueListenableBuilder(
+          valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+          builder: (BuildContext context, box, Widget child) {
+                 dynamic trans = box.get(Constants.TransactionsStore);
+                   
+            return SliverList(
+              delegate:
+                  SliverChildBuilderDelegate((BuildContext ctx, int index) {
+                if (index == 0) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "Transactions",
+                      style: GoogleFonts.quicksand(
+                          fontWeight: FontWeight.w500, fontSize: 25),
                     ),
-                    // heros: index,
+                  );
+                }
+                if (index < trans.length) {
+                  return ListTile(
+                      dense: true,
+                      onTap: () {
+                                           },
+                      leading: CircleAvatar(
+                        child: Icon(
+                          Icons.money,
+                          size: 17,
+                          color: Colors.orange,
+                        ),
+                        minRadius: 18,
+                        maxRadius: 18,
+                        backgroundColor: Colors.orange[50],
+                      ),
+                      // heros: index,
 
-                    title: Text("Housing"),
-                    subtitle: Text("John KImani"),
-                    trailing: RichText(
-                        textAlign: TextAlign.end,
-                        text: TextSpan(children: [
-                          TextSpan(
-                              text: "+Ksh.\n",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 10.0)),
-                          TextSpan(
-                              text: "${Random().nextInt(100000).toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
-                              
-                              style: TextStyle(
-                                  color: Colors.greenAccent[400],
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18.0)),
-                        ]))
-                    // imageUrl: sampleData[index].imageUrl,
-                    // productID: index,
-                    );
-              }
-              return null;
-            }),
-          ),
-          // SliverFillRemaining(
-          //   child: WalletsAppBar(
-          //     sampleData: sampleData,
-          //   ),
-          // )
-        ]));
+                      title: Text("${trans[index -1]["transactionid"]}"),
+                      subtitle: Text("${trans[index-1]["from"]}"),
+                      trailing: RichText(
+                          textAlign: TextAlign.end,
+                          text: TextSpan(children: [
+                            TextSpan(
+                                text: "+Ksh.\n",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 10.0)),
+                            TextSpan(
+                                text:
+                                    "${trans[index-1]["amount"].toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                                style: TextStyle(
+                                    color: Colors.greenAccent[400],
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18.0)),
+                          ]))
+                      // imageUrl: sampleData[index].imageUrl,
+                      // productID: index,
+                      );
+                }
+                return null;
+              }),
+            );
+          }),
+      // SliverFillRemaining(
+      //   child: WalletsAppBar(
+      //     sampleData: sampleData,
+      //   ),
+      // )
+    ]));
   }
 }
 
@@ -178,15 +192,22 @@ class WalletsAppBar extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "500,000.00",
-                                textScaleFactor: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.w500),
-                              ),
+                              ValueListenableBuilder(
+                                  valueListenable:
+                                      Hive.box(Constants.UserBoxName)
+                                          .listenable(),
+                                  builder: (BuildContext context, box,
+                                      Widget child) {
+                                    return Text(
+                                      "${box.get(Constants.BalanceStore, defaultValue: "00").toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                                      textScaleFactor: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontSize: 30,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.w500),
+                                    );
+                                  }),
                               FloatingActionButton(
                                 mini: true,
                                 heroTag: null,

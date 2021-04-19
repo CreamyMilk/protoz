@@ -24,7 +24,7 @@ import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/sellerpages/newProducts.dart';
 import 'package:proto/pages/buyerpages/productsList.dart';
 import 'package:proto/widgets/tab_controler.dart';
-import 'package:proto/widgets/walletsliver.dart';
+import 'package:proto/pages/startup/homedashboard.dart';
 import 'package:proto/widgets/youtubeWebView.dart';
 import 'package:provider/provider.dart';
 
