@@ -18,6 +18,7 @@ class WalletsPageBase extends StatefulWidget {
 class _WalletsPageBaseState extends State<WalletsPageBase> {
   @override
   void initState() {
+    getLatestBalance();
     getLatestTransaction();
     super.initState();
   }
@@ -142,8 +143,8 @@ class WalletsAppBar extends StatelessWidget {
                 colors: [Colors.white, Colors.white]),
           ),
           child: Column(
-               mainAxisAlignment:MainAxisAlignment.start,
-               crossAxisAlignment:CrossAxisAlignment.start ,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 63,
@@ -160,9 +161,9 @@ class WalletsAppBar extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(width:20),
+                  SizedBox(width: 20),
                   Column(
-               crossAxisAlignment : CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Current Orders",
                           textScaleFactor: 1,
@@ -187,24 +188,23 @@ class WalletsAppBar extends StatelessWidget {
                     ],
                   ),
                   Spacer(),
-  FloatingActionButton(
-      elevation:0 ,
-                      heroTag: "sd",
-                      mini: true,
-                      backgroundColor: Colors.white,
-                      child: Transform.rotate(
-                        angle: 0,
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.black,
-                        ),
+                  FloatingActionButton(
+                    elevation: 0,
+                    heroTag: "sd",
+                    mini: true,
+                    backgroundColor: Colors.white,
+                    child: Transform.rotate(
+                      angle: 0,
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.black,
                       ),
-                      onPressed: () {
-                        depositModalBottomSheet(context, "10");
-                      },
                     ),
-
-                                 ],
+                    onPressed: () {
+                      depositModalBottomSheet(context, "10");
+                    },
+                  ),
+                ],
               ),
               Container(
                 padding: EdgeInsets.all(2.0),
@@ -212,9 +212,7 @@ class WalletsAppBar extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.transparent),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                     
-                  ],
+                  children: [],
                 ),
               )
             ],

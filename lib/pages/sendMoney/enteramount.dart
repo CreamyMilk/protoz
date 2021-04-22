@@ -24,7 +24,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
   @override
   void initState() {
     box = Hive.box(Constants.UserBoxName);
-    amount = "100";
+    amount = "0";
     loading = false;
     super.initState();
   }
@@ -38,7 +38,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Mr. Recepient",
+          "",
           style: TextStyle(color: Colors.blueGrey),
         ),
       ),
@@ -62,39 +62,45 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
                       fontSize: 35.0)),
             ])),
         Spacer(),
-       loading?CircularProgressIndicator(): AnimatedContainer(
-          duration: Duration(seconds: 1),
-          height: 50,
-          width: screenWidth(context, percent: 0.8),
-          decoration: BoxDecoration(
-            color:
-                amount.length > 1 ? Colors.greenAccent[400] : Colors.grey[200],
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey[400].withOpacity(0.3),
-                  offset: Offset(0, 13),
-                  blurRadius: 30)
-            ],
-          ),
-          // ignore: deprecated_member_use
-          child: FlatButton(
-            onPressed: amount.length > 1
-                ? () async {
-                    await box.put(Constants.AmountToSendStore, amount);
-                    _getRatesAndUserName(context);
-                    setState(() { loading=true;});
-                  }
-                : () {},
-            color: Colors.transparent,
-            child: Text(
-              amount.length > 1 ? "Continue   ->" : "Enter Amount",
-              style: GoogleFonts.nunito(
-                  color: amount.length > 1 ? Colors.white : Colors.blueGrey,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
-        ),
+        loading
+            ? CircularProgressIndicator()
+            : AnimatedContainer(
+                duration: Duration(seconds: 1),
+                height: 50,
+                width: screenWidth(context, percent: 0.8),
+                decoration: BoxDecoration(
+                  color: amount.length > 1
+                      ? Colors.greenAccent[400]
+                      : Colors.grey[200],
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey[400].withOpacity(0.3),
+                        offset: Offset(0, 13),
+                        blurRadius: 30)
+                  ],
+                ),
+                // ignore: deprecated_member_use
+                child: FlatButton(
+                  onPressed: amount.length > 1
+                      ? () async {
+                          await box.put(Constants.AmountToSendStore, amount);
+                          _getRatesAndUserName(context);
+                          setState(() {
+                            loading = true;
+                          });
+                        }
+                      : () {},
+                  color: Colors.transparent,
+                  child: Text(
+                    amount.length > 1 ? "Continue   ->" : "Enter Amount",
+                    style: GoogleFonts.nunito(
+                        color:
+                            amount.length > 1 ? Colors.white : Colors.blueGrey,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
+              ),
         NumericKeyboard(
             rightButtonFn: () {
               if (amount.length == 1) {
@@ -147,12 +153,12 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
       );
       var myjson = json.decode(response.body);
       if (myjson["status"] == 0) {
-        setState((){
-          loading=false;
-        } );
+        setState(() {
+          loading = false;
+        });
         Navigator.of(ctx).push(MaterialPageRoute(builder: (contxt) {
           return ConfirmPage(
-            amount:int.parse( box.get(Constants.AmountToSendStore)),
+            amount: int.parse(box.get(Constants.AmountToSendStore)),
             receiverName: myjson["username"],
             fees: myjson["rates"],
             receiverPhone: box.get(Constants.ReceiverNumberStore),
@@ -160,17 +166,17 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
         }));
         // Navigator.of(ctx).pushNamed("/home");
       } else if (myjson["status"] == -19) {
-         setState((){
-          loading=false;
-        } );
+        setState(() {
+          loading = false;
+        });
         showCupertinoDialog(
             context: ctx,
             builder: (BuildContext context) => UnregisteredPopUp());
       } else {
-           setState((){
-          loading=false;
-        } );
-      
+        setState(() {
+          loading = false;
+        });
+
         showCupertinoDialog(
             context: ctx,
             builder: (BuildContext context) => CustomErrorPopup(
@@ -178,10 +184,10 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
                 ));
       }
     } catch (SocketException) {
-         setState((){
-          loading=false;
-        } );
-      
+      setState(() {
+        loading = false;
+      });
+
       showCupertinoDialog(
           context: ctx, builder: (BuildContext context) => ErrorPopUP());
     }

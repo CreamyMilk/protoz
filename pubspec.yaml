@@ -29,6 +29,7 @@ dependencies:
   google_fonts:
   salomon_bottom_bar: ^3.0.0
   barcode_scan: any
+  qr_flutter:
   provider:
   hive:
   hive_flutter:

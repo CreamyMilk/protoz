@@ -29,7 +29,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Fetched Name from API",
+          "",
           style: TextStyle(color: Colors.blueGrey),
         ),
       ),

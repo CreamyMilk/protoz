@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -8,7 +6,6 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart' as Constants;
 import 'package:proto/pages/wallet/getTransactionsFuture.dart';
-import 'package:proto/popups/addProdPopup.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/qrScannerButton.dart';
 
@@ -18,46 +15,53 @@ class WalletsTab extends StatefulWidget {
 }
 
 class _WalletsTabState extends State<WalletsTab> {
-  Widget _buildPopupDialog(BuildContext context) {
-    return AppProductPopUp();
-  }
-
   @override
   void initState() {
+    getLatestBalance();
     getLatestTransaction();
     super.initState();
   }
 
+  String convertTo07(String f) {
+    String no;
+    String pl;
+    String t5;
+    no = f.replaceAll(new RegExp(r"\s+"), "");
+    pl = no.replaceAll(new RegExp(r"\+"), "");
+    t5 = pl.replaceAll(new RegExp(r"2547"), "07");
+    return t5;
+  }
+
   @override
   Widget build(BuildContext context) {
-//    getLatestTransaction(context);
-
     return Scaffold(
-        body: CustomScrollView(slivers: [
-      WalletsAppBar(),
-      ValueListenableBuilder(
-          valueListenable: Hive.box(Constants.UserBoxName).listenable(),
-          builder: (BuildContext context, box, Widget child) {
-                 dynamic trans = box.get(Constants.TransactionsStore);
-                   
-            return SliverList(
-              delegate:
-                  SliverChildBuilderDelegate((BuildContext ctx, int index) {
-                if (index == 0) {
-                  return Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "Transactions",
-                      style: GoogleFonts.quicksand(
-                          fontWeight: FontWeight.w500, fontSize: 25),
-                    ),
-                  );
-                }
-                if (index < trans.length) {
-                  return ListTile(
+      body: CustomScrollView(
+        slivers: [
+          WalletsAppBar(),
+          ValueListenableBuilder(
+            valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+            builder: (BuildContext context, box, Widget child) {
+              dynamic trans = box.get(Constants.TransactionsStore);
+
+              return SliverList(
+                delegate:
+                    SliverChildBuilderDelegate((BuildContext ctx, int index) {
+                  if (index == 0) {
+                    return Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "Transactions",
+                        style: GoogleFonts.quicksand(
+                            fontWeight: FontWeight.w500, fontSize: 25),
+                      ),
+                    );
+                  }
+                  if (index < trans.length) {
+                    bool fromMe = (trans[index - 1]["to"] ==
+                        box.get(Constants.PhoneNumberStore));
+                    return ListTile(
                       dense: true,
-                      onTap: () {
-                                           },
+                      onTap: () {},
                       leading: CircleAvatar(
                         child: Icon(
                           Icons.money,
@@ -70,11 +74,12 @@ class _WalletsTabState extends State<WalletsTab> {
                       ),
                       // heros: index,
 
-                      title: Text("${trans[index -1]["transactionid"]}"),
-                      subtitle: Text("${trans[index-1]["from"]}"),
+                      title: Text("${trans[index - 1]["from"]}"),
+                      subtitle: Text("${trans[index - 1]["transactionid"]}"),
                       trailing: RichText(
-                          textAlign: TextAlign.end,
-                          text: TextSpan(children: [
+                        textAlign: TextAlign.end,
+                        text: TextSpan(
+                          children: [
                             TextSpan(
                                 text: "+Ksh.\n",
                                 style: TextStyle(
@@ -83,26 +88,28 @@ class _WalletsTabState extends State<WalletsTab> {
                                     fontSize: 10.0)),
                             TextSpan(
                                 text:
-                                    "${trans[index-1]["amount"].toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                                    "${trans[index - 1]["amount"].toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
                                 style: TextStyle(
-                                    color: Colors.greenAccent[400],
+                                    color: fromMe
+                                        ? Colors.greenAccent[400]
+                                        : Colors.blueGrey,
                                     fontWeight: FontWeight.w400,
                                     fontSize: 18.0)),
-                          ]))
+                          ],
+                        ),
+                      ),
                       // imageUrl: sampleData[index].imageUrl,
                       // productID: index,
-                      );
-                }
-                return null;
-              }),
-            );
-          }),
-      // SliverFillRemaining(
-      //   child: WalletsAppBar(
-      //     sampleData: sampleData,
-      //   ),
-      // )
-    ]));
+                    );
+                  }
+                  return null;
+                }),
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
 
