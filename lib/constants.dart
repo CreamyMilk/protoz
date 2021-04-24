@@ -9,6 +9,10 @@ const String TransactionsStore = "transaction";
 const String RoleStore = "role";
 const String InitalsStore = "initals";
 
+const String RawFCMTokenStore = "rawfcmtoken";
+const String NotifcationTopicStore = "notificationTopic";
+const String AllUserNotifcationTopic = "all";
+
 const String ReceiverNumberStore = "sendstore";
 const String AmountToSendStore = "amountstore";
 

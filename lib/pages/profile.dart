@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -77,6 +80,11 @@ class ProfilePage extends StatelessWidget {
   void logout(BuildContext ctx) {
     Box<dynamic> box = Hive.box(Constants.UserBoxName);
     box.put(Constants.IsLoggedInStore, false);
+    if (Platform.isAndroid) {
+      FirebaseMessaging.instance.unsubscribeFromTopic(
+          box.get(Constants.AllUserNotifcationTopic, defaultValue: "all"));
+    }
+
     Navigator.of(ctx).pushReplacementNamed("/startup");
   }
 }

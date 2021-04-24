@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1013295242328",
+    "project_id": "protofire-e4e50",
+    "storage_bucket": "protofire-e4e50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013295242328:android:fdd5ae32c5c9dc2d487e2d",
+        "android_client_info": {
+          "package_name": "com.example.bingo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013295242328-3eat4s3q6e9df6a5j1mi6pplgnmq9qud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVQRW6cWpLgGxnCpODAqDEtrC1CWG07tA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013295242328-3eat4s3q6e9df6a5j1mi6pplgnmq9qud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013295242328:android:cfde6e4ab5ccd495487e2d",
+        "android_client_info": {
+          "package_name": "com.example.proto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013295242328-3eat4s3q6e9df6a5j1mi6pplgnmq9qud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVQRW6cWpLgGxnCpODAqDEtrC1CWG07tA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013295242328-3eat4s3q6e9df6a5j1mi6pplgnmq9qud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
