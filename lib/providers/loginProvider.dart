@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -42,14 +44,17 @@ class LoginFormProvider extends ChangeNotifier {
       return "0000000000";
     }
   }
-  String getInitals(String l){
-   List<String> name = l.split(" ");
-  if(name.length > 1){
-    return(name[0].substring(0,1).toUpperCase()+name[name.length - 1 ].substring(0,1).toUpperCase());  
-  }else{
-   return name[0].substring(0,1).toUpperCase();  
+
+  String getInitals(String l) {
+    List<String> name = l.split(" ");
+    if (name.length > 1) {
+      return (name[0].substring(0, 1).toUpperCase() +
+          name[name.length - 1].substring(0, 1).toUpperCase());
+    } else {
+      return name[0].substring(0, 1).toUpperCase();
+    }
   }
-}
+
   Future sendLoginRequest(BuildContext ctx) async {
     try {
       final response = await post(
@@ -68,15 +73,22 @@ class LoginFormProvider extends ChangeNotifier {
       );
       var myjson = json.decode(response.body);
       if (myjson["status"] == 0) {
-        var box = Hive.box(Constants.UserBoxName) ;
+        var box = Hive.box(Constants.UserBoxName);
         String initals = getInitals(myjson["fullname"]);
-        box.put(Constants.FullnameStore,myjson["fullname"]);
-        box.put(Constants.InitalsStore,initals);
-        box.put(Constants.PhoneNumberStore,myjson["phonenumber"]);
-        box.put(Constants.WalletNameStore,myjson["walletname"]);
-        box.put(Constants.BalanceStore,myjson["balance"]);
-        box.put(Constants.RoleStore,myjson["role"]);
-        box.put(Constants.IsLoggedInStore,true);
+        box.put(Constants.FullnameStore, myjson["fullname"]);
+        box.put(Constants.InitalsStore, initals);
+        box.put(Constants.PhoneNumberStore, myjson["phonenumber"]);
+        box.put(Constants.WalletNameStore, myjson["walletname"]);
+        box.put(Constants.BalanceStore, myjson["balance"]);
+        box.put(Constants.RoleStore, myjson["role"]);
+        box.put(Constants.NotifcationTopicStore, myjson["phonenumber"]);
+        if (Platform.isAndroid) {
+          FirebaseMessaging.instance.subscribeToTopic(myjson["walletname"]);
+          FirebaseMessaging.instance.getToken().then((String token) {
+            box.put(Constants.RawFCMTokenStore, token);
+          });
+        }
+        box.put(Constants.IsLoggedInStore, true);
         Navigator.of(ctx).pushNamed("/home");
       } else {
         loading = false;

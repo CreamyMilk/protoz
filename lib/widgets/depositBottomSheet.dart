@@ -40,7 +40,7 @@ void choiceAction(String choice) {
 String validateAmount(String value) {
   if (!(value.length > 4) && value.isNotEmpty) {
     if (value[0] != "0") {
-      return "Allow purchases up to Ksh 9,999";
+      return "Allow purchases up to Ksh 500,000";
     }
     return null;
   }
@@ -255,7 +255,7 @@ Future _sendPayment(mobile, amount, String walletName,BuildContext ctx) async {
       body: jsonEncode(
         {
           "walletname":walletName,
-          "phonenumber": mobile,
+          "phonenumber":Constants.zerototwo( mobile),
           "fcmtoken":fcmToken,
           "amount": amount
         },
@@ -268,7 +268,11 @@ Future _sendPayment(mobile, amount, String walletName,BuildContext ctx) async {
     data = PaymentResponse.fromJson(myjson);
     print(data.paymentCode);
     if (data.description=="0"){
-
+    showCupertinoDialog(
+      context: ctx,
+      builder: (BuildContext context) => _buildPopupDialog(context),
+    );
+ 
       print("Req Sent Well"); 
     }
   } catch (SocketException) {

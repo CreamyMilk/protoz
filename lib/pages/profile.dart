@@ -82,7 +82,7 @@ class ProfilePage extends StatelessWidget {
     box.put(Constants.IsLoggedInStore, false);
     if (Platform.isAndroid) {
       FirebaseMessaging.instance.unsubscribeFromTopic(
-          box.get(Constants.AllUserNotifcationTopic, defaultValue: "all"));
+          box.get(Constants.NotifcationTopicStore, defaultValue: "."));
     }
 
     Navigator.of(ctx).pushReplacementNamed("/startup");

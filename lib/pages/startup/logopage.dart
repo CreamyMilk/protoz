@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import "package:proto/constants.dart" as Constants;
+import 'package:proto/main.dart';
 import 'package:proto/pages/wallet/getTransactionsFuture.dart';
 
 class LogoPage extends StatefulWidget {
@@ -18,12 +19,12 @@ class _LogoPageState extends State<LogoPage> {
   void initState() {
     super.initState();
     if (Platform.isAndroid) {
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      FirebaseMessaging.onMessage.listen((event) {
         //Opened Nofication when app is active
         getLatestBalance();
         getLatestTransaction();
         showCupertinoDialog(
-            context: context,
+            context: navigatorKey.currentContext,
             builder: (context) =>
                 AlertDialog(title: Text("ok"), content: Text("Updateo")));
       });
