@@ -21,6 +21,8 @@ class _LoginFormPageState extends State<LoginFormPage> {
   Widget build(BuildContext context) {
     final hbox = Provider.of<LoginFormProvider>(context);
     return Scaffold(
+        appBar:AppBar(elevation: 0,backgroundColor:Colors.white),
+        backgroundColor:Colors.white,
       body: Center(
         child: Form(
           key: hbox.loginFormKey,
@@ -60,7 +62,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.grey[400].withOpacity(0.1),
+                              color: Colors.grey[600].withOpacity(0.3),
                               offset: Offset(0, 13),
                               blurRadius: 30)
                         ],
@@ -75,13 +77,13 @@ class _LoginFormPageState extends State<LoginFormPage> {
                               border: InputBorder.none,
                               hintText: 'Enter Phone Number',
                               hintStyle: TextStyle(
-                                fontSize: 15,
-                                color: Colors.grey[300],
+                                fontSize: 18,
+                                color: Colors.grey[500],
                               ),
                             ),
                             //controller: provider.ip,
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 18,
                               color: Colors.grey[700],
                             ),
                             keyboardAppearance: Brightness.light,
@@ -95,9 +97,9 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.grey[400].withOpacity(0.1),
+                              color: Colors.grey[600].withOpacity(0.3),
                               offset: Offset(0, 13),
-                              blurRadius: 30)
+                              blurRadius: 50)
                         ],
                       ),
                       child: Container(
@@ -111,8 +113,8 @@ class _LoginFormPageState extends State<LoginFormPage> {
                               border: InputBorder.none,
                               hintText: 'Enter Password',
                               hintStyle: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey[300],
+                                fontSize: 18,
+                                color: Colors.grey[500],
                               ),
                             ),
                             //controller: provider.name,

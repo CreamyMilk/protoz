@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white.withOpacity(.95),
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +57,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: MaterialButton(
                     color: Colors.tealAccent[400],
-                    elevation: 0,
                     onPressed: () {
                       Navigator.of(context).pushNamed("/login");
                     },
@@ -83,8 +82,7 @@ class _HomePageState extends State<HomePage> {
                           blurRadius: 30)
                     ],
                   ),
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
+                  child: MaterialButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed("/kraform");
                     },
