@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/popups/addProdPopup.dart';
+//import 'package:proto/providers/addproductProvider.dart';
 import 'package:proto/utils/sizedMargins.dart';
+//import 'package:provider/provider.dart';
 
 class AddProductsPage extends StatelessWidget {
   Widget _buildPopupDialog(BuildContext context) {
@@ -10,6 +12,7 @@ class AddProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ////final hbox = Provider.of<AddProductFormProvider>(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.lightGreen,
@@ -47,54 +50,59 @@ class AddProductsPage extends StatelessWidget {
         ],
         title: Text("Product Entry"),
       ),
-      body: Padding(
+      body: Container(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextField(
-                decoration: InputDecoration(
-              labelText: "Category",
-              hintText: "Catergory",
-              border: OutlineInputBorder(),
-            )),
-            const YMargin(10),
-            TextField(
-                decoration: InputDecoration(
-              labelText: "Sub Category",
-              hintText: "Sub Category",
-              border: OutlineInputBorder(),
-            )),
-            const YMargin(10),
-            TextField(
-                keyboardType: TextInputType.url,
-                decoration: InputDecoration(
-                  suffixIcon: Icon(Icons.camera_alt_outlined),
-                  labelText: "Image src",
-                  hintText: "Image url",
+        child: SingleChildScrollView(
+          child: Form(
+            ////key: hbox.productFormKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextField(
+                    decoration: InputDecoration(
+                  labelText: "Category",
+                  hintText: "Catergory",
                   border: OutlineInputBorder(),
                 )),
-            SizedBox(
-              height: 10,
+                const YMargin(10),
+                TextField(
+                    decoration: InputDecoration(
+                  labelText: "Product Name",
+                  hintText: "Product Name",
+                  border: OutlineInputBorder(),
+                )),
+                const YMargin(10),
+                TextField(
+                    keyboardType: TextInputType.url,
+                    decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.camera_alt_outlined),
+                      labelText: "Image src",
+                      hintText: "Image url",
+                      border: OutlineInputBorder(),
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
+                Branding(),
+                const YMargin(10),
+                TextField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: "Price",
+                      hintText: "Price",
+                      border: OutlineInputBorder(),
+                    )),
+                const YMargin(10),
+                TextField(
+                    decoration: InputDecoration(
+                  labelText: "Description",
+                  hintText: "Description",
+                  border: OutlineInputBorder(),
+                )),
+                const YMargin(80),
+              ],
             ),
-            Branding(),
-            const YMargin(10),
-            TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "Price",
-                  hintText: "Price",
-                  border: OutlineInputBorder(),
-                )),
-            const YMargin(10),
-            TextField(
-                decoration: InputDecoration(
-              labelText: "Description",
-              hintText: "Description",
-              border: OutlineInputBorder(),
-            )),
-            const YMargin(80),
-          ],
+          ),
         ),
       ),
     );

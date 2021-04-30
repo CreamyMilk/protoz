@@ -81,6 +81,7 @@ class LoginFormProvider extends ChangeNotifier {
         box.put(Constants.WalletNameStore, myjson["walletname"]);
         box.put(Constants.BalanceStore, myjson["balance"]);
         box.put(Constants.RoleStore, myjson["role"]);
+        box.put(Constants.UserIDStore, myjson["userid"]);
         box.put(Constants.NotifcationTopicStore, myjson["phonenumber"]);
         if (Platform.isAndroid) {
           FirebaseMessaging.instance.subscribeToTopic(myjson["walletname"]);

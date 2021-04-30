@@ -32,8 +32,6 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
         primaryColor: Colors.teal,
-        // floatingActionButtonTheme:FloatingActionButtonThemeData(
-
         accentColor: Colors.tealAccent,
       ),
       onGenerateRoute: RouteGenerator.generateRoute,

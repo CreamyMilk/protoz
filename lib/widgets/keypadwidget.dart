@@ -32,32 +32,32 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only( top: 1),
+      padding: const EdgeInsets.only(top: 1),
       alignment: Alignment.center,
       child: Column(
         children: <Widget>[
           ButtonBar(
             alignment: widget.mainAxisAlignment,
             children: <Widget>[
-              _calcButton(context,'1'),
-              _calcButton(context,'2'),
-              _calcButton(context,'3'),
+              _calcButton(context, '1'),
+              _calcButton(context, '2'),
+              _calcButton(context, '3'),
             ],
           ),
           ButtonBar(
             alignment: widget.mainAxisAlignment,
             children: <Widget>[
-              _calcButton(context,'4'),
-              _calcButton(context,'5'),
-              _calcButton(context,'6'),
+              _calcButton(context, '4'),
+              _calcButton(context, '5'),
+              _calcButton(context, '6'),
             ],
           ),
           ButtonBar(
             alignment: widget.mainAxisAlignment,
             children: <Widget>[
-              _calcButton(context,'7'),
-              _calcButton(context,'8'),
-              _calcButton(context,'9'),
+              _calcButton(context, '7'),
+              _calcButton(context, '8'),
+              _calcButton(context, '9'),
             ],
           ),
           ButtonBar(
@@ -71,7 +71,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
                       width: 50,
                       height: 50,
                       child: widget.leftIcon)),
-              _calcButton(context,'0'),
+              _calcButton(context, '0'),
               InkWell(
                   borderRadius: BorderRadius.circular(45),
                   onTap: widget.rightButtonFn,
@@ -87,23 +87,24 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
     );
   }
 
-  Widget _calcButton(BuildContext context,String value) {
+  Widget _calcButton(BuildContext context, String value) {
     return InkWell(
-        borderRadius: BorderRadius.circular(40),
-        onTap: () {
-          widget.onKeyboardTap(value);
-        },
-        child: Container(
-          alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width *0.2,
-          height: 55,
-          child: Text(
-            value,
-            style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w400,
-                color: widget.textColor),
-          ),
-        ));
+      borderRadius: BorderRadius.circular(40),
+      onTap: () {
+        widget.onKeyboardTap(value);
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width: MediaQuery.of(context).size.width * 0.2,
+        height: 55,
+        child: Text(
+          value,
+          style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w400,
+              color: widget.textColor),
+        ),
+      ),
+    );
   }
 }

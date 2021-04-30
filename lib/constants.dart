@@ -8,6 +8,7 @@ const String BalanceStore = "balance";
 const String TransactionsStore = "transaction";
 const String RoleStore = "role";
 const String InitalsStore = "initals";
+const String UserIDStore = "notimpotantid";
 
 const String RawFCMTokenStore = "rawfcmtoken";
 const String NotifcationTopicStore = "notificationTopic";
