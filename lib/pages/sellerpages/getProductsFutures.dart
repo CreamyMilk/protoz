@@ -4,11 +4,11 @@ import 'package:proto/constants.dart' as Constants;
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 
-Future getAllProducts() async {
+Future getCurrentStock() async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await post(
-      ("http://192.168.0.13:3000/" + "store/products"),
+      ("http://192.168.0.13:3000/" + "store/stock"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",

@@ -17,6 +17,9 @@ const String AllUserNotifcationTopic = "all";
 const String ReceiverNumberStore = "sendstore";
 const String AmountToSendStore = "amountstore";
 
+const String ProductCategoriesStore = "categoreieslist";
+const String ChoosenCategory = "chossencategory";
+
 String zerototwo(String phone) {
   if (phone.length > 0) {
     if (phone[0] == "0") {

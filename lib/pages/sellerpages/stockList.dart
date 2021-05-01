@@ -58,7 +58,7 @@ class _InventoryListState extends State<InventoryList> {
               margin: EdgeInsets.only(top: 16),
               height: MediaQuery.of(context).size.height * .9,
               child: FutureBuilder(
-                  future: getAllProducts(),
+                  future: getCurrentStock(),
                   builder: (context, projectSnap) {
                     if (projectSnap.connectionState ==
                         ConnectionState.waiting) {
@@ -83,7 +83,7 @@ class _InventoryListState extends State<InventoryList> {
                                 name: (_) {
                                   return item["productname"];
                                 },
-                                price: item["price"],
+                                price: item["price"].toDouble(),
                               ),
                               quantity: item["stock"],
                               onPressed: () {},
@@ -342,5 +342,5 @@ class Product {
   // returns the internationalized name of the product.
   final String Function(BuildContext) name;
 
-  final int price;
+  final double price;
 }

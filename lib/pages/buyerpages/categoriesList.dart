@@ -1,8 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:proto/constants.dart' as Constants;
+import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
+import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 
-class ListTilezz extends StatelessWidget {
+class ListTilezz extends StatefulWidget {
+  @override
+  _ListTilezzState createState() => _ListTilezzState();
+}
+
+class _ListTilezzState extends State<ListTilezz> {
+  @override
+  void initState() {
+    getLatestCategories();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,51 +43,30 @@ class ListTilezz extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
         title: Text(
-          "InputSuppliers",
+          "Categories",
           style: TextStyle(color: Colors.black87),
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ListTileNew(
-                barColor: Colors.orange,
-                gradient: Colors.deepOrange[100],
-                routeName: "/products",
-                name: "Fertilizers",
-                imageUrl:
-                    "https://burgerfarms.com/wp-content/gallery/fertilizers-plant-food/Organic-Fertilizers.JPG",
-              ),
-              SizedBox(
-                height: 1,
-              ),
-              ListTileNew(
-                barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent[100],
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-              ListTileNew(
-                barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent[100],
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-              ListTileNew(
-                barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent,
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-            ],
-          ),
+        child: Container(
+            height:400,
+          child: ValueListenableBuilder(
+              valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+              builder: (BuildContext context, box, child) {
+                dynamic c = box.get(Constants.ProductCategoriesStore);
+                return ListView.builder(
+                    itemCount: c.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      dynamic category = c[index];
+                      return                           ListTileNew(
+                              barColor: Colors.greenAccent,
+                              gradient: Colors.greenAccent[100],
+                              categoryId: category["categoryid"],
+                              routeName: "/products",
+                              name: category["categoryname"],
+                              imageUrl: category["image"]);
+                    });
+              }),
         ),
       ),
     );
@@ -82,12 +77,14 @@ class ListTileNew extends StatelessWidget {
   final String imageUrl;
   final String name;
   final String routeName;
+  final int categoryId;
   final Color barColor;
   final Color gradient;
   const ListTileNew(
       {Key key,
       @required this.imageUrl,
       @required this.name,
+      @required this.categoryId,
       @required this.routeName,
       @required this.barColor,
       @required this.gradient})
@@ -113,8 +110,9 @@ class ListTileNew extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
+          var box = Hive.box(Constants.UserBoxName);
+          box.put(Constants.ChoosenCategory, categoryId);
           Navigator.of(context).pushNamed(routeName);
-          print("Zukes");
         },
         child: Row(
           children: [
