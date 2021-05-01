@@ -18,6 +18,7 @@ import 'package:proto/pages/sellerpages/stockList.dart';
 import 'package:proto/pages/startup/homePage.dart';
 import 'package:proto/pages/stepperForm/registerStepper.dart';
 import 'package:proto/pages/transactionPage.dart';
+import 'package:proto/providers/addproductProvider.dart';
 import 'package:proto/providers/loginProvider.dart';
 import 'package:proto/providers/stepperFormProvider.dart';
 import 'package:proto/pages/startup/logopage.dart';
@@ -43,7 +44,16 @@ class RouteGenerator {
             builder: (ctx) => ChangeNotifierProvider<LoginFormProvider>(
                 create: (context) => LoginFormProvider(),
                 child: LoginFormPage()));
-
+     case '/addProduct':
+        return CupertinoPageRoute(
+            builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle(
+                    statusBarColor: Colors.transparent,
+                    statusBarIconBrightness: Brightness.dark,
+                    systemNavigationBarColor: Colors.white),
+                child: ChangeNotifierProvider<AddProductFormProvider>(
+                    create: (context) => AddProductFormProvider(),
+                    child: AddProductsPage())));
       case '/home':
         return CupertinoPageRoute(
             builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
@@ -51,7 +61,9 @@ class RouteGenerator {
                     statusBarColor: Colors.transparent,
                     statusBarIconBrightness: Brightness.dark,
                     systemNavigationBarColor: Colors.white),
-                child: BaseTabView()));
+                child: ChangeNotifierProvider<AddProductFormProvider>(
+                    create: (context) => AddProductFormProvider(),
+                    child: BaseTabView())));
       case '/kraform':
         return MaterialPageRoute(
             builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
@@ -89,9 +101,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (ctx) => BlVets());
       case '/vetsCalls':
         return MaterialPageRoute(builder: (ctx) => BlVetsCall());
-      case '/addProduct':
-        return MaterialPageRoute(builder: (ctx) => AddProductsPage());
-      case '/sellpage':
+     case '/sellpage':
         return MaterialPageRoute(builder: (ctx) => InventoryList());
       case '/pdetails':
         return CupertinoPageRoute(builder: (ctx) => ProductDetails());

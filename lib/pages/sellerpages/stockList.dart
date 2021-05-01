@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -41,35 +42,14 @@ class _InventoryListState extends State<InventoryList> {
             ),
           )
         ],
-        title: Row(
-          children: [
+        
+       title:(
             Text(
               "Current Stock",
               style: TextStyle(
                   color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 13),
-            ),
-            const SizedBox(width: 16),
-            Text(
-              "10 ITEMS",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 11),
-            ),
-          ],
-        ),
+                  ))),
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(
-            Icons.keyboard_arrow_down,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
       ),
       body: SafeArea(
           child: Container(
@@ -80,34 +60,38 @@ class _InventoryListState extends State<InventoryList> {
               child: FutureBuilder(
                   future: getAllProducts(),
                   builder: (context, projectSnap) {
-                    print(projectSnap.data);
-                    if (projectSnap.connectionState == ConnectionState.none &&
-                        projectSnap.hasData == null) {
-                      //print('project snapshot data is: ${projectSnap.data}');
+                    if (projectSnap.connectionState ==
+                        ConnectionState.waiting) {
                       return Center(
-                        child: Text("Sadly you have no products"),
+                        child: CircularProgressIndicator(),
                       );
-                    } else {
+                    } else if( 
+                            projectSnap.data == null) {
+                      return Center(child: Text("Sadly you have no products"));
+                    } else if ( projectSnap.data != null) {
                       return ListView.builder(
-                         
                           itemCount: projectSnap.data.length,
                           itemBuilder: (context, index) {
                             var item = projectSnap.data[index];
                             return ShoppingCartRow(
                               product: Product(
-                                imageURL:item["image"],
-                                category: "1",
+                                imageURL: item["image"],
+                                category: item["categoryID"],
                                 id: item["productID"],
                                 isFeatured: true,
+                                description: item["description"],
                                 name: (_) {
                                   return item["productname"];
                                 },
                                 price: item["price"],
                               ),
-                              quantity: 5,
+                              quantity: item["stock"],
                               onPressed: () {},
                             );
                           });
+                    } else {
+                      return Center(
+                          child: Text("Classificataion of conncetion failed"));
                     }
                   }))
         ]),
@@ -225,10 +209,6 @@ class ShoppingCartRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final formatter = NumberFormat.simpleCurrency(
-    //   decimalDigits: 0,
-    //   locale: Localizations.localeOf(context).toString(),
-    // );
     Widget _buildPopupDialog(BuildContext context) {
       return ChangeQunatityPopUp();
     }
@@ -248,10 +228,7 @@ class ShoppingCartRow extends StatelessWidget {
                 size: 15,
               ),
               onPressed: () {
-                showCupertinoDialog(
-                  context: context,
-                  builder: (BuildContext context) => _buildPopupDialog(context),
-                );
+                Navigator.of(context).pushNamed("/addProduct");
               },
             ),
           ),
@@ -264,11 +241,24 @@ class ShoppingCartRow extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        color: Colors.pink,
-                        width: 70,
-                        height: 70,
-                        // excludeFromSemantics: true,
-                      ),
+                          color: Colors.pink,
+                          width: 70,
+                          height: 70,
+                          child: CachedNetworkImage(
+                            imageUrl: product.imageURL,
+                            height: 70,
+                            width: 70,
+                            placeholder: (context, String p) {
+                              return Card(
+                                  child: Container(
+                                height: 70,
+                                width: 70,
+                                color: Colors.grey[50],
+                              ));
+                            },
+                          )
+                          // excludeFromSemantics: true,
+                          ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: Column(
@@ -294,6 +284,14 @@ class ShoppingCartRow extends StatelessWidget {
                               product.name(context),
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
+                            ),
+                            const SizedBox(height: 9),
+                            Text(
+                              product.description,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.blueGrey),
                             ),
                           ],
                         ),
@@ -323,6 +321,7 @@ class Product {
     @required this.isFeatured,
     @required this.name,
     @required this.price,
+    @required this.description,
     this.assetAspectRatio = 1,
   })  : assert(category != null),
         assert(id != null),
@@ -332,9 +331,10 @@ class Product {
         assert(price != null),
         assert(assetAspectRatio != null);
 
-  final String category;
+  final int category;
   final int id;
   final String imageURL;
+  final String description;
   final bool isFeatured;
   final double assetAspectRatio;
 

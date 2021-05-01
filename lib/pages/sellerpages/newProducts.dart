@@ -1,27 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:proto/popups/addProdPopup.dart';
-//import 'package:proto/providers/addproductProvider.dart';
+import 'package:proto/providers/addproductProvider.dart';
 import 'package:proto/utils/sizedMargins.dart';
-//import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 class AddProductsPage extends StatelessWidget {
-  Widget _buildPopupDialog(BuildContext context) {
-    return AppProductPopUp();
-  }
-
   @override
   Widget build(BuildContext context) {
-    ////final hbox = Provider.of<AddProductFormProvider>(context);
+    final hbox = Provider.of<AddProductFormProvider>(context);
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
+        floatingActionButtonLocation:FloatingActionButtonLocation.centerFloat ,
+      floatingActionButton:hbox.loading?CircularProgressIndicator(): FloatingActionButton.extended(
         backgroundColor: Colors.lightGreen,
         shape: RoundedRectangleBorder(),
         onPressed: () {
-          showCupertinoDialog(
-            context: context,
-            builder: (BuildContext context) => _buildPopupDialog(context),
-          );
+          hbox.sendAddProductRequest(context);
         },
         label: Container(
           width: MediaQuery.of(context).size.width * 0.8,
@@ -37,18 +30,20 @@ class AddProductsPage extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
+          foregroundColor: Colors.black,
+          elevation:0,
+          iconTheme: IconThemeData(
+                  color: Colors.white,
+                    ),
+        backgroundColor:Colors.teal,
         centerTitle: true,
         actions: [
-          IconButton(
-              icon: Icon(
-                Icons.remove_done,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              })
+        GestureDetector(onTap:(){
+          hbox.clearAll();
+        }, child:Padding(padding:EdgeInsets.all(8.0),child:Center(child: Text("Clear"),),),),
         ],
-        title: Text("Product Entry"),
+        title: Text("New Product Entry",style: TextStyle(color:Colors.white)),
+
       ),
       body: Container(
         padding: const EdgeInsets.all(8.0),
@@ -59,20 +54,25 @@ class AddProductsPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextField(
+                    controller: hbox.categoryController,
+                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                  labelText: "Category",
-                  hintText: "Catergory",
-                  border: OutlineInputBorder(),
-                )),
-                const YMargin(10),
+                      labelText: "Category",
+                      hintText: "Catergory",
+                      border: OutlineInputBorder(),
+                    )),
+                const YMargin(15),
                 TextField(
+                     keyboardType: TextInputType.text,
+                    controller: hbox.productNameController,
                     decoration: InputDecoration(
-                  labelText: "Product Name",
-                  hintText: "Product Name",
-                  border: OutlineInputBorder(),
-                )),
-                const YMargin(10),
+                      labelText: "Product Name",
+                      hintText: "Product Name",
+                      border: OutlineInputBorder(),
+                    )),
+                const YMargin(15),
                 TextField(
+                    controller: hbox.imageController,
                     keyboardType: TextInputType.url,
                     decoration: InputDecoration(
                       suffixIcon: Icon(Icons.camera_alt_outlined),
@@ -80,25 +80,42 @@ class AddProductsPage extends StatelessWidget {
                       hintText: "Image url",
                       border: OutlineInputBorder(),
                     )),
-                SizedBox(
-                  height: 10,
-                ),
-                Branding(),
-                const YMargin(10),
+                const YMargin(15),
                 TextField(
+                    controller: hbox.packingController,
+                     keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      labelText: "Packing Type",
+                      hintText: "Packing Type",
+                      border: OutlineInputBorder(),
+                    )),
+                const YMargin(15),
+                TextField(
+                    controller: hbox.stockController,
                     keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: "Stock",
+                      hintText: "Stock",
+                      border: OutlineInputBorder(),
+                    )),
+                const YMargin(15),
+                TextField(
+                    controller: hbox.priceController,
+                    keyboardType: TextInputType.numberWithOptions(decimal:true),
                     decoration: InputDecoration(
                       labelText: "Price",
                       hintText: "Price",
                       border: OutlineInputBorder(),
                     )),
-                const YMargin(10),
+                const YMargin(15),
                 TextField(
+                    controller: hbox.descriptionController,
+                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                  labelText: "Description",
-                  hintText: "Description",
-                  border: OutlineInputBorder(),
-                )),
+                      labelText: "Description",
+                      hintText: "Description",
+                      border: OutlineInputBorder(),
+                    )),
                 const YMargin(80),
               ],
             ),

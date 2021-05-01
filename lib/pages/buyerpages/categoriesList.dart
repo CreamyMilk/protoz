@@ -6,17 +6,30 @@ class ListTilezz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       floatingActionButton: AwesomeFab(),
       appBar: AppBar(
-        actions: [IconButton(icon:Icon( Icons.search,color:Colors.black), onPressed: () {  
-          print("Seraching");
-        },)],
-        leading: IconButton(icon:Icon(Icons.arrow_back),color:Colors.black87, onPressed: () { Navigator.of(context).pop(); },),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search, color: Colors.black),
+            onPressed: () {
+              print("Seraching");
+            },
+          )
+        ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black87,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: Text("InputSuppliers",style: TextStyle(color: Colors.black87),),
+        title: Text(
+          "InputSuppliers",
+          style: TextStyle(color: Colors.black87),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -32,14 +45,6 @@ class ListTilezz extends StatelessWidget {
               ),
               SizedBox(
                 height: 1,
-             ),
-              ListTileNew(
-                barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent[100],
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
               ),
               ListTileNew(
                 barColor: Colors.greenAccent,
@@ -51,63 +56,7 @@ class ListTilezz extends StatelessWidget {
               ),
               ListTileNew(
                 barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent,
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-              ListTileNew(
-                barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent,
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-              ListTileNew(
-                barColor: Colors.lightBlue,
-                gradient: Colors.lightBlue,
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-              ListTileNew(
-                barColor: Colors.lightBlueAccent,
-                gradient: Colors.lightBlueAccent,
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-              ListTileNew(
-                barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent,
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-              ListTileNew(
-                barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent,
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-              ListTileNew(
-                barColor: Colors.blue,
-                gradient: Colors.blue,
-                routeName: "/products",
-                name: "Seeds",
-                imageUrl:
-                    "https://st2.depositphotos.com/1177973/7724/i/950/depositphotos_77245988-stock-photo-female-hand-with-fertilizer-for.jpg",
-              ),
-              ListTileNew(
-                barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent,
+                gradient: Colors.greenAccent[100],
                 routeName: "/products",
                 name: "Seeds",
                 imageUrl:
@@ -146,18 +95,16 @@ class ListTileNew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       height: 80,
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       padding: EdgeInsets.all(8),
-      
       decoration: BoxDecoration(
-       boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey[400].withOpacity(0.3),
-                          offset: Offset(0, 13),
-                          blurRadius: 30)
-                    ],
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey[400].withOpacity(0.3),
+              offset: Offset(0, 13),
+              blurRadius: 30)
+        ],
         // borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
             begin: Alignment.bottomRight,
@@ -165,10 +112,10 @@ class ListTileNew extends StatelessWidget {
             colors: [Colors.white70, Colors.white]),
       ),
       child: InkWell(
-         onTap: () {
-      Navigator.of(context).pushNamed(routeName);
-      print("Zukes");
-    },
+        onTap: () {
+          Navigator.of(context).pushNamed(routeName);
+          print("Zukes");
+        },
         child: Row(
           children: [
             Container(
@@ -180,14 +127,12 @@ class ListTileNew extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 1.0),
               child: CachedNetworkImage(
-      imageUrl:imageUrl,
+                imageUrl: imageUrl,
                 width: 60,
                 height: 60,
-              
-        placeholder: (context, url) => CircularProgressIndicator(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
-     ),
-                
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
             SizedBox(width: 20),
             Column(
