@@ -1,0 +1,19 @@
+class Product {
+  final int productID;
+  final String heroName;
+  final double price;
+  final String image;
+  final String packingType;
+  final String name;
+  final String description;
+  final int stock;
+  const Product(
+      {this.productID,
+      this.heroName,
+      this.price,
+      this.image,
+      this.packingType,
+      this.name,
+      this.stock,
+      this.description});
+}

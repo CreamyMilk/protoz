@@ -32,8 +32,8 @@ import 'package:provider/provider.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     // Getting arguments passed in while calling Navigator.pushNamed
-    //final args = settings.arguments;
-
+    final args = settings.arguments;
+    print(args);
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (ctx) => LogoPage());
@@ -44,7 +44,7 @@ class RouteGenerator {
             builder: (ctx) => ChangeNotifierProvider<LoginFormProvider>(
                 create: (context) => LoginFormProvider(),
                 child: LoginFormPage()));
-     case '/addProduct':
+      case '/addProduct':
         return CupertinoPageRoute(
             builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
                 value: SystemUiOverlayStyle(
@@ -101,10 +101,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (ctx) => BlVets());
       case '/vetsCalls':
         return MaterialPageRoute(builder: (ctx) => BlVetsCall());
-     case '/sellpage':
+      case '/sellpage':
         return MaterialPageRoute(builder: (ctx) => InventoryList());
       case '/pdetails':
-        return CupertinoPageRoute(builder: (ctx) => ProductDetails());
+        return CupertinoPageRoute(builder: (ctx) => ProductDetails(p: args));
       case '/products':
         return MaterialPageRoute(builder: (ctx) => ProductList());
       case '/register':
@@ -113,9 +113,6 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (ctx) => ListTilezz());
       case '/buyer':
         return MaterialPageRoute(builder: (ctx) => WalletsPageBase());
-      case '/ferter':
-        return MaterialPageRoute(builder: (ctx) => ProductDetails());
-
       case '/profile':
         return MaterialPageRoute(builder: (ctx) => ProfilePage());
       default:

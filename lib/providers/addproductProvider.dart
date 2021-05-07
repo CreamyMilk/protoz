@@ -56,6 +56,7 @@ class AddProductFormProvider extends ChangeNotifier {
         ),
       );
       var myjson = json.decode(response.body);
+      print(myjson);
       if (myjson["status"] == 0) {
         loading = false;
         notifyListeners();
@@ -63,7 +64,7 @@ class AddProductFormProvider extends ChangeNotifier {
       } else {
        loading = false;
         notifyListeners();
-        clearAll();
+        //clearAll();
       }
     } catch (error) {
       print(error);

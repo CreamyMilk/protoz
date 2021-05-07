@@ -1,20 +1,39 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proto/models/product.dart';
 import 'package:proto/popups/awesomePopup.dart';
 import 'package:proto/utils/sizedMargins.dart';
 
-class ProductDetails extends StatelessWidget {
+class ProductDetails extends StatefulWidget {
+  const ProductDetails({Key key, @required this.p}) : super(key: key);
+
+  final Product p;
+
+  @override
+  _ProductDetailsState createState() => _ProductDetailsState();
+}
+
+class _ProductDetailsState extends State<ProductDetails> {
+  double totalPrice = 0;
+  int quantity = 1;
+  bool delivery = true;
   Widget _buildPopupDialog(BuildContext context) {
     return AwesomePopup();
   }
 
   @override
+  void initState() {
+    totalPrice = widget.p.price;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton.extended(
-          heroTag: "fer",
-          // icon: Icon(Icons.money),
+          heroTag: widget.p.heroName,
           backgroundColor: Colors.yellow,
           splashColor: Colors.white,
           onPressed: () {
@@ -33,8 +52,8 @@ class ProductDetails extends StatelessWidget {
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
                 Text(
-                  "\$3.58",
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  "Ksh.$totalPrice",
+                  style: TextStyle(fontSize: 22, color: Colors.black),
                 ),
               ],
             ),
@@ -51,7 +70,7 @@ class ProductDetails extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          "Product Name",
+          widget.p.name,
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -63,46 +82,32 @@ class ProductDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Hero(
-                tag: "fert",
-                child:CachedNetworkImage(
-        imageUrl: "https://images.orgill.com/large/7615198.JPG",
-                  width: screenWidth(context,percent: 0.5),
-                  height:  screenWidth(context,percent:0.5) ,
+                tag: widget.p.productID.toString() + "hero",
+                child: CachedNetworkImage(
+                  imageUrl: widget.p.image,
+                  width: screenWidth(context, percent: 0.5),
+                  height: screenWidth(context, percent: 0.5),
                 ),
               ),
               Column(
                 children: [
                   SizedBox(
-                    child: Text("Simple\n Manufature Name",
-                        overflow: TextOverflow.clip,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20)),
-                  ),
-                  Text(
-                      "descrition sdfsfsfdasdf\nsdfsafasfsdfasdfasdfasdf\nsdfasfdsfsafdfasfasdfasdfsafasdf\n\n\n"),
-                  // Text("Narok"),
-                  // RichText(
-                  //     textAlign: TextAlign.center,
-                  //     text: TextSpan(children: [
-                  //       TextSpan(
-                  //           text: "@.",
-                  //           style: TextStyle(
-                  //               color: Colors.black,
-                  //               fontWeight: FontWeight.w400,
-                  //               fontSize: 25)),
-                  //       TextSpan(
-                  //           text: "5,000",
-                  //           style: TextStyle(
-                  //               color: Colors.black,
-                  //               fontWeight: FontWeight.w100,
-                  //               fontSize: 25)),
-                  //     ])),
+                      width: 150,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(widget.p.name,
+                                overflow: TextOverflow.clip,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20)),
+                            Text(widget.p.packingType),
+                          ])),
                 ],
               ),
               SizedBox(
-                width: 10,
+                width: 15,
               )
             ],
           ),
@@ -112,7 +117,7 @@ class ProductDetails extends StatelessWidget {
               Divider(),
               Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 15.0, right: 10),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -131,7 +136,14 @@ class ProductDetails extends StatelessWidget {
                             backgroundColor: Colors.yellow,
                             child: Icon(Icons.remove, color: Colors.black),
                             mini: true,
-                            onPressed: () {},
+                            onPressed: () {
+                              if (quantity > 1) {
+                                setState(() {
+                                  quantity -= 1;
+                                  totalPrice = widget.p.price*quantity;
+                                });
+}
+                            },
                           ),
                           Container(
                               height: 50,
@@ -139,7 +151,7 @@ class ProductDetails extends StatelessWidget {
                               color: Colors.white60,
                               child: Center(
                                   child: Text(
-                                "01",
+                                "0$quantity",
                                 style: TextStyle(fontSize: 22),
                               ))),
                           FloatingActionButton(
@@ -148,7 +160,15 @@ class ProductDetails extends StatelessWidget {
                               backgroundColor: Colors.yellow,
                               child: Icon(Icons.add, color: Colors.black),
                               mini: true,
-                              onPressed: () {}),
+                              onPressed: () {
+                                    if (quantity < widget.p.stock ) {
+                                setState(() {
+                                  quantity += 1;
+                                  totalPrice = widget.p.price*quantity;
+                                });
+                       
+                                }
+                              }),
                         ]),
                         // SwitchListTile(value: false, onChanged: (bool me) {}),
                       ]),
@@ -170,8 +190,10 @@ class ProductDetails extends StatelessWidget {
                             fontSize: 22)),
                     trailing: Switch(
                       activeColor: Colors.amber[900],
-                      value: true,
-                      onChanged: (bool value) {},
+                      value: delivery,
+                      onChanged: (bool value) {
+                                  setState(() { delivery=value;  });
+                      },
                     ),
                   ),
                 ),
@@ -191,9 +213,9 @@ class ProductDetails extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "48.50",
+                      "$totalPrice",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.teal,
                         fontWeight: FontWeight.w500,
                         fontSize: 30,
                       ),

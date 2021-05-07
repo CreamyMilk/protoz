@@ -16,6 +16,7 @@ class _InventoryListState extends State<InventoryList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor:Colors.white,
       floatingActionButton: FloatingActionButton.extended(
         heroTag: "tabFab",
         backgroundColor: Colors.black,
@@ -32,7 +33,7 @@ class _InventoryListState extends State<InventoryList> {
         ),
       ),
       appBar: AppBar(
-        elevation: 0,
+        elevation: 1,
         actions: [
           IconButton(
             onPressed: () {},
@@ -241,7 +242,7 @@ class ShoppingCartRow extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                          color: Colors.pink,
+                          color: Colors.white,
                           width: 70,
                           height: 70,
                           child: CachedNetworkImage(

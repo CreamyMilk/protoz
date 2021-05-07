@@ -4,7 +4,6 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart' as Constants;
 import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
-import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 
 class ListTilezz extends StatefulWidget {
@@ -49,7 +48,7 @@ class _ListTilezzState extends State<ListTilezz> {
       ),
       body: SafeArea(
         child: Container(
-            height:400,
+          height: 400,
           child: ValueListenableBuilder(
               valueListenable: Hive.box(Constants.UserBoxName).listenable(),
               builder: (BuildContext context, box, child) {
@@ -58,13 +57,13 @@ class _ListTilezzState extends State<ListTilezz> {
                     itemCount: c.length,
                     itemBuilder: (BuildContext context, int index) {
                       dynamic category = c[index];
-                      return                           ListTileNew(
-                              barColor: Colors.greenAccent,
-                              gradient: Colors.greenAccent[100],
-                              categoryId: category["categoryid"],
-                              routeName: "/products",
-                              name: category["categoryname"],
-                              imageUrl: category["image"]);
+                      return ListTileNew(
+                          barColor: Colors.greenAccent,
+                          gradient: Colors.greenAccent[100],
+                          categoryId: category["categoryid"],
+                          routeName: "/products",
+                          name: category["categoryname"],
+                          imageUrl: category["image"]);
                     });
               }),
         ),
@@ -133,16 +132,11 @@ class ListTileNew extends StatelessWidget {
               ),
             ),
             SizedBox(width: 20),
-            Column(
-              children: [
                 Text(name,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
                         fontSize: 25.0)),
-                Text("Description")
-              ],
-            ),
             SizedBox(
               width: 10,
             ),

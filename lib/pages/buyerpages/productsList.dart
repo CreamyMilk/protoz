@@ -1,6 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:proto/models/product.dart';
 import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:proto/constants.dart' as Constants;
 
 class ProductList extends StatelessWidget {
   @override
@@ -23,7 +27,21 @@ class ProductList extends StatelessWidget {
         elevation: 1,
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text("Ferterlizers", style: TextStyle(color: Colors.black87)),
+        title: ValueListenableBuilder(
+          valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+          builder: (BuildContext context, box, child) {
+            dynamic c = box.get(Constants.ProductCategoriesStore);
+            dynamic categoryID = box.get(Constants.ChoosenCategory);
+            String title = "No Category Name";
+            for (int i = 0; i < c.length; i++) {
+              print(categoryID);
+              if (c[i]["categoryid"] == categoryID) {
+                title = (c[i]["categoryname"]);
+              }
+            }
+            return Text("$title", style: TextStyle(color: Colors.black87));
+          },
+        ),
       ),
       body: FutureBuilder(
           future: getProductsList(),
@@ -41,13 +59,16 @@ class ProductList extends StatelessWidget {
                     var item = projectSnap.data[index];
                     print(item);
                     return ProductListItem(
-                      image: item["image"],
+                        p: Product(
                       productID: item["productID"],
-                        heroName: item["productname"],
-                      buttonHero: item["productID"].toString()+"i",
+                      heroName: item["productID"].toString() + "i",
+                      name:item["productname"],
+                      price: item["price"].toDouble(),
+                      image: item["image"],
                       packingType: item["packingtype"],
-                      price: item["price"].toDouble()
-                    );
+                      stock:item["stock"].toInt(),
+                      description: item["productname"],
+                    ));
                   });
             } else {
               return Center(
@@ -59,21 +80,11 @@ class ProductList extends StatelessWidget {
 }
 
 class ProductListItem extends StatelessWidget {
-  final String heroName;
-  final String buttonHero;
-  final int productID;
-  final String image;
-  final String packingType;
-  final double price;
-  const ProductListItem(
-      {Key key,
-      @required this.productID,
-      @required this.heroName,
-      @required this.image,
-      @required this.packingType,
-      @required this.price,
-      @required this.buttonHero})
-      : super(key: key);
+  final Product p;
+  const ProductListItem({
+    Key key,
+    @required this.p,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -89,9 +100,9 @@ class ProductListItem extends StatelessWidget {
                 Navigator.of(context).pushNamed("/pdetails");
               },
               child: Hero(
-                tag: heroName+productID.toString(),
+                tag: p.productID.toString()+"hero",
                 child: CachedNetworkImage(
-                  imageUrl: image,
+                  imageUrl: p.image,
                   width: 150,
                   // color: Colors.pink,
                 ),
@@ -106,14 +117,14 @@ class ProductListItem extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        "$heroName",
+                        "${p.name}",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 25),
                       ),
                     ),
                     Flexible(
                       child: Text(
-                        "$packingType",
+                        "${p.packingType}",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 15),
                       ),
@@ -128,7 +139,7 @@ class ProductListItem extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 13)),
                           TextSpan(
-                            text: "$price",
+                            text: "${p.price}",
                             style: TextStyle(
                                 color: Colors.deepPurple,
                                 fontWeight: FontWeight.w400,
@@ -137,11 +148,12 @@ class ProductListItem extends StatelessWidget {
                         ])),
                     Spacer(),
                     Hero(
-                      tag: buttonHero,
+                      tag: p.heroName,
                       child: MaterialButton(
                         color: Colors.green[300],
                         onPressed: () {
-                          Navigator.of(context).pushNamed("/pdetails");
+                          Navigator.pushNamed(context, "/pdetails",
+                              arguments: p);
                         },
                         child: Text(
                           "Buy",

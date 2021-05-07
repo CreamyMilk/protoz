@@ -9,6 +9,7 @@ class AddProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final hbox = Provider.of<AddProductFormProvider>(context);
     return Scaffold(
+        backgroundColor:Colors.white,
         floatingActionButtonLocation:FloatingActionButtonLocation.centerFloat ,
       floatingActionButton:hbox.loading?CircularProgressIndicator(): FloatingActionButton.extended(
         backgroundColor: Colors.lightGreen,
