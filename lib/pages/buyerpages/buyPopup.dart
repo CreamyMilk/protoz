@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:proto/models/product.dart';
 import 'dart:ui';
 
-class AwesomePopup extends StatelessWidget {
-  const AwesomePopup({
-    Key key,
-  }) : super(key: key);
+import 'package:proto/pages/buyerpages/buyProductFuture.dart';
 
+class BuyProductPopup extends StatelessWidget {
+  const BuyProductPopup({
+    Key key,
+    @required this.p,
+    @required this.quantity,
+    @required this.acceptDelivery,
+  }) : super(key: key);
+  final Product p;
+  final int quantity;
+  final bool acceptDelivery;
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
@@ -28,6 +36,7 @@ class AwesomePopup extends StatelessWidget {
           ),
           new MaterialButton(
             onPressed: () {
+              sendAddProductRequest(p, quantity, acceptDelivery);
               Navigator.of(context).pop();
             },
             textColor: Theme.of(context).primaryColor,

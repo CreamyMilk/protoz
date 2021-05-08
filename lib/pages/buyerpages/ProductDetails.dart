@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/models/product.dart';
-import 'package:proto/popups/awesomePopup.dart';
+import 'package:proto/pages/buyerpages/buyPopup.dart';
 import 'package:proto/utils/sizedMargins.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -19,7 +19,8 @@ class _ProductDetailsState extends State<ProductDetails> {
   int quantity = 1;
   bool delivery = true;
   Widget _buildPopupDialog(BuildContext context) {
-    return AwesomePopup();
+    return BuyProductPopup(
+        acceptDelivery: delivery, p: widget.p, quantity: quantity);
   }
 
   @override
@@ -30,6 +31,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
+    String totalString = "${totalPrice.toStringAsFixed(3).replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) =>     '${m[1]},')}.00";
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton.extended(
@@ -52,7 +54,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
                 Text(
-                  "Ksh.$totalPrice",
+"Ksh. $totalString",
                   style: TextStyle(fontSize: 22, color: Colors.black),
                 ),
               ],
@@ -140,9 +142,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                               if (quantity > 1) {
                                 setState(() {
                                   quantity -= 1;
-                                  totalPrice = widget.p.price*quantity;
+                                  totalPrice = widget.p.price * quantity;
                                 });
-}
+                              }
                             },
                           ),
                           Container(
@@ -161,12 +163,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                               child: Icon(Icons.add, color: Colors.black),
                               mini: true,
                               onPressed: () {
-                                    if (quantity < widget.p.stock ) {
-                                setState(() {
-                                  quantity += 1;
-                                  totalPrice = widget.p.price*quantity;
-                                });
-                       
+                                if (quantity < widget.p.stock) {
+                                  setState(() {
+                                    quantity += 1;
+                                    totalPrice = widget.p.price * quantity;
+                                  });
                                 }
                               }),
                         ]),
@@ -192,7 +193,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                       activeColor: Colors.amber[900],
                       value: delivery,
                       onChanged: (bool value) {
-                                  setState(() { delivery=value;  });
+                        setState(() {
+                          delivery = value;
+                        });
                       },
                     ),
                   ),
@@ -213,7 +216,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ),
                     Text(
-                      "$totalPrice",
+                      "$totalString",
                       style: TextStyle(
                         color: Colors.teal,
                         fontWeight: FontWeight.w500,

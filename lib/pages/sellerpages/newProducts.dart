@@ -1,50 +1,84 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:proto/providers/addproductProvider.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:provider/provider.dart';
+import 'package:proto/constants.dart' as Constants;
 
-class AddProductsPage extends StatelessWidget {
+class AddProductsPage extends StatefulWidget {
+  @override
+  _AddProductsPageState createState() => _AddProductsPageState();
+}
+
+class _AddProductsPageState extends State<AddProductsPage> {
+  dynamic box = Hive.box(Constants.UserBoxName);
+  List<DropdownMenuItem<int>> temp = [];
+
+  int choosenCategory;
+  @override
+  void initState() {
+    dynamic c = box.get(Constants.ProductCategoriesStore).toList();
+
+    c.forEach((t) {
+      print(t);
+    temp.add(DropdownMenuItem<int>(
+        value: t["categoryid"],
+         child: Text(t["categoryname"]),
+      ));
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final hbox = Provider.of<AddProductFormProvider>(context);
     return Scaffold(
-        backgroundColor:Colors.white,
-        floatingActionButtonLocation:FloatingActionButtonLocation.centerFloat ,
-      floatingActionButton:hbox.loading?CircularProgressIndicator(): FloatingActionButton.extended(
-        backgroundColor: Colors.lightGreen,
-        shape: RoundedRectangleBorder(),
-        onPressed: () {
-          hbox.sendAddProductRequest(context);
-        },
-        label: Container(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Sumbit",
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-            ],
-          ),
-        ),
-      ),
-      appBar: AppBar(
-          foregroundColor: Colors.black,
-          elevation:0,
-          iconTheme: IconThemeData(
-                  color: Colors.white,
+      backgroundColor: Colors.white,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: hbox.loading
+          ? CircularProgressIndicator()
+          : FloatingActionButton.extended(
+              backgroundColor: Colors.lightGreen,
+              shape: RoundedRectangleBorder(),
+              onPressed: () {
+                hbox.sendAddProductRequest(context);
+              },
+              label: Container(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Sumbit",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
-        backgroundColor:Colors.teal,
+                  ],
+                ),
+              ),
+            ),
+      appBar: AppBar(
+        foregroundColor: Colors.black,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.teal,
         centerTitle: true,
         actions: [
-        GestureDetector(onTap:(){
-          hbox.clearAll();
-        }, child:Padding(padding:EdgeInsets.all(8.0),child:Center(child: Text("Clear"),),),),
+          GestureDetector(
+            onTap: () {
+              hbox.clearAll();
+            },
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Center(
+                child: Text("Clear All "),
+              ),
+            ),
+          ),
         ],
-        title: Text("New Product Entry",style: TextStyle(color:Colors.white)),
-
+        title: Text("New Product Entry", style: TextStyle(color: Colors.white)),
       ),
       body: Container(
         padding: const EdgeInsets.all(8.0),
@@ -54,17 +88,34 @@ class AddProductsPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextField(
-                    controller: hbox.categoryController,
-                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      labelText: "Category",
-                      hintText: "Catergory",
-                      border: OutlineInputBorder(),
-                    )),
+                DropdownButtonFormField(
+                  elevation: 1,
+                  items: temp,
+                  decoration: InputDecoration(
+                    labelText: "Category",
+                    hintText: "Catergory",
+                    border: OutlineInputBorder(),
+                  ),
+                  value:choosenCategory,
+                  onChanged: (value) {
+                    hbox.categoryController.text = value.toString();
+                    setState(() {
+                      choosenCategory = value;
+                    });
+                  },
+                ),
+            //  const YMargin(15),
+            //  TextField(
+            //      controller: hbox.categoryController,
+            //      keyboardType: TextInputType.number,
+            //      decoration: InputDecoration(
+            //        labelText: "Category",
+            //        hintText: "Catergory",
+            //        border: OutlineInputBorder(),
+            //      )),
                 const YMargin(15),
                 TextField(
-                     keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.text,
                     controller: hbox.productNameController,
                     decoration: InputDecoration(
                       labelText: "Product Name",
@@ -84,7 +135,7 @@ class AddProductsPage extends StatelessWidget {
                 const YMargin(15),
                 TextField(
                     controller: hbox.packingController,
-                     keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       labelText: "Packing Type",
                       hintText: "Packing Type",
@@ -102,7 +153,8 @@ class AddProductsPage extends StatelessWidget {
                 const YMargin(15),
                 TextField(
                     controller: hbox.priceController,
-                    keyboardType: TextInputType.numberWithOptions(decimal:true),
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
                     decoration: InputDecoration(
                       labelText: "Price",
                       hintText: "Price",
@@ -111,7 +163,7 @@ class AddProductsPage extends StatelessWidget {
                 const YMargin(15),
                 TextField(
                     controller: hbox.descriptionController,
-                     keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       labelText: "Description",
                       hintText: "Description",

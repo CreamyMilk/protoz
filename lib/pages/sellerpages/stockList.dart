@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:proto/pages/sellerpages/getProductsFutures.dart';
-import 'package:proto/popups/changeQunatityPopup.dart';
 
 const _startColumnWidth = 45.0;
 
@@ -16,7 +15,7 @@ class _InventoryListState extends State<InventoryList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor:Colors.white,
+      backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton.extended(
         heroTag: "tabFab",
         backgroundColor: Colors.black,
@@ -43,13 +42,10 @@ class _InventoryListState extends State<InventoryList> {
             ),
           )
         ],
-        
-       title:(
-            Text(
-              "Current Stock",
-              style: TextStyle(
-                  color: Colors.black,
-                  ))),
+        title: (Text("Current Stock",
+            style: TextStyle(
+              color: Colors.black,
+            ))),
         backgroundColor: Colors.white,
       ),
       body: SafeArea(
@@ -66,10 +62,9 @@ class _InventoryListState extends State<InventoryList> {
                       return Center(
                         child: CircularProgressIndicator(),
                       );
-                    } else if( 
-                            projectSnap.data == null) {
+                    } else if (projectSnap.data == null) {
                       return Center(child: Text("Sadly you have no products"));
-                    } else if ( projectSnap.data != null) {
+                    } else if (projectSnap.data != null) {
                       return ListView.builder(
                           itemCount: projectSnap.data.length,
                           itemBuilder: (context, index) {
@@ -210,10 +205,6 @@ class ShoppingCartRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget _buildPopupDialog(BuildContext context) {
-      return ChangeQunatityPopUp();
-    }
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 5),
       child: Row(
