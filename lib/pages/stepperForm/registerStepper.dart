@@ -56,7 +56,7 @@ class _BaseFormState extends State<BaseForm> {
                       valueColor:
                           const AlwaysStoppedAnimation<Color>(Colors.white),
                       backgroundColor: Colors.teal[600],
-                      value: (1/7) * (activePage + 1))))),
+                      value: (1 / 7) * (activePage + 1))))),
       body: pages[activePage],
     );
   }
@@ -191,6 +191,7 @@ class BirthForm extends StatelessWidget {
                 ),
               ));
     }
+
     return Form(
       key: hbox.birthKey,
       child: Column(children: [
@@ -396,10 +397,9 @@ class IdentificationForm extends StatelessWidget {
           Text("Whats your Identification Card Number ?",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
           SizedBox(height: 15),
-          Text("",
-              style: TextStyle(fontSize: 12, color: Colors.grey)),
+          Text("", style: TextStyle(fontSize: 12, color: Colors.grey)),
           SizedBox(height: 50),
-                   Container(
+          Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
               keyboardType: TextInputType.number,
@@ -475,7 +475,6 @@ class PasswordForm extends StatelessWidget {
               maxLines: 1,
             ),
           ),
-       
           const YMargin(10),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
@@ -487,7 +486,7 @@ class PasswordForm extends StatelessWidget {
               validator: (value) {
                 if (value.isEmpty) {
                   return "Required";
-                }else if(value != hbox.passwordController.text){
+                } else if (value != hbox.passwordController.text) {
                   return "Password do not match";
                 } else {
                   return null;
@@ -515,7 +514,7 @@ class PasswordForm extends StatelessWidget {
 }
 
 class RoleForm extends StatefulWidget {
-const RoleForm({Key key}) : super(key: key);
+  const RoleForm({Key key}) : super(key: key);
 
   @override
   _RoleFormState createState() => _RoleFormState();
@@ -602,196 +601,194 @@ class DoubleCheckPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final fstore = Provider.of<KraFormProvider>(context);
     return ListView(
-       padding: EdgeInsets.only(left:8.0,right:10.0),
-     shrinkWrap: true,
+      padding: EdgeInsets.only(left: 8.0, right: 10.0),
+      shrinkWrap: true,
       children: [
-      SizedBox(height: 30),
-      Text("Double-check your information just to be sure",
-      textAlign: TextAlign.center,
-    style: TextStyle(
-        fontWeight: FontWeight.w500,
-        fontSize: 20,
-        color: Colors.teal[400])),
-      SizedBox(height: 40),
-      Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: TextFormField(
-    initialValue: fstore.firstName,
-    validator: (value) {
-      if (value.isEmpty) {
-        return "Required";
-      } else {
-        return null;
-      }
-    },
-    decoration: const InputDecoration(
-      labelText: 'First Name',
-      focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.teal)),
-    ),
-    maxLines: 1,
+        SizedBox(height: 30),
+        Text("Double-check your information just to be sure",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 20,
+                color: Colors.teal[400])),
+        SizedBox(height: 40),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            initialValue: fstore.firstName,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              labelText: 'First Name',
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+            ),
+            maxLines: 1,
+          ),
         ),
-      ),
-      SizedBox(height: 10),
-      Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: TextFormField(
-    initialValue: fstore.middleName,
-    validator: (value) {
-      if (value.isEmpty) {
-        return "Required";
-      } else {
-        return null;
-      }
-    },
-    decoration: const InputDecoration(
-      focusColor: Colors.teal,
-      focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.teal)),
-      labelText: 'Middle Name',
-    ),
-    maxLines: 1,
+        SizedBox(height: 10),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            initialValue: fstore.middleName,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              focusColor: Colors.teal,
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+              labelText: 'Middle Name',
+            ),
+            maxLines: 1,
+          ),
         ),
-      ),
-      SizedBox(height: 10),
-      Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: TextFormField(
-    initialValue: fstore.lastName,
-    validator: (value) {
-      if (value.isEmpty) {
-        return "Required";
-      } else {
-        return null;
-      }
-    },
-    decoration: const InputDecoration(
-      focusColor: Colors.teal,
-      focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.teal)),
-      labelText: 'Last Name',
-    ),
-    maxLines: 1,
+        SizedBox(height: 10),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            initialValue: fstore.lastName,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              focusColor: Colors.teal,
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+              labelText: 'Last Name',
+            ),
+            maxLines: 1,
+          ),
         ),
-      ),
-      SizedBox(height: 10),
-      Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child:
-      Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-    SizedBox(width: 5),
-    Flexible(
-      flex: 2,
-      child: TextFormField(
-        initialValue: fstore.countrycode,
-        keyboardType: TextInputType.number,
-        validator: (value) {
-          if (value.isEmpty) {
-            return "Required";
-          } else {
-            return null;
-          }
-        },
-        decoration: const InputDecoration(
-          labelText: 'Country',
-          focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.teal)),
+        SizedBox(height: 10),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            SizedBox(width: 5),
+            Flexible(
+              flex: 2,
+              child: TextFormField(
+                initialValue: fstore.countrycode,
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Required";
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Country',
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.teal)),
+                ),
+                maxLines: 1,
+              ),
+            ),
+            SizedBox(width: 25),
+            Flexible(
+              flex: 10,
+              child: TextFormField(
+                controller: fstore.phController,
+                keyboardType: TextInputType.datetime,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Required";
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Enter Phone number',
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.teal)),
+                ),
+                maxLines: 1,
+              ),
+            ),
+            SizedBox(width: 5),
+          ]),
         ),
-        maxLines: 1,
-      ),
-    ),
-    SizedBox(width: 25),
-    Flexible(
-      flex: 10,
-      child: TextFormField(
-        controller: fstore.phController,
-        keyboardType: TextInputType.datetime,
-        validator: (value) {
-          if (value.isEmpty) {
-            return "Required";
-          } else {
-            return null;
-          }
-        },
-        decoration: const InputDecoration(
-          labelText: 'Enter Phone number',
-          focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.teal)),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            initialValue: fstore.middleName,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              focusColor: Colors.teal,
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+              labelText: 'ID Number',
+            ),
+            maxLines: 1,
+          ),
         ),
-        maxLines: 1,
-      ),
-    ),
-    SizedBox(width: 5),
-        ]),
-      ),
-
-
-            Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: TextFormField(
-    initialValue: fstore.middleName,
-    validator: (value) {
-      if (value.isEmpty) {
-        return "Required";
-      } else {
-        return null;
-      }
-    },
-    decoration: const InputDecoration(
-      focusColor: Colors.teal,
-      focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.teal)),
-      labelText: 'ID Number',
-    ),
-    maxLines: 1,
+        SizedBox(height: 10),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            initialValue: fstore.role,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              focusColor: Colors.teal,
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+              labelText: 'ROLE',
+            ),
+            maxLines: 1,
+          ),
         ),
-      ),
-      SizedBox(height: 10),
-      Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: TextFormField(
-    initialValue: fstore.role,
-    validator: (value) {
-      if (value.isEmpty) {
-        return "Required";
-      } else {
-        return null;
-      }
-    },
-    decoration: const InputDecoration(
-      focusColor: Colors.teal,
-      focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.teal)),
-      labelText: 'ROLE',
-    ),
-    maxLines: 1,
+        SizedBox(height: 50),
+        Container(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Checkbox(
+                    activeColor: Colors.teal,
+                    value: true,
+                    onChanged: (v) {
+                      fstore.termsAccept(v);
+                    }),
+                Text("By proceeding you agree to our Terms and Conditions")
+              ],
+            )),
+        const YMargin(70),
+        ButtonBasis(
+          isLastPage: true,
+          buttonFuntion: () {
+            fstore.finalSubmit();
+            zendPayment(fstore.phoneNumber, "100", fstore.phoneNumber, context);
+          },
         ),
-      ),
-      SizedBox(height: 50),
-      Container(
-    padding: EdgeInsets.only(right: 10.0),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Checkbox(
-            activeColor: Colors.teal,
-            value: true,
-            onChanged: (v) {
-              fstore.termsAccept(v);
-            }),
-        Text("By proceeding you agree to our Terms and Conditions")
       ],
-    )),
-      const YMargin(70),
-      ButtonBasis(
-        isLastPage: true,
-        buttonFuntion: () {
-    fstore.finalSubmit();
-    zendPayment(fstore.phoneNumber, "100", fstore.phoneNumber, context);
-        },
-      ),
-      ],
-        );
+    );
   }
 }
 
@@ -800,45 +797,46 @@ Future zendPayment(
   Widget _buildPopupDialog(BuildContext context) {
     return RegistrationPopUp();
   }
-String zerototwo(String phone ) {
-  if (phone.length > 0) { 
-    if (phone[0] == "0") {
-      return "254${phone.substring(1)}";
-    } else if (phone[0] == "+") {
-      return phone.substring(1);
-    } else {
-      return phone;
-    }   
-  } else {
-    return "0000000000";
-  }
-}
 
-  var formStore = Provider.of<KraFormProvider>(ctx,listen:false);
+  String zerototwo(String phone) {
+    if (phone.length > 0) {
+      if (phone[0] == "0") {
+        return "254${phone.substring(1)}";
+      } else if (phone[0] == "+") {
+        return phone.substring(1);
+      } else {
+        return phone;
+      }
+    } else {
+      return "0000000000";
+    }
+  }
+
+  var formStore = Provider.of<KraFormProvider>(ctx, listen: false);
   String dob = formStore.getBirth();
   try {
     final response = await post(
-      ("http://192.168.0.13:3000/" + "treg"),
+      ("http://34.125.117.7:3000/" + "treg"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
       },
       body: jsonEncode(
         //ensure that the user has bothe the socketID and the USER ID
-    {   
-        "fname"       :formStore.fnController.text,    
-        "mname"       :formStore.mController.text,
-        "lname"       :formStore.lnController.text,
-        "idnumber"    :formStore.idController.text,  
-        "photourl"    :"https://google.com",
-        "phone"       :zerototwo(formStore.phController.text), 
-        "password"    :formStore.passwordController.text,
-        "email"       :"me@mailer.com", 
-        "fcmtoken"    :"FCMTOKENSAMPLE", 
-        "informaladdress":"Machakos", 
-        "xcords"      :"$dob", 
-        "ycords"      :"0.000010",  
-        "role"        :formStore.role
+        {
+          "fname": formStore.fnController.text,
+          "mname": formStore.mController.text,
+          "lname": formStore.lnController.text,
+          "idnumber": formStore.idController.text,
+          "photourl": "https://google.com",
+          "phone": zerototwo(formStore.phController.text),
+          "password": formStore.passwordController.text,
+          "email": "me@mailer.com",
+          "fcmtoken": "FCMTOKENSAMPLE",
+          "informaladdress": "Machakos",
+          "xcords": "$dob",
+          "ycords": "0.000010",
+          "role": formStore.role
         },
       ),
     );
@@ -849,11 +847,13 @@ String zerototwo(String phone ) {
         context: ctx,
         builder: (BuildContext context) => _buildPopupDialog(context),
       );
-    }else{
-     showCupertinoDialog(
-      context: ctx,
-      builder: (BuildContext context) => CannontReigsterPopUp(message: myjson["message"],),
-    );
+    } else {
+      showCupertinoDialog(
+        context: ctx,
+        builder: (BuildContext context) => CannontReigsterPopUp(
+          message: myjson["message"],
+        ),
+      );
     }
   } catch (SocketException) {
     print("msEE HAUNA WIFI");

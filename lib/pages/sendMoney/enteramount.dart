@@ -137,7 +137,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
     var box = Hive.box(Constants.UserBoxName);
     try {
       final response = await post(
-        ("http://192.168.0.13:3000/" + "wallet/verify"),
+        ("http://34.125.117.7:3000/" + "wallet/verify"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",

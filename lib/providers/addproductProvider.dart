@@ -19,23 +19,23 @@ class AddProductFormProvider extends ChangeNotifier {
   bool showError = false;
   bool loading = false;
 
-  void clearAll(){
+  void clearAll() {
     descriptionController.clear();
     productNameController.clear();
-    categoryController.clear(); 
+    categoryController.clear();
     packingController.clear();
     imageController.clear();
     stockController.clear();
     priceController.clear();
-
   }
+
   Future sendAddProductRequest(BuildContext ctx) async {
-    var box = Hive.box(Constants.UserBoxName); 
+    var box = Hive.box(Constants.UserBoxName);
     loading = true;
     notifyListeners();
-   try {
+    try {
       final response = await post(
-        ("http://192.168.0.13:3000/" + "store/add"),
+        ("http://34.125.117.7:3000/" + "store/add"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",
@@ -50,8 +50,8 @@ class AddProductFormProvider extends ChangeNotifier {
             "imagelarge": imageController.text,
             "description": descriptionController.text,
             "packingtype": packingController.text,
-            "stock":int.parse( stockController.text),
-            "price":double.parse( priceController.text)
+            "stock": int.parse(stockController.text),
+            "price": double.parse(priceController.text)
           },
         ),
       );
@@ -62,7 +62,7 @@ class AddProductFormProvider extends ChangeNotifier {
         notifyListeners();
         clearAll();
       } else {
-       loading = false;
+        loading = false;
         notifyListeners();
         //clearAll();
       }

@@ -57,20 +57,22 @@ class _WalletsTabState extends State<WalletsTab> {
                     );
                   }
                   if (index < trans.length) {
+                  print(trans[index -1]);
                     bool fromMe = (trans[index - 1]["to"] ==
                         box.get(Constants.PhoneNumberStore));
+                    bool isPurchase = (trans[index-1]["typeid"] == 3);
                     return ListTile(
                       dense: true,
                       onTap: () {},
                       leading: CircleAvatar(
                         child: Icon(
-                          Icons.money,
+                         isPurchase ? Icons.shopping_bag_outlined:Icons.money,
                           size: 17,
-                          color: Colors.orange,
+                          color:isPurchase? Colors.orange:Colors.orange,
                         ),
                         minRadius: 18,
                         maxRadius: 18,
-                        backgroundColor: Colors.orange[50],
+                        backgroundColor: isPurchase ? Colors.orange[50]: Colors.orange[50],
                       ),
                       // heros: index,
 
@@ -81,7 +83,7 @@ class _WalletsTabState extends State<WalletsTab> {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                                text: "+Ksh.\n",
+                                text: "${fromMe?"+":"-"} Ksh.\n",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w300,
@@ -90,10 +92,12 @@ class _WalletsTabState extends State<WalletsTab> {
                                 text:
                                     "${trans[index - 1]["amount"].toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
                                 style: TextStyle(
-                                    color: fromMe
+                                    color:isPurchase?
+                                    Colors.blueGrey
+                                    : fromMe
                                         ? Colors.greenAccent[400]
                                         : Colors.blueGrey,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w300,
                                     fontSize: 18.0)),
                           ],
                         ),

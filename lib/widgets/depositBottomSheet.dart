@@ -66,15 +66,15 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
   Box<dynamic> userHiveBox;
   final TextEditingController _phoneficontroller = TextEditingController();
   final TextEditingController _amountficontroller = TextEditingController();
-  String mobile="0";
+  String mobile = "0";
   String amountDue = "10";
-  String visualAmount="10";
-  String walletName="";
+  String visualAmount = "10";
+  String walletName = "";
   @override
   void initState() {
     userHiveBox = Hive.box(Constants.UserBoxName);
-    mobile     = userHiveBox.get(Constants.PhoneNumberStore, defaultValue: "");
-    walletName = userHiveBox.get(Constants.WalletNameStore,defaultValue: "");
+    mobile = userHiveBox.get(Constants.PhoneNumberStore, defaultValue: "");
+    walletName = userHiveBox.get(Constants.WalletNameStore, defaultValue: "");
     super.initState();
   }
 
@@ -141,7 +141,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                       ),
                       Align(
                         alignment: Alignment.centerRight,
-                                               child: Text(
+                        child: Text(
                           mobile,
                           style: TextStyle(
                               fontWeight: FontWeight.w300, fontSize: 15),
@@ -151,11 +151,9 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                   ),
                 ],
               ),
-          
               SizedBox(
                 height: 20,
               ),
-
               TextField(
                 autofocus: true,
                 onChanged: (value) {
@@ -183,8 +181,10 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Running low on Cash ?",
-                  style: TextStyle(color:Colors.white,fontWeight: FontWeight.w400, fontSize: 15),
-
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15),
                 ),
               ),
               TextFormField(
@@ -195,7 +195,6 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                     mobile = value;
                   });
                 },
-                
                 controller: _phoneficontroller,
                 decoration: InputDecoration(
                   isDense: true,
@@ -215,7 +214,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                     minWidth: MediaQuery.of(context).size.width * .95,
                     onPressed: () async {
                       await _sendPayment(
-                          mobile, amountDue, walletName ,context);
+                          mobile, amountDue, walletName, context);
                     },
                     color: Colors.black,
                     child: Text(
@@ -234,53 +233,52 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
     );
   }
 
-
-
-Future _sendPayment(mobile, amount, String walletName,BuildContext ctx) async {
-  Widget _buildPopupDialog(BuildContext context) {
-    return RegistrationPopUp();
-  }
-
-  PaymentResponse data;
-
-  try {
-      Navigator.pop(ctx);
-    String fcmToken = "no";
-    final response = await http.post(
-      ("http://192.168.0.13:3000/"+"wallet/deposit"),
-      headers: {
-        "Accept": "application/json",
-        "content-type": "application/json",
-      },
-      body: jsonEncode(
-        {
-          "walletname":walletName,
-          "phonenumber":Constants.zerototwo( mobile),
-          "fcmtoken":fcmToken,
-          "amount": amount
-        },
-      ),
-    );
-    var myjson = json.decode(response.body);
-    print(myjson);
-    print("Mobile $mobile");
-    print("Amount $amountDue");
-    data = PaymentResponse.fromJson(myjson);
-    print(data.paymentCode);
-    if (data.description=="0"){
-    showCupertinoDialog(
-      context: ctx,
-      builder: (BuildContext context) => _buildPopupDialog(context),
-    );
- 
-      print("Req Sent Well"); 
+  Future _sendPayment(
+      mobile, amount, String walletName, BuildContext ctx) async {
+    Widget _buildPopupDialog(BuildContext context) {
+      return RegistrationPopUp();
     }
-  } catch (SocketException) {
-    print("msEE HAUNA WIFI");
-    showCupertinoDialog(
-      context: ctx,
-      builder: (BuildContext context) => _buildPopupDialog(context),
-    );
+
+    PaymentResponse data;
+
+    try {
+      Navigator.pop(ctx);
+      String fcmToken = "no";
+      final response = await http.post(
+        ("http://34.125.117.7:3000/" + "wallet/deposit"),
+        headers: {
+          "Accept": "application/json",
+          "content-type": "application/json",
+        },
+        body: jsonEncode(
+          {
+            "walletname": walletName,
+            "phonenumber": Constants.zerototwo(mobile),
+            "fcmtoken": fcmToken,
+            "amount": amount
+          },
+        ),
+      );
+      var myjson = json.decode(response.body);
+      print(myjson);
+      print("Mobile $mobile");
+      print("Amount $amountDue");
+      data = PaymentResponse.fromJson(myjson);
+      print(data.paymentCode);
+      if (data.description == "0") {
+        showCupertinoDialog(
+          context: ctx,
+          builder: (BuildContext context) => _buildPopupDialog(context),
+        );
+
+        print("Req Sent Well");
+      }
+    } catch (SocketException) {
+      print("msEE HAUNA WIFI");
+      showCupertinoDialog(
+        context: ctx,
+        builder: (BuildContext context) => _buildPopupDialog(context),
+      );
+    }
   }
-}
 }

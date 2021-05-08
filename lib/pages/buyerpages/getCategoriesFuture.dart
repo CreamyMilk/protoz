@@ -7,7 +7,7 @@ Future getLatestCategories() async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await get(
-      ("http://192.168.0.13:3000/" + "store/categories"),
+      ("http://34.125.117.7:3000/" + "store/categories"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
@@ -26,7 +26,7 @@ Future getProductsList() async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await post(
-      ("http://192.168.0.13:3000/" + "store/products"),
+      ("http://34.125.117.7:3000/" + "store/products"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
