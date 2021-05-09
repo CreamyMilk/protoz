@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
 import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:proto/constants.dart' as Constants;
 
 class ProductList extends StatelessWidget {
   @override
@@ -62,11 +62,11 @@ class ProductList extends StatelessWidget {
                         p: Product(
                       productID: item["productID"],
                       heroName: item["productID"].toString() + "i",
-                      name:item["productname"],
+                      name: item["productname"],
                       price: item["price"].toDouble(),
                       image: item["image"],
                       packingType: item["packingtype"],
-                      stock:item["stock"].toInt(),
+                      stock: item["stock"].toInt(),
                       description: item["productname"],
                     ));
                   });
@@ -100,7 +100,7 @@ class ProductListItem extends StatelessWidget {
                 Navigator.of(context).pushNamed("/pdetails");
               },
               child: Hero(
-                tag: p.productID.toString()+"hero",
+                tag: p.productID.toString() + "hero",
                 child: CachedNetworkImage(
                   imageUrl: p.image,
                   width: 150,

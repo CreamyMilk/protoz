@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
-
-import 'package:proto/constants.dart' as Constants;
+import 'package:proto/constants.dart';
 
 class AddProductFormProvider extends ChangeNotifier {
   TextEditingController descriptionController = TextEditingController();

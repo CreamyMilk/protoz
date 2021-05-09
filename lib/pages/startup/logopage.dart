@@ -4,7 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import "package:proto/constants.dart" as Constants;
+import 'package:proto/constants.dart';
 import 'package:proto/main.dart';
 import 'package:proto/pages/wallet/getTransactionsFuture.dart';
 

@@ -2,9 +2,9 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
+import 'package:proto/constants.dart';
 import 'package:proto/popups/qrErrorPopup.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:proto/constants.dart' as Constants;
 
 class QrCodeScannerIcon extends StatelessWidget {
   @override

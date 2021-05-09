@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:proto/constants.dart';
 import 'package:proto/providers/addproductProvider.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:provider/provider.dart';
-import 'package:proto/constants.dart' as Constants;
 
 class AddProductsPage extends StatefulWidget {
   @override
@@ -22,9 +22,9 @@ class _AddProductsPageState extends State<AddProductsPage> {
 
     c.forEach((t) {
       print(t);
-    temp.add(DropdownMenuItem<int>(
+      temp.add(DropdownMenuItem<int>(
         value: t["categoryid"],
-         child: Text(t["categoryname"]),
+        child: Text(t["categoryname"]),
       ));
     });
     super.initState();
@@ -96,7 +96,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                     hintText: "Catergory",
                     border: OutlineInputBorder(),
                   ),
-                  value:choosenCategory,
+                  value: choosenCategory,
                   onChanged: (value) {
                     hbox.categoryController.text = value.toString();
                     setState(() {
@@ -104,15 +104,15 @@ class _AddProductsPageState extends State<AddProductsPage> {
                     });
                   },
                 ),
-            //  const YMargin(15),
-            //  TextField(
-            //      controller: hbox.categoryController,
-            //      keyboardType: TextInputType.number,
-            //      decoration: InputDecoration(
-            //        labelText: "Category",
-            //        hintText: "Catergory",
-            //        border: OutlineInputBorder(),
-            //      )),
+                //  const YMargin(15),
+                //  TextField(
+                //      controller: hbox.categoryController,
+                //      keyboardType: TextInputType.number,
+                //      decoration: InputDecoration(
+                //        labelText: "Category",
+                //        hintText: "Catergory",
+                //        border: OutlineInputBorder(),
+                //      )),
                 const YMargin(15),
                 TextField(
                     keyboardType: TextInputType.text,

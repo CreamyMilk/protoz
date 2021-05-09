@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
+import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
-import 'package:proto/constants.dart' as Constants;
 
 Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
   var box = Hive.box(Constants.UserBoxName);

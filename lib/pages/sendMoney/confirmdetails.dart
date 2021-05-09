@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
+import 'package:proto/constants.dart';
 import 'package:proto/utils/sizedMargins.dart';
-import 'package:proto/constants.dart' as Constants;
 
 class VerifyPaymentCard extends StatelessWidget {
   const VerifyPaymentCard({
@@ -71,7 +71,6 @@ class VerifyPaymentCard extends StatelessWidget {
                                 color: Colors.black, size: 15),
                             onPressed: () {
                               Navigator.of(context).pop();
-
                             }),
                       ]),
                       SizedBox(height: 30),
@@ -141,14 +140,14 @@ class ConfirmPage extends StatelessWidget {
     @required this.fees,
   }) : super(key: key);
 
-  final int  amount;
+  final int amount;
   final String receiverPhone;
   final String receiverName;
   final int fees;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButtonLocation:FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AnimatedContainer(
         duration: Duration(seconds: 1),
         height: 50,
@@ -178,8 +177,8 @@ class ConfirmPage extends StatelessWidget {
       body: Center(
         child: LongPressDraggable(
             childWhenDragging: Container(),
-            feedback:  VerifyPaymentCard(
-                amount:( amount),
+            feedback: VerifyPaymentCard(
+                amount: (amount),
                 fees: fees,
                 receiverPhone: receiverPhone,
                 receiverName: receiverName),

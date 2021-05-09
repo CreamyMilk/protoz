@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:proto/constants.dart' as Constants;
+import 'package:proto/constants.dart';
 import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 
@@ -132,11 +132,11 @@ class ListTileNew extends StatelessWidget {
               ),
             ),
             SizedBox(width: 20),
-                Text(name,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 25.0)),
+            Text(name,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 25.0)),
             SizedBox(
               width: 10,
             ),

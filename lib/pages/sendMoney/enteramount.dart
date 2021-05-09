@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
-import 'package:proto/constants.dart' as Constants;
+import 'package:proto/constants.dart';
 import 'package:proto/pages/sendMoney/confirmdetails.dart';
 import 'package:proto/popups/errorPopup.dart';
 import 'package:proto/popups/unregisterdPopup.dart';

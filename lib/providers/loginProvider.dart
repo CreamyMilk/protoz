@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
-import 'package:proto/constants.dart' as Constants;
+import 'package:proto/constants.dart';
 import 'package:proto/popups/errorPopup.dart';
 
 class LoginFormProvider extends ChangeNotifier {

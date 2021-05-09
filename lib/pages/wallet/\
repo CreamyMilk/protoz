@@ -59,14 +59,14 @@ class _WalletsTabState extends State<WalletsTab> {
                   }
                   if (index < trans.length) {
                     var transaction = trans[index - 1];
-                 //   print(transaction);
+                    print(transaction); 
                     bool toMe = (transaction["to"] ==
                         box.get(Constants.PhoneNumberStore));
                     bool isPurchase = (transaction["typeid"] == 3);
                     return ListTile(
                       dense: true,
                       onTap: () {
-                        isPurchase ? showQRDialog(context,transaction["transactionid"]):null;
+                        isPurchase ? print("Showing Popup"):null;
                       },
                       leading: CircleAvatar(
                         child: Icon(
@@ -280,6 +280,8 @@ showQRDialog(BuildContext context,String token) => showDialog(
     builder: (BuildContext context) {
       return Dialog(
         elevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12.0))),
         child: Container(
           width: screenWidth(context, percent: 0.6),
           height: screenHeight(context, percent: 0.43),
@@ -288,18 +290,18 @@ showQRDialog(BuildContext context,String token) => showDialog(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                "🤌Sellers should Scan 🤳 \n to receive Funds Payment",
+                "Scan to Connect",
                 style: GoogleFonts.nunito(
                     color: Colors.grey[500],
                     fontSize: 20,
-                    ),
+                    fontWeight: FontWeight.w100),
               ),
               const YMargin(40),
               QrImage(
                 data:token,
                 padding: EdgeInsets.zero,
-                version: 5,
-                foregroundColor: Colors.orange,
+                version: QrVersions.auto,
+                foregroundColor: Colors.redAccent,
                 size: 180.0,
               ),
               const YMargin(20),

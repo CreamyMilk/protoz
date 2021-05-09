@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
-import 'package:proto/constants.dart' as Constants;
+import 'package:proto/constants.dart';
 import 'package:proto/popups/errorPopup.dart';
 import 'package:proto/popups/successfulSent.dart';
 import 'package:proto/utils/sizedMargins.dart';
@@ -141,6 +141,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
         ),
       );
       var myjson = json.decode(response.body);
+      print(myjson);
       if (myjson["status"] == 0) {
         setState(() {
           loading = false;

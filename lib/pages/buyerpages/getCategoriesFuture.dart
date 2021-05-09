@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:proto/constants.dart' as Constants;
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
+import 'package:proto/constants.dart';
 
 Future getLatestCategories() async {
   var box = Hive.box(Constants.UserBoxName);

@@ -4,7 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import "package:proto/constants.dart" as Constants;
+import 'package:proto/constants.dart';
 import "package:qr_flutter/qr_flutter.dart";
 
 class ProfilePage extends StatelessWidget {

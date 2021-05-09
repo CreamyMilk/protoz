@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:proto/constants.dart' as Constants;
 //import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
+import 'package:proto/constants.dart';
 
 Future getLatestTransaction() async {
   var box = Hive.box(Constants.UserBoxName);

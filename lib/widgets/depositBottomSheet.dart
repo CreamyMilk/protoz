@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
-import 'package:proto/constants.dart' as Constants;
+import 'package:proto/constants.dart';
 import 'package:proto/models/paymentResponseModel.dart';
 import 'package:proto/popups/registrationPopup.dart';
 
