@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/material.dart';
@@ -59,14 +61,17 @@ class _WalletsTabState extends State<WalletsTab> {
                   }
                   if (index < trans.length) {
                     var transaction = trans[index - 1];
-                 //   print(transaction);
+                    //   print(transaction);
                     bool toMe = (transaction["to"] ==
                         box.get(Constants.PhoneNumberStore));
                     bool isPurchase = (transaction["typeid"] == 3);
                     return ListTile(
                       dense: true,
                       onTap: () {
-                        isPurchase ? showQRDialog(context,transaction["transactionid"]):null;
+                        isPurchase
+                            ? showQRDialog(
+                                context, transaction["transactionid"])
+                            : print("This is something else");
                       },
                       leading: CircleAvatar(
                         child: Icon(
@@ -82,7 +87,7 @@ class _WalletsTabState extends State<WalletsTab> {
                             isPurchase ? Colors.orange[50] : Colors.orange[50],
                       ),
                       // heros: index,
-                       
+
                       title: Text(
                           "${toMe ? transaction["from"] : transaction["fromName"]}"),
                       subtitle: Text("${transaction["transactionid"]}"),
@@ -251,9 +256,9 @@ class WalletsAppBar extends StatelessWidget {
                             valueListenable:
                                 Hive.box(Constants.UserBoxName).listenable(),
                             builder: (BuildContext context, box, Widget child) {
-                                  return Text(
-                                      "Account :${box.get(Constants.WalletNameStore, defaultValue: "00").toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]} ')}",
-                                  textScaleFactor: 1,
+                              return Text(
+                                "Account :${box.get(Constants.WalletNameStore, defaultValue: "00").toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]} ')}",
+                                textScaleFactor: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                     fontSize: 10,
@@ -274,36 +279,46 @@ class WalletsAppBar extends StatelessWidget {
   }
 }
 
-
-showQRDialog(BuildContext context,String token) => showDialog(
+showQRDialog(BuildContext context, String token) => showCupertinoDialog(
     context: context,
     builder: (BuildContext context) {
-      return Dialog(
-        elevation: 0,
-        child: Container(
-          width: screenWidth(context, percent: 0.6),
-          height: screenHeight(context, percent: 0.43),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                "🤌Sellers should Scan 🤳 \n to receive Funds Payment",
-                style: GoogleFonts.nunito(
+      return BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: AlertDialog(
+  actions:[OutlinedButton(
+      onPressed:(){
+      Navigator.of(context).pop();
+      },
+      child:Text("CLOSE",style:TextStyle(color:Colors.red)))],
+          elevation: 0,
+    title: Container(
+            width: screenWidth(context, percent: 0.6),
+            height: screenHeight(context, percent: 0.43),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  "🤌Sellers should Scan 🤳 \n to receive Funds Payment",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.nunito(
                     color: Colors.grey[500],
                     fontSize: 20,
-                    ),
-              ),
-              const YMargin(40),
-              QrImage(
-                data:token,
-                padding: EdgeInsets.zero,
-                version: 5,
-                foregroundColor: Colors.orange,
-                size: 180.0,
-              ),
-              const YMargin(20),
-            ],
+                  ),
+                ),
+                const YMargin(40),
+                QrImage(
+                  data: token,
+                  padding: EdgeInsets.zero,
+                  version: 5,
+                  foregroundColor: Colors.orange,
+                  size: 180.0,
+                ),
+                const YMargin(12),
+                Text(token),
+               
+              ],
+            ),
           ),
         ),
       );

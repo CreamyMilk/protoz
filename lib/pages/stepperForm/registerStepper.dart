@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
+import 'package:proto/constants.dart';
 import 'package:proto/popups/errorPopup.dart';
 import 'package:proto/popups/registrationPopup.dart';
 import 'package:proto/providers/stepperFormProvider.dart';
@@ -816,7 +817,7 @@ Future zendPayment(
   String dob = formStore.getBirth();
   try {
     final response = await post(
-      ("http://34.125.117.7:3000/" + "treg"),
+      (Constants.API_BASE + "treg"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",

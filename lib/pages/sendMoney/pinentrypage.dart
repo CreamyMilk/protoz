@@ -125,7 +125,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
     var box = Hive.box(Constants.UserBoxName);
     try {
       final response = await post(
-        ("http://34.125.117.7:3000/" + "wallet/sendmoney"),
+        (Constants.API_BASE + "wallet/sendmoney"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",

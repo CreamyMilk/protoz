@@ -1,5 +1,5 @@
 class Constants {
-  static const String First = "Joshn";
+  static const String API_BASE = "http://34.125.117.7:3000/";
   static const String UserBoxName = "user";
   static const String IsLoggedInStore = "isloggedinbool";
 

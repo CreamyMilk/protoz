@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
+
 class Product {
   final int productID;
   final String heroName;
   final double price;
+  final int categoryID;
   final String image;
   final String packingType;
   final String name;
@@ -9,6 +12,7 @@ class Product {
   final int stock;
   const Product(
       {this.productID,
+      @required this.categoryID,
       this.heroName,
       this.price,
       this.image,

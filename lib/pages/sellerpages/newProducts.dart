@@ -2,11 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
+import 'package:proto/models/product.dart';
 import 'package:proto/providers/addproductProvider.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:provider/provider.dart';
 
 class AddProductsPage extends StatefulWidget {
+  final Product initalProduct;
+
+  const AddProductsPage({Key key, this.initalProduct}) : super(key: key);
   @override
   _AddProductsPageState createState() => _AddProductsPageState();
 }
@@ -15,7 +19,6 @@ class _AddProductsPageState extends State<AddProductsPage> {
   dynamic box = Hive.box(Constants.UserBoxName);
   List<DropdownMenuItem<int>> temp = [];
 
-  int choosenCategory;
   @override
   void initState() {
     dynamic c = box.get(Constants.ProductCategoriesStore).toList();
@@ -27,13 +30,16 @@ class _AddProductsPageState extends State<AddProductsPage> {
         child: Text(t["categoryname"]),
       ));
     });
-    super.initState();
+   super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final hbox = Provider.of<AddProductFormProvider>(context);
-    return Scaffold(
+   final hbox = Provider.of<AddProductFormProvider>(context);
+  if (widget.initalProduct != null) {
+      hbox.initalizeEditFields(widget.initalProduct);
+    }
+   return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: hbox.loading
@@ -78,7 +84,8 @@ class _AddProductsPageState extends State<AddProductsPage> {
             ),
           ),
         ],
-        title: Text("New Product Entry", style: TextStyle(color: Colors.white)),
+        title: Text(hbox.isEdit ? "Edit Product" : "New Product Entry",
+            style: TextStyle(color: Colors.white)),
       ),
       body: Container(
         padding: const EdgeInsets.all(8.0),
@@ -96,12 +103,10 @@ class _AddProductsPageState extends State<AddProductsPage> {
                     hintText: "Catergory",
                     border: OutlineInputBorder(),
                   ),
-                  value: choosenCategory,
+                  value: hbox.categoryID,
                   onChanged: (value) {
                     hbox.categoryController.text = value.toString();
-                    setState(() {
-                      choosenCategory = value;
-                    });
+                    hbox.setCategory(value);
                   },
                 ),
                 //  const YMargin(15),

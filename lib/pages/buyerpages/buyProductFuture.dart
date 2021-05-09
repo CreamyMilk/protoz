@@ -9,7 +9,7 @@ Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await post(
-      ("http://34.125.117.7:3000/" + "invoice/create"),
+      (Constants.API_BASE + "invoice/create"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",

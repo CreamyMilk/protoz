@@ -97,7 +97,7 @@ class ProductListItem extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pushNamed("/pdetails");
+                Navigator.pushNamed(context, "/pdetails", arguments: p);
               },
               child: Hero(
                 tag: p.productID.toString() + "hero",

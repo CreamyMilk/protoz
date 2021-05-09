@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:proto/models/product.dart';
 import 'package:proto/pages/sellerpages/getProductsFutures.dart';
 
 const _startColumnWidth = 45.0;
@@ -71,14 +72,13 @@ class _InventoryListState extends State<InventoryList> {
                             var item = projectSnap.data[index];
                             return ShoppingCartRow(
                               product: Product(
-                                imageURL: item["image"],
-                                category: item["categoryID"],
-                                id: item["productID"],
-                                isFeatured: true,
+                                image: item["image"],
+                                categoryID: item["categoryID"],
+                                productID: item["productID"],
+                                packingType: item["packingtype"],
                                 description: item["description"],
-                                name: (_) {
-                                  return item["productname"];
-                                },
+                                name: item["productname"],
+                                stock: item["stock"],
                                 price: item["price"].toDouble(),
                               ),
                               quantity: item["stock"],
@@ -208,7 +208,8 @@ class ShoppingCartRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 5),
       child: Row(
-        key: ValueKey<int>(product.id), //Changed Types for better parsing
+        key:
+            ValueKey<int>(product.productID), //Changed Types for better parsing
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -220,7 +221,7 @@ class ShoppingCartRow extends StatelessWidget {
                 size: 15,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed("/addProduct");
+                Navigator.pushNamed(context, "/addProduct", arguments: product);
               },
             ),
           ),
@@ -237,7 +238,7 @@ class ShoppingCartRow extends StatelessWidget {
                           width: 70,
                           height: 70,
                           child: CachedNetworkImage(
-                            imageUrl: product.imageURL,
+                            imageUrl: product.image,
                             height: 70,
                             width: 70,
                             placeholder: (context, String p) {
@@ -273,7 +274,7 @@ class ShoppingCartRow extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              product.name(context),
+                              product.name,
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
                             ),
@@ -303,36 +304,4 @@ class ShoppingCartRow extends StatelessWidget {
       ),
     );
   }
-}
-
-class Product {
-  const Product({
-    @required this.category,
-    @required this.id,
-    @required this.imageURL,
-    @required this.isFeatured,
-    @required this.name,
-    @required this.price,
-    @required this.description,
-    this.assetAspectRatio = 1,
-  })  : assert(category != null),
-        assert(id != null),
-        assert(imageURL != null),
-        assert(isFeatured != null),
-        assert(name != null),
-        assert(price != null),
-        assert(assetAspectRatio != null);
-
-  final int category;
-  final int id;
-  final String imageURL;
-  final String description;
-  final bool isFeatured;
-  final double assetAspectRatio;
-
-  // A function taking a BuildContext as input and
-  // returns the internationalized name of the product.
-  final String Function(BuildContext) name;
-
-  final double price;
 }

@@ -245,7 +245,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
       Navigator.pop(ctx);
       String fcmToken = "no";
       final response = await http.post(
-        ("http://34.125.117.7:3000/" + "wallet/deposit"),
+        (Constants.API_BASE + "wallet/deposit"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",

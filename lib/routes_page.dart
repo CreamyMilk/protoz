@@ -53,7 +53,9 @@ class RouteGenerator {
                     systemNavigationBarColor: Colors.white),
                 child: ChangeNotifierProvider<AddProductFormProvider>(
                     create: (context) => AddProductFormProvider(),
-                    child: AddProductsPage())));
+                    child: AddProductsPage(
+                      initalProduct: args,
+                    ))));
       case '/home':
         return CupertinoPageRoute(
             builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(

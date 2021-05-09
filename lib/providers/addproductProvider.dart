@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:proto/constants.dart';
+import 'package:proto/models/product.dart';
 
 class AddProductFormProvider extends ChangeNotifier {
   TextEditingController descriptionController = TextEditingController();
@@ -15,9 +16,17 @@ class AddProductFormProvider extends ChangeNotifier {
   TextEditingController priceController = TextEditingController();
   GlobalKey<FormState> productFormKey = GlobalKey<FormState>();
 
+  int categoryID;
+
   bool showError = false;
   bool loading = false;
-
+  bool isEdit = false;
+ Product globalProduct;
+ 
+ void setCategory(int value){
+  categoryID = value;
+  notifyListeners();
+ }
   void clearAll() {
     descriptionController.clear();
     productNameController.clear();
@@ -26,6 +35,19 @@ class AddProductFormProvider extends ChangeNotifier {
     imageController.clear();
     stockController.clear();
     priceController.clear();
+    categoryID =null;
+  }
+
+  void initalizeEditFields(Product p) {
+    globalProduct = p;
+    isEdit = true;
+    descriptionController.text = p.description;
+    productNameController.text = p.name;
+    categoryID = p.categoryID;
+    packingController.text = p.packingType;
+    imageController.text = p.image;
+    stockController.text = p.stock.toString();
+    priceController.text = p.price.toString();
   }
 
   Future sendAddProductRequest(BuildContext ctx) async {
@@ -33,8 +55,8 @@ class AddProductFormProvider extends ChangeNotifier {
     loading = true;
     notifyListeners();
     try {
-      final response = await post(
-        ("http://34.125.117.7:3000/" + "store/add"),
+      final response = await (isEdit ? put : post)(
+        (Constants.API_BASE + (isEdit ? "store/update" : "store/add")),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",
@@ -42,7 +64,8 @@ class AddProductFormProvider extends ChangeNotifier {
         body: jsonEncode(
           //ensure that the user has bothe the socketID and the USER ID
           {
-            "categoryID": int.parse(categoryController.text),
+            "categoryID": categoryID,
+            "productID":isEdit ? globalProduct.productID:null,
             "ownerID": box.get(Constants.UserIDStore),
             "productname": productNameController.text,
             "image": imageController.text,
@@ -57,8 +80,8 @@ class AddProductFormProvider extends ChangeNotifier {
       var myjson = json.decode(response.body);
       print(myjson);
       if (myjson["status"] == 0) {
+        print(myjson);
         loading = false;
-        notifyListeners();
         clearAll();
       } else {
         loading = false;
