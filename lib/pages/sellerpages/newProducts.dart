@@ -148,8 +148,9 @@ class _AddProductsPageState extends State<AddProductsPage> {
                     )),
                 const YMargin(15),
                 TextField(
+                     keyboardType:
+                        TextInputType.numberWithOptions(decimal: false),
                     controller: hbox.stockController,
-                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: "Stock",
                       hintText: "Stock",
@@ -159,7 +160,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                 TextField(
                     controller: hbox.priceController,
                     keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
+                        TextInputType.numberWithOptions(decimal: false),
                     decoration: InputDecoration(
                       labelText: "Price",
                       hintText: "Price",

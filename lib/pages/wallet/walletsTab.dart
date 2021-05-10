@@ -44,8 +44,7 @@ class _WalletsTabState extends State<WalletsTab> {
           ValueListenableBuilder(
             valueListenable: Hive.box(Constants.UserBoxName).listenable(),
             builder: (BuildContext context, box, Widget child) {
-              dynamic trans = box.get(Constants.TransactionsStore);
-
+              List<dynamic> trans = box.get(Constants.TransactionsStore);
               return SliverList(
                 delegate:
                     SliverChildBuilderDelegate((BuildContext ctx, int index) {
@@ -59,8 +58,10 @@ class _WalletsTabState extends State<WalletsTab> {
                       ),
                     );
                   }
+
+                  index -= 1;
                   if (index < trans.length) {
-                    var transaction = trans[index - 1];
+                    var transaction = trans[index];
                     //   print(transaction);
                     bool toMe = (transaction["to"] ==
                         box.get(Constants.PhoneNumberStore));
@@ -151,7 +152,14 @@ class WalletsAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               color: Colors.black26,
             ),
-            child: Text("JK"),
+            child: ValueListenableBuilder(
+              valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+              builder: (BuildContext context, box, Widget child) {
+                return Text(
+                  "${box.get(Constants.InitalsStore, defaultValue: "P")}",
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -285,13 +293,15 @@ showQRDialog(BuildContext context, String token) => showCupertinoDialog(
       return BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: AlertDialog(
-  actions:[OutlinedButton(
-      onPressed:(){
-      Navigator.of(context).pop();
-      },
-      child:Text("CLOSE",style:TextStyle(color:Colors.red)))],
+          actions: [
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("CLOSE", style: TextStyle(color: Colors.red)))
+          ],
           elevation: 0,
-    title: Container(
+          title: Container(
             width: screenWidth(context, percent: 0.6),
             height: screenHeight(context, percent: 0.43),
             child: Column(
@@ -316,7 +326,6 @@ showQRDialog(BuildContext context, String token) => showCupertinoDialog(
                 ),
                 const YMargin(12),
                 Text(token),
-               
               ],
             ),
           ),

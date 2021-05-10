@@ -60,6 +60,7 @@ class ProductList extends StatelessWidget {
                     print(item);
                     return ProductListItem(
                         p: Product(
+                      categoryID: item["categoryid"], //Confirm
                       productID: item["productID"],
                       heroName: item["productID"].toString() + "i",
                       name: item["productname"],

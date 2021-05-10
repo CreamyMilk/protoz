@@ -80,11 +80,12 @@ class ProfilePage extends StatelessWidget {
   void logout(BuildContext ctx) {
     Box<dynamic> box = Hive.box(Constants.UserBoxName);
     box.put(Constants.IsLoggedInStore, false);
+    box.put(Constants.TransactionsStore, []);
+    box.put(Constants.BalanceStore, 0);
     if (Platform.isAndroid) {
       FirebaseMessaging.instance.unsubscribeFromTopic(
           box.get(Constants.NotifcationTopicStore, defaultValue: "."));
     }
-
     Navigator.of(ctx).pushReplacementNamed("/startup");
   }
 }

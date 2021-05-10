@@ -73,7 +73,7 @@ class AddProductFormProvider extends ChangeNotifier {
             "description": descriptionController.text,
             "packingtype": packingController.text,
             "stock": int.parse(stockController.text),
-            "price": double.parse(priceController.text)
+            "price": int.parse(priceController.text)
           },
         ),
       );

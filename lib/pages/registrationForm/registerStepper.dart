@@ -1,14 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
-import 'package:proto/constants.dart';
-import 'package:proto/popups/errorPopup.dart';
-import 'package:proto/popups/registrationPopup.dart';
 import 'package:proto/providers/stepperFormProvider.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:provider/provider.dart';
@@ -781,91 +775,22 @@ class DoubleCheckPage extends StatelessWidget {
               ],
             )),
         const YMargin(70),
-        ButtonBasis(
-          isLastPage: true,
-          buttonFuntion: () {
-            fstore.finalSubmit();
-            zendPayment(fstore.phoneNumber, "100", fstore.phoneNumber, context);
-          },
-        ),
+        fstore.isLoading
+            ?Center(child: CircularProgressIndicator())
+            : ButtonBasis(
+                isLastPage: true,
+                buttonFuntion: () {
+                  fstore.finalSubmit();
+                  fstore.zendPayment(context);
+                },
+              ),
       ],
     );
   }
 }
 
-Future zendPayment(
-    String mobile, String amountDue, String accName, BuildContext ctx) async {
-  Widget _buildPopupDialog(BuildContext context) {
-    return RegistrationPopUp();
-  }
-
-  String zerototwo(String phone) {
-    if (phone.length > 0) {
-      if (phone[0] == "0") {
-        return "254${phone.substring(1)}";
-      } else if (phone[0] == "+") {
-        return phone.substring(1);
-      } else {
-        return phone;
-      }
-    } else {
-      return "0000000000";
-    }
-  }
-
-  var formStore = Provider.of<KraFormProvider>(ctx, listen: false);
-  String dob = formStore.getBirth();
-  try {
-    final response = await post(
-      (Constants.API_BASE + "treg"),
-      headers: {
-        "Accept": "application/json",
-        "content-type": "application/json",
-      },
-      body: jsonEncode(
-        //ensure that the user has bothe the socketID and the USER ID
-        {
-          "fname": formStore.fnController.text,
-          "mname": formStore.mController.text,
-          "lname": formStore.lnController.text,
-          "idnumber": formStore.idController.text,
-          "photourl": "https://google.com",
-          "phone": zerototwo(formStore.phController.text),
-          "password": formStore.passwordController.text,
-          "email": "me@mailer.com",
-          "fcmtoken": "FCMTOKENSAMPLE",
-          "informaladdress": "Machakos",
-          "xcords": "$dob",
-          "ycords": "0.000010",
-          "role": formStore.role
-        },
-      ),
-    );
-    print("$accName");
-    var myjson = json.decode(response.body);
-    if (myjson["status"] == 0) {
-      showCupertinoDialog(
-        context: ctx,
-        builder: (BuildContext context) => _buildPopupDialog(context),
-      );
-    } else {
-      showCupertinoDialog(
-        context: ctx,
-        builder: (BuildContext context) => CannontReigsterPopUp(
-          message: myjson["message"],
-        ),
-      );
-    }
-  } catch (SocketException) {
-    print("msEE HAUNA WIFI");
-    showCupertinoDialog(
-      context: ctx,
-      builder: (BuildContext context) => ErrorPopUP(),
-    );
-  }
-}
-
 class ButtonBasis extends StatelessWidget {
+  // ignore: deprecated_member_use
   final void Function() buttonFuntion;
   final bool isLastPage;
   const ButtonBasis({
@@ -894,7 +819,6 @@ class ButtonBasis extends StatelessWidget {
                       blurRadius: 30)
                 ],
               ),
-              // ignore: deprecated_member_use
               child: MaterialButton(
                 elevation: 0,
                 onPressed: buttonFuntion,

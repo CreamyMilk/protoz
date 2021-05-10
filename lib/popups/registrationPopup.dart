@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RegistrationPopUp extends StatelessWidget {
-  const RegistrationPopUp ({
+  const RegistrationPopUp({
     Key key,
   }) : super(key: key);
 
@@ -14,13 +14,12 @@ class RegistrationPopUp extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text("Kindly Enter your PIN to authorize Payment"),
-          
         ],
       ),
       actions: <Widget>[
         MaterialButton(
           onPressed: () {
-            Navigator.of(context).pushNamed("/home");
+            Navigator.of(context).pushNamed("/login");
           },
           textColor: Theme.of(context).primaryColor,
           child: const Text('Payment Complete'),
