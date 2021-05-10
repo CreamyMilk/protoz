@@ -19,10 +19,11 @@ class _AddProductsPageState extends State<AddProductsPage> {
   dynamic box = Hive.box(Constants.UserBoxName);
   List<DropdownMenuItem<int>> temp = [];
 
+  bool isLoaded=false;
   @override
   void initState() {
     dynamic c = box.get(Constants.ProductCategoriesStore).toList();
-
+    isLoaded = false;
     c.forEach((t) {
       print(t);
       temp.add(DropdownMenuItem<int>(
@@ -36,8 +37,9 @@ class _AddProductsPageState extends State<AddProductsPage> {
   @override
   Widget build(BuildContext context) {
    final hbox = Provider.of<AddProductFormProvider>(context);
-  if (widget.initalProduct != null) {
+  if (widget.initalProduct != null&& !isLoaded) {
       hbox.initalizeEditFields(widget.initalProduct);
+      isLoaded = true;
     }
    return Scaffold(
       backgroundColor: Colors.white,
