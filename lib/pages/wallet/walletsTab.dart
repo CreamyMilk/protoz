@@ -21,6 +21,7 @@ class _WalletsTabState extends State<WalletsTab> {
   @override
   void initState() {
     getLatestBalance();
+    getCurrentOrders();
     getLatestTransaction();
     super.initState();
   }

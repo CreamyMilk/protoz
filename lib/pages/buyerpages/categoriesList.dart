@@ -15,6 +15,7 @@ class _ListTilezzState extends State<ListTilezz> {
   @override
   void initState() {
     getLatestCategories();
+
     super.initState();
   }
 

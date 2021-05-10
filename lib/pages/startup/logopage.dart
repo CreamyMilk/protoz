@@ -22,6 +22,7 @@ class _LogoPageState extends State<LogoPage> {
       FirebaseMessaging.onMessage.listen((event) {
         //Opened Nofication when app is active
         getLatestBalance();
+        getCurrentOrders();
         getLatestTransaction();
         showCupertinoDialog(
             context: navigatorKey.currentContext,
@@ -41,10 +42,12 @@ class _LogoPageState extends State<LogoPage> {
           .then((RemoteMessage message) {
         //When the user Clicked the notifcation and the app was completly closed
         getLatestBalance();
+        getCurrentOrders();
         getLatestTransaction();
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
         getLatestBalance();
+        getCurrentOrders();
         getLatestTransaction();
       });
       // FirebaseMessaging.onBackgroundMessage((message) => {});
