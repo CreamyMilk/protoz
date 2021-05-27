@@ -34,13 +34,6 @@ class _LoginOrSignupState extends State<LoginOrSignup>
         padding: const EdgeInsets.all(24),
         child: Stack(
           children: [
-            Container(
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.only(top: 30),
-                child: Text(
-                  "AgroCRM",
-                  style: TextStyle(color: Colors.black, height: 15),
-                )),
             WadsLayout(),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,6 +43,7 @@ class _LoginOrSignupState extends State<LoginOrSignup>
                   'Farming for good & wealth.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: 'Circular',
                     fontWeight: FontWeight.w600,
                     color: Colors.black87,
                     fontSize: 35,
@@ -60,6 +54,7 @@ class _LoginOrSignupState extends State<LoginOrSignup>
                   'Save and invest with AgroBank, the only farming app you really need.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: 'Circular',
                     fontWeight: FontWeight.w400,
                     color: Colors.black87.withOpacity(0.8),
                     fontSize: 13,
@@ -74,7 +69,7 @@ class _LoginOrSignupState extends State<LoginOrSignup>
                   Flexible(
                     child: CowryOutlinedButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/home');
+                        Navigator.of(context).pushNamed('/login');
                       },
                       height: 53,
                       margin: EdgeInsets.zero,
@@ -83,11 +78,11 @@ class _LoginOrSignupState extends State<LoginOrSignup>
                       title: 'LOG IN',
                     ),
                   ),
-                  const YMargin(20),
+                  const XMargin(20),
                   Flexible(
                     child: CowryButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/register');
+                        Navigator.of(context).pushNamed('/kraform');
                       },
                       height: 53,
                       margin: EdgeInsets.zero,
