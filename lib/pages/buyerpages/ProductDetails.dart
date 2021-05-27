@@ -31,7 +31,8 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
-    String totalString = "${totalPrice.toStringAsFixed(2).replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) =>     '${m[1]},')}";
+    String totalString =
+        "${totalPrice.toStringAsFixed(2).replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}";
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton.extended(
@@ -54,7 +55,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
                 Text(
-"Ksh. $totalString",
+                  "Ksh. $totalString",
                   style: TextStyle(fontSize: 22, color: Colors.black),
                 ),
               ],

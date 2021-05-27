@@ -16,7 +16,7 @@ import 'package:proto/pages/services/blVetsCalls.dart';
 import 'package:proto/pages/buyerpages/categoriesList.dart';
 import 'package:proto/pages/buyerpages/ProductDetails.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
-import 'package:proto/pages/startup/homePage.dart';
+import 'package:proto/pages/startup/loginOrSignup.dart';
 import 'package:proto/pages/transactionPage.dart';
 import 'package:proto/providers/addproductProvider.dart';
 import 'package:proto/providers/loginProvider.dart';
@@ -38,7 +38,7 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (ctx) => LogoPage());
       case '/startup':
-        return MaterialPageRoute(builder: (ctx) => HomePage());
+        return MaterialPageRoute(builder: (ctx) => LoginOrSignup());
       case '/login':
         return MaterialPageRoute(
             builder: (ctx) => ChangeNotifierProvider<LoginFormProvider>(
