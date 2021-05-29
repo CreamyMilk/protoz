@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
+import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 
 class ListTilezz extends StatefulWidget {
@@ -15,7 +16,6 @@ class _ListTilezzState extends State<ListTilezz> {
   @override
   void initState() {
     getLatestCategories();
-
     super.initState();
   }
 
@@ -49,7 +49,7 @@ class _ListTilezzState extends State<ListTilezz> {
       ),
       body: SafeArea(
         child: Container(
-          height: 400,
+          height: screenHeight(context, percent: 0.9),
           child: ValueListenableBuilder(
               valueListenable: Hive.box(Constants.UserBoxName).listenable(),
               builder: (BuildContext context, box, child) {

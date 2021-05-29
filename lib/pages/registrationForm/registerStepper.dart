@@ -358,6 +358,27 @@ class NumberForm extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            child: TextFormField(
+              initialValue: fstore.middleName,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Required";
+                } else {
+                  return null;
+                }
+              },
+              decoration: const InputDecoration(
+                focusColor: Colors.teal,
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal)),
+                labelText: 'ID Number',
+              ),
+              maxLines: 1,
+            ),
+          ),
+          SizedBox(height: 10),
           Spacer(),
           ButtonBasis(
             buttonFuntion: () {
@@ -410,6 +431,69 @@ class IdentificationForm extends StatelessWidget {
                 labelText: 'ID Number',
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal)),
+              ),
+              maxLines: 1,
+            ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            child: TextFormField(
+              controller: fstore.storeNameController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Required";
+                } else {
+                  return null;
+                }
+              },
+              decoration: const InputDecoration(
+                focusColor: Colors.teal,
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal)),
+                labelText: 'Business Name',
+              ),
+              maxLines: 1,
+            ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            child: TextFormField(
+              controller: fstore.emailController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Required";
+                } else {
+                  return null;
+                }
+              },
+              decoration: const InputDecoration(
+                focusColor: Colors.teal,
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal)),
+                labelText: 'email',
+              ),
+              maxLines: 1,
+            ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            child: TextFormField(
+              controller: fstore.storeNameController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Required";
+                } else {
+                  return null;
+                }
+              },
+              decoration: const InputDecoration(
+                focusColor: Colors.teal,
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal)),
+                labelText: 'Alternative Phone',
               ),
               maxLines: 1,
             ),
@@ -520,10 +604,11 @@ class _RoleFormState extends State<RoleForm> {
   List<String> options = [
     "Farmer ",
     "Agro input supplier",
-    "Farm Products Consumer",
     "Logistics",
+    "Aggregators",
+    "Machinery",
     "Market Information",
-    "Consultany Services"
+    "Advisory Services"
   ];
   String _role;
 
@@ -578,6 +663,48 @@ class _RoleFormState extends State<RoleForm> {
                 });
               },
             ),
+          ),
+        ),
+        SizedBox(height: 10),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            keyboardType: TextInputType.text,
+            controller: fstore.countyController,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              labelText: 'County',
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+            ),
+            maxLines: 1,
+          ),
+        ),
+        SizedBox(height: 10),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            keyboardType: TextInputType.text,
+            controller: fstore.locationController,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              labelText: 'Physical Address',
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+            ),
+            maxLines: 1,
           ),
         ),
         Spacer(),
@@ -776,7 +903,7 @@ class DoubleCheckPage extends StatelessWidget {
             )),
         const YMargin(70),
         fstore.isLoading
-            ?Center(child: CircularProgressIndicator())
+            ? Center(child: CircularProgressIndicator())
             : ButtonBasis(
                 isLastPage: true,
                 buttonFuntion: () {

@@ -19,7 +19,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
   dynamic box = Hive.box(Constants.UserBoxName);
   List<DropdownMenuItem<int>> temp = [];
 
-  bool isLoaded=false;
+  bool isLoaded = false;
   @override
   void initState() {
     dynamic c = box.get(Constants.ProductCategoriesStore).toList();
@@ -31,17 +31,17 @@ class _AddProductsPageState extends State<AddProductsPage> {
         child: Text(t["categoryname"]),
       ));
     });
-   super.initState();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-   final hbox = Provider.of<AddProductFormProvider>(context);
-  if (widget.initalProduct != null&& !isLoaded) {
+    final hbox = Provider.of<AddProductFormProvider>(context);
+    if (widget.initalProduct != null && !isLoaded) {
       hbox.initalizeEditFields(widget.initalProduct);
       isLoaded = true;
     }
-   return Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: hbox.loading
@@ -111,15 +111,6 @@ class _AddProductsPageState extends State<AddProductsPage> {
                     hbox.setCategory(value);
                   },
                 ),
-                //  const YMargin(15),
-                //  TextField(
-                //      controller: hbox.categoryController,
-                //      keyboardType: TextInputType.number,
-                //      decoration: InputDecoration(
-                //        labelText: "Category",
-                //        hintText: "Catergory",
-                //        border: OutlineInputBorder(),
-                //      )),
                 const YMargin(15),
                 TextField(
                     keyboardType: TextInputType.text,
@@ -150,7 +141,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                     )),
                 const YMargin(15),
                 TextField(
-                     keyboardType:
+                    keyboardType:
                         TextInputType.numberWithOptions(decimal: false),
                     controller: hbox.stockController,
                     decoration: InputDecoration(
@@ -178,6 +169,28 @@ class _AddProductsPageState extends State<AddProductsPage> {
                       border: OutlineInputBorder(),
                     )),
                 const YMargin(80),
+                hbox.loading
+                    ? CircularProgressIndicator()
+                    : FloatingActionButton.extended(
+                        backgroundColor: Colors.lightGreen,
+                        shape: RoundedRectangleBorder(),
+                        onPressed: () {
+                          hbox.sendAddProductRequest(context);
+                        },
+                        label: Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Sumbit",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
               ],
             ),
           ),

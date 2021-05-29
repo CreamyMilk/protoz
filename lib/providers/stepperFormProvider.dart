@@ -31,6 +31,11 @@ class KraFormProvider extends ChangeNotifier {
   GlobalKey<FormState> phoneKey = GlobalKey<FormState>();
   GlobalKey<FormState> kraKey = GlobalKey<FormState>();
 
+  TextEditingController locationController = TextEditingController();
+  TextEditingController countyController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController storeNameController = TextEditingController();
+  TextEditingController altPhoneNameController = TextEditingController();
   int activePage = 0;
   bool isLoading = false;
 

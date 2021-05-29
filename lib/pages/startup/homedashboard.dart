@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
+import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
 import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/pages/wallet/getTransactionsFuture.dart';
 import 'package:proto/widgets/awesomeFab.dart';
@@ -19,6 +20,7 @@ class _WalletsPageBaseState extends State<WalletsPageBase> {
   @override
   void initState() {
     getLatestBalance();
+    getLatestCategories();
     getLatestTransaction();
     getCurrentOrders();
     super.initState();

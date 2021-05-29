@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       title: appTitle,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        visualDensity: VisualDensity.compact,
         textTheme: GoogleFonts.nunitoTextTheme(
           Theme.of(context).textTheme,
         ),
