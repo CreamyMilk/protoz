@@ -184,19 +184,19 @@ class BirthForm extends StatelessWidget {
                     )
                   ],
                 ),
-              ));
+              ),);
     }
 
     return Form(
       key: hbox.birthKey,
       child: Column(children: [
-        SizedBox(height: 30),
+        const YMargin( 30),
         Text("Whats is your date of birth?",
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
-        SizedBox(height: 15),
+        const YMargin( 15),
         Text("Just as it appears on your National ID",
             style: TextStyle(fontSize: 12, color: Colors.grey)),
-        SizedBox(height: 50),
+        const YMargin( 50),
         CupertinoButton(
           child: Text("From Calender"),
           onPressed: () => _showDatePicker(context),
@@ -290,19 +290,19 @@ class NumberForm extends StatelessWidget {
       key: fstore.phoneKey,
       child: Column(
         children: [
-          SizedBox(height: 30),
+          const YMargin(30),
           Text("Ok $name !",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
                   color: Colors.teal[400])),
-          SizedBox(height: 15),
+          const YMargin( 15),
           Text("Whats is your Phone Number ?",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-          SizedBox(height: 15),
+          const YMargin( 15),
           Text("Recommeded to use Safaricom number",
               style: TextStyle(fontSize: 12, color: Colors.grey)),
-          SizedBox(height: 50),
+          const YMargin( 50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: Row(
@@ -324,7 +324,7 @@ class NumberForm extends StatelessWidget {
                     },
                     decoration: const InputDecoration(
                       counterText: "",
-                      labelText: 'Country',
+                      labelText: 'Country Code',
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.teal)),
                     ),
@@ -358,27 +358,7 @@ class NumberForm extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(left: 24.0, right: 24.0),
-            child: TextFormField(
-              initialValue: fstore.middleName,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "Required";
-                } else {
-                  return null;
-                }
-              },
-              decoration: const InputDecoration(
-                focusColor: Colors.teal,
-                focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.teal)),
-                labelText: 'ID Number',
-              ),
-              maxLines: 1,
-            ),
-          ),
-          SizedBox(height: 10),
+          const YMargin(10),
           Spacer(),
           ButtonBasis(
             buttonFuntion: () {
@@ -403,18 +383,18 @@ class IdentificationForm extends StatelessWidget {
       key: fstore.idKey,
       child: Column(
         children: [
-          SizedBox(height: 30),
+          const YMargin( 30),
           Text("Just one more thing $name !",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
                   color: Colors.teal[400])),
-          SizedBox(height: 15),
+          const YMargin( 15),
           Text("Whats your Identification Card Number ?",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-          SizedBox(height: 15),
+          const YMargin( 15),
           Text("", style: TextStyle(fontSize: 12, color: Colors.grey)),
-          SizedBox(height: 50),
+          const YMargin( 50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -435,7 +415,7 @@ class IdentificationForm extends StatelessWidget {
               maxLines: 1,
             ),
           ),
-          SizedBox(height: 10),
+          const YMargin( 10),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -456,7 +436,7 @@ class IdentificationForm extends StatelessWidget {
               maxLines: 1,
             ),
           ),
-          SizedBox(height: 10),
+          const YMargin( 10),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -477,11 +457,11 @@ class IdentificationForm extends StatelessWidget {
               maxLines: 1,
             ),
           ),
-          SizedBox(height: 10),
+          const YMargin( 10),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
-              controller: fstore.storeNameController,
+              controller: fstore.altPhoneController,
               validator: (value) {
                 if (value.isEmpty) {
                   return "Required";
@@ -629,32 +609,34 @@ class _RoleFormState extends State<RoleForm> {
     return Form(
       key: fstore.kraKey,
       child: Column(children: [
-        SizedBox(height: 30),
+        const YMargin( 30),
         Text("Almost there!",
             style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 20,
                 color: Colors.teal[400])),
-        SizedBox(height: 5),
+        const YMargin( 5),
         Text("Final personal check",
             style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 19,
                 color: Colors.teal[400])),
-        SizedBox(height: 15),
+        const YMargin( 15),
         Text("Kindly choose the role you are registering for",
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-        SizedBox(height: 15),
+        const YMargin( 15),
         Text("Select One", style: TextStyle(fontSize: 12, color: Colors.grey)),
-        SizedBox(height: 50),
+        const YMargin( 50),
         Container(
           padding: EdgeInsets.only(left: 60, right: 60),
           child: Container(
-            width: screenWidth(context, percent: 0.70),
+            width: screenWidth(context, percent: 0.80),
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: DropdownButtonFormField(
+           
               elevation: 1,
               items: temp,
+              hint:Text("Select One Role"),
               value: _role,
               onChanged: (String value) {
                 fstore.role = value;
@@ -665,7 +647,7 @@ class _RoleFormState extends State<RoleForm> {
             ),
           ),
         ),
-        SizedBox(height: 10),
+        const YMargin( 10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -686,7 +668,7 @@ class _RoleFormState extends State<RoleForm> {
             maxLines: 1,
           ),
         ),
-        SizedBox(height: 10),
+        const YMargin( 10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -726,14 +708,14 @@ class DoubleCheckPage extends StatelessWidget {
       padding: EdgeInsets.only(left: 8.0, right: 10.0),
       shrinkWrap: true,
       children: [
-        SizedBox(height: 30),
+        const YMargin( 30),
         Text("Double-check your information just to be sure",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 20,
                 color: Colors.teal[400])),
-        SizedBox(height: 40),
+        const YMargin( 40),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -753,7 +735,7 @@ class DoubleCheckPage extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        SizedBox(height: 10),
+        const YMargin( 10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -774,7 +756,7 @@ class DoubleCheckPage extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        SizedBox(height: 10),
+        const YMargin( 10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -795,7 +777,7 @@ class DoubleCheckPage extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        SizedBox(height: 10),
+        const YMargin( 10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child:
@@ -865,7 +847,7 @@ class DoubleCheckPage extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        SizedBox(height: 10),
+        const YMargin( 10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -886,7 +868,7 @@ class DoubleCheckPage extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        SizedBox(height: 50),
+        const YMargin( 50),
         Container(
             padding: EdgeInsets.only(right: 10.0),
             child: Row(

@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
-set(BINARY_NAME "protoz")
-set(APPLICATION_ID "com.example.protoz")
+set(BINARY_NAME "proto")
+set(APPLICATION_ID "com.example.proto")
 
 cmake_policy(SET CMP0063 NEW)
 

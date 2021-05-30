@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/pages/services/blPage.dart';
 import 'package:proto/pages/wallet/walletsTab.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
-
+import 'package:proto/pages/logisticsSeller/newMachinery.dart';
 import 'package:proto/pages/startup/homedashboard.dart';
+import 'package:proto/constants.dart';
 
 class BaseTabView extends StatefulWidget {
   @override
@@ -23,7 +26,15 @@ class _BaseTabViewState extends State<BaseTabView>
   ];
   final _tabs = [
     WalletsPageBase(),
-    InventoryList(),
+     ValueListenableBuilder(
+                    valueListenable:
+                        Hive.box(Constants.UserBoxName).listenable(),
+                       builder: (context,box,widget){
+                         bool isAdmin = false;
+                          return isAdmin ? InventoryList():MachineInventory();
+                       },
+     ) ,
+  // 
     WalletsTab(),
     BLPage(),
   ];
@@ -52,7 +63,7 @@ class _BaseTabViewState extends State<BaseTabView>
           Icons.shop_two_rounded,
           color: Colors.teal,
         ));
-    var krainItem = SalomonBottomBarItem(
+    var walletItem = SalomonBottomBarItem(
         title: Text("Wallet"),
         icon: Icon(Icons.attach_money_rounded, color: Colors.grey[400]),
         activeIcon: Icon(Icons.attach_money_outlined, color: Colors.teal));
@@ -79,7 +90,7 @@ class _BaseTabViewState extends State<BaseTabView>
                     _activetab = index;
                     tabController.animateTo(index);
                   }),
-              items: [homeItem, serviceItem, krainItem, shopItem]),
+              items: [homeItem,   serviceItem, walletItem,  shopItem]),
           body: SafeArea(
               child: TabBarView(
                   controller: tabController,

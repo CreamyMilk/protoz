@@ -35,7 +35,7 @@ class KraFormProvider extends ChangeNotifier {
   TextEditingController countyController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController storeNameController = TextEditingController();
-  TextEditingController altPhoneNameController = TextEditingController();
+  TextEditingController altPhoneController = TextEditingController();
   int activePage = 0;
   bool isLoading = false;
 
@@ -44,6 +44,7 @@ class KraFormProvider extends ChangeNotifier {
   String lastName;
   String day;
   String month;
+  String idd;
   String year;
   String countrycode;
   String phoneNumber;

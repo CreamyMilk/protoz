@@ -43,29 +43,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
     }
     return Scaffold(
       backgroundColor: Colors.white,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: hbox.loading
-          ? CircularProgressIndicator()
-          : FloatingActionButton.extended(
-              backgroundColor: Colors.lightGreen,
-              shape: RoundedRectangleBorder(),
-              onPressed: () {
-                hbox.sendAddProductRequest(context);
-              },
-              label: Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Sumbit",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-      appBar: AppBar(
+     appBar: AppBar(
         foregroundColor: Colors.black,
         elevation: 0,
         iconTheme: IconThemeData(
@@ -168,7 +146,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                       hintText: "Description",
                       border: OutlineInputBorder(),
                     )),
-                const YMargin(80),
+                const YMargin(100),
                 hbox.loading
                     ? CircularProgressIndicator()
                     : FloatingActionButton.extended(

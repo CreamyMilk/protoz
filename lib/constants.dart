@@ -2,6 +2,7 @@ class Constants {
   static const String API_BASE = "http://34.125.117.7:3000/";
   static const String UserBoxName = "user";
   static const String IsLoggedInStore = "isloggedinbool";
+  static const String UserTypeStore = "isloggedinbool";
 
   static const String FullnameStore = "name";
   static const String PhoneNumberStore = "phonenumber";
