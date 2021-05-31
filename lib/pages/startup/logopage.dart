@@ -20,6 +20,18 @@ class _LogoPageState extends State<LogoPage> {
     super.initState();
     if (Platform.isAndroid) {
       FirebaseMessaging.onMessage.listen((event) {
+        if (event.data["type"] == "role") {
+          String role = event.data["content"].trim();
+          switch (role) {
+            case "Farmer":
+              Navigator.of(navigatorKey.currentContext)
+                  .pushNamed("/addProduct");
+              break;
+            default:
+              Navigator.of(navigatorKey.currentContext).pushNamed("/login");
+              break;
+          }
+        }
         //Opened Nofication when app is active
         getLatestBalance();
         getCurrentOrders();

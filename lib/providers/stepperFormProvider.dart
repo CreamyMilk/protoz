@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -199,6 +201,9 @@ class KraFormProvider extends ChangeNotifier {
       var myjson = json.decode(response.body);
       if (myjson["status"] == 0) {
         isLoading = false;
+        if (Platform.isAndroid) {
+          FirebaseMessaging.instance.subscribeToTopic(myjson["topic"]);
+        }
         notifyListeners();
         showCupertinoDialog(
           context: ctx,
