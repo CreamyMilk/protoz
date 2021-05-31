@@ -26,15 +26,16 @@ class _BaseTabViewState extends State<BaseTabView>
   ];
   final _tabs = [
     WalletsPageBase(),
-     ValueListenableBuilder(
-                    valueListenable:
-                        Hive.box(Constants.UserBoxName).listenable(),
-                       builder: (context,box,widget){
-                         bool isAdmin = false;
-                          return isAdmin ? InventoryList():MachineInventory();
-                       },
-     ) ,
-  // 
+    ValueListenableBuilder(
+      valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+      // ignore: top_level_function_literal_block
+      builder: (BuildContext context, dynamic box, Widget widget) {
+        bool isMachineGuy =
+            box.get(Constants.RoleStore, defaultValue: "noRole") == "Machinery";
+        return isMachineGuy ? InventoryList() : MachineInventory();
+      },
+    ),
+    //
     WalletsTab(),
     BLPage(),
   ];
@@ -50,8 +51,6 @@ class _BaseTabViewState extends State<BaseTabView>
 
   @override
   Widget build(BuildContext context) {
-    //var text = Text("Home",
-    //  style: TextStyle(color: _activetab != 0 ? Colors.grey[400] : Colors.blue));
     var homeItem = SalomonBottomBarItem(
         title: Text("Home"),
         icon: Icon(Icons.home_outlined, color: Colors.grey[400]),
@@ -90,7 +89,7 @@ class _BaseTabViewState extends State<BaseTabView>
                     _activetab = index;
                     tabController.animateTo(index);
                   }),
-              items: [homeItem,   serviceItem, walletItem,  shopItem]),
+              items: [homeItem, serviceItem, walletItem, shopItem]),
           body: SafeArea(
               child: TabBarView(
                   controller: tabController,

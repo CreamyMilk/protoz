@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:proto/models/machineary.dart';
-import 'package:proto/pages/sellerpages/getProductsFutures.dart';
+import 'package:proto/pages/logisticsSeller/getMachineStock.dart';
 
 const _startColumnWidth = 45.0;
 
@@ -56,7 +56,7 @@ class _MachineInventoryState extends State<MachineInventory> {
               margin: EdgeInsets.only(top: 16),
               height: MediaQuery.of(context).size.height * .9,
               child: FutureBuilder(
-                  future: getCurrentStock(),
+                  future: getMachineStock(),
                   builder: (context, projectSnap) {
                     if (projectSnap.connectionState ==
                         ConnectionState.waiting) {
@@ -71,15 +71,15 @@ class _MachineInventoryState extends State<MachineInventory> {
                           itemBuilder: (context, index) {
                             var item = projectSnap.data[index];
                             return ShoppingCartRow(
-                              product: Machinery( image: item["image"],
+                              product: Machinery(
+                                image: item["image"],
                                 categoryID: item["categoryID"],
-                                modelNo: item["productID"],
+                                modelNo: item["machineID"],
                                 packingType: item["packingtype"],
                                 description: item["description"],
                                 name: item["productname"],
                                 stock: item["stock"],
                                 price: item["price"].toDouble(),
-                                isBooked: index % 2 == 0,
                               ),
                               quantity: item["stock"],
                               onPressed: () {},
@@ -96,106 +96,9 @@ class _MachineInventoryState extends State<MachineInventory> {
   }
 }
 
-class ShoppingCartSummary extends StatelessWidget {
-  const ShoppingCartSummary();
-
-  @override
-  Widget build(BuildContext context) {
-    final smallAmountStyle =
-        Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.brown);
-    final largeAmountStyle = Theme.of(context)
-        .textTheme
-        .headline4
-        .copyWith(color: Colors.green[900], letterSpacing: 0.0);
-    // final formatter = NumberFormat.simpleCurrency(
-    //   decimalDigits: 2,
-    //   locale: Localizations.localeOf(context).toString(),
-    // );
-
-    return Row(
-      children: [
-        const SizedBox(width: _startColumnWidth),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsetsDirectional.only(end: 16),
-            child: Column(
-              children: [
-                MergeSemantics(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "TOTAL",
-                        style:
-                            TextStyle(color: Colors.green[900], fontSize: 20),
-                      ),
-                      Expanded(
-                          child: Text(
-                        "\$\${storeP.totalPrice}",
-                        style: largeAmountStyle,
-                        textAlign: TextAlign.end,
-                      )),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16),
-                MergeSemantics(
-                  child: Row(
-                    children: [
-                      Text("Subtotal:"),
-                      Expanded(
-                        child: Text(
-                          "\$\${((storeP.totalPrice) * 0.95).toStringAsFixed(2)}",
-                          style: smallAmountStyle,
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 4),
-                MergeSemantics(
-                  child: Row(
-                    children: [
-                      Text("Shipping:"),
-                      Expanded(
-                        child: Text(
-                          "\$\${((storeP.totalPrice) * 0.03).toStringAsFixed(2)}",
-                          style: smallAmountStyle,
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 4),
-                MergeSemantics(
-                  child: Row(
-                    children: [
-                      Text("Tax:"),
-                      Expanded(
-                        child: Text(
-                          "\$\${((storeP.totalPrice) * 0.02).toStringAsFixed(2)}",
-                          style: smallAmountStyle,
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class ShoppingCartRow extends StatelessWidget {
   const ShoppingCartRow({
     @required this.product,
-   
     @required this.quantity,
     this.onPressed,
   });
@@ -209,8 +112,7 @@ class ShoppingCartRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 5),
       child: Row(
-        key:
-            ValueKey<int>(product.modelNo), //Changed Types for better parsing
+        key: ValueKey<int>(product.modelNo), //Changed Types for better parsing
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -280,19 +182,25 @@ class ShoppingCartRow extends StatelessWidget {
                                   fontSize: 14, fontWeight: FontWeight.w400),
                             ),
                             const SizedBox(height: 9),
-                           Chip(label:Text(product.isBooked ? "Booked":"Available",
-
-                          style: TextStyle(color:!product.isBooked ? Colors.green :Colors.orange),
-
-                                   ),backgroundColor:!product.isBooked ?  Colors.green[50]:Colors.orange[50]),
-                      //    Text(
-                      //      product.description,
-                      //      style: TextStyle(
-                      //          
-                      //          fontSize: 12,
-                      //          fontWeight: FontWeight.w400,
-                      //          color: Colors.green),
-                      //    ),
+                            Chip(
+                                label: Text(
+                                  product.isBooked ? "Booked" : "Available",
+                                  style: TextStyle(
+                                      color: !product.isBooked
+                                          ? Colors.green
+                                          : Colors.orange),
+                                ),
+                                backgroundColor: !product.isBooked
+                                    ? Colors.green[50]
+                                    : Colors.orange[50]),
+                            //    Text(
+                            //      product.description,
+                            //      style: TextStyle(
+                            //
+                            //          fontSize: 12,
+                            //          fontWeight: FontWeight.w400,
+                            //          color: Colors.green),
+                            //    ),
                           ],
                         ),
                       ),
