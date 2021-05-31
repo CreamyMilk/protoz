@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/main.dart';
+import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
 import 'package:proto/pages/wallet/getTransactionsFuture.dart';
 
 class LogoPage extends StatefulWidget {
@@ -18,6 +19,7 @@ class _LogoPageState extends State<LogoPage> {
   @override
   void initState() {
     super.initState();
+    getLatestCategories();
     if (Platform.isAndroid) {
       FirebaseMessaging.onMessage.listen((event) {
         if (event.data["type"] == "role") {
@@ -31,15 +33,16 @@ class _LogoPageState extends State<LogoPage> {
               Navigator.of(navigatorKey.currentContext).pushNamed("/login");
               break;
           }
+        } else {
+          showCupertinoDialog(
+              context: navigatorKey.currentContext,
+              builder: (context) =>
+                  AlertDialog(title: Text("ok"), content: Text("Updateo")));
         }
         //Opened Nofication when app is active
         getLatestBalance();
         getCurrentOrders();
         getLatestTransaction();
-        showCupertinoDialog(
-            context: navigatorKey.currentContext,
-            builder: (context) =>
-                AlertDialog(title: Text("ok"), content: Text("Updateo")));
       });
       FirebaseMessaging.instance.getToken().then((String token) {
         hiveBox.get(Constants.RawFCMTokenStore, defaultValue: "all");
