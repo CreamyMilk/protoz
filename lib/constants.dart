@@ -1,5 +1,5 @@
 class Constants {
-  static const String API_BASE = "http://192.168.0.36:3000/";
+  static const String API_BASE = "http://35.189.74.247:3000/";
   static const String UserBoxName = "user";
   static const String IsLoggedInStore = "isloggedinbool";
   static const String UserTypeStore = "isloggedinbool";
