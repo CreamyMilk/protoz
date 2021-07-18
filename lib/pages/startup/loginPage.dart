@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 MaterialButton(
                   minWidth: MediaQuery.of(context).size.width * 0.8,
-                  height: 40,
+                  height: 50,
                   color: Colors.yellow,
                   child: Text(
                     "Login as member",
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 MaterialButton(
                   minWidth: MediaQuery.of(context).size.width * 0.8,
-                  height: 40,
+                  height: 50,
                   color: Colors.grey[350],
                   child: Text(
                     "Register as member",

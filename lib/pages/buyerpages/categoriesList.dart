@@ -34,17 +34,17 @@ class _ListTilezzState extends State<ListTilezz> {
         ],
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: Colors.black87,
+          color: Colors.white,
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         elevation: 0,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         title: Text(
           "Categories",
-          style: TextStyle(color: Colors.black87),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: SafeArea(

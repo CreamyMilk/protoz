@@ -28,6 +28,8 @@ import 'package:proto/widgets/tab_controler.dart';
 import 'package:proto/pages/startup/homedashboard.dart';
 import 'package:proto/widgets/youtubeWebView.dart';
 import 'package:provider/provider.dart';
+import 'package:proto/pages/wallet/walletsTab.dart';
+
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -117,6 +119,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (ctx) => WalletsPageBase());
       case '/profile':
         return MaterialPageRoute(builder: (ctx) => ProfilePage());
+      case '/walletspage':
+        return MaterialPageRoute(builder: (ctx) => WalletsTab());
       default:
         return _errorRoute();
     }

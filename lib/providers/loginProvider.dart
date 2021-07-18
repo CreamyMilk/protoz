@@ -90,7 +90,7 @@ class LoginFormProvider extends ChangeNotifier {
           });
         }
         box.put(Constants.IsLoggedInStore, true);
-        Navigator.of(ctx).pushNamed("/home");
+        Navigator.of(ctx).pushNamed("/buyer");
       } else {
         loading = false;
         passwordController.text = "";

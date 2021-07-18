@@ -33,13 +33,20 @@ class _InventoryListState extends State<InventoryList> {
         ),
       ),
       appBar: AppBar(
+        centerTitle:true,
+        leading:IconButton(
+          icon:Icon(Icons.close,color:Colors.black),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+        ),
         elevation: 1,
         actions: [
           IconButton(
             onPressed: () {},
             icon: Icon(
               Icons.search_off,
-              color: Colors.black,
+              color: Colors.white,
             ),
           )
         ],
@@ -87,7 +94,7 @@ class _InventoryListState extends State<InventoryList> {
                           });
                     } else {
                       return Center(
-                          child: Text("Classificataion of conncetion failed"));
+                          child: Text("A Network Error has occured"));
                     }
                   }))
         ]),

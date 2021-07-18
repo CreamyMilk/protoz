@@ -31,7 +31,7 @@ class _LoginOrSignupState extends State<LoginOrSignup>
     return Scaffold(
       backgroundColor: Colors.tealAccent[400],
       body: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(12),
         child: Stack(
           children: [
             WadsLayout(),

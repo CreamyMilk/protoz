@@ -5,8 +5,9 @@ import 'package:proto/hotelCards.dart';
 class Services {
   final String imageUrl;
   final String name;
+  final String path;
 
-  Services({this.imageUrl, this.name});
+  Services({this.imageUrl, this.name,this.path});
 }
 
 class ListProducts extends StatefulWidget {

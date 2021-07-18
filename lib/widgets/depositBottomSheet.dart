@@ -122,7 +122,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                           "$visualAmount",
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
-                            fontSize: 15,
+                            fontSize: 19,
                           ),
                         ),
                       ),
@@ -144,7 +144,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                         child: Text(
                           mobile,
                           style: TextStyle(
-                              fontWeight: FontWeight.w300, fontSize: 15),
+                              fontWeight: FontWeight.w300, fontSize: 19),
                         ),
                       ),
                     ],
@@ -165,7 +165,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                 },
                 controller: _amountficontroller,
                 decoration: InputDecoration(
-                  isDense: true,
+                  isDense: false,
                   border: OutlineInputBorder(gapPadding: 0.9),
                   labelText: 'Amount',
                   hintText: 'In shillings',
@@ -197,7 +197,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                 },
                 controller: _phoneficontroller,
                 decoration: InputDecoration(
-                  isDense: true,
+                  isDense: false,
                   border: OutlineInputBorder(gapPadding: 0.2),
                   hintText: 'Enter Phone Number',
                   errorText: validatePassword(_phoneficontroller.text),
@@ -205,12 +205,12 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                 ),
                 keyboardType: TextInputType.numberWithOptions(),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 25),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   child: MaterialButton(
-                    height: 40,
+                    height: 60,
                     minWidth: MediaQuery.of(context).size.width * .95,
                     onPressed: () async {
                       await _sendPayment(
@@ -219,7 +219,9 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                     color: Colors.black,
                     child: Text(
                       "Deposit $amountDue",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                      fontSize:17,
+                      color: Colors.white),
                     ),
                     autofocus: true,
                   ),

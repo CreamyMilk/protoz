@@ -6,7 +6,7 @@ class BLPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -15,7 +15,7 @@ class BLPage extends StatelessWidget {
         ],
         elevation: 0,
         centerTitle: true,
-        title: Text("BD page",style: TextStyle(color: Colors.black87),),
+        title: Text("BD page",style: TextStyle(color: Colors.white),),
       ),
       body: Column(
         children: [

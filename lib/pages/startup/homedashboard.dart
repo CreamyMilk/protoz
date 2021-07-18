@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
+import 'package:proto/hotelCards.dart';
 import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
 import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/pages/wallet/getTransactionsFuture.dart';
@@ -28,26 +29,32 @@ class _WalletsPageBaseState extends State<WalletsPageBase> {
 
   List<Services> sampleData = [
     Services(
+        path:"/categories",
         imageUrl:
             "https://africasustainabilitymatters.com/wp-content/uploads/2020/11/Twiga_2.jpg",
-        name: "InputSuppliers"),
+        name: "Buy"),
     Services(
+        path:"/sellpage",
         imageUrl:
             "https://s3.amazonaws.com/newhobbyfarms.com/2020/01/9-plows-jeff-piper-flickr-e.jpg",
-        name: "Machinery"),
+        name: "Sell"),
     Services(
+        path:"/walletspage",
         imageUrl:
             "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
-        name: "Logistics"),
+        name: "Wallet"),
     Services(
+        path:"/walletspage",
         imageUrl:
             "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
-        name: "Consoltancy"),
+        name: "Finance"),
     Services(
+        path:"/bl",
         imageUrl:
             "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
-        name: "Market Info"),
+        name: "Consoltany"),
     Services(
+        path:"/bl",
         imageUrl:
             "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
         name: "Financing"),
@@ -66,15 +73,15 @@ class _WalletsPageBaseState extends State<WalletsPageBase> {
               SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisSpacing: 0,
-                    crossAxisCount: 1,
-                    childAspectRatio: 2,
+                    crossAxisCount: 2,
+                    //childAspectRatio: 1,
                     crossAxisSpacing: 0),
                 delegate:
                     SliverChildBuilderDelegate((BuildContext ctx, int index) {
                   if (index < 6) {
-                    return ProductListingItem(
-                      heros: index,
+                    return HotelListTile(
                       prodname: sampleData[index].name,
+                      route: sampleData[index].path,
                       imageUrl: sampleData[index].imageUrl,
                       productID: index,
                     );
@@ -168,6 +175,9 @@ class WalletsAppBar extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(
+                        height: 40,
+                      ),
                       Text("Current Orders",
                           textScaleFactor: 1,
                           style:

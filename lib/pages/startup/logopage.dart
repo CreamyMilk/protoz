@@ -55,7 +55,7 @@ class _LogoPageState extends State<LogoPage> {
           showCupertinoDialog(
               context: navigatorKey.currentContext,
               builder: (context) =>
-                  AlertDialog(title: Text("Incomming Notification"), content: Text(" ${event.data}")));
+                  AlertDialog(title: Text("Unclassified"), content: Text(" ${event.data}")));
         }
         //Opened Nofication when app is active
         getLatestBalance();
@@ -94,7 +94,7 @@ class _LogoPageState extends State<LogoPage> {
     Future.delayed(Duration(seconds: 3), () {
       !isLoggedIn
           ? Navigator.of(context).pushReplacementNamed("/startup")
-          : Navigator.of(context).pushReplacementNamed("/home");
+          : Navigator.of(context).pushReplacementNamed("/buyer");
     });
   }
 

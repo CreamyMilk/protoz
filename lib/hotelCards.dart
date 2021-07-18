@@ -6,29 +6,32 @@ import 'package:flutter/material.dart';
 class HotelListTile extends StatelessWidget {
   const HotelListTile(
       {Key key,
-   this.prodname, this.imageUrl, this.productID})
+   this.prodname, this.imageUrl, this.productID,this.route})
       : super(key: key);
 
   final String prodname;
   final String imageUrl;
   final int productID;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
         return Padding(
           padding: const EdgeInsets.only(
-              left: 24, right: 24, top: 8, bottom: 16),
+              left: 3, right: 3, top: 2, bottom: 2),
           child: InkWell(
-            splashColor: Colors.transparent,
-            onTap: (){},
+            onTap: (){
+              
+              Navigator.of(context).pushNamed(route);
+            },
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(16.0)),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.6),
-                    offset: const Offset(4, 4),
-                    blurRadius: 16,
+                    color: Colors.grey.withOpacity(0.1),
+                    //offset: const Offset(4, 4),
+                    blurRadius: 32,
                   ),
                 ],
               ),
@@ -39,9 +42,10 @@ class HotelListTile extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         AspectRatio(
-                          aspectRatio: 2,
+                          aspectRatio: 1.5,
               child: CachedNetworkImage(
                 imageUrl: imageUrl,
+                fit:BoxFit.fill,
                           ),
                         ),
                         Container(
@@ -65,7 +69,7 @@ class HotelListTile extends StatelessWidget {
                                           prodname,
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
-                                            fontWeight: FontWeight.w600,
+                                            fontWeight: FontWeight.w500,
                                             fontSize: 22,
                                           ),
                                         ),
@@ -75,7 +79,7 @@ class HotelListTile extends StatelessWidget {
                                           child: Row(
                                             children: <Widget>[
                                               Text(
-                                                'The Data Section',
+                                                'Go to',
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     color: Colors.grey
@@ -99,10 +103,10 @@ class HotelListTile extends StatelessWidget {
                                       CrossAxisAlignment.end,
                                   children: <Widget>[
                                     Text(
-                                      '>>>>>',
+                                      '>>',
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w500,
                                         fontSize: 22,
                                       ),
                                     ),

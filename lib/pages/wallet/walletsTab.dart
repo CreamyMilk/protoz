@@ -143,25 +143,11 @@ class WalletsAppBar extends StatelessWidget {
       elevation: 0,
       backgroundColor: Colors.white,
       leading: Center(
-        child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pushNamed("/profile");
+        child: IconButton(
+          icon:Icon(Icons.close),
+          onPressed: () {
+            Navigator.of(context).pop();
           },
-          child: Container(
-            padding: EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.black26,
-            ),
-            child: ValueListenableBuilder(
-              valueListenable: Hive.box(Constants.UserBoxName).listenable(),
-              builder: (BuildContext context, box, Widget child) {
-                return Text(
-                  "${box.get(Constants.InitalsStore, defaultValue: "P")}",
-                );
-              },
-            ),
-          ),
         ),
       ),
       actions: [
@@ -192,7 +178,7 @@ class WalletsAppBar extends StatelessWidget {
                 colors: [Colors.tealAccent[400], Colors.tealAccent[400]]),
           ),
           child: Container(
-            padding: EdgeInsets.only(left: 14.0, bottom: 8.0),
+            padding: EdgeInsets.only(top:30.0,left: 14.0, bottom: 8.0),
             child: Column(
               children: [
                 SizedBox(
@@ -301,23 +287,23 @@ showQRDialog(BuildContext context, String token) => showCupertinoDialog(
                 },
                 child: Text("CLOSE", style: TextStyle(color: Colors.red)))
           ],
-          elevation: 0,
+          elevation: 4,
           title: Container(
-            width: screenWidth(context, percent: 0.6),
-            height: screenHeight(context, percent: 0.43),
+            width: screenWidth(context, percent: 0.2),
+            height: screenHeight(context, percent: 0.37),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  "🤌Sellers should Scan 🤳 \n to receive Funds Payment",
+                  "🤌Sellers should  🤳 Snan this\nto receive thier Payments",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.nunito(
                     color: Colors.grey[500],
-                    fontSize: 20,
+                    fontSize: 18,
                   ),
                 ),
-                const YMargin(40),
+                const YMargin(20),
                 QrImage(
                   data: token,
                   padding: EdgeInsets.zero,
