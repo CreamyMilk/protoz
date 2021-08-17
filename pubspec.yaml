@@ -43,13 +43,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.9.1"
 
+flutter_icons:
+  android: true 
+  ios: true
+  image_path: "assets/image/agric.jpg"
 
 flutter:
-
   uses-material-design: true
-
-
   fonts:
     - family: Circular
       fonts:

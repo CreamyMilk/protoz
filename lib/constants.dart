@@ -2,7 +2,7 @@ class Constants {
   static const String API_BASE = "http://35.189.74.247:3000/";
   static const String UserBoxName = "user";
   static const String IsLoggedInStore = "isloggedinbool";
-  static const String UserTypeStore = "isloggedinbool";
+  static const String UserTypeStore = "usertype";
 
   static const String FullnameStore = "name";
   static const String PhoneNumberStore = "phonenumber";
@@ -23,7 +23,7 @@ class Constants {
 
   static const String ProductCategoriesStore = "categoreieslist";
 
-  static const String ChoosenCategory = "chossencategory";
+  static const String ChoosenCategory = "choosencategory";
 
   static String zerototwo(String phone) {
     if (phone.length > 0) {

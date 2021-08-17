@@ -26,6 +26,7 @@ class _LogoPageState extends State<LogoPage> {
           String role = event.data["content"].trim();
           switch (role) {
             case "Farmer":
+              //store id
               Navigator.of(navigatorKey.currentContext)
                   .pushNamed("/addProduct");
               break;
@@ -33,29 +34,31 @@ class _LogoPageState extends State<LogoPage> {
               Navigator.of(navigatorKey.currentContext).pushNamed("/login");
               break;
           }
-        } else if(event.data["type"] == "received") {
-             showCupertinoDialog(
-              context: navigatorKey.currentContext,
-              builder: (context) =>
-                  AlertDialog(title: Text("Funds Received"), content: Text("Ksh${event.data["amount"]}")));
-        }
-        else if(event.data["type"] == "deposit") {
-             showCupertinoDialog(
-              context: navigatorKey.currentContext,
-              builder: (context) =>
-                  AlertDialog(title: Text("Deposit Successfuly"), content: Text("Ksh${event.data["amount"]}")));
-        }
-        else if(event.data["type"] == "order") {
-             showCupertinoDialog(
-              context: navigatorKey.currentContext,
-              builder: (context) =>
-                  AlertDialog(title: Text("Order Placed for ${event.data["prodname"]}"), content: Text("Ksh${event.data["amount"]}\n Quantity :${event.data["quantity"]}")));
-        }
-        else {
+        } else if (event.data["type"] == "received") {
           showCupertinoDialog(
               context: navigatorKey.currentContext,
-              builder: (context) =>
-                  AlertDialog(title: Text("Unclassified"), content: Text(" ${event.data}")));
+              builder: (context) => AlertDialog(
+                  title: Text("Funds Received"),
+                  content: Text("Ksh${event.data["amount"]}")));
+        } else if (event.data["type"] == "deposit") {
+          showCupertinoDialog(
+              context: navigatorKey.currentContext,
+              builder: (context) => AlertDialog(
+                  title: Text("Deposit Successfuly"),
+                  content: Text("Ksh${event.data["amount"]}")));
+        } else if (event.data["type"] == "order") {
+          showCupertinoDialog(
+              context: navigatorKey.currentContext,
+              builder: (context) => AlertDialog(
+                  title: Text("Order Placed for ${event.data["prodname"]}"),
+                  content: Text(
+                      "Ksh${event.data["amount"]}\n Quantity :${event.data["quantity"]}")));
+        } else {
+          showCupertinoDialog(
+              context: navigatorKey.currentContext,
+              builder: (context) => AlertDialog(
+                  title: Text("Action Complete"),
+                  content: Text(" ${event.data}")));
         }
         //Opened Nofication when app is active
         getLatestBalance();

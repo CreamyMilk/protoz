@@ -29,35 +29,30 @@ class _WalletsPageBaseState extends State<WalletsPageBase> {
 
   List<Services> sampleData = [
     Services(
-        path:"/categories",
+        path: "/categories",
         imageUrl:
             "https://africasustainabilitymatters.com/wp-content/uploads/2020/11/Twiga_2.jpg",
-        name: "Buy"),
+        name: "Buy / Nunua"),
     Services(
-        path:"/sellpage",
+        path: "/sellpage",
         imageUrl:
             "https://s3.amazonaws.com/newhobbyfarms.com/2020/01/9-plows-jeff-piper-flickr-e.jpg",
-        name: "Sell"),
+        name: "Sell / Bidha"),
     Services(
-        path:"/walletspage",
+        path: "/walletspage",
         imageUrl:
             "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
-        name: "Wallet"),
+        name: "Wallet / Pochi"),
     Services(
-        path:"/walletspage",
+        path: "/walletspage",
         imageUrl:
             "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
-        name: "Finance"),
+        name: "Transactions / Malipo"),
     Services(
-        path:"/bl",
-        imageUrl:
-            "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
-        name: "Consoltany"),
-    Services(
-        path:"/bl",
+        path: "/bl",
         imageUrl:
             "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
-        name: "Financing"),
+        name: "Financing / Mkopo"),
   ];
 
   @override
