@@ -105,14 +105,14 @@ class _LogoPageState extends State<LogoPage> {
   Widget build(BuildContext context) {
     autoNavigate(context);
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Hero(
             tag: "logo",
-            child: Icon(
-              Icons.toll_outlined,
-              size: 100,
+            child: Image(
+              image: AssetImage('assets/images/agric.jpg'),
             ),
           ),
         ),
