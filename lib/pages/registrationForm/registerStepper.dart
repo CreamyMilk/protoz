@@ -16,12 +16,12 @@ class BaseForm extends StatefulWidget {
 
 class _BaseFormState extends State<BaseForm> {
   List<Widget> pages = [
-    NameForm(),
-    BirthForm(),
-    NumberForm(),
-    IdentificationForm(),
-    PasswordForm(),
-    RoleForm(),
+    //   NameForm(),
+    //   BirthForm(),
+    //   NumberForm(),
+    //   IdentificationForm(),
+    //   PasswordForm(),
+    //   RoleForm(),
     DoubleCheckPage(),
   ];
 
@@ -160,43 +160,44 @@ class BirthForm extends StatelessWidget {
     void _showDatePicker(ctx) {
       // showCupertinoModalPopup is a built-in function of the cupertino library
       showCupertinoModalPopup(
-          context: ctx,
-          builder: (_) => Container(
-                height: screenHeight(context, percent: 0.36),
-                color: Color.fromARGB(255, 255, 255, 255),
-                child: Column(
-                  children: [
-                    Container(
-                      height: 200,
-                      child: CupertinoDatePicker(
-                          mode: CupertinoDatePickerMode.date,
-                          initialDateTime: DateTime.now(),
-                          onDateTimeChanged: (val) {
-                            hbox.yController.text = "${val.year}";
-                            hbox.mController.text = "${val.month}";
-                            hbox.dController.text = "${val.day}";
-                          }),
-                    ),
-                    // Close the modal
-                    CupertinoButton(
-                      child: Text('OK'),
-                      onPressed: () => Navigator.of(ctx).pop(),
-                    )
-                  ],
-                ),
-              ),);
+        context: ctx,
+        builder: (_) => Container(
+          height: screenHeight(context, percent: 0.36),
+          color: Color.fromARGB(255, 255, 255, 255),
+          child: Column(
+            children: [
+              Container(
+                height: 200,
+                child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    initialDateTime: DateTime.now(),
+                    onDateTimeChanged: (val) {
+                      hbox.yController.text = "${val.year}";
+                      hbox.mController.text = "${val.month}";
+                      hbox.dController.text = "${val.day}";
+                    }),
+              ),
+              // Close the modal
+              CupertinoButton(
+                child: Text('OK'),
+                onPressed: () => Navigator.of(ctx).pop(),
+              )
+            ],
+          ),
+        ),
+      );
     }
 
     return Form(
       key: hbox.birthKey,
       child: Column(children: [
-        const YMargin( 30),
+        const YMargin(30),
         Text("Whats is your date of birth?",
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
-        const YMargin( 15),
+        const YMargin(15),
         Text("Just as it appears on your National ID",
             style: TextStyle(fontSize: 12, color: Colors.grey)),
-        const YMargin( 50),
+        const YMargin(50),
         CupertinoButton(
           child: Text("From Calender"),
           onPressed: () => _showDatePicker(context),
@@ -296,13 +297,13 @@ class NumberForm extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
                   color: Colors.teal[400])),
-          const YMargin( 15),
+          const YMargin(15),
           Text("Whats is your Phone Number ?",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-          const YMargin( 15),
+          const YMargin(15),
           Text("Recommeded to use Safaricom number",
               style: TextStyle(fontSize: 12, color: Colors.grey)),
-          const YMargin( 50),
+          const YMargin(50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: Row(
@@ -383,18 +384,18 @@ class IdentificationForm extends StatelessWidget {
       key: fstore.idKey,
       child: Column(
         children: [
-          const YMargin( 30),
+          const YMargin(30),
           Text("Just one more thing $name !",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
                   color: Colors.teal[400])),
-          const YMargin( 15),
+          const YMargin(15),
           Text("Whats your Identification Card Number ?",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-          const YMargin( 15),
+          const YMargin(15),
           Text("", style: TextStyle(fontSize: 12, color: Colors.grey)),
-          const YMargin( 50),
+          const YMargin(50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -415,7 +416,7 @@ class IdentificationForm extends StatelessWidget {
               maxLines: 1,
             ),
           ),
-          const YMargin( 10),
+          const YMargin(10),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -436,7 +437,7 @@ class IdentificationForm extends StatelessWidget {
               maxLines: 1,
             ),
           ),
-          const YMargin( 10),
+          const YMargin(10),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -457,7 +458,7 @@ class IdentificationForm extends StatelessWidget {
               maxLines: 1,
             ),
           ),
-          const YMargin( 10),
+          const YMargin(10),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: TextFormField(
@@ -609,34 +610,33 @@ class _RoleFormState extends State<RoleForm> {
     return Form(
       key: fstore.kraKey,
       child: Column(children: [
-        const YMargin( 30),
+        const YMargin(30),
         Text("Almost there!",
             style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 20,
                 color: Colors.teal[400])),
-        const YMargin( 5),
+        const YMargin(5),
         Text("Final personal check",
             style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 19,
                 color: Colors.teal[400])),
-        const YMargin( 15),
+        const YMargin(15),
         Text("Kindly choose the role you are registering for",
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-        const YMargin( 15),
+        const YMargin(15),
         Text("Select One", style: TextStyle(fontSize: 12, color: Colors.grey)),
-        const YMargin( 50),
+        const YMargin(50),
         Container(
           padding: EdgeInsets.only(left: 60, right: 60),
           child: Container(
             width: screenWidth(context, percent: 0.80),
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: DropdownButtonFormField(
-           
               elevation: 1,
               items: temp,
-              hint:Text("Select One Role"),
+              hint: Text("Select One Role"),
               value: _role,
               onChanged: (String value) {
                 fstore.role = value;
@@ -647,7 +647,7 @@ class _RoleFormState extends State<RoleForm> {
             ),
           ),
         ),
-        const YMargin( 10),
+        const YMargin(10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -668,7 +668,7 @@ class _RoleFormState extends State<RoleForm> {
             maxLines: 1,
           ),
         ),
-        const YMargin( 10),
+        const YMargin(10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -700,22 +700,51 @@ class _RoleFormState extends State<RoleForm> {
   }
 }
 
-class DoubleCheckPage extends StatelessWidget {
+class DoubleCheckPage extends StatefulWidget {
+  @override
+  _DoubleCheckPageState createState() => _DoubleCheckPageState();
+}
+
+class _DoubleCheckPageState extends State<DoubleCheckPage> {
+  List<DropdownMenuItem<String>> temp = [];
+  List<String> options = [
+    "Farmer ",
+    "Agro input supplier",
+    "Logistics",
+    "Aggregators",
+    "Machinery",
+    "Market Information",
+    "Advisory Services"
+  ];
+  String _role;
+
+  @override
+  void initState() {
+    options.forEach((t) {
+      temp.add(DropdownMenuItem<String>(
+        value: t,
+        child: Text(t),
+      ));
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final fstore = Provider.of<KraFormProvider>(context);
+    final hbox = Provider.of<KraFormProvider>(context);
     return ListView(
       padding: EdgeInsets.only(left: 8.0, right: 10.0),
       shrinkWrap: true,
       children: [
-        const YMargin( 30),
-        Text("Double-check your information just to be sure",
+        const YMargin(30),
+        Text("Let's Register you up for the AppAgric",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 20,
                 color: Colors.teal[400])),
-        const YMargin( 40),
+        const YMargin(40),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -735,7 +764,7 @@ class DoubleCheckPage extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        const YMargin( 10),
+        const YMargin(10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -756,7 +785,7 @@ class DoubleCheckPage extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        const YMargin( 10),
+        const YMargin(10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
@@ -777,7 +806,70 @@ class DoubleCheckPage extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        const YMargin( 10),
+        const YMargin(10),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            controller: fstore.storeNameController,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              focusColor: Colors.teal,
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+              labelText: 'Business Name',
+            ),
+            maxLines: 1,
+          ),
+        ),
+        const YMargin(10),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            controller: fstore.emailController,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              focusColor: Colors.teal,
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+              labelText: 'email',
+            ),
+            maxLines: 1,
+          ),
+        ),
+        const YMargin(10),
+        Container(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            controller: fstore.altPhoneController,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              focusColor: Colors.teal,
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+              labelText: 'Alternative Phone',
+            ),
+            maxLines: 1,
+          ),
+        ),
+        const YMargin(10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child:
@@ -847,11 +939,34 @@ class DoubleCheckPage extends StatelessWidget {
             maxLines: 1,
           ),
         ),
-        const YMargin( 10),
+        const YMargin(10),
+        Container(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          child: Container(
+            width: screenWidth(context, percent: 0.90),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: DropdownButtonFormField(
+              elevation: 1,
+              items: temp,
+              hint: Text("Select One Role"),
+              value: _role,
+              onChanged: (String value) {
+                fstore.role = value;
+                setState(() {
+                  _role = value;
+                });
+              },
+            ),
+          ),
+        ),
+        const YMargin(50),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
-            initialValue: fstore.role,
+            maxLength: 4,
+            keyboardType: TextInputType.number,
+            obscureText: true,
+            controller: hbox.passwordController,
             validator: (value) {
               if (value.isEmpty) {
                 return "Required";
@@ -860,29 +975,39 @@ class DoubleCheckPage extends StatelessWidget {
               }
             },
             decoration: const InputDecoration(
-              focusColor: Colors.teal,
+              labelText: 'Password',
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal)),
-              labelText: 'ROLE',
             ),
             maxLines: 1,
           ),
         ),
-        const YMargin( 50),
+        const YMargin(10),
         Container(
-            padding: EdgeInsets.only(right: 10.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Checkbox(
-                    activeColor: Colors.teal,
-                    value: true,
-                    onChanged: (v) {
-                      fstore.termsAccept(v);
-                    }),
-                Text("By proceeding you agree to our Terms and Conditions")
-              ],
-            )),
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          child: TextFormField(
+            maxLength: 4,
+            keyboardType: TextInputType.number,
+            obscureText: true,
+            controller: hbox.clonePasswordController,
+            validator: (value) {
+              if (value.isEmpty) {
+                return "Required";
+              } else if (value != hbox.passwordController.text) {
+                return "Password do not match";
+              } else {
+                return null;
+              }
+            },
+            decoration: const InputDecoration(
+              focusColor: Colors.teal,
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal)),
+              labelText: 'Confirm Password',
+            ),
+            maxLines: 1,
+          ),
+        ),
         const YMargin(70),
         fstore.isLoading
             ? Center(child: CircularProgressIndicator())

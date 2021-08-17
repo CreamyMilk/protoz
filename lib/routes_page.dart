@@ -30,7 +30,6 @@ import 'package:proto/widgets/youtubeWebView.dart';
 import 'package:provider/provider.dart';
 import 'package:proto/pages/wallet/walletsTab.dart';
 
-
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     // Getting arguments passed in while calling Navigator.pushNamed
