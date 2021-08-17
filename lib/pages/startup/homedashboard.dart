@@ -73,7 +73,7 @@ class _WalletsPageBaseState extends State<WalletsPageBase> {
                     crossAxisSpacing: 0),
                 delegate:
                     SliverChildBuilderDelegate((BuildContext ctx, int index) {
-                  if (index < 6) {
+                  if (index < 5) {
                     return HotelListTile(
                       prodname: sampleData[index].name,
                       route: sampleData[index].path,

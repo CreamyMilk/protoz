@@ -748,7 +748,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
-            initialValue: fstore.firstName,
+            controller: fstore.fnController,
             validator: (value) {
               if (value.isEmpty) {
                 return "Required";
@@ -878,7 +878,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
             Flexible(
               flex: 2,
               child: TextFormField(
-                initialValue: fstore.countrycode,
+                initialValue: "254",
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value.isEmpty) {
@@ -919,10 +919,11 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
             SizedBox(width: 5),
           ]),
         ),
+        const YMargin(10),
         Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: TextFormField(
-            initialValue: fstore.middleName,
+            controller: fstore.idController,
             validator: (value) {
               if (value.isEmpty) {
                 return "Required";
@@ -978,32 +979,6 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
               labelText: 'Password',
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal)),
-            ),
-            maxLines: 1,
-          ),
-        ),
-        const YMargin(10),
-        Container(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          child: TextFormField(
-            maxLength: 4,
-            keyboardType: TextInputType.number,
-            obscureText: true,
-            controller: hbox.clonePasswordController,
-            validator: (value) {
-              if (value.isEmpty) {
-                return "Required";
-              } else if (value != hbox.passwordController.text) {
-                return "Password do not match";
-              } else {
-                return null;
-              }
-            },
-            decoration: const InputDecoration(
-              focusColor: Colors.teal,
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal)),
-              labelText: 'Confirm Password',
             ),
             maxLines: 1,
           ),

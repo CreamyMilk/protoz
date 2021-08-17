@@ -148,6 +148,15 @@ class KraFormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void newSingleSubmit() {
+    firstName = fnController.text;
+    middleName = mnContorller.text;
+    lastName = lnController.text;
+    password = passwordController.text;
+    phoneNumber = phController.text;
+    idd = idController.text;
+  }
+
   Future zendPayment(BuildContext ctx) async {
     String accName = phoneNumber;
     isLoading = true;
@@ -170,34 +179,36 @@ class KraFormProvider extends ChangeNotifier {
       }
     }
 
+    newSingleSubmit();
     String dob = getBirth();
     try {
+      final dynamic req = jsonEncode(
+        //ensure that the user has bothe the socketID and the USER ID
+        {
+          "fname": fnController.text,
+          "mname": mController.text,
+          "lname": lnController.text,
+          "idnumber": idController.text,
+          "photourl": "https://google.com",
+          "phone": zerototwo(phController.text),
+          "password": passwordController.text,
+          "email": "me@mailer.com",
+          "fcmtoken": "FCMTOKENSAMPLE$accName",
+          "informaladdress": "Machakos",
+          "xcords": "$dob",
+          "ycords": "0.0",
+          "role": role
+        },
+      );
       final response = await post(
         (Constants.API_BASE + "treg"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",
         },
-        body: jsonEncode(
-          //ensure that the user has bothe the socketID and the USER ID
-          {
-            "fname": fnController.text,
-            "mname": mController.text,
-            "lname": lnController.text,
-            "idnumber": idController.text,
-            "photourl": "https://google.com",
-            "phone": zerototwo(phController.text),
-            "password": passwordController.text,
-            "email": "me@mailer.com",
-            "fcmtoken": "FCMTOKENSAMPLE",
-            "informaladdress": "Machakos",
-            "xcords": "$dob",
-            "ycords": "0.000010",
-            "role": role
-          },
-        ),
+        body: req,
       );
-      print("$accName");
+      print("req $req");
       var myjson = json.decode(response.body);
       if (myjson["status"] == 0) {
         isLoading = false;
