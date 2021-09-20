@@ -24,7 +24,7 @@ Future getMachineStock() async {
     if (myjson["status"] == 0) {
       return myjson["products"];
     }
-  } catch (SocketException) {
+  } catch (err) {
     print("Brah no internert");
     return null;
   }

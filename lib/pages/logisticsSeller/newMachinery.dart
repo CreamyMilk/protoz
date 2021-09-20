@@ -79,7 +79,7 @@ class _MachineInventoryState extends State<MachineInventory> {
                                 description: item["description"],
                                 name: item["productname"],
                                 stock: item["stock"],
-                                price: item["price"].toDouble(),
+                                price: item["price"],
                               ),
                               quantity: item["stock"],
                               onPressed: () {},
