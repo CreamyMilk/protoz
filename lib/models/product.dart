@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Product {
   final int productID;
   final String heroName;
-  final double price;
+  final int price;
   final int categoryID;
   final String image;
   final String packingType;
