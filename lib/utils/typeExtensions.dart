@@ -18,6 +18,13 @@ extension PostFrameCallback on VoidCallback {
       });
 }
 
+// ignore: todo
+//So +254(1|7)xxxx should be 0(1|7)xxxx TODO
+extension PhoneNumberBasedExtensions on String {
+  String get as07 =>
+      this.replaceAll(new RegExp(r"\s+"), "").replaceAll(new RegExp(r"\+"), "");
+}
+
 extension StringExtensions on String {
   String get capitalize => '${this[0].toUpperCase()}${substring(1)}';
   String get allInCaps => toUpperCase();
@@ -26,6 +33,8 @@ extension StringExtensions on String {
   String get svg => 'assets/images/svg/$this.svg';
   String get png => 'assets/images/png/$this.png';
   String get ltt => 'assets/lottiefiles/$this.json';
+  String get addCommas => this.replaceAllMapped(
+      new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
 }
 
 extension TransformationsX on Matrix4 {
