@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:proto/pages/homeDash/homedashboard.dart';
 import 'package:proto/pages/login/loginForm.dart';
+import 'package:proto/pages/login/loginOrSignup.dart';
+import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/profile.dart';
 import 'package:proto/pages/registrationForm/registerStepper.dart';
 import 'package:proto/pages/registrationOLD/register.dart';
@@ -16,16 +19,13 @@ import 'package:proto/pages/services/blVetsCalls.dart';
 import 'package:proto/pages/buyerpages/categoriesList.dart';
 import 'package:proto/pages/buyerpages/ProductDetails.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
-import 'package:proto/pages/startup/loginOrSignup.dart';
 import 'package:proto/pages/transactionPage.dart';
 import 'package:proto/providers/addproductProvider.dart';
 import 'package:proto/providers/loginProvider.dart';
 import 'package:proto/providers/stepperFormProvider.dart';
-import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/sellerpages/newProducts.dart';
 import 'package:proto/pages/buyerpages/productsList.dart';
 import 'package:proto/widgets/tab_controler.dart';
-import 'package:proto/pages/startup/homedashboard.dart';
 import 'package:proto/widgets/youtubeWebView.dart';
 import 'package:provider/provider.dart';
 import 'package:proto/pages/wallet/walletsTab.dart';
@@ -48,15 +48,17 @@ class RouteGenerator {
       case '/addProduct':
         return CupertinoPageRoute(
             builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
-                value: SystemUiOverlayStyle(
-                    statusBarColor: Colors.transparent,
-                    statusBarIconBrightness: Brightness.dark,
-                    systemNavigationBarColor: Colors.white),
-                child: ChangeNotifierProvider<AddProductFormProvider>(
+                  value: SystemUiOverlayStyle(
+                      statusBarColor: Colors.transparent,
+                      statusBarIconBrightness: Brightness.dark,
+                      systemNavigationBarColor: Colors.white),
+                  child: ChangeNotifierProvider<AddProductFormProvider>(
                     create: (context) => AddProductFormProvider(),
                     child: AddProductsPage(
                       initalProduct: args,
-                    ))));
+                    ),
+                  ),
+                ));
       case '/home':
         return CupertinoPageRoute(
             builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
@@ -114,8 +116,9 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (ctx) => RegisterPage());
       case '/categories':
         return MaterialPageRoute(builder: (ctx) => ListTilezz());
-      case '/buyer':
-        return MaterialPageRoute(builder: (ctx) => WalletsPageBase());
+      case '/dashboard':
+        return MaterialPageRoute(
+            builder: (ctx) => SmallerTextFactor(DashboardPage()));
       case '/profile':
         return MaterialPageRoute(builder: (ctx) => ProfilePage());
       case '/walletspage':
@@ -136,5 +139,18 @@ class RouteGenerator {
         ),
       );
     });
+  }
+}
+
+class SmallerTextFactor extends StatelessWidget {
+  const SmallerTextFactor(this.child, {Key key}) : super(key: key);
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    final mediaQueryData = MediaQuery.of(context);
+    return MediaQuery(
+      child: child,
+      data: mediaQueryData.copyWith(textScaleFactor: 1.0),
+    );
   }
 }
