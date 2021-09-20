@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
@@ -43,13 +44,13 @@ class _AddProductsPageState extends State<AddProductsPage> {
     }
     return Scaffold(
       backgroundColor: Colors.white,
-     appBar: AppBar(
+      appBar: AppBar(
         foregroundColor: Colors.black,
         elevation: 0,
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.green[700],
         centerTitle: true,
         actions: [
           GestureDetector(
@@ -59,7 +60,13 @@ class _AddProductsPageState extends State<AddProductsPage> {
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Center(
-                child: Text("Clear All "),
+                child: Text(
+                  "Clear All ",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white60,
+                  ),
+                ),
               ),
             ),
           ),
@@ -75,6 +82,38 @@ class _AddProductsPageState extends State<AddProductsPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Row(
+                  children: [
+                    hbox.isEdit
+                        ? Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              transformAlignment: Alignment.centerLeft,
+                              decoration: BoxDecoration(
+                                color: Colors.green[50],
+                              ),
+                              height: 85,
+                              width: 85,
+                              child: Image.network(hbox.imageController.text,
+                                  fit: BoxFit.scaleDown),
+                            ),
+                          )
+                        : SizedBox(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        transformAlignment: Alignment.centerLeft,
+                        decoration: BoxDecoration(
+                          color: Colors.green[50],
+                        ),
+                        height: 85,
+                        width: 85,
+                        child: Icon(Icons.add, color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
+                const YMargin(10),
                 DropdownButtonFormField(
                   elevation: 1,
                   items: temp,
@@ -150,7 +189,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                 hbox.loading
                     ? CircularProgressIndicator()
                     : FloatingActionButton.extended(
-                        backgroundColor: Colors.lightGreen,
+                        backgroundColor: Colors.green,
                         shape: RoundedRectangleBorder(),
                         onPressed: () {
                           hbox.sendAddProductRequest(context);
@@ -161,7 +200,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Sumbit",
+                                "Submit",
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.white),
                               ),

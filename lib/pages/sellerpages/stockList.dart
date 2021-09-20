@@ -33,12 +33,12 @@ class _InventoryListState extends State<InventoryList> {
         ),
       ),
       appBar: AppBar(
-        centerTitle:true,
-        leading:IconButton(
-          icon:Icon(Icons.close,color:Colors.black),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.close, color: Colors.black),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         elevation: 1,
         actions: [
@@ -86,15 +86,14 @@ class _InventoryListState extends State<InventoryList> {
                                 description: item["description"],
                                 name: item["productname"],
                                 stock: item["stock"],
-                                price: item["price"].toDouble(),
+                                price: item["price"],
                               ),
                               quantity: item["stock"],
                               onPressed: () {},
                             );
                           });
                     } else {
-                      return Center(
-                          child: Text("A Network Error has occured"));
+                      return Center(child: Text("A Network Error has occured"));
                     }
                   }))
         ]),
