@@ -17,7 +17,7 @@ Future getLatestCategories() async {
     if (myjson["status"] == 0) {
       box.put(Constants.ProductCategoriesStore, myjson["categories"]);
     }
-  } catch (SocketException) {
+  } catch (err) {
     print("Brah no internert");
   }
 }
@@ -42,7 +42,7 @@ Future getProductsList() async {
     if (myjson["status"] == 0) {
       return myjson["products"];
     }
-  } catch (SocketException) {
+  } catch (err) {
     print("Brah no internert");
     return null;
   }

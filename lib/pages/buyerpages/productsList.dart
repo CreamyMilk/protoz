@@ -64,7 +64,7 @@ class ProductList extends StatelessWidget {
                       productID: item["productID"],
                       heroName: item["productID"].toString() + "i",
                       name: item["productname"],
-                      price: item["price"].toDouble(),
+                      price: item["price"],
                       image: item["image"],
                       packingType: item["packingtype"],
                       stock: item["stock"].toInt(),
