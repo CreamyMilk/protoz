@@ -15,7 +15,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  double totalPrice = 0;
+  int totalPrice = 0;
   int quantity = 1;
   bool delivery = true;
   Widget _buildPopupDialog(BuildContext context) {
