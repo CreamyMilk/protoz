@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proto/hotelCards.dart';
+import 'package:proto/pages/homeDash/PhotoGridTile.dart';
 
 class Services {
   final String imageUrl;
   final String name;
   final String path;
 
-  Services({this.imageUrl, this.name,this.path});
+  Services({this.imageUrl, this.name, this.path});
 }
 
 class ListProducts extends StatefulWidget {
@@ -87,7 +87,7 @@ class HomeGrid extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               itemCount: sampleData.length,
               itemBuilder: (context, index) {
-                return HotelListTile(
+                return PhotoGridTile(
                   prodname: sampleData[index].name,
                   imageUrl: sampleData[index].imageUrl,
                   productID: index,

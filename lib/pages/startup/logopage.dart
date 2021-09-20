@@ -27,8 +27,9 @@ class _LogoPageState extends State<LogoPage> {
           switch (role) {
             case "Farmer":
               //store id
-              Navigator.of(navigatorKey.currentContext)
-                  .pushNamed("/addProduct");
+
+              // Navigator.of(navigatorKey.currentContext)
+              //     .pushNamed("/addProduct");
               break;
             default:
               Navigator.of(navigatorKey.currentContext).pushNamed("/login");
@@ -97,7 +98,7 @@ class _LogoPageState extends State<LogoPage> {
     Future.delayed(Duration(seconds: 3), () {
       !isLoggedIn
           ? Navigator.of(context).pushReplacementNamed("/startup")
-          : Navigator.of(context).pushReplacementNamed("/buyer");
+          : Navigator.of(context).pushReplacementNamed("/dashboard");
     });
   }
 
