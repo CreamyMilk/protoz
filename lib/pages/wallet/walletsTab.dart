@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:proto/utils/typeExtensions.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -144,7 +145,7 @@ class WalletsAppBar extends StatelessWidget {
       backgroundColor: Colors.white,
       leading: Center(
         child: IconButton(
-          icon:Icon(Icons.close),
+          icon: Icon(Icons.close),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -160,12 +161,12 @@ class WalletsAppBar extends StatelessWidget {
               color: Colors.black26,
             )),
       ],
-      expandedHeight: 200,
+      expandedHeight: 220,
       floating: false,
       pinned: true,
       centerTitle: true,
       title: Text(
-        "Welcome",
+        "Your Wallet",
         style: TextStyle(color: Colors.black87),
       ),
       flexibleSpace: FlexibleSpaceBar(
@@ -178,21 +179,10 @@ class WalletsAppBar extends StatelessWidget {
                 colors: [Colors.tealAccent[400], Colors.tealAccent[400]]),
           ),
           child: Container(
-            padding: EdgeInsets.only(top:30.0,left: 14.0, bottom: 8.0),
+            padding: EdgeInsets.only(top: 30.0, left: 14.0, bottom: 8.0),
             child: Column(
               children: [
-                SizedBox(
-                  height: 60,
-                ),
-                Text("",
-                    textScaleFactor: 1,
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.white54,
-                    )),
-                SizedBox(
-                  height: 10,
-                ),
+                const YMargin(40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -218,7 +208,7 @@ class WalletsAppBar extends StatelessWidget {
                                   builder: (BuildContext context, box,
                                       Widget child) {
                                     return Text(
-                                      "${box.get(Constants.BalanceStore, defaultValue: "00").toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                                      "${box.get(Constants.BalanceStore, defaultValue: "00").toString().addCommas}.00",
                                       textScaleFactor: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(

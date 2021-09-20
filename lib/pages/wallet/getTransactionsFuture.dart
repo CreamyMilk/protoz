@@ -26,7 +26,7 @@ Future getLatestTransaction() async {
     if (myjson["status"] == 0) {
       box.put(Constants.TransactionsStore, myjson["transactions"]);
     }
-  } catch (SocketException) {
+  } catch (err) {
     print("Brah no internert");
   }
 }
@@ -51,7 +51,7 @@ Future getLatestBalance() async {
     if (myjson["status"] == 0) {
       box.put(Constants.BalanceStore, myjson["balance"]);
     }
-  } catch (SocketException) {
+  } catch (err) {
     print("Brah no internert");
   }
 }
@@ -76,7 +76,7 @@ Future getCurrentOrders() async {
     if (myjson["status"] == 0) {
       box.put(Constants.OrdersStore, myjson["total"]);
     }
-  } catch (SocketException) {
+  } catch (err) {
     print("Brah no internert");
   }
 }
