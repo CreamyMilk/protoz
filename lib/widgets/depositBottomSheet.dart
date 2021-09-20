@@ -219,9 +219,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                     color: Colors.black,
                     child: Text(
                       "Deposit $amountDue",
-                      style: TextStyle(
-                      fontSize:17,
-                      color: Colors.white),
+                      style: TextStyle(fontSize: 17, color: Colors.white),
                     ),
                     autofocus: true,
                   ),
@@ -275,7 +273,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
 
         print("Req Sent Well");
       }
-    } catch (SocketException) {
+    } catch (err) {
       print("msEE HAUNA WIFI");
       showCupertinoDialog(
         context: ctx,

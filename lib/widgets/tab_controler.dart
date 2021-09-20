@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:proto/pages/homeDash/homedashboard.dart';
 import 'package:proto/pages/services/blPage.dart';
 import 'package:proto/pages/wallet/walletsTab.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:proto/pages/sellerpages/stockList.dart';
 import 'package:proto/pages/logisticsSeller/newMachinery.dart';
-import 'package:proto/pages/startup/homedashboard.dart';
 import 'package:proto/constants.dart';
 
 class BaseTabView extends StatefulWidget {
@@ -25,7 +25,7 @@ class _BaseTabViewState extends State<BaseTabView>
     Colors.white
   ];
   final _tabs = [
-    WalletsPageBase(),
+    DashboardPage(),
     ValueListenableBuilder(
       valueListenable: Hive.box(Constants.UserBoxName).listenable(),
       // ignore: top_level_function_literal_block
