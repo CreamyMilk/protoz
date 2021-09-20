@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SuccesfulSentMoneyPopUp extends StatelessWidget {
-  const SuccesfulSentMoneyPopUp ({
+  const SuccesfulSentMoneyPopUp({
     Key key,
   }) : super(key: key);
 
@@ -14,13 +14,12 @@ class SuccesfulSentMoneyPopUp extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text("Transaction was successful"),
-          
         ],
       ),
       actions: <Widget>[
         MaterialButton(
           onPressed: () {
-            Navigator.of(context).pushNamed("/buyer");
+            Navigator.of(context).pushNamed("/dashboard");
           },
           textColor: Theme.of(context).primaryColor,
           child: const Text('Go Home'),

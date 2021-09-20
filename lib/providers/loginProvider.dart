@@ -90,7 +90,7 @@ class LoginFormProvider extends ChangeNotifier {
           });
         }
         box.put(Constants.IsLoggedInStore, true);
-        Navigator.of(ctx).pushNamed("/buyer");
+        Navigator.of(ctx).pushNamed("/dashboard");
       } else {
         loading = false;
         passwordController.text = "";
@@ -102,7 +102,7 @@ class LoginFormProvider extends ChangeNotifier {
           ),
         );
       }
-    } catch (SocketException) {
+    } catch (err) {
       loading = false;
       notifyListeners();
     }

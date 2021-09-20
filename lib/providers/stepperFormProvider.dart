@@ -230,7 +230,7 @@ class KraFormProvider extends ChangeNotifier {
           ),
         );
       }
-    } catch (SocketException) {
+    } catch (err) {
       isLoading = false;
       print("msEE HAUNA WIFI");
       showCupertinoDialog(
