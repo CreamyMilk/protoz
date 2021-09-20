@@ -26,109 +26,110 @@ class VerifyPaymentCard extends StatelessWidget {
     int currentBalance = userBox.get(Constants.BalanceStore);
     return DraggableCard(
       child: AnimatedContainer(
-          duration: Duration(milliseconds: 300),
-          curve: Curves.fastLinearToSlowEaseIn,
-          padding: EdgeInsets.only(top: 10.0),
-          color: Colors.white,
-          width: MediaQuery.of(context).size.width * 0.7,
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Send",
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w300),
-                      ),
-                      Text(
-                        "Ksh.${amount.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.w300),
-                      ),
-                      //Text("0.00001 BTC"),
-                      SizedBox(height: 30),
-                      Text("To: $receiverPhone",
-                          style: TextStyle(
-                            color: Colors.grey,
-                          )),
-
-                      Row(children: [
-                        Text(
-                          "$receiverName",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w300),
-                        ),
-                        Spacer(),
-                        IconButton(
-                            icon: Icon(Icons.edit_outlined,
-                                color: Colors.black, size: 15),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            }),
-                      ]),
-                      SizedBox(height: 30),
-                      Text(
-                          "Fees: ${fees.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.0",
-                          style: TextStyle(
-                            color: Colors.grey,
-                          )),
-                    ],
-                  ),
-                ),
-                //    IconButton(
-                //                    icon: Icon(Icons.add, color: Colors.white),
-                //                  onPressed: () {}),
-
-                ExpansionTile(
-                  onExpansionChanged: (bool currentState) {
-                    print(currentState);
-                  },
-                  backgroundColor: Colors.white,
-                  title: Text(
-                    "DETAILS",
+        duration: Duration(milliseconds: 300),
+        curve: Curves.fastLinearToSlowEaseIn,
+        padding: EdgeInsets.only(top: 10.0),
+        color: Colors.white,
+        width: MediaQuery.of(context).size.width * 0.7,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Send",
                     style: TextStyle(
-                        color: Colors.black38,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w500),
+                        color: Colors.black, fontWeight: FontWeight.w300),
                   ),
-                  children: <Widget>[
-                    ListTile(
-                        trailing: Text(
-                            "Ksh.${currentBalance.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
-                            style: TextStyle(color: Colors.green)),
-                        title: Text(
-                          "Inital Balance",
-                          style: TextStyle(color: Colors.black),
-                        )),
-                    ListTile(
-                        trailing: Text(
-                            "- Ksh.${(amount + fees).toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
-                            style: TextStyle(color: Colors.blue)),
-                        title: Text(
-                          "Transaction",
-                          style: TextStyle(color: Colors.black),
-                        )),
-                    Divider(),
-                    ListTile(
-                        trailing: Text(
-                            "Ksh.${((currentBalance) - (amount + fees)).toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
-                            style: TextStyle(color: Colors.green)),
-                        title: Text(
-                          "Final Balance",
-                          style: TextStyle(color: Colors.black),
-                        )),
-                  ],
-                ),
-              ])),
+                  Text(
+                    "Ksh.${amount.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.w300),
+                  ),
+                  //Text("0.00001 BTC"),
+                  SizedBox(height: 30),
+                  Text("To: $receiverPhone",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      )),
+
+                  Row(children: [
+                    Text(
+                      "$receiverName",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w300),
+                    ),
+                    Spacer(),
+                    IconButton(
+                        icon: Icon(Icons.edit_outlined,
+                            color: Colors.black, size: 15),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
+                  ]),
+                  SizedBox(height: 30),
+                  Text(
+                      "Fees: ${fees.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.0",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      )),
+                ],
+              ),
+            ),
+            //    IconButton(
+            //    icon: Icon(Icons.add, color: Colors.white),
+            //   onPressed: () {}),
+            ExpansionTile(
+              onExpansionChanged: (bool currentState) {
+                print(currentState);
+              },
+              backgroundColor: Colors.white,
+              title: Text(
+                "DETAILS",
+                style: TextStyle(
+                    color: Colors.black38,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500),
+              ),
+              children: <Widget>[
+                ListTile(
+                    trailing: Text(
+                        "Ksh.${currentBalance.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                        style: TextStyle(color: Colors.green)),
+                    title: Text(
+                      "Inital Balance",
+                      style: TextStyle(color: Colors.black),
+                    )),
+                ListTile(
+                    trailing: Text(
+                        "- Ksh.${(amount + fees).toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                        style: TextStyle(color: Colors.blue)),
+                    title: Text(
+                      "Transaction",
+                      style: TextStyle(color: Colors.black),
+                    )),
+                Divider(),
+                ListTile(
+                    trailing: Text(
+                        "Ksh.${((currentBalance) - (amount + fees)).toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                        style: TextStyle(color: Colors.green)),
+                    title: Text(
+                      "Final Balance",
+                      style: TextStyle(color: Colors.black),
+                    )),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

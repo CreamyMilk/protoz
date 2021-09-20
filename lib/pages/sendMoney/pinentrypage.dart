@@ -161,7 +161,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
             builder: (BuildContext context) => CannontReigsterPopUp(
                 message: "Error while sending payment request"));
       }
-    } catch (SocketException) {
+    } catch (err) {
       setState(() {
         loading = false;
       });

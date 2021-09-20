@@ -183,7 +183,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
                   message: response.body,
                 ));
       }
-    } catch (SocketException) {
+    } catch (err) {
       setState(() {
         loading = false;
       });
