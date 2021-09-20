@@ -28,12 +28,13 @@ class MyApp extends StatelessWidget {
       title: appTitle,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primarySwatch: Colors.green,
         visualDensity: VisualDensity.compact,
         textTheme: GoogleFonts.nunitoTextTheme(
           Theme.of(context).textTheme,
         ),
-        primaryColor: Colors.teal,
-        accentColor: Colors.tealAccent,
+        primaryColorLight: Colors.teal,
+        primaryColorDark: Colors.teal,
       ),
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: '/',
