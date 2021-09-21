@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/widgets/depositBottomSheet.dart';
 import 'package:proto/widgets/qrScannerButton.dart';
 
 class ContactsListPage extends StatelessWidget {
@@ -86,6 +87,15 @@ class ContactsListPage extends StatelessWidget {
                   myText: "Scan QR CODE",
                   ontap: () {
                     initateScan(context);
+                  },
+                ),
+                StyledActionListTile(
+                  color: Colors.black,
+                  icondata: Icons.clean_hands_rounded,
+                  textColor: Colors.black,
+                  myText: "Deposit Into Wallet",
+                  ontap: () {
+                    depositModalBottomSheet(context, "10");
                   },
                 ),
               ],
