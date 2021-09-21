@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:proto/constants.dart';
+import 'package:proto/main.dart';
 import 'package:proto/models/product.dart';
 
 class AddProductFormProvider extends ChangeNotifier {
@@ -21,12 +23,13 @@ class AddProductFormProvider extends ChangeNotifier {
   bool showError = false;
   bool loading = false;
   bool isEdit = false;
- Product globalProduct;
- 
- void setCategory(int value){
-  categoryID = value;
-  notifyListeners();
- }
+  Product globalProduct;
+
+  void setCategory(int value) {
+    categoryID = value;
+    notifyListeners();
+  }
+
   void clearAll() {
     descriptionController.clear();
     productNameController.clear();
@@ -35,7 +38,7 @@ class AddProductFormProvider extends ChangeNotifier {
     imageController.clear();
     stockController.clear();
     priceController.clear();
-    categoryID =null;
+    categoryID = null;
   }
 
   void initalizeEditFields(Product p) {
@@ -65,7 +68,7 @@ class AddProductFormProvider extends ChangeNotifier {
           //ensure that the user has bothe the socketID and the USER ID
           {
             "categoryID": categoryID,
-            "productID":isEdit ? globalProduct.productID:null,
+            "productID": isEdit ? globalProduct.productID : null,
             "ownerID": box.get(Constants.UserIDStore),
             "productname": productNameController.text,
             "image": imageController.text,
@@ -82,14 +85,46 @@ class AddProductFormProvider extends ChangeNotifier {
       if (myjson["status"] == 0) {
         print(myjson);
         loading = false;
+        notifyListeners();
         clearAll();
       } else {
         loading = false;
+        showCupertinoDialog(
+            context: navigatorKey.currentContext,
+            builder: (context) => AlertDialog(
+                    actions: [
+                      MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        textColor: Theme.of(context).primaryColor,
+                        child: const Text('Close'),
+                      ),
+                    ],
+                    title: Text("Minor Issue."),
+                    content: Text(myjson["message"])));
         notifyListeners();
         //clearAll();
       }
     } catch (error) {
-      print(error);
+      showCupertinoDialog(
+        context: navigatorKey.currentContext,
+        builder: (context) => AlertDialog(
+          actions: [
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              textColor: Theme.of(context).primaryColor,
+              child: const Text('Close'),
+            ),
+          ],
+          title: Text("Error in the Form"),
+          content: Text(
+            "[RESOLVE]:$error",
+          ),
+        ),
+      );
       loading = false;
       notifyListeners();
     }

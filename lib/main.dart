@@ -14,7 +14,9 @@ void main() async {
   if (Platform.isAndroid) {
     await Firebase.initializeApp();
   }
-  await Hive.openBox(Constants.UserBoxName);
+  await Hive.openBox(
+    Constants.UserBoxName,
+  );
   runApp(MyApp());
 }
 

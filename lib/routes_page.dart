@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:proto/pages/homeDash/homedashboard.dart';
 import 'package:proto/pages/login/loginForm.dart';
 import 'package:proto/pages/login/loginOrSignup.dart';
+import 'package:proto/pages/ordersPage/ordersList.dart';
 import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/profile.dart';
 import 'package:proto/pages/registrationForm/registerStepper.dart';
@@ -119,6 +120,9 @@ class RouteGenerator {
       case '/dashboard':
         return MaterialPageRoute(
             builder: (ctx) => SmallerTextFactor(DashboardPage()));
+      case '/orders':
+        return MaterialPageRoute(
+            builder: (ctx) => SmallerTextFactor(OrdersList()));
       case '/profile':
         return MaterialPageRoute(builder: (ctx) => ProfilePage());
       case '/walletspage':
