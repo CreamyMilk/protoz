@@ -4,16 +4,16 @@ typedef KeyboardTapCallback = void Function(String text);
 
 class NumericKeyboard extends StatefulWidget {
   final Color textColor;
-  final Icon rightIcon;
-  final Function() rightButtonFn;
-  final Icon leftIcon;
-  final Function() leftButtonFn;
+  final Icon? rightIcon;
+  final Function()? rightButtonFn;
+  final Icon? leftIcon;
+  final Function()? leftButtonFn;
   final KeyboardTapCallback onKeyboardTap;
   final MainAxisAlignment mainAxisAlignment;
 
-  NumericKeyboard(
-      {Key key,
-      @required this.onKeyboardTap,
+  const NumericKeyboard(
+      {Key? key,
+      required this.onKeyboardTap,
       this.textColor = Colors.black,
       this.rightButtonFn,
       this.rightIcon,

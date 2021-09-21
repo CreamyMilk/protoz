@@ -92,7 +92,7 @@ class ContinuousRectangleBorder extends ShapeBorder {
   final BorderSide borderSide;
 
   Path _getPath(Rect rect) {
-    double limitedRadius;
+    late double limitedRadius;
     final width = rect.width;
     final height = rect.height;
     final centerX = rect.center.dx;
@@ -225,23 +225,23 @@ class ContinuousRectangleBorder extends ShapeBorder {
       minimalEdgeLengthSideToCornerRadiusRatio,
       minimalUnclippedSideToCornerRadiusRatio,
       minSideLength / minRadiusEdgeLength,
-    );
+    )!;
     limitedRadius = math.min(radius, minSideLength / multiplier);
     return bezierRoundedRect();
   }
 
   @override
-  Path getInnerPath(Rect rect, {TextDirection textDirection}) {
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
     return _getPath(rect);
   }
 
   @override
-  Path getOuterPath(Rect rect, {TextDirection textDirection}) {
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
     return _getPath(rect);
   }
 
   @override
-  void paint(Canvas canvas, Rect rect, {TextDirection textDirection}) {
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
     // Guard against no border.
     if (borderSide.style == BorderStyle.none) return;
 
@@ -272,10 +272,10 @@ class ContinuousRectangleBorder extends ShapeBorder {
   }
 
   @override
-  ShapeBorder lerpFrom(ShapeBorder a, double t) {
+  ShapeBorder? lerpFrom(ShapeBorder? a, double t) {
     if (a is ContinuousRectangleBorder) {
       return ContinuousRectangleBorder(
-        cornerRadius: ui.lerpDouble(a.cornerRadius, cornerRadius, t),
+        cornerRadius: ui.lerpDouble(a.cornerRadius, cornerRadius, t)!,
         borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
       );
     }
@@ -283,10 +283,10 @@ class ContinuousRectangleBorder extends ShapeBorder {
   }
 
   @override
-  ShapeBorder lerpTo(ShapeBorder b, double t) {
+  ShapeBorder? lerpTo(ShapeBorder? b, double t) {
     if (b is ContinuousRectangleBorder) {
       return ContinuousRectangleBorder(
-        cornerRadius: ui.lerpDouble(cornerRadius, b.cornerRadius, t),
+        cornerRadius: ui.lerpDouble(cornerRadius, b.cornerRadius, t)!,
         borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
       );
     }

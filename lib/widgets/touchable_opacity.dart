@@ -12,13 +12,13 @@ import 'package:flutter/widgets.dart';
 /// [decoration] decoration supplied to the enclosing container.
 class TouchableOpacity extends StatefulWidget {
   TouchableOpacity({
-    @required this.child,
+    required this.child,
     this.onTap,
     this.onLongPress,
     this.decoration,
     this.width,
     this.height,
-    Key key,
+    Key? key,
     this.behavior = HitTestBehavior.opaque,
     this.disabled = false,
     this.onTapDown,
@@ -26,16 +26,16 @@ class TouchableOpacity extends StatefulWidget {
     this.onTapCancel,
   }) : super(key: key);
   final Widget child;
-  final double width;
-  final double height;
-  final VoidCallback onTap;
-  final VoidCallback onLongPress;
-  final BoxDecoration decoration;
+  final double? width;
+  final double? height;
+  final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
+  final BoxDecoration? decoration;
   final HitTestBehavior behavior;
   final bool disabled;
-  final VoidCallback onTapDown;
-  final VoidCallback onTapUp;
-  final VoidCallback onTapCancel;
+  final VoidCallback? onTapDown;
+  final VoidCallback? onTapUp;
+  final VoidCallback? onTapCancel;
 
   @override
   _TouchableOpacity createState() => _TouchableOpacity();
@@ -59,7 +59,7 @@ class _TouchableOpacity extends State<TouchableOpacity> {
           });
 
           if (widget.onTapDown != null) {
-            widget.onTapDown();
+            widget.onTapDown!();
           }
         },
         onTapUp: (tapUpDetails) {
@@ -68,7 +68,7 @@ class _TouchableOpacity extends State<TouchableOpacity> {
           });
 
           if (widget.onTapUp != null) {
-            widget.onTapUp();
+            widget.onTapUp!();
           }
         },
         onTapCancel: () {
@@ -77,7 +77,7 @@ class _TouchableOpacity extends State<TouchableOpacity> {
           });
 
           if (widget.onTapCancel != null) {
-            widget.onTapCancel();
+            widget.onTapCancel!();
           }
         },
         onTap: widget.disabled ? null : widget.onTap,

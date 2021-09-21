@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:proto/widgets/touchableOpacity.dart';
+
+import 'rounded_clip.dart';
 import 'crb.dart' as crb;
+import 'touchable_opacity.dart';
 
 /// Custom Cowry UI Button
 class CowryButton extends StatelessWidget {
   const CowryButton({
-    Key key,
+    Key? key,
     this.onPressed,
     this.child,
     this.title,
@@ -26,19 +28,19 @@ class CowryButton extends StatelessWidget {
   /// constraints are unbounded, then the child will be shrink-wrapped instead.
   ///
 
-  final Widget child;
+  final Widget? child;
 
   ///The [title] of the  button.
   /// Ignored if [child] is not null.
-  final String title;
-  final Color color;
+  final String? title;
+  final Color? color;
   final Color textColor;
-  final VoidCallback onPressed;
-  final double height;
-  final double width;
+  final VoidCallback? onPressed;
+  final double? height;
+  final double? width;
   final bool isLoading, disabled;
-  final EdgeInsetsGeometry margin;
-  final TextStyle textStyle;
+  final EdgeInsetsGeometry? margin;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class CowryButton extends StatelessWidget {
           absorbing: disabled == true,
           child: AnimatedOpacity(
             opacity: disabled ? 0.5 : 1,
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             child: TouchableOpacity(
               onTap: isLoading == true ? null : onPressed,
               child: Container(
@@ -77,10 +79,10 @@ class CowryButton extends StatelessWidget {
                             Container(
                               height: 25,
                               width: 25,
-                              child: CircularProgressIndicator(
+                              child: const CircularProgressIndicator(
                                 strokeWidth: 2,
                                 valueColor:
-                                    AlwaysStoppedAnimation(Colors.white),
+                                    AlwaysStoppedAnimation(Colors.amber),
                               ),
                             ),
                           ],
@@ -98,7 +100,7 @@ class CowryButton extends StatelessWidget {
 /// Custom Cowry Outlined UI Button
 class CowryOutlinedButton extends StatelessWidget {
   const CowryOutlinedButton({
-    Key key,
+    Key? key,
     this.onPressed,
     this.child,
     this.title,
@@ -117,18 +119,18 @@ class CowryOutlinedButton extends StatelessWidget {
   /// constraints are unbounded, then the child will be shrink-wrapped instead.
   ///
 
-  final Widget child;
+  final Widget? child;
 
   ///The [title] of the  button.
   /// Ignored if [child] is not null.
-  final String title;
-  final Color color;
+  final String? title;
+  final Color? color;
   final Color textColor;
-  final VoidCallback onPressed;
-  final double height;
-  final double width;
+  final VoidCallback? onPressed;
+  final double? height;
+  final double? width;
   final bool isLoading, disabled;
-  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry? margin;
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +172,7 @@ class CowryOutlinedButton extends StatelessWidget {
                           Container(
                             height: 25,
                             width: 25,
-                            child: CircularProgressIndicator(
+                            child: const CircularProgressIndicator(
                               strokeWidth: 2,
                               valueColor: AlwaysStoppedAnimation(Colors.white),
                             ),
@@ -182,25 +184,6 @@ class CowryOutlinedButton extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class RoundedClip extends StatelessWidget {
-  RoundedClip({
-    @required this.cornerRadius,
-    @required this.child,
-  });
-  final double cornerRadius;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipPath.shape(
-      shape: crb.ContinuousRectangleBorder(
-        cornerRadius: cornerRadius,
-      ),
-      child: child,
     );
   }
 }

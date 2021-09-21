@@ -3,17 +3,17 @@ import 'package:proto/utils/typeExtensions.dart';
 
 import 'package:flutter/material.dart';
 
-class IcWad extends StatefulWidget {
+class const IcWad extends StatefulWidget {
   final double rotation;
 
-  const IcWad({Key key, @required this.rotation}) : super(key: key);
+  const const IcWad({Key? key, required this.rotation}) : super(key: key);
   @override
-  _IcWad createState() => _IcWad();
+  _const IcWad createState() => _const IcWad();
 }
 
-class _IcWad extends State<IcWad> with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation<double> anim;
+class _const IcWad extends State<const IcWad> with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> anim;
 
   @override
   void initState() {
@@ -22,7 +22,7 @@ class _IcWad extends State<IcWad> with SingleTickerProviderStateMixin {
       vsync: this,
       lowerBound: Random().nextDouble() * 10,
       upperBound: 40,
-      duration: Duration(milliseconds: 3600),
+      duration: const Duration(milliseconds: 3600),
     );
 
     anim = controller
@@ -38,7 +38,7 @@ class _IcWad extends State<IcWad> with SingleTickerProviderStateMixin {
         margin: EdgeInsets.only(top: 0 + anim.value),
         child: Transform.rotate(
           angle: widget.rotation.degrees,
-          child: Opacity(
+          child: const Opacity(
             opacity: 0.6,
             child: Icon(
               Icons.ten_k,
