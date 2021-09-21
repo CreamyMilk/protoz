@@ -29,38 +29,30 @@ Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
       ),
     );
     var myjson = json.decode(response.body);
-    if(myjson["status"]!=0){
-       showCupertinoDialog(
-              context: navigatorKey.currentContext,
-              builder: (context) =>
-                  AlertDialog(
-                    actions:[
-         MaterialButton(
-           onPressed: () {
-             Navigator.of(context).pop();
-           },
-           textColor: Theme.of(context).primaryColor,
-           child: const Text('Close'),
-         ),
-
-                    ],
-                    title: Text("Minor Issue"), content: Text(myjson["message"])));
-    }else{
-       showCupertinoDialog(
-              context: navigatorKey.currentContext,
-              builder: (context) =>
-                  AlertDialog(
-                    actions:[
-         MaterialButton(
-           onPressed: () {
-             Navigator.of(context).pop();
-           },
-           textColor: Theme.of(context).primaryColor,
-           child: const Text('Continue Shopping'),
-         ),
-
-                    ],
-                    title: Text("Success"), content: Text(myjson["message"])));
+    if (myjson["status"] != 0) {
+      showCupertinoDialog(
+          context: navigatorKey.currentContext,
+          builder: (context) => AlertDialog(actions: [
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  textColor: Theme.of(context).primaryColor,
+                  child: const Text('Close'),
+                ),
+              ], title: Text("Minor Issue"), content: Text(myjson["message"])));
+    } else {
+      showCupertinoDialog(
+          context: navigatorKey.currentContext,
+          builder: (context) => AlertDialog(actions: [
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  textColor: Theme.of(context).primaryColor,
+                  child: const Text('Continue Shopping'),
+                ),
+              ], title: Text("Success"), content: Text(myjson["message"])));
     }
     print("Attempting to purchase the product");
     print(myjson);

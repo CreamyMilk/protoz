@@ -5,6 +5,8 @@ import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
 import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/typeExtensions.dart';
 
 class ProductList extends StatelessWidget {
   @override
@@ -88,27 +90,44 @@ class ProductListItem extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    double imageDimension = 100;
+    double cardSize = 110;
     return Card(
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 4),
-        height: 150,
-        width: MediaQuery.of(context).size.width * .9,
+        height: cardSize,
+        width: screenWidth(context, percent: 0.9),
         color: Colors.white70,
         child: Row(
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, "/pdetails", arguments: p);
-              },
-              child: Hero(
-                tag: p.productID.toString() + "hero",
-                child: CachedNetworkImage(
-                  imageUrl: p.image,
-                  width: 150,
-                  // color: Colors.pink,
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, "/pdetails", arguments: p);
+                },
+                child: Hero(
+                  tag: p.productID.toString() + "hero",
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: CachedNetworkImage(
+                      errorWidget:
+                          (BuildContext ctx, String word, dynamic anything) {
+                        return Image.network(
+                            Constants.getProductPlaceHolderURL(),
+                            width: imageDimension,
+                            height: imageDimension);
+                      },
+                      imageUrl: p.image,
+                      width: imageDimension,
+                      height: imageDimension,
+                      // color: Colors.pink,
+                    ),
+                  ),
                 ),
               ),
             ),
+            const XMargin(10),
             Container(
               child: Expanded(
                 child: Column(
@@ -120,48 +139,56 @@ class ProductListItem extends StatelessWidget {
                       child: Text(
                         "${p.name}",
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 25),
+                        style: TextStyle(fontSize: 20),
                       ),
                     ),
                     Flexible(
                       child: Text(
                         "${p.packingType}",
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 15, color: Colors.blueGrey),
                       ),
                     ),
-                    RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(children: [
-                          TextSpan(
-                              text: "Ksh.",
-                              style: TextStyle(
-                                  color: Colors.deepPurple[200],
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 13)),
-                          TextSpan(
-                            text: "${p.price}",
-                            style: TextStyle(
-                                color: Colors.deepPurple,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18),
+                    const YMargin(5),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(children: [
+                                TextSpan(
+                                    text: "Ksh.",
+                                    style: TextStyle(
+                                        color: Colors.deepPurple[200],
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13)),
+                                TextSpan(
+                                  text: "${p.price.toString().addCommas}",
+                                  style: TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 18),
+                                )
+                              ])),
+                          Spacer(),
+                          Hero(
+                            tag: p.heroName,
+                            child: MaterialButton(
+                              color: Colors.green[700],
+                              onPressed: () {
+                                Navigator.pushNamed(context, "/pdetails",
+                                    arguments: p);
+                              },
+                              child: Text(
+                                "Buy ",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                            ),
                           )
-                        ])),
-                    Spacer(),
-                    Hero(
-                      tag: p.heroName,
-                      child: MaterialButton(
-                        color: Colors.green[300],
-                        onPressed: () {
-                          Navigator.pushNamed(context, "/pdetails",
-                              arguments: p);
-                        },
-                        child: Text(
-                          "Buy",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
+                        ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
