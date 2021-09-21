@@ -48,63 +48,64 @@ class _WalletsTabState extends State<WalletsTab> {
             builder: (BuildContext context, box, Widget child) {
               List<dynamic> trans = box.get(Constants.TransactionsStore);
               return SliverList(
-                delegate:
-                    SliverChildBuilderDelegate((BuildContext ctx, int index) {
-                  if (index == 0) {
-                    return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        "Transactions",
-                        style: GoogleFonts.quicksand(
-                            fontWeight: FontWeight.w500, fontSize: 25),
-                      ),
-                    );
-                  }
-
-                  index -= 1;
-                  if (index < trans.length) {
-                    var transaction = trans[index];
-                    //   print(transaction);
-                    bool toMe = (transaction["to"] ==
-                        box.get(Constants.PhoneNumberStore));
-                    bool isPurchase = (transaction["typeid"] == 3);
-                    return ListTile(
-                      dense: true,
-                      onTap: () {
-                        isPurchase
-                            ? showQRDialog(
-                                context, transaction["transactionid"])
-                            : print("This is something else");
-                      },
-                      leading: CircleAvatar(
-                        child: Icon(
-                          isPurchase
-                              ? Icons.shopping_bag_outlined
-                              : Icons.money,
-                          size: 17,
-                          color: isPurchase ? Colors.orange : Colors.orange,
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext ctx, int index) {
+                    if (index == 0) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          "Transactions",
+                          style: GoogleFonts.quicksand(
+                              fontWeight: FontWeight.w500, fontSize: 25),
                         ),
-                        minRadius: 18,
-                        maxRadius: 18,
-                        backgroundColor:
-                            isPurchase ? Colors.orange[50] : Colors.orange[50],
-                      ),
-                      // heros: index,
+                      );
+                    }
 
-                      title: Text(
-                          "${toMe ? transaction["from"] : transaction["fromName"]}"),
-                      subtitle: Text("${transaction["transactionid"]}"),
-                      trailing: RichText(
-                        textAlign: TextAlign.end,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                                text: "${toMe ? "+" : "-"} Ksh.\n",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 10.0)),
-                            TextSpan(
+                    index -= 1;
+                    if (index < trans.length) {
+                      var transaction = trans[index];
+                      //   print(transaction);
+                      bool toMe = (transaction["to"] ==
+                          box.get(Constants.PhoneNumberStore));
+                      bool isPurchase = (transaction["typeid"] == 3);
+                      return ListTile(
+                        dense: true,
+                        onTap: () {
+                          isPurchase
+                              ? showQRDialog(
+                                  context, transaction["transactionid"])
+                              : print("This is something else");
+                        },
+                        leading: CircleAvatar(
+                          child: Icon(
+                            isPurchase
+                                ? Icons.shopping_bag_outlined
+                                : Icons.money,
+                            size: 17,
+                            color: isPurchase ? Colors.orange : Colors.orange,
+                          ),
+                          minRadius: 18,
+                          maxRadius: 18,
+                          backgroundColor: isPurchase
+                              ? Colors.orange[50]
+                              : Colors.orange[50],
+                        ),
+                        // heros: index,
+
+                        title: Text(
+                            "${toMe ? transaction["from"] : transaction["fromName"]}"),
+                        subtitle: Text("${transaction["transactionid"]}"),
+                        trailing: RichText(
+                          textAlign: TextAlign.end,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: "${toMe ? "+" : "-"} Ksh.\n",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 10.0)),
+                              TextSpan(
                                 text:
                                     "${transaction["amount"].toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
                                 style: TextStyle(
@@ -114,16 +115,18 @@ class _WalletsTabState extends State<WalletsTab> {
                                             ? Colors.greenAccent[400]
                                             : Colors.blueGrey,
                                     fontWeight: FontWeight.w300,
-                                    fontSize: 18.0)),
-                          ],
+                                    fontSize: 18.0),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      // imageUrl: sampleData[index].imageUrl,
-                      // productID: index,
-                    );
-                  }
-                  return null;
-                }),
+                        // imageUrl: sampleData[index].imageUrl,
+                        // productID: index,
+                      );
+                    }
+                    return null;
+                  },
+                ),
               );
             },
           ),
@@ -182,7 +185,7 @@ class WalletsAppBar extends StatelessWidget {
             padding: EdgeInsets.only(top: 30.0, left: 14.0, bottom: 8.0),
             child: Column(
               children: [
-                const YMargin(40),
+                const YMargin(90),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,

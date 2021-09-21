@@ -124,7 +124,7 @@ class DashboardSliverAppBar extends StatelessWidget {
                   "Good Morning,\n$userName",
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
                 )
@@ -133,14 +133,14 @@ class DashboardSliverAppBar extends StatelessWidget {
                       "Good Afternoon,\n$userName ",
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
                     )
                   : Text("Good Evening,\n$userName",
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ));
         },
@@ -160,7 +160,7 @@ class DashboardSliverAppBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const YMargin(70),
+                const YMargin(100),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(

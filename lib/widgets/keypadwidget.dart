@@ -96,7 +96,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
       child: Container(
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width * 0.2,
-        height: 55,
+        height: MediaQuery.of(context).size.height * 0.01,
         child: Text(
           value,
           style: TextStyle(
