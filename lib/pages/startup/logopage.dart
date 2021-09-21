@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/main.dart';
 import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
+import 'package:proto/pages/ordersPage/fetchOrdersFuture.dart';
 import 'package:proto/pages/wallet/getTransactionsFuture.dart';
 
 class LogoPage extends StatefulWidget {

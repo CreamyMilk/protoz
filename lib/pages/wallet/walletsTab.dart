@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:proto/pages/ordersPage/fetchOrdersFuture.dart';
 import 'package:proto/utils/typeExtensions.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,8 @@ class _WalletsTabState extends State<WalletsTab> {
           ValueListenableBuilder(
             valueListenable: Hive.box(Constants.UserBoxName).listenable(),
             builder: (BuildContext context, box, Widget child) {
-              List<dynamic> trans = box.get(Constants.TransactionsStore);
+              List<dynamic> trans =
+                  box.get(Constants.TransactionsStore, defaultValue: []);
               return SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext ctx, int index) {

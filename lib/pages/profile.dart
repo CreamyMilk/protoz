@@ -82,7 +82,7 @@ class ProfilePage extends StatelessWidget {
     box.put(Constants.IsLoggedInStore, false);
     box.put(Constants.TransactionsStore, []);
     box.put(Constants.BalanceStore, 0);
-    box.put(Constants.OrdersStore, 0);
+    box.put(Constants.TotalOrdersStore, 0);
     if (Platform.isAndroid) {
       FirebaseMessaging.instance.unsubscribeFromTopic(
           box.get(Constants.NotifcationTopicStore, defaultValue: "."));

@@ -15,20 +15,26 @@ class BLPage extends StatelessWidget {
         ],
         elevation: 0,
         centerTitle: true,
-        title: Text("BD page",style: TextStyle(color: Colors.white),),
+        title: Text(
+          "BD page",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Column(
         children: [
           Divider(),
           ListTile(
-            dense: true,
+              dense: true,
               title: Text(
                 "FAQ",
                 style: TextStyle(
                   fontSize: 20,
                 ),
               ),
-              trailing: Icon(Icons.arrow_forward_ios_sharp,size: 20,),
+              trailing: Icon(
+                Icons.arrow_forward_ios_sharp,
+                size: 20,
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed("/youtube");
               }),
@@ -40,7 +46,10 @@ class BLPage extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-                           trailing: Icon(Icons.arrow_forward_ios_sharp,size: 20,),
+              trailing: Icon(
+                Icons.arrow_forward_ios_sharp,
+                size: 20,
+              ),
               onTap: () {
                 print("Oya");
               }),
@@ -52,11 +61,28 @@ class BLPage extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-                           trailing: Icon(Icons.arrow_forward_ios_sharp,size: 20,),
+              trailing: Icon(
+                Icons.arrow_forward_ios_sharp,
+                size: 20,
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed("/blconsoltants");
               }),
           Divider(),
+          ListTile(
+              title: Text(
+                "Profile",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios_sharp,
+                size: 20,
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed("/profile");
+              }),
         ],
       ),
     );
