@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/pages/homeDash/PhotoGridTile.dart';
 import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
+import 'package:proto/pages/ordersPage/fetchOrdersFuture.dart';
 import 'package:proto/pages/startup/cardsPage.dart';
 import 'package:proto/pages/wallet/getTransactionsFuture.dart';
 import 'package:proto/utils/sizedMargins.dart';
@@ -46,7 +47,7 @@ class _DashboardPageState extends State<DashboardPage> {
             "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
         name: "Wallet / Pochi"),
     Services(
-        path: "/walletspage",
+        path: "/orders",
         imageUrl:
             "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
         name: "Orders / Kazi"),
@@ -111,7 +112,7 @@ class DashboardSliverAppBar extends StatelessWidget {
               color: Colors.black26,
             )),
       ],
-      expandedHeight: 150,
+      expandedHeight: 160,
       floating: false,
       pinned: true,
       title: ValueListenableBuilder(
@@ -160,7 +161,7 @@ class DashboardSliverAppBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const YMargin(100),
+                const YMargin(115),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
@@ -179,7 +180,7 @@ class DashboardSliverAppBar extends StatelessWidget {
                                 Hive.box(Constants.UserBoxName).listenable(),
                             builder: (BuildContext context, box, Widget child) {
                               return Text(
-                                "Ksh.${box.get(Constants.OrdersStore, defaultValue: "00").toString().addCommas}.00",
+                                "Ksh.${box.get(Constants.TotalOrdersStore, defaultValue: "00").toString().addCommas}.00",
                                 textScaleFactor: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
