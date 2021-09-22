@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:proto/providers/loginProvider.dart';
+import 'package:proto/providers/login_provider.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:provider/provider.dart';
 
 class LoginFormPage extends StatefulWidget {
-  LoginFormPage({Key key}) : super(key: key);
+  const LoginFormPage({Key? key}) : super(key: key);
 
   @override
   _LoginFormPageState createState() => _LoginFormPageState();
@@ -21,14 +21,14 @@ class _LoginFormPageState extends State<LoginFormPage> {
   Widget build(BuildContext context) {
     final hbox = Provider.of<LoginFormProvider>(context);
     return Scaffold(
-        appBar:AppBar(elevation: 0,backgroundColor:Colors.white),
-        backgroundColor:Colors.white,
+      appBar: AppBar(elevation: 0, backgroundColor: Colors.white),
+      backgroundColor: Colors.white,
       body: Center(
         child: Form(
           key: hbox.loginFormKey,
           child: ListView(
             children: <Widget>[
-              Container(
+              SizedBox(
                 height: screenHeight(context),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +62,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.grey[600].withOpacity(0.3),
+                              color: Colors.grey[600]!.withOpacity(0.3),
                               offset: Offset(0, 13),
                               blurRadius: 30)
                         ],
@@ -71,7 +71,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         width: screenWidth(context, percent: 0.8),
                         padding: EdgeInsets.symmetric(horizontal: 30),
                         child: TextField(
-                          controller: hbox.usernameController,
+                            controller: hbox.usernameController,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -97,7 +97,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.grey[600].withOpacity(0.3),
+                              color: Colors.grey[600]!.withOpacity(0.3),
                               offset: Offset(0, 13),
                               blurRadius: 50)
                         ],
@@ -106,7 +106,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         width: screenWidth(context, percent: 0.8),
                         padding: EdgeInsets.symmetric(horizontal: 30),
                         child: TextField(
-                          controller: hbox.passwordController,
+                            controller: hbox.passwordController,
                             obscureText: true,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
@@ -127,12 +127,12 @@ class _LoginFormPageState extends State<LoginFormPage> {
                       ),
                     ),
                     const YMargin(30),
-                    Container(
+                    SizedBox(
                       width: screenWidth(context, percent: 0.8),
                       child: Row(
                         children: <Widget>[
                           Text(
-                            hbox.showError?"  sample errorMessage ":"",
+                            hbox.showError ? "  sample errorMessage " : "",
                             style: GoogleFonts.nunito(
                                 color: Colors.redAccent,
                                 fontSize: 11,
@@ -145,34 +145,37 @@ class _LoginFormPageState extends State<LoginFormPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        hbox.loading ? CircularProgressIndicator():Container(
-                          height: 50,
-                          width: screenWidth(context, percent: 0.8),
-                          decoration: BoxDecoration(
-                            color: Colors.tealAccent[400],
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey[400].withOpacity(0.5),
-                                  offset: Offset(0, 13),
-                                  blurRadius: 30)
-                            ],
-                          ),
-                          child:MaterialButton(
-                            elevation: 0,
-                            onPressed: () {
-                              hbox.attemptLogin(context);
-                              //Navigator.of(context).pushNamed("/home");
-                              //provider.startLoginFormPager(context);
-                            },
-                            child: Text(
-                              "Submit",
-                              style: GoogleFonts.nunito(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ),
+                        hbox.loading
+                            ? CircularProgressIndicator()
+                            : Container(
+                                height: 50,
+                                width: screenWidth(context, percent: 0.8),
+                                decoration: BoxDecoration(
+                                  color: Colors.tealAccent[400],
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color:
+                                            Colors.grey[400]!.withOpacity(0.5),
+                                        offset: Offset(0, 13),
+                                        blurRadius: 30)
+                                  ],
+                                ),
+                                child: MaterialButton(
+                                  elevation: 0,
+                                  onPressed: () {
+                                    hbox.attemptLogin(context);
+                                    //Navigator.of(context).pushNamed("/home");
+                                    //provider.startLoginFormPager(context);
+                                  },
+                                  child: Text(
+                                    "Submit",
+                                    style: GoogleFonts.nunito(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
                       ],
                     ),
                     const YMargin(150)

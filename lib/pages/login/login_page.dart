@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -13,7 +13,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.white,
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Padding(
@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 RichText(
                     textAlign: TextAlign.center,
-                    text: TextSpan(children: [
+                    text: TextSpan(children: const [
                       TextSpan(
                           text: "WELCOME TO\n",
                           style: TextStyle(

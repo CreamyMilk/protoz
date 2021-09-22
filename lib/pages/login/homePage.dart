@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/utils/sizedMargins.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.greenAccent,
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.grey[400].withOpacity(0.5),
+                          color: Colors.grey[400]!.withOpacity(0.5),
                           offset: Offset(0, 13),
                           blurRadius: 30)
                     ],
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.grey[400].withOpacity(0.3),
+                          color: Colors.grey[400]!.withOpacity(0.3),
                           offset: Offset(0, 13),
                           blurRadius: 30)
                     ],

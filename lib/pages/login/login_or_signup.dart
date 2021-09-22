@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:proto/utils/sizedMargins.dart';
-import 'package:proto/widgets/corywiseButton.dart';
+import 'package:proto/widgets/corry_button.dart';
 import 'package:proto/widgets/ic_ward.dart';
 
 class LoginOrSignup extends StatefulWidget {
-  LoginOrSignup({Key key}) : super(key: key);
+  const LoginOrSignup({Key? key}) : super(key: key);
 
   @override
   _LoginOrSignupState createState() => _LoginOrSignupState();
@@ -13,13 +13,13 @@ class LoginOrSignup extends StatefulWidget {
 
 class _LoginOrSignupState extends State<LoginOrSignup>
     with SingleTickerProviderStateMixin {
-  AnimationController c;
+  late AnimationController c;
 
   @override
   void initState() {
     c = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     c.repeat(reverse: true);
 
@@ -105,14 +105,14 @@ class _LoginOrSignupState extends State<LoginOrSignup>
 
 class WadsLayout extends StatelessWidget {
   const WadsLayout({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned(
+        const Positioned(
           top: 50,
           right: 50,
           child: IcWad(
@@ -122,39 +122,39 @@ class WadsLayout extends StatelessWidget {
         Positioned(
           top: screenHeight(context, percent: .72),
           right: 50,
-          child: IcWad(
+          child: const IcWad(
             rotation: 80,
           ),
         ),
         Positioned(
           top: screenHeight(context, percent: .3),
           right: screenWidth(context, percent: .23),
-          child: IcWad(
+          child: const IcWad(
             rotation: 0,
           ),
         ),
         Positioned(
           top: screenHeight(context, percent: .51),
           right: 45,
-          child: IcWad(
+          child: const IcWad(
             rotation: -20,
           ),
         ),
         Positioned(
           top: screenHeight(context, percent: .35),
           left: 40,
-          child: IcWad(
+          child: const IcWad(
             rotation: 80,
           ),
         ),
         Positioned(
           top: screenHeight(context, percent: .778),
           left: 40,
-          child: IcWad(
+          child: const IcWad(
             rotation: 90,
           ),
         ),
-        Positioned(
+        const Positioned(
           top: 50,
           left: 40,
           child: IcWad(
