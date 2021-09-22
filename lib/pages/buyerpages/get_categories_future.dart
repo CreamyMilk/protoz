@@ -7,7 +7,7 @@ Future getLatestCategories() async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await get(
-      (Constants.API_BASE + "store/categories"),
+      Uri.parse(Constants.API_BASE + "store/categories"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
@@ -26,7 +26,7 @@ Future getProductsList() async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await post(
-      (Constants.API_BASE + "store/products"),
+      Uri.parse(Constants.API_BASE + "store/products"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",

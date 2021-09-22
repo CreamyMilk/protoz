@@ -12,7 +12,7 @@ Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await post(
-      (Constants.API_BASE + "invoice/create"),
+      Uri.parse(Constants.API_BASE + "invoice/create"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
@@ -31,7 +31,7 @@ Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
     var myjson = json.decode(response.body);
     if (myjson["status"] != 0) {
       showCupertinoDialog(
-          context: navigatorKey.currentContext,
+          context: navigatorKey.currentContext!,
           builder: (context) => AlertDialog(actions: [
                 MaterialButton(
                   onPressed: () {
@@ -43,7 +43,7 @@ Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
               ], title: Text("Minor Issue"), content: Text(myjson["message"])));
     } else {
       showCupertinoDialog(
-          context: navigatorKey.currentContext,
+          context: navigatorKey.currentContext!,
           builder: (context) => AlertDialog(actions: [
                 MaterialButton(
                   onPressed: () {

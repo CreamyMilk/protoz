@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
+import 'package:proto/pages/buyerpages/get_categories_future.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/awesomeFab.dart';
 
 class ListTilezz extends StatefulWidget {
+  const ListTilezz({Key? key}) : super(key: key);
+
   @override
   _ListTilezzState createState() => _ListTilezzState();
 }
@@ -48,11 +50,11 @@ class _ListTilezzState extends State<ListTilezz> {
         ),
       ),
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           height: screenHeight(context, percent: 0.9),
           child: ValueListenableBuilder(
               valueListenable: Hive.box(Constants.UserBoxName).listenable(),
-              builder: (BuildContext context, box, child) {
+              builder: (BuildContext context, Box<dynamic> box, child) {
                 dynamic c = box.get(Constants.ProductCategoriesStore);
                 return ListView.builder(
                     itemCount: c.length,
@@ -60,7 +62,7 @@ class _ListTilezzState extends State<ListTilezz> {
                       dynamic category = c[index];
                       return ListTileNew(
                           barColor: Colors.greenAccent,
-                          gradient: Colors.greenAccent[100],
+                          gradient: Colors.greenAccent[100]!,
                           categoryId: category["categoryid"],
                           routeName: "/products",
                           name: category["categoryname"],
@@ -81,13 +83,13 @@ class ListTileNew extends StatelessWidget {
   final Color barColor;
   final Color gradient;
   const ListTileNew(
-      {Key key,
-      @required this.imageUrl,
-      @required this.name,
-      @required this.categoryId,
-      @required this.routeName,
-      @required this.barColor,
-      @required this.gradient})
+      {Key? key,
+      required this.imageUrl,
+      required this.name,
+      required this.categoryId,
+      required this.routeName,
+      required this.barColor,
+      required this.gradient})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -98,7 +100,7 @@ class ListTileNew extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-              color: Colors.grey[400].withOpacity(0.3),
+              color: Colors.grey[400]!.withOpacity(0.3),
               offset: Offset(0, 13),
               blurRadius: 30)
         ],
@@ -106,7 +108,7 @@ class ListTileNew extends StatelessWidget {
         gradient: LinearGradient(
             begin: Alignment.bottomRight,
             end: Alignment.centerLeft,
-            colors: [Colors.white70, Colors.white]),
+            colors: const [Colors.white70, Colors.white]),
       ),
       child: InkWell(
         onTap: () {

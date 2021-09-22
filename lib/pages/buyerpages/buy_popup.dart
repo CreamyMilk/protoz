@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:proto/models/product.dart';
 import 'dart:ui';
 
-import 'package:proto/pages/buyerpages/buyProductFuture.dart';
+import 'package:proto/pages/buyerpages/buy_product_future.dart';
 
 class BuyProductPopup extends StatelessWidget {
   const BuyProductPopup({
-    Key key,
-    @required this.p,
-    @required this.quantity,
-    @required this.acceptDelivery,
+    Key? key,
+    required this.p,
+    required this.quantity,
+    required this.acceptDelivery,
   }) : super(key: key);
   final Product p;
   final int quantity;
@@ -19,22 +19,22 @@ class BuyProductPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-      child: new CupertinoAlertDialog(
+      child: CupertinoAlertDialog(
         title: const Text('Confirm Payment'),
-        content: new Column(
+        content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[],
+          children: const <Widget>[],
         ),
         actions: <Widget>[
-          new MaterialButton(
+          MaterialButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
             textColor: Colors.red,
             child: const Text('Edit'),
           ),
-          new MaterialButton(
+          MaterialButton(
             onPressed: () {
               sendAddProductRequest(p, quantity, acceptDelivery);
               Navigator.of(context).pop();

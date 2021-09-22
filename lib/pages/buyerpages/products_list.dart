@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
-import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
+import 'package:proto/pages/buyerpages/get_categories_future.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/utils/sizedMargins.dart';
-import 'package:proto/utils/typeExtensions.dart';
+import 'package:proto/utils/type_extensions.dart';
 
 class ProductList extends StatelessWidget {
   @override
@@ -31,7 +31,7 @@ class ProductList extends StatelessWidget {
         centerTitle: true,
         title: ValueListenableBuilder(
           valueListenable: Hive.box(Constants.UserBoxName).listenable(),
-          builder: (BuildContext context, box, child) {
+          builder: (BuildContext context, Box<dynamic> box, child) {
             dynamic c = box.get(Constants.ProductCategoriesStore);
             dynamic categoryID = box.get(Constants.ChoosenCategory);
             String title = "No Category Name";
@@ -41,7 +41,7 @@ class ProductList extends StatelessWidget {
                 title = (c[i]["categoryname"]);
               }
             }
-            return Text("$title", style: TextStyle(color: Colors.black87));
+            return Text(title, style: TextStyle(color: Colors.black87));
           },
         ),
       ),
@@ -53,16 +53,14 @@ class ProductList extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (projectSnap.data == null) {
-              return Center(child: Text("Sadly you have no products"));
+              return const Center(child: Text("Sadly you have no products"));
             } else if (projectSnap.data != null) {
               return ListView.builder(
-                  itemCount: projectSnap.data.length,
+                  itemCount: (projectSnap.data as List).length,
                   itemBuilder: (context, index) {
-                    var item = projectSnap.data[index];
-                    print(item);
+                    var item = (projectSnap.data as List)[index];
                     return ProductListItem(
                         p: Product(
-                      categoryID: item["categoryid"], //Confirm
                       productID: item["productID"],
                       heroName: item["productID"].toString() + "i",
                       name: item["productname"],
@@ -74,7 +72,7 @@ class ProductList extends StatelessWidget {
                     ));
                   });
             } else {
-              return Center(
+              return const Center(
                   child: Text("Classificataion of could not get product"));
             }
           }),
@@ -85,8 +83,8 @@ class ProductList extends StatelessWidget {
 class ProductListItem extends StatelessWidget {
   final Product p;
   const ProductListItem({
-    Key key,
-    @required this.p,
+    Key? key,
+    required this.p,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -137,14 +135,14 @@ class ProductListItem extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        "${p.name}",
+                        p.name,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
                     Flexible(
                       child: Text(
-                        "${p.packingType}",
+                        p.packingType,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 15, color: Colors.blueGrey),
                       ),
@@ -163,7 +161,7 @@ class ProductListItem extends StatelessWidget {
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13)),
                                 TextSpan(
-                                  text: "${p.price.toString().addCommas}",
+                                  text: p.price.toString().addCommas,
                                   style: TextStyle(
                                       color: Colors.deepPurple,
                                       fontWeight: FontWeight.w400,
@@ -172,7 +170,7 @@ class ProductListItem extends StatelessWidget {
                               ])),
                           Spacer(),
                           Hero(
-                            tag: p.heroName,
+                            tag: p.heroName!,
                             child: MaterialButton(
                               color: Colors.green[700],
                               onPressed: () {

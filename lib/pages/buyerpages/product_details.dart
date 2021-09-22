@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/models/product.dart';
-import 'package:proto/pages/buyerpages/buyPopup.dart';
+import 'package:proto/pages/buyerpages/buy_popup.dart';
 import 'package:proto/utils/sizedMargins.dart';
 
 class ProductDetails extends StatefulWidget {
-  const ProductDetails({Key key, @required this.p}) : super(key: key);
+  const ProductDetails({Key? key, required this.p}) : super(key: key);
 
   final Product p;
 
@@ -32,7 +32,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     String totalString =
-        "${totalPrice.toStringAsFixed(2).replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}";
+        totalPrice.toStringAsFixed(2).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton.extended(
@@ -45,7 +45,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               builder: (BuildContext context) => _buildPopupDialog(context),
             );
           },
-          label: Container(
+          label: SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -217,7 +217,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ),
                     Text(
-                      "$totalString",
+                      totalString,
                       style: TextStyle(
                         color: Colors.teal,
                         fontWeight: FontWeight.w500,
