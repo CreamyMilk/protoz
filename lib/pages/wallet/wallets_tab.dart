@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
-import 'package:proto/pages/ordersPage/fetchOrdersFuture.dart';
-import 'package:proto/utils/typeExtensions.dart';
+import 'package:proto/pages/ordersPage/fetch_orders_future.dart';
+import 'package:proto/utils/type_extensions.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -10,11 +10,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/pages/wallet/getTransactionsFuture.dart';
+import 'package:proto/pages/wallet/get_transactions_future.dart';
 import 'package:proto/utils/sizedMargins.dart';
-import 'package:proto/widgets/qrScannerButton.dart';
+import 'package:proto/widgets/qr_scanner_button.dart';
 
 class WalletsTab extends StatefulWidget {
+  const WalletsTab({Key? key}) : super(key: key);
+
   @override
   _WalletsTabState createState() => _WalletsTabState();
 }
@@ -28,16 +30,6 @@ class _WalletsTabState extends State<WalletsTab> {
     super.initState();
   }
 
-  String convertTo07(String f) {
-    String no;
-    String pl;
-    String t5;
-    no = f.replaceAll(new RegExp(r"\s+"), "");
-    pl = no.replaceAll(new RegExp(r"\+"), "");
-    t5 = pl.replaceAll(new RegExp(r"2547"), "07");
-    return t5;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +38,7 @@ class _WalletsTabState extends State<WalletsTab> {
           WalletsAppBar(),
           ValueListenableBuilder(
             valueListenable: Hive.box(Constants.UserBoxName).listenable(),
-            builder: (BuildContext context, box, Widget child) {
+            builder: (BuildContext context, Box<dynamic> box, Widget? child) {
               List<dynamic> trans =
                   box.get(Constants.TransactionsStore, defaultValue: []);
               return SliverList(
@@ -109,7 +101,7 @@ class _WalletsTabState extends State<WalletsTab> {
                                       fontSize: 10.0)),
                               TextSpan(
                                 text:
-                                    "${transaction["amount"].toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                                    "${transaction["amount"].toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
                                 style: TextStyle(
                                     color: isPurchase
                                         ? Colors.blueGrey
@@ -140,7 +132,7 @@ class _WalletsTabState extends State<WalletsTab> {
 
 class WalletsAppBar extends StatelessWidget {
   const WalletsAppBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 //pishori basmati milk bread50 240,250
   @override
@@ -181,7 +173,7 @@ class WalletsAppBar extends StatelessWidget {
             gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomRight,
-                colors: [Colors.tealAccent[400], Colors.tealAccent[400]]),
+                colors: [Colors.tealAccent[400]!, Colors.tealAccent[400]!]),
           ),
           child: Container(
             padding: EdgeInsets.only(top: 30.0, left: 14.0, bottom: 8.0),
@@ -196,12 +188,12 @@ class WalletsAppBar extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Total Balance",
+                        const Text("Total Balance",
                             textScaleFactor: 1,
                             style:
                                 TextStyle(fontSize: 15, color: Colors.black87)),
-                        SizedBox(height: 3),
-                        Container(
+                        const YMargin(3),
+                        SizedBox(
                           width: screenWidth(context, percent: 0.9),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -210,13 +202,13 @@ class WalletsAppBar extends StatelessWidget {
                                   valueListenable:
                                       Hive.box(Constants.UserBoxName)
                                           .listenable(),
-                                  builder: (BuildContext context, box,
-                                      Widget child) {
+                                  builder: (BuildContext context,
+                                      Box<dynamic> box, Widget? child) {
                                     return Text(
                                       "${box.get(Constants.BalanceStore, defaultValue: "00").toString().addCommas}.00",
                                       textScaleFactor: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 30,
                                           color: Colors.black87,
                                           fontWeight: FontWeight.w500),
@@ -230,12 +222,10 @@ class WalletsAppBar extends StatelessWidget {
                                   Navigator.of(context)
                                       .pushNamed("/contactList");
                                 },
-                                child: Container(
-                                  child: Icon(
-                                    Icons.swap_calls,
-                                    size: 25,
-                                    color: Colors.white,
-                                  ),
+                                child: const Icon(
+                                  Icons.swap_calls,
+                                  size: 25,
+                                  color: Colors.white,
                                 ),
                               ),
                             ],
@@ -245,12 +235,13 @@ class WalletsAppBar extends StatelessWidget {
                         ValueListenableBuilder(
                             valueListenable:
                                 Hive.box(Constants.UserBoxName).listenable(),
-                            builder: (BuildContext context, box, Widget child) {
+                            builder: (BuildContext context, Box<dynamic> box,
+                                Widget? child) {
                               return Text(
-                                "Account :${box.get(Constants.WalletNameStore, defaultValue: "00").toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]} ')}",
+                                "Account :${box.get(Constants.WalletNameStore, defaultValue: "00").toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]} ')}",
                                 textScaleFactor: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 10,
                                     color: Colors.black87,
                                     fontWeight: FontWeight.w100),
@@ -283,7 +274,7 @@ showQRDialog(BuildContext context, String token) => showCupertinoDialog(
                 child: Text("CLOSE", style: TextStyle(color: Colors.red)))
           ],
           elevation: 4,
-          title: Container(
+          title: SizedBox(
             width: screenWidth(context, percent: 0.2),
             height: screenHeight(context, percent: 0.37),
             child: Column(

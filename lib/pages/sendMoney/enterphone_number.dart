@@ -12,7 +12,7 @@ class EnterPhoneNumberPage extends StatefulWidget {
 
 class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
   String phoneNumber = "";
-  Box<dynamic> box;
+  late Box<dynamic> box;
   @override
   void initState() {
     phoneNumber = "07";
@@ -45,7 +45,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
                       fontWeight: FontWeight.w300,
                       fontSize: 20.0)),
               TextSpan(
-                  text: "$phoneNumber",
+                  text: phoneNumber,
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
@@ -62,7 +62,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
                 : Colors.grey[200],
             boxShadow: [
               BoxShadow(
-                  color: Colors.grey[400].withOpacity(0.3),
+                  color: Colors.grey[400]!.withOpacity(0.3),
                   offset: Offset(0, 13),
                   blurRadius: 30)
             ],

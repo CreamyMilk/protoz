@@ -9,7 +9,7 @@ Future getLatestTransaction() async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await post(
-      (Constants.API_BASE + "wallet/transactions"),
+      Uri.parse(Constants.API_BASE + "wallet/transactions"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
@@ -34,7 +34,7 @@ Future getLatestBalance() async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await post(
-      (Constants.API_BASE + "wallet/balance"),
+      Uri.parse(Constants.API_BASE + "wallet/balance"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",

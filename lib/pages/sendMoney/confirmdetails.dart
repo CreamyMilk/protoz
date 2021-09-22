@@ -7,11 +7,11 @@ import 'package:proto/utils/sizedMargins.dart';
 
 class VerifyPaymentCard extends StatelessWidget {
   const VerifyPaymentCard({
-    Key key,
-    @required this.amount,
-    @required this.receiverPhone,
-    @required this.receiverName,
-    @required this.fees,
+    Key? key,
+    required this.amount,
+    required this.receiverPhone,
+    required this.receiverName,
+    required this.fees,
   }) : super(key: key);
 
   final int amount;
@@ -46,7 +46,7 @@ class VerifyPaymentCard extends StatelessWidget {
                         color: Colors.black, fontWeight: FontWeight.w300),
                   ),
                   Text(
-                    "Ksh.${amount.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                    "Ksh.${amount.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 30.0,
@@ -61,7 +61,7 @@ class VerifyPaymentCard extends StatelessWidget {
 
                   Row(children: [
                     Text(
-                      "$receiverName",
+                      receiverName,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 20.0,
@@ -77,7 +77,7 @@ class VerifyPaymentCard extends StatelessWidget {
                   ]),
                   SizedBox(height: 30),
                   Text(
-                      "Fees: ${fees.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.0",
+                      "Fees: ${fees.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.0",
                       style: TextStyle(
                         color: Colors.grey,
                       )),
@@ -102,7 +102,7 @@ class VerifyPaymentCard extends StatelessWidget {
               children: <Widget>[
                 ListTile(
                     trailing: Text(
-                        "Ksh.${currentBalance.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                        "Ksh.${currentBalance.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
                         style: TextStyle(color: Colors.green)),
                     title: Text(
                       "Inital Balance",
@@ -110,7 +110,7 @@ class VerifyPaymentCard extends StatelessWidget {
                     )),
                 ListTile(
                     trailing: Text(
-                        "- Ksh.${(amount + fees).toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                        "- Ksh.${(amount + fees).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
                         style: TextStyle(color: Colors.blue)),
                     title: Text(
                       "Transaction",
@@ -119,7 +119,7 @@ class VerifyPaymentCard extends StatelessWidget {
                 Divider(),
                 ListTile(
                     trailing: Text(
-                        "Ksh.${((currentBalance) - (amount + fees)).toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                        "Ksh.${((currentBalance) - (amount + fees)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
                         style: TextStyle(color: Colors.green)),
                     title: Text(
                       "Final Balance",
@@ -136,11 +136,11 @@ class VerifyPaymentCard extends StatelessWidget {
 
 class ConfirmPage extends StatelessWidget {
   const ConfirmPage({
-    Key key,
-    @required this.amount,
-    @required this.receiverPhone,
-    @required this.receiverName,
-    @required this.fees,
+    Key? key,
+    required this.amount,
+    required this.receiverPhone,
+    required this.receiverName,
+    required this.fees,
   }) : super(key: key);
 
   final int amount;
@@ -152,15 +152,15 @@ class ConfirmPage extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AnimatedContainer(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         height: 50,
         width: screenWidth(context, percent: 0.8),
         decoration: BoxDecoration(
           color: Colors.greenAccent[400],
           boxShadow: [
             BoxShadow(
-                color: Colors.grey[400].withOpacity(0.3),
-                offset: Offset(0, 13),
+                color: Colors.grey[400]!.withOpacity(0.3),
+                offset: const Offset(0, 13),
                 blurRadius: 30)
           ],
         ),
@@ -189,9 +189,8 @@ class ConfirmPage extends StatelessWidget {
 }
 
 class DraggableCard extends StatefulWidget {
+  const DraggableCard({Key? key, required this.child}) : super(key: key);
   final Widget child;
-
-  DraggableCard({this.child});
 
   @override
   _DraggableCardState createState() => _DraggableCardState();
@@ -199,11 +198,11 @@ class DraggableCard extends StatefulWidget {
 
 class _DraggableCardState extends State<DraggableCard>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   var _dragAlignment = Alignment.center;
 
-  Animation<Alignment> _animation;
+  late Animation<Alignment> _animation;
 
   final _spring = const SpringDescription(
     mass: 7,

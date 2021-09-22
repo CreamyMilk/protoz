@@ -7,19 +7,21 @@ import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/pages/sendMoney/confirmdetails.dart';
-import 'package:proto/popups/errorPopup.dart';
-import 'package:proto/popups/unregisterdPopup.dart';
+import 'package:proto/popups/error_popup.dart';
+import 'package:proto/popups/unregisterd_popup.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/keypadwidget.dart';
 
 class EnterAmountPage extends StatefulWidget {
+  const EnterAmountPage({Key? key}) : super(key: key);
+
   @override
   _EnterAmountPageState createState() => _EnterAmountPageState();
 }
 
 class _EnterAmountPageState extends State<EnterAmountPage> {
   String amount = "";
-  Box<dynamic> box;
+  late Box<dynamic> box;
   bool loading = false;
   @override
   void initState() {
@@ -55,7 +57,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
                       fontSize: 20.0)),
               TextSpan(
                   text:
-                      "${amount.replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
+                      amount.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
@@ -74,8 +76,8 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
                       : Colors.grey[200],
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.grey[400].withOpacity(0.3),
-                        offset: Offset(0, 13),
+                        color: Colors.grey[400]!.withOpacity(0.3),
+                        offset: const Offset(0, 13),
                         blurRadius: 30)
                   ],
                 ),
@@ -137,7 +139,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
     var box = Hive.box(Constants.UserBoxName);
     try {
       final response = await post(
-        (Constants.API_BASE + "wallet/verify"),
+        Uri.parse(Constants.API_BASE + "wallet/verify"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",

@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:proto/utils/sizedMargins.dart';
-import 'package:proto/widgets/depositBottomSheet.dart';
-import 'package:proto/widgets/qrScannerButton.dart';
+import 'package:proto/widgets/add_money_bottom_sheet.dart';
+import 'package:proto/widgets/qr_scanner_button.dart';
 
 class ContactsListPage extends StatelessWidget {
   final List<Color> lightColors = [
-    Color(0xfffe8fffa),
-    Colors.pink[50],
-    Colors.deepPurple[50],
+    const Color(0xfffe8fff),
+    Colors.pink[50]!,
+    Colors.deepPurple[50]!,
   ];
 
   final List<Color> foregroundColor = [
     Colors.blue,
     Colors.pink,
-    Colors.deepPurple[900],
+    Colors.deepPurple[900]!,
   ];
+
+  ContactsListPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,37 +27,37 @@ class ContactsListPage extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
               child: TextField(
-                decoration: new InputDecoration(
+                decoration: InputDecoration(
                     isDense: true,
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
-                    contentPadding: EdgeInsets.only(
+                    contentPadding: const EdgeInsets.only(
                         left: 15, bottom: 11, top: 17, right: 15),
                     filled: true,
                     hintText: "Search Contacts",
-                    prefixIcon: Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search),
                     fillColor: Colors.grey[100]),
               )),
-          preferredSize: Size(0.0, 60.0),
+          preferredSize: const Size(0.0, 60.0),
         ),
         elevation: 0,
         backgroundColor: Colors.white,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.close, color: Colors.grey),
+          icon: const Icon(Icons.close, color: Colors.grey),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        title: Text(
+        title: const Text(
           "Send Money",
           style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black87),
         ),
       ),
-      body: Container(
+      body: SizedBox(
         height: screenHeight(context),
         child: ListView(
           children: [
@@ -63,18 +65,18 @@ class ContactsListPage extends StatelessWidget {
             Column(
               children: [
                 StyledActionListTile(
-                  color: Colors.blue[600],
+                  color: Colors.blue[600]!,
                   icondata: Icons.dialpad_rounded,
-                  textColor: Colors.blue[900],
+                  textColor: Colors.blue[900]!,
                   myText: "Enter Phone Number",
                   ontap: () {
                     Navigator.of(context).pushNamed("/enterphone");
                   },
                 ),
                 StyledActionListTile(
-                  color: Colors.greenAccent[400],
+                  color: Colors.greenAccent[400]!,
                   icondata: Icons.phone_android_rounded,
-                  textColor: Colors.greenAccent[700],
+                  textColor: Colors.greenAccent[700]!,
                   myText: "Send To Mpesa",
                   ontap: () {
                     Navigator.of(context).pushNamed("/enterphone");
@@ -83,7 +85,7 @@ class ContactsListPage extends StatelessWidget {
                 StyledActionListTile(
                   color: Colors.pink,
                   icondata: Icons.qr_code_rounded,
-                  textColor: Colors.pinkAccent[700],
+                  textColor: Colors.pinkAccent[700]!,
                   myText: "Scan QR CODE",
                   ontap: () {
                     initateScan(context);
@@ -95,7 +97,7 @@ class ContactsListPage extends StatelessWidget {
                   textColor: Colors.black,
                   myText: "Deposit Into Wallet",
                   ontap: () {
-                    depositModalBottomSheet(context, "10");
+                    depositModalBottomSheet(context);
                   },
                 ),
               ],
@@ -154,12 +156,12 @@ class ContactsListPage extends StatelessWidget {
 
 class StyledActionListTile extends StatelessWidget {
   const StyledActionListTile({
-    Key key,
-    @required this.color,
-    @required this.icondata,
-    @required this.textColor,
-    @required this.myText,
-    @required this.ontap,
+    Key? key,
+    required this.color,
+    required this.icondata,
+    required this.textColor,
+    required this.myText,
+    required this.ontap,
   }) : super(key: key);
   final Color color;
   final Color textColor;
@@ -185,7 +187,8 @@ class StyledActionListTile extends StatelessWidget {
         ),
       ),
       onTap: ontap,
-      contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12.0),
+      contentPadding:
+          const EdgeInsets.symmetric(horizontal: 10, vertical: 12.0),
       //minLeadingWidth: 30,
       dense: true,
       title: Text(
@@ -198,7 +201,7 @@ class StyledActionListTile extends StatelessWidget {
 
 class FavoriteTile extends StatelessWidget {
   const FavoriteTile({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -213,13 +216,13 @@ class FavoriteTile extends StatelessWidget {
             children: [
               CircleAvatar(
                 foregroundColor: Colors.blue,
-                child: Text("JK", style: TextStyle(fontSize: 11)),
+                child: const Text("JK", style: TextStyle(fontSize: 11)),
                 backgroundColor: Colors.blue[50],
                 minRadius: 18,
                 maxRadius: 18,
               ),
               const YMargin(2),
-              Text("John",
+              const Text("John",
                   style: TextStyle(
                     fontSize: 10,
                   ))

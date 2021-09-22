@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/popups/errorPopup.dart';
-import 'package:proto/popups/successfulSent.dart';
+import 'package:proto/popups/error_popup.dart';
+import 'package:proto/popups/successful_sent.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/keypadwidget.dart';
 
@@ -19,7 +19,7 @@ class EnterPinPage extends StatefulWidget {
 class _EnterPinPageState extends State<EnterPinPage> {
   String pincode = "";
   bool loading = false;
-  Box<dynamic> box;
+  late Box<dynamic> box;
   @override
   void initState() {
     box = Hive.box(Constants.UserBoxName);
@@ -48,7 +48,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
               textAlign: TextAlign.center,
               text: TextSpan(children: [
                 TextSpan(
-                    text: "$pincode",
+                    text: pincode,
                     style: TextStyle(
                         color: Colors.black,
                         letterSpacing: 10,
@@ -68,7 +68,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
                         : Colors.grey[200],
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.grey[400].withOpacity(0.3),
+                          color: Colors.grey[400]!.withOpacity(0.3),
                           offset: Offset(0, 13),
                           blurRadius: 30)
                     ],
@@ -97,7 +97,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
                 ),
           NumericKeyboard(
               rightButtonFn: () {
-                if (pincode.length > 0) {
+                if (pincode.isNotEmpty) {
                   pincode = pincode.substring(0, pincode.length - 1);
                   setState(() {
                     pincode = pincode;
@@ -125,7 +125,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
     var box = Hive.box(Constants.UserBoxName);
     try {
       final response = await post(
-        (Constants.API_BASE + "wallet/sendmoney"),
+        Uri.parse(Constants.API_BASE + "wallet/sendmoney"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",
