@@ -41,6 +41,11 @@ class AddProductFormProvider extends ChangeNotifier {
     categoryID = null;
   }
 
+  void setImageUrl(String url) {
+    imageController.text = url;
+    notifyListeners();
+  }
+
   void initalizeEditFields(Product p) {
     globalProduct = p;
     isEdit = true;

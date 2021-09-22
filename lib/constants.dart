@@ -1,8 +1,12 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:hive/hive.dart';
 import 'package:proto/utils/type_extensions.dart';
 
 class Constants {
   static const String API_BASE = "http://35.189.74.247:3000/";
+  static const String IMAGES_UPLOAD_SERVER =
+      "http://192.168.0.24:4000/formstuff";
   static const String UserBoxName = "user";
   static const String IsLoggedInStore = "isloggedinbool";
   static const String UserTypeStore = "usertype";
