@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/pages/homeDash/PhotoGridTile.dart';
-import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
-import 'package:proto/pages/ordersPage/fetchOrdersFuture.dart';
-import 'package:proto/pages/startup/cardsPage.dart';
-import 'package:proto/pages/wallet/getTransactionsFuture.dart';
+import 'package:proto/pages/buyerpages/get_categories_future.dart';
+import 'package:proto/pages/homeDash/photo_grid_tile.dart';
+import 'package:proto/pages/ordersPage/fetch_orders_future.dart';
+import 'package:proto/pages/startup/cards_page.dart';
+import 'package:proto/pages/wallet/get_transactions_future.dart';
 import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/type_extensions.dart';
+import 'package:proto/widgets/add_money_bottom_sheet.dart';
 import 'package:proto/widgets/awesomeFab.dart';
-import 'package:proto/widgets/depositBottomSheet.dart';
-import 'package:proto/widgets/qrScannerButton.dart';
-import "package:proto/utils/typeExtensions.dart";
+import 'package:proto/widgets/qr_scanner_button.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-// ignore: must_be_immutable
 class DashboardPage extends StatefulWidget {
-  //ScrollController get n => ScrollController(initialScrollOffset: 150);
+  const DashboardPage({Key? key}) : super(key: key);
+
   @override
   _DashboardPageState createState() => _DashboardPageState();
 }
@@ -93,7 +93,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
 class DashboardSliverAppBar extends StatelessWidget {
   const DashboardSliverAppBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,7 @@ class DashboardSliverAppBar extends StatelessWidget {
         QrCodeScannerIcon(),
         IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.notifications_active_outlined,
               size: 19,
               color: Colors.black26,
@@ -117,13 +117,13 @@ class DashboardSliverAppBar extends StatelessWidget {
       pinned: true,
       title: ValueListenableBuilder(
         valueListenable: Hive.box(Constants.UserBoxName).listenable(),
-        builder: (BuildContext context, box, Widget child) {
+        builder: (BuildContext context, Box<dynamic> box, Widget? child) {
           String userName =
               "${box.get(Constants.FullnameStore, defaultValue: "")}";
           return now.hour < 12
               ? Text(
                   "Good Morning,\n$userName",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -132,14 +132,14 @@ class DashboardSliverAppBar extends StatelessWidget {
               : now.hour < 20
                   ? Text(
                       "Good Afternoon,\n$userName ",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
                     )
                   : Text("Good Evening,\n$userName",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -149,13 +149,13 @@ class DashboardSliverAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: false,
         background: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomRight,
                 colors: [Colors.white, Colors.white]),
           ),
-          child: Container(
+          child: SizedBox(
             height: 150,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -170,20 +170,20 @@ class DashboardSliverAppBar extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Current Orders",
-                              textScaleFactor: 1,
+                          const Text("Current Orders",
                               style: TextStyle(
                                   fontSize: 10, color: Colors.black87)),
-                          SizedBox(height: 3),
+                          const YMargin(3),
                           ValueListenableBuilder(
                             valueListenable:
                                 Hive.box(Constants.UserBoxName).listenable(),
-                            builder: (BuildContext context, box, Widget child) {
+                            builder: (BuildContext context, Box<dynamic> box,
+                                Widget? child) {
                               return Text(
                                 "Ksh.${box.get(Constants.TotalOrdersStore, defaultValue: "00").toString().addCommas}.00",
                                 textScaleFactor: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 20,
                                     color: Colors.black87,
                                     fontWeight: FontWeight.w100),
@@ -199,7 +199,7 @@ class DashboardSliverAppBar extends StatelessWidget {
                         backgroundColor: Colors.white,
                         child: Icon(Icons.add, color: Colors.green),
                         onPressed: () {
-                          depositModalBottomSheet(context, "10");
+                          depositModalBottomSheet(context);
                         },
                       ),
                     ],

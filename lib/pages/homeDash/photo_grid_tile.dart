@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 
 class PhotoGridTile extends StatelessWidget {
   const PhotoGridTile(
-      {Key key, this.prodname, this.imageUrl, this.productID, this.route})
+      {Key? key,
+      required this.prodname,
+      required this.imageUrl,
+      required this.productID,
+      required this.route})
       : super(key: key);
 
   final String prodname;
@@ -82,7 +86,7 @@ class PhotoGridTile extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
+                            children: const <Widget>[
                               Text(
                                 '>>',
                                 textAlign: TextAlign.left,
