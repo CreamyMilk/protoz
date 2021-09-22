@@ -2,12 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class BLConsoltantsList extends StatelessWidget {
+  const BLConsoltantsList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         mini: true,
-        child: Icon(
+        child: const Icon(
           Icons.bar_chart_sharp,
           color: Colors.white,
         ),
@@ -17,7 +19,7 @@ class BLConsoltantsList extends StatelessWidget {
       ),
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Consulting"),
+        title: const Text("Consulting"),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -25,7 +27,7 @@ class BLConsoltantsList extends StatelessWidget {
             children: [
               BLConsoltantsTile(
                 barColor: Colors.orange,
-                gradient: Colors.deepOrange[100],
+                gradient: Colors.deepOrange[100]!,
                 routeName: "/blvets",
                 name: "Vets",
                 imageUrl:
@@ -36,7 +38,7 @@ class BLConsoltantsList extends StatelessWidget {
               ),
               BLConsoltantsTile(
                 barColor: Colors.greenAccent,
-                gradient: Colors.greenAccent[100],
+                gradient: Colors.greenAccent[100]!,
                 routeName: "/blvets",
                 name: "Extension Offers",
                 imageUrl:
@@ -44,7 +46,7 @@ class BLConsoltantsList extends StatelessWidget {
               ),
               BLConsoltantsTile(
                 barColor: Colors.greenAccent,
-                gradient: Colors.blueAccent[100],
+                gradient: Colors.blueAccent[100]!,
                 routeName: "/blvets",
                 name: "Seeds",
                 imageUrl:
@@ -65,12 +67,12 @@ class BLConsoltantsTile extends StatelessWidget {
   final Color barColor;
   final Color gradient;
   const BLConsoltantsTile(
-      {Key key,
-      @required this.imageUrl,
-      @required this.name,
-      @required this.routeName,
-      @required this.barColor,
-      @required this.gradient})
+      {Key? key,
+      required this.imageUrl,
+      required this.name,
+      required this.routeName,
+      required this.barColor,
+      required this.gradient})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -101,8 +103,7 @@ class BLConsoltantsTile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 1.0),
               child: CachedNetworkImage(
-        imageUrl: 
-                imageUrl,
+                imageUrl: imageUrl,
                 width: 50,
                 height: 50,
               ),
@@ -122,11 +123,6 @@ class BLConsoltantsTile extends StatelessWidget {
               width: 10,
             ),
             Spacer(),
-            Radio(
-                activeColor: Colors.white,
-                value: false,
-                groupValue: null,
-                onChanged: (bool p) {})
           ],
         ),
       ),

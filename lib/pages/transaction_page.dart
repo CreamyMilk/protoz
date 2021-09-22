@@ -3,6 +3,8 @@ import 'package:proto/utils/sizedMargins.dart';
 
 class TransactionClass extends StatelessWidget {
   final String amount = "15000.00";
+
+  const TransactionClass({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,9 +14,9 @@ class TransactionClass extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Spacer(),
+              const Spacer(),
               Container(
-                margin: EdgeInsets.only(left: 10),
+                margin: const EdgeInsets.only(left: 10),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -142,34 +144,31 @@ class TransactionClass extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w300,
-
                             fontSize: 18),
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                             RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(children: [
-              TextSpan(
-                  text: "+Ksh.",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 15.0)),
-              TextSpan(
-                  text:
-                      "${amount.toString().replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 24.0)),
-            ])),
+                      RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(children: [
+                            TextSpan(
+                                text: "+Ksh.",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 15.0)),
+                            TextSpan(
+                                text:
+                                    amount.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 24.0)),
+                          ])),
                       SizedBox(
                         height: 10,
                       ),
-      
-             
                     ],
                   ),
                 ),
@@ -180,7 +179,7 @@ class TransactionClass extends StatelessWidget {
                     alignment: Alignment.bottomLeft,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         Text(
                           "Transacrion ID",
                           style: TextStyle(
@@ -206,7 +205,7 @@ class TransactionClass extends StatelessWidget {
 
 class HeaderAvatar extends StatelessWidget {
   const HeaderAvatar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -214,13 +213,12 @@ class HeaderAvatar extends StatelessWidget {
     return Container(
       height: 100,
       decoration: BoxDecoration(
-  gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [Colors.grey[50] ,Colors.grey[100],Colors.grey[50]]),
+        gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [Colors.grey[50]!, Colors.grey[100]!, Colors.grey[50]!]),
       ),
-      width:  screenWidth(context),
-     
+      width: screenWidth(context),
       child: Stack(
         // ignore: deprecated_member_use
         overflow: Overflow.visible,
@@ -228,8 +226,8 @@ class HeaderAvatar extends StatelessWidget {
           Align(
               alignment: Alignment.topCenter,
               child: Transform.translate(
-                  offset: Offset(0, 10),
-                  child: Chip(
+                  offset: const Offset(0, 10),
+                  child: const Chip(
                       backgroundColor: Colors.white,
                       visualDensity: VisualDensity(
                         horizontal: -2,

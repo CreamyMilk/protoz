@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BlVetsCall extends StatelessWidget {
+  const BlVetsCall({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Vets"),
+        title: const Text("Vets"),
       ),
-      body: Column(children: [ContactTile(), ContactTile(), ContactTile()]),
+      body:
+          Column(children: const [ContactTile(), ContactTile(), ContactTile()]),
     );
   }
 }
 
 class ContactTile extends StatelessWidget {
   const ContactTile({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -25,13 +28,12 @@ class ContactTile extends StatelessWidget {
         const url = 'tel:+2548889898';
         if (await canLaunch(url)) {
           await launch(url);
-        } else {
-          print("Fix url");
         }
+        // print("Fix url");
       },
-      title: Text("Name"),
-      subtitle: Text("Location"),
-      trailing: Icon(Icons.phone),
+      title: const Text("Name"),
+      subtitle: const Text("Location"),
+      trailing: const Icon(Icons.phone),
     );
   }
 }

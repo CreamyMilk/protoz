@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/main.dart';
-import 'package:proto/pages/buyerpages/getCategoriesFuture.dart';
-import 'package:proto/pages/ordersPage/fetchOrdersFuture.dart';
-import 'package:proto/pages/wallet/getTransactionsFuture.dart';
+import 'package:proto/pages/buyerpages/get_categories_future.dart';
+import 'package:proto/pages/ordersPage/fetch_orders_future.dart';
+import 'package:proto/pages/wallet/get_transactions_future.dart';
 
 class LogoPage extends StatefulWidget {
+  const LogoPage({Key? key}) : super(key: key);
+
   @override
   _LogoPageState createState() => _LogoPageState();
 }
@@ -33,33 +35,33 @@ class _LogoPageState extends State<LogoPage> {
               //     .pushNamed("/addProduct");
               break;
             default:
-              Navigator.of(navigatorKey.currentContext).pushNamed("/login");
+              Navigator.of(navigatorKey.currentContext!).pushNamed("/login");
               break;
           }
         } else if (event.data["type"] == "received") {
           showCupertinoDialog(
-              context: navigatorKey.currentContext,
+              context: navigatorKey.currentContext!,
               builder: (context) => AlertDialog(
-                  title: Text("Funds Received"),
+                  title: const Text("Funds Received"),
                   content: Text("Ksh${event.data["amount"]}")));
         } else if (event.data["type"] == "deposit") {
           showCupertinoDialog(
-              context: navigatorKey.currentContext,
+              context: navigatorKey.currentContext!,
               builder: (context) => AlertDialog(
-                  title: Text("Deposit Successfuly"),
+                  title: const Text("Deposit Successfuly"),
                   content: Text("Ksh${event.data["amount"]}")));
         } else if (event.data["type"] == "order") {
           showCupertinoDialog(
-              context: navigatorKey.currentContext,
+              context: navigatorKey.currentContext!,
               builder: (context) => AlertDialog(
                   title: Text("Order Placed for ${event.data["prodname"]}"),
                   content: Text(
                       "Ksh${event.data["amount"]}\n Quantity :${event.data["quantity"]}")));
         } else {
           showCupertinoDialog(
-              context: navigatorKey.currentContext,
+              context: navigatorKey.currentContext!,
               builder: (context) => AlertDialog(
-                  title: Text("Action Complete"),
+                  title: const Text("Action Complete"),
                   content: Text(" ${event.data}")));
         }
         //Opened Nofication when app is active
@@ -67,8 +69,8 @@ class _LogoPageState extends State<LogoPage> {
         getCurrentOrders();
         getLatestTransaction();
       });
-      FirebaseMessaging.instance.getToken().then((String token) {
-        hiveBox.get(Constants.RawFCMTokenStore, defaultValue: "all");
+      FirebaseMessaging.instance.getToken().then((String? token) {
+        hiveBox.put(Constants.RawFCMTokenStore, token!);
       });
 
       FirebaseMessaging.instance.subscribeToTopic(
@@ -77,7 +79,7 @@ class _LogoPageState extends State<LogoPage> {
           hiveBox.get(Constants.AllUserNotifcationTopic, defaultValue: "all"));
       FirebaseMessaging.instance
           .getInitialMessage()
-          .then((RemoteMessage message) {
+          .then((RemoteMessage? message) {
         //When the user Clicked the notifcation and the app was completly closed
         getLatestBalance();
         getCurrentOrders();
@@ -96,7 +98,7 @@ class _LogoPageState extends State<LogoPage> {
     bool isLoggedIn =
         hiveBox.get(Constants.IsLoggedInStore, defaultValue: false);
     //Handle Token Confirmation here
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       !isLoggedIn
           ? Navigator.of(context).pushReplacementNamed("/startup")
           : Navigator.of(context).pushReplacementNamed("/dashboard");
@@ -106,11 +108,11 @@ class _LogoPageState extends State<LogoPage> {
   @override
   Widget build(BuildContext context) {
     autoNavigate(context);
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.black,
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0),
           child: Hero(
             tag: "logo",
             child: Image(

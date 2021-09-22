@@ -1,55 +1,32 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proto/pages/homeDash/PhotoGridTile.dart';
+import 'package:proto/pages/homeDash/photo_grid_tile.dart';
 
 class Services {
   final String imageUrl;
   final String name;
   final String path;
 
-  Services({this.imageUrl, this.name, this.path});
+  Services({required this.imageUrl, required this.name, required this.path});
 }
 
 class ListProducts extends StatefulWidget {
+  const ListProducts({Key? key}) : super(key: key);
+
   @override
   _ListProductsState createState() => _ListProductsState();
 }
 
 class _ListProductsState extends State<ListProducts> {
-  List<dynamic> choices;
-  List<Services> sampleData = [
-    Services(
-        imageUrl:
-            "https://africasustainabilitymatters.com/wp-content/uploads/2020/11/Twiga_2.jpg",
-        name: "InputSuppliers"),
-    Services(
-        imageUrl:
-            "https://s3.amazonaws.com/newhobbyfarms.com/2020/01/9-plows-jeff-piper-flickr-e.jpg",
-        name: "Machinery"),
-    Services(
-        imageUrl:
-            "https://hingemarketing.com/wp-content/uploads/2017/08/B2B-Market-Research.png",
-        name: "Market Info"),
-    Services(
-        imageUrl:
-            "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
-        name: "Logistics"),
-    Services(
-        imageUrl:
-            "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
-        name: "Consoltancy"),
-    Services(
-        imageUrl:
-            "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
-        name: "Financing"),
-  ];
+  late List<dynamic> choices;
+  List<Services> sampleData = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           mini: true,
-          child: Icon(
+          child: const Icon(
             Icons.bar_chart_sharp,
             color: Colors.white,
           ),
@@ -65,8 +42,8 @@ class _ListProductsState extends State<ListProducts> {
 
 class HomeGrid extends StatelessWidget {
   const HomeGrid({
-    Key key,
-    @required this.sampleData,
+    Key? key,
+    required this.sampleData,
   }) : super(key: key);
 
   final List<Services> sampleData;
@@ -75,22 +52,23 @@ class HomeGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: MediaQuery.of(context).size.height * 0.95,
           width: MediaQuery.of(context).size.width,
           child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   mainAxisSpacing: 0.5,
                   crossAxisCount: 2,
                   childAspectRatio: 1.5,
                   crossAxisSpacing: 0.1),
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               itemCount: sampleData.length,
               itemBuilder: (context, index) {
                 return PhotoGridTile(
                   prodname: sampleData[index].name,
                   imageUrl: sampleData[index].imageUrl,
                   productID: index,
+                  route: '',
                 );
               }),
         ),
@@ -101,11 +79,11 @@ class HomeGrid extends StatelessWidget {
 
 class ProductListingItem extends StatelessWidget {
   const ProductListingItem(
-      {Key key,
-      @required this.prodname,
-      @required this.imageUrl,
-      @required this.productID,
-      @required this.heros})
+      {Key? key,
+      required this.prodname,
+      required this.imageUrl,
+      required this.productID,
+      required this.heros})
       : super(key: key);
   final String prodname;
   final String imageUrl;

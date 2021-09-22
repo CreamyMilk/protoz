@@ -8,6 +8,8 @@ import 'package:proto/constants.dart';
 import "package:qr_flutter/qr_flutter.dart";
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +18,7 @@ class ProfilePage extends StatelessWidget {
           backgroundColor: Colors.white,
           centerTitle: true,
           leading: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               ),
@@ -25,7 +27,7 @@ class ProfilePage extends StatelessWidget {
               }),
           actions: [
             IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.local_airport_sharp,
                   color: Colors.black,
                 ),
@@ -35,39 +37,39 @@ class ProfilePage extends StatelessWidget {
           ],
           title: Text("Profile Page", style: TextStyle(color: Colors.black)),
         ),
-        body: Container(
+        body: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   "👋 Payment QR Code ",
                   style: TextStyle(
                     fontSize: 20,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ValueListenableBuilder(
                     valueListenable:
                         Hive.box(Constants.UserBoxName).listenable(),
-                    builder: (context, box, widget) {
+                    builder: (BuildContext context, Box<dynamic> box, widget) {
                       return QrImage(
                         data:
                             "SM|${box.get(Constants.PhoneNumberStore, defaultValue: "")}",
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         version: QrVersions.auto,
                         foregroundColor: Colors.black,
                         size: 180.0,
                       );
                     }),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 MaterialButton(
                   onPressed: () {},
                   color: Colors.black38,
-                  child: Text("Create Custom Invoice",
+                  child: const Text("Create Custom Invoice",
                       style: TextStyle(
                         color: Colors.white,
                       )),
