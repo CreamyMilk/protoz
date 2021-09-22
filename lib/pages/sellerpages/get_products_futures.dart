@@ -8,7 +8,7 @@ Future getCurrentStock() async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await post(
-      (Constants.API_BASE + "store/stock"),
+      Uri.parse(Constants.API_BASE + "store/stock"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",

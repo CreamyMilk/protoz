@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:proto/models/product.dart';
-import 'package:proto/pages/sellerpages/getProductsFutures.dart';
+import 'package:proto/pages/sellerpages/get_products_futures.dart';
 
 const _startColumnWidth = 45.0;
 
@@ -67,16 +67,16 @@ class _InventoryListState extends State<InventoryList> {
                   builder: (context, projectSnap) {
                     if (projectSnap.connectionState ==
                         ConnectionState.waiting) {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     } else if (projectSnap.data == null) {
                       return Center(child: Text("Sadly you have no products"));
                     } else if (projectSnap.data != null) {
                       return ListView.builder(
-                          itemCount: projectSnap.data.length,
+                          itemCount: (projectSnap.data as List).length,
                           itemBuilder: (context, index) {
-                            var item = projectSnap.data[index];
+                            var item = (projectSnap.data as List)[index];
                             return ShoppingCartRow(
                               product: Product(
                                 image: item["image"],
@@ -108,10 +108,10 @@ class ShoppingCartSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final smallAmountStyle =
-        Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.brown);
+        Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.brown);
     final largeAmountStyle = Theme.of(context)
         .textTheme
-        .headline4
+        .headline4!
         .copyWith(color: Colors.green[900], letterSpacing: 0.0);
     // final formatter = NumberFormat.simpleCurrency(
     //   decimalDigits: 2,
@@ -200,9 +200,9 @@ class ShoppingCartSummary extends StatelessWidget {
 
 class ShoppingCartRow extends StatelessWidget {
   const ShoppingCartRow({
-    @required this.product,
-    @required this.quantity,
-    this.onPressed,
+    required this.product,
+    required this.quantity,
+    required this.onPressed,
   });
 
   final Product product;
@@ -218,7 +218,7 @@ class ShoppingCartRow extends StatelessWidget {
             ValueKey<int>(product.productID), //Changed Types for better parsing
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: _startColumnWidth,
             child: IconButton(
               icon: const Icon(

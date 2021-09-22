@@ -4,14 +4,14 @@ import 'package:flutter/rendering.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
-import 'package:proto/providers/addproductProvider.dart';
+import 'package:proto/providers/addproduct_provider.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:provider/provider.dart';
 
 class AddProductsPage extends StatefulWidget {
-  final Product initalProduct;
+  final Product? initalProduct;
 
-  const AddProductsPage({Key key, this.initalProduct}) : super(key: key);
+  const AddProductsPage({Key? key, this.initalProduct}) : super(key: key);
   @override
   _AddProductsPageState createState() => _AddProductsPageState();
 }
@@ -39,7 +39,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
   Widget build(BuildContext context) {
     final hbox = Provider.of<AddProductFormProvider>(context);
     if (widget.initalProduct != null && !isLoaded) {
-      hbox.initalizeEditFields(widget.initalProduct);
+      hbox.initalizeEditFields(widget.initalProduct!);
       isLoaded = true;
     }
     return Scaffold(
@@ -125,7 +125,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                   value: hbox.categoryID,
                   onChanged: (value) {
                     hbox.categoryController.text = value.toString();
-                    hbox.setCategory(value);
+                    hbox.setCategory(value as int);
                   },
                 ),
                 const YMargin(15),
@@ -194,11 +194,11 @@ class _AddProductsPageState extends State<AddProductsPage> {
                         onPressed: () {
                           hbox.sendAddProductRequest(context);
                         },
-                        label: Container(
+                        label: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Text(
                                 "Submit",
                                 style: TextStyle(
@@ -222,13 +222,13 @@ class Branding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        SizedBox(width: 5),
+        const SizedBox(width: 5),
         Flexible(
           flex: 2,
           child: TextFormField(
             keyboardType: TextInputType.datetime,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -249,7 +249,7 @@ class Branding extends StatelessWidget {
           child: TextFormField(
             keyboardType: TextInputType.datetime,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
