@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/utils/sizedMargins.dart';
-import 'package:proto/utils/typeExtensions.dart';
+import 'package:proto/utils/type_extensions.dart';
 import 'package:proto/widgets/deposit_future.dart';
 
 void depositModalBottomSheet(BuildContext ctx) {
@@ -174,7 +174,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
         onPressed: () async {
           sendDepositRequest(
             DepositStruct(
-              amount: int.parse(depositAmount),
+              amount: depositAmount,
               walletName: walletName,
               phoneNumber: mobile,
             ),
