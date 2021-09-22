@@ -1,17 +1,17 @@
 import 'dart:math';
-import 'package:proto/utils/typeExtensions.dart';
+import 'package:proto/utils/type_extensions.dart';
 
 import 'package:flutter/material.dart';
 
-class const IcWad extends StatefulWidget {
+class IcWad extends StatefulWidget {
   final double rotation;
 
-  const const IcWad({Key? key, required this.rotation}) : super(key: key);
+  const IcWad({Key? key, required this.rotation}) : super(key: key);
   @override
-  _const IcWad createState() => _const IcWad();
+  _IcWad createState() => _IcWad();
 }
 
-class _const IcWad extends State<const IcWad> with SingleTickerProviderStateMixin {
+class _IcWad extends State<IcWad> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> anim;
 
