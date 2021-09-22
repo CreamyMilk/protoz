@@ -11,7 +11,7 @@ import 'package:flutter/widgets.dart';
 /// [height] height supplied to the enclosing container
 /// [decoration] decoration supplied to the enclosing container.
 class TouchableOpacity extends StatefulWidget {
-  TouchableOpacity({
+  const TouchableOpacity({
     required this.child,
     this.onTap,
     this.onLongPress,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'crb.dart' as crb;
 
 class RoundedClip extends StatelessWidget {
-  RoundedClip({
+  const RoundedClip({
     required this.cornerRadius,
     required this.child,
   });
