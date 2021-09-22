@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:proto/providers/stepperFormProvider.dart';
+import 'package:proto/providers/stepper_form_provider.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:provider/provider.dart';
 
 class BaseForm extends StatefulWidget {
-  BaseForm({Key key}) : super(key: key);
+  const BaseForm({Key? key}) : super(key: key);
 
   @override
   _BaseFormState createState() => _BaseFormState();
@@ -25,7 +25,7 @@ class _BaseFormState extends State<BaseForm> {
     DoubleCheckPage(),
   ];
 
-  int activePage;
+  late int activePage;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _BaseFormState extends State<BaseForm> {
           backgroundColor: Colors.teal[400],
           title: Transform.translate(
               offset: Offset(30, 0),
-              child: Container(
+              child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: LinearProgressIndicator(
                       valueColor:
@@ -83,7 +83,7 @@ class NameForm extends StatelessWidget {
             child: TextFormField(
               controller: hbox.fnController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return "Required";
                 } else {
                   return null;
@@ -103,7 +103,7 @@ class NameForm extends StatelessWidget {
             child: TextFormField(
               controller: hbox.mnContorller,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return "Required";
                 } else {
                   return null;
@@ -123,7 +123,7 @@ class NameForm extends StatelessWidget {
             child: TextFormField(
               controller: hbox.lnController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return "Required";
                 } else {
                   return null;
@@ -151,7 +151,7 @@ class NameForm extends StatelessWidget {
 }
 
 class BirthForm extends StatelessWidget {
-  const BirthForm({Key key}) : super(key: key);
+  const BirthForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +166,7 @@ class BirthForm extends StatelessWidget {
           color: Color.fromARGB(255, 255, 255, 255),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 200,
                 child: CupertinoDatePicker(
                     mode: CupertinoDatePickerMode.date,
@@ -212,7 +212,7 @@ class BirthForm extends StatelessWidget {
                 controller: hbox.yController,
                 keyboardType: TextInputType.number,
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value!.isEmpty) {
                     return "Required";
                   } else {
                     return null;
@@ -232,7 +232,7 @@ class BirthForm extends StatelessWidget {
                 controller: hbox.mController,
                 keyboardType: TextInputType.datetime,
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value!.isEmpty) {
                     return "Required";
                   } else {
                     return null;
@@ -252,7 +252,7 @@ class BirthForm extends StatelessWidget {
                 controller: hbox.dController,
                 keyboardType: TextInputType.datetime,
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value!.isEmpty) {
                     return "Required";
                   } else {
                     return null;
@@ -280,7 +280,7 @@ class BirthForm extends StatelessWidget {
 }
 
 class NumberForm extends StatelessWidget {
-  const NumberForm({Key key}) : super(key: key);
+  const NumberForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -298,10 +298,10 @@ class NumberForm extends StatelessWidget {
                   fontSize: 20,
                   color: Colors.teal[400])),
           const YMargin(15),
-          Text("Whats is your Phone Number ?",
+          const Text("Whats is your Phone Number ?",
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
           const YMargin(15),
-          Text("Recommeded to use Safaricom number",
+          const Text("Recommeded to use Safaricom number",
               style: TextStyle(fontSize: 12, color: Colors.grey)),
           const YMargin(50),
           Container(
@@ -317,7 +317,7 @@ class NumberForm extends StatelessWidget {
                     controller: fstore.cnController,
                     keyboardType: TextInputType.datetime,
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return "Required";
                       } else {
                         return null;
@@ -332,7 +332,7 @@ class NumberForm extends StatelessWidget {
                     maxLines: 1,
                   ),
                 ),
-                SizedBox(width: 25),
+                const XMargin(25),
                 Flexible(
                   flex: 10,
                   child: TextFormField(
@@ -340,7 +340,7 @@ class NumberForm extends StatelessWidget {
                     controller: fstore.phController,
                     keyboardType: TextInputType.datetime,
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return "Required";
                       } else {
                         return null;
@@ -373,7 +373,7 @@ class NumberForm extends StatelessWidget {
 }
 
 class IdentificationForm extends StatelessWidget {
-  const IdentificationForm({Key key}) : super(key: key);
+  const IdentificationForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -402,7 +402,7 @@ class IdentificationForm extends StatelessWidget {
               keyboardType: TextInputType.number,
               controller: fstore.idController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return "Required";
                 } else {
                   return null;
@@ -422,7 +422,7 @@ class IdentificationForm extends StatelessWidget {
             child: TextFormField(
               controller: fstore.storeNameController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return "Required";
                 } else {
                   return null;
@@ -443,7 +443,7 @@ class IdentificationForm extends StatelessWidget {
             child: TextFormField(
               controller: fstore.emailController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return "Required";
                 } else {
                   return null;
@@ -464,7 +464,7 @@ class IdentificationForm extends StatelessWidget {
             child: TextFormField(
               controller: fstore.altPhoneController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return "Required";
                 } else {
                   return null;
@@ -492,7 +492,7 @@ class IdentificationForm extends StatelessWidget {
 }
 
 class PasswordForm extends StatelessWidget {
-  const PasswordForm({Key key}) : super(key: key);
+  const PasswordForm({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final hbox = Provider.of<KraFormProvider>(context);
@@ -521,7 +521,7 @@ class PasswordForm extends StatelessWidget {
               obscureText: true,
               controller: hbox.passwordController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return "Required";
                 } else {
                   return null;
@@ -544,7 +544,7 @@ class PasswordForm extends StatelessWidget {
               obscureText: true,
               controller: hbox.clonePasswordController,
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return "Required";
                 } else if (value != hbox.passwordController.text) {
                   return "Password do not match";
@@ -574,7 +574,7 @@ class PasswordForm extends StatelessWidget {
 }
 
 class RoleForm extends StatefulWidget {
-  const RoleForm({Key key}) : super(key: key);
+  const RoleForm({Key? key}) : super(key: key);
 
   @override
   _RoleFormState createState() => _RoleFormState();
@@ -591,16 +591,16 @@ class _RoleFormState extends State<RoleForm> {
     "Market Information",
     "Advisory Services"
   ];
-  String _role;
+  late String _role;
 
   @override
   void initState() {
-    options.forEach((t) {
+    for (var t in options) {
       temp.add(DropdownMenuItem<String>(
         value: t,
         child: Text(t),
       ));
-    });
+    }
     super.initState();
   }
 
@@ -638,8 +638,8 @@ class _RoleFormState extends State<RoleForm> {
               items: temp,
               hint: Text("Select One Role"),
               value: _role,
-              onChanged: (String value) {
-                fstore.role = value;
+              onChanged: (String? value) {
+                fstore.role = value!;
                 setState(() {
                   _role = value;
                 });
@@ -654,7 +654,7 @@ class _RoleFormState extends State<RoleForm> {
             keyboardType: TextInputType.text,
             controller: fstore.countyController,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -675,7 +675,7 @@ class _RoleFormState extends State<RoleForm> {
             keyboardType: TextInputType.text,
             controller: fstore.locationController,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -716,16 +716,16 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
     "Market Information",
     "Advisory Services"
   ];
-  String _role;
+  late String _role;
 
   @override
   void initState() {
-    options.forEach((t) {
+    for (var t in options) {
       temp.add(DropdownMenuItem<String>(
         value: t,
         child: Text(t),
       ));
-    });
+    }
     super.initState();
   }
 
@@ -750,7 +750,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
           child: TextFormField(
             controller: fstore.fnController,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -770,7 +770,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
           child: TextFormField(
             initialValue: fstore.middleName,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -791,7 +791,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
           child: TextFormField(
             initialValue: fstore.lastName,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -812,7 +812,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
           child: TextFormField(
             controller: fstore.storeNameController,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -833,7 +833,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
           child: TextFormField(
             controller: fstore.emailController,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -854,7 +854,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
           child: TextFormField(
             controller: fstore.altPhoneController,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -881,7 +881,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
                 initialValue: "254",
                 keyboardType: TextInputType.number,
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value!.isEmpty) {
                     return "Required";
                   } else {
                     return null;
@@ -902,7 +902,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
                 controller: fstore.phController,
                 keyboardType: TextInputType.datetime,
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value!.isEmpty) {
                     return "Required";
                   } else {
                     return null;
@@ -925,7 +925,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
           child: TextFormField(
             controller: fstore.idController,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -951,8 +951,8 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
               items: temp,
               hint: Text("Select One Role"),
               value: _role,
-              onChanged: (String value) {
-                fstore.role = value;
+              onChanged: (String? value) {
+                fstore.role = value!;
                 setState(() {
                   _role = value;
                 });
@@ -969,7 +969,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
             obscureText: true,
             controller: hbox.passwordController,
             validator: (value) {
-              if (value.isEmpty) {
+              if (value!.isEmpty) {
                 return "Required";
               } else {
                 return null;
@@ -1003,9 +1003,9 @@ class ButtonBasis extends StatelessWidget {
   final void Function() buttonFuntion;
   final bool isLastPage;
   const ButtonBasis({
-    Key key,
-    this.isLastPage: false,
-    @required this.buttonFuntion,
+    Key? key,
+    this.isLastPage = false,
+    required this.buttonFuntion,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -1023,8 +1023,8 @@ class ButtonBasis extends StatelessWidget {
                 color: isLastPage ? Colors.tealAccent[400] : Colors.lightGreen,
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.grey[400].withOpacity(0.5),
-                      offset: Offset(0, 13),
+                      color: Colors.grey[400]!.withOpacity(0.5),
+                      offset: const Offset(0, 13),
                       blurRadius: 30)
                 ],
               ),

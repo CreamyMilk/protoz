@@ -17,16 +17,16 @@ class _RegisterPageState extends State<RegisterPage> {
     "Market Information",
     "Consultany Services"
   ];
-  String _role;
-  bool terms;
+  late String _role;
+  late bool terms;
   @override
   void initState() {
-    options.forEach((t) {
+    for (var t in options) {
       temp.add(DropdownMenuItem<String>(
         value: t,
         child: Text(t),
       ));
-    });
+    }
     super.initState();
     terms = false;
   }
@@ -41,11 +41,11 @@ class _RegisterPageState extends State<RegisterPage> {
         onPressed: () {
           Navigator.of(context).pushNamed("/home");
         },
-        label: Container(
+        label: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text("Complete Registration",
                   style: TextStyle(color: Colors.black, fontSize: 20)),
             ],
@@ -73,7 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                    color: Colors.grey[400].withOpacity(0.1),
+                    color: Colors.grey[400]!.withOpacity(0.1),
                     offset: Offset(0, 13),
                     blurRadius: 30)
               ],
@@ -107,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                    color: Colors.grey[400].withOpacity(0.1),
+                    color: Colors.grey[400]!.withOpacity(0.1),
                     offset: Offset(0, 13),
                     blurRadius: 30)
               ],
@@ -141,7 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                    color: Colors.grey[400].withOpacity(0.1),
+                    color: Colors.grey[400]!.withOpacity(0.1),
                     offset: Offset(0, 13),
                     blurRadius: 30)
               ],
@@ -175,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                    color: Colors.grey[400].withOpacity(0.1),
+                    color: Colors.grey[400]!.withOpacity(0.1),
                     offset: Offset(0, 13),
                     blurRadius: 30)
               ],
@@ -209,7 +209,7 @@ class _RegisterPageState extends State<RegisterPage> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                    color: Colors.grey[400].withOpacity(0.1),
+                    color: Colors.grey[400]!.withOpacity(0.1),
                     offset: Offset(0, 13),
                     blurRadius: 30)
               ],
@@ -238,7 +238,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           const YMargin(20),
 
-          Container(
+          SizedBox(
             width: screenWidth(context, percent: 0.9),
             // padding: EdgeInsets.only(left: 24.0, right: 24.0),
             child: Row(
@@ -249,7 +249,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       // color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.grey[400].withOpacity(0.1),
+                            color: Colors.grey[400]!.withOpacity(0.1),
                             offset: Offset(0, 13),
                             blurRadius: 30)
                       ],
@@ -272,7 +272,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.grey[400].withOpacity(0.1),
+                            color: Colors.grey[400]!.withOpacity(0.1),
                             offset: Offset(0, 13),
                             blurRadius: 30)
                       ],
@@ -284,19 +284,19 @@ class _RegisterPageState extends State<RegisterPage> {
                         elevation: 1,
                         items: temp,
                         value: _role,
-                        onChanged: (String value) {
+                        onChanged: (String? value) {
                           setState(() {
-                            _role = value;
+                            _role = value!;
                           });
                         },
                       ),
                     ),
                   ),
-                  SizedBox(width: 5),
+                  const YMargin(5),
                 ]),
           ),
           SizedBox(height: 30),
-          Container(
+          SizedBox(
               width: screenWidth(context, percent: 0.85),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
