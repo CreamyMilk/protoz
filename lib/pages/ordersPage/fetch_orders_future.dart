@@ -9,7 +9,7 @@ Future getCurrentOrders() async {
   var box = Hive.box(Constants.UserBoxName);
   try {
     final response = await post(
-      (Constants.API_BASE + "invoice/orders"),
+      Uri.parse(Constants.API_BASE + "invoice/orders"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",

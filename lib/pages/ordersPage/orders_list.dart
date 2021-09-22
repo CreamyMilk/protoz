@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/utils/typeExtensions.dart';
+import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/type_extensions.dart';
 
 class OrdersList extends StatefulWidget {
-  const OrdersList({Key key}) : super(key: key);
+  const OrdersList({Key? key}) : super(key: key);
 
   @override
   State<OrdersList> createState() => _OrdersListState();
@@ -24,9 +25,9 @@ class _OrdersListState extends State<OrdersList> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Orders Section"),
+          title: const Text("Orders Section"),
           bottom: TabBar(
-            tabs: [
+            tabs: const [
               Tab(text: "Due"),
               Tab(text: "Completed"),
             ],
@@ -38,7 +39,8 @@ class _OrdersListState extends State<OrdersList> {
               Expanded(
                 child: ValueListenableBuilder(
                   valueListenable: Hive.box(Constants.UserBoxName).listenable(),
-                  builder: (BuildContext context, box, Widget child) {
+                  builder:
+                      (BuildContext context, Box<dynamic> box, Widget? child) {
                     List<dynamic> orders =
                         box.get(Constants.OrdersListStore, defaultValue: []);
                     return ListView.separated(
@@ -78,8 +80,9 @@ class _OrdersListState extends State<OrdersList> {
                               ),
                             ),
                           );
+                        } else {
+                          return const XMargin(1);
                         }
-                        return null;
                       },
                     );
                   },
@@ -87,7 +90,7 @@ class _OrdersListState extends State<OrdersList> {
               ),
             ],
           ),
-          Text("Ola Comrade")
+          const Text("Ola Comrade")
         ]),
       ),
     );
