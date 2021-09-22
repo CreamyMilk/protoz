@@ -187,7 +187,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
           "Deposit ${depositAmount.addCommas}",
           style: const TextStyle(fontSize: 17, color: Colors.white),
         ),
-        autofocus: true,
+        autofocus: false,
       ),
     );
     return SingleChildScrollView(

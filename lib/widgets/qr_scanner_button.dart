@@ -32,6 +32,7 @@ void parseQrCode(Barcode? qrData, BuildContext ctx) async {
     if (values.length == 3) {
       box.put(Constants.AmountToSendStore, values[2]);
     }
+    Navigator.of(ctx).pop();
     Navigator.of(ctx).pushNamed("/enteramount");
   }
   if (qrData != null && qrData.code.startsWith("http")) {
@@ -73,7 +74,7 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
       ),
       body: Column(
         children: <Widget>[
-          Expanded(flex: 4, child: _buildQrView(context)),
+          Expanded(flex: 5, child: _buildQrView(context)),
           Expanded(
             flex: 1,
             child: FittedBox(
@@ -82,14 +83,13 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   if (result != null)
-                    Text(
-                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+                    Text('Scanned Data: ${result!.code}')
                   else
                     const Text(''),
                   MaterialButton(
                     elevation: 0,
                     height: 60,
-                    minWidth: screenWidth(context, percent: .95),
+                    minWidth: screenWidth(context, percent: .90),
                     onPressed: () async {
                       Navigator.of(context).pop();
                     },
@@ -98,7 +98,7 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
                       "Close",
                       style: TextStyle(fontSize: 17, color: Colors.white),
                     ),
-                    autofocus: true,
+                    autofocus: false,
                   ),
                 ],
               ),
