@@ -27,6 +27,7 @@ import 'package:proto/providers/login_provider.dart';
 import 'package:proto/providers/stepper_form_provider.dart';
 import 'package:proto/pages/sellerpages/new_products.dart';
 import 'package:proto/pages/buyerpages/products_list.dart';
+import 'package:proto/widgets/qr_scanner_button.dart';
 import 'package:provider/provider.dart';
 import 'package:proto/pages/wallet/wallets_tab.dart';
 
@@ -88,12 +89,14 @@ class RouteGenerator {
                     child: ContactsListPage())));
       case '/enterphone':
         return MaterialPageRoute(builder: (ctx) => EnterPhoneNumberPage());
+      case '/qrscanner':
+        return MaterialPageRoute(builder: (ctx) => const QRCodeScannerPage());
       case '/pin':
         return MaterialPageRoute(builder: (ctx) => EnterPinPage());
       case '/enteramount':
         return MaterialPageRoute(builder: (ctx) => const EnterAmountPage());
       case '/transaction':
-        return MaterialPageRoute(builder: (ctx) => TransactionClass());
+        return MaterialPageRoute(builder: (ctx) => const TransactionClass());
       case '/bl':
         return MaterialPageRoute(builder: (ctx) => BLPage());
       case '/blconsoltants':

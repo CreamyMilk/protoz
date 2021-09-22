@@ -88,7 +88,7 @@ class ContactsListPage extends StatelessWidget {
                   textColor: Colors.pinkAccent[700]!,
                   myText: "Scan QR CODE",
                   ontap: () {
-                    initateScan(context);
+                    Navigator.of(context).pushNamed("/qrscanner");
                   },
                 ),
                 StyledActionListTile(
