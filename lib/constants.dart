@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:proto/utils/typeExtensions.dart';
+import 'package:proto/utils/type_extensions.dart';
 
 class Constants {
   static const String API_BASE = "http://35.189.74.247:3000/";
@@ -31,7 +31,7 @@ class Constants {
   static const String PlaceHolderURl = "placeurl";
 
   static String zerototwo(String phone) {
-    if (phone.length > 0) {
+    if (phone.isNotEmpty) {
       if (phone[0] == "0") {
         return "254${phone.substring(1)}";
       } else if (phone[0] == "+") {

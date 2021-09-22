@@ -17,11 +17,13 @@ void main() async {
   await Hive.openBox(
     Constants.UserBoxName,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   final String appTitle = 'Agro|CRM';
+
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
