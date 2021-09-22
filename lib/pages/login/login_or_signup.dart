@@ -84,7 +84,7 @@ class _LoginOrSignupState extends State<LoginOrSignup>
                   Flexible(
                     child: CowryButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/kraform');
+                        Navigator.of(context).pushNamed('/stepregister');
                       },
                       height: 53,
                       margin: EdgeInsets.zero,

@@ -6,9 +6,10 @@ import 'package:proto/pages/homeDash/homedashboard.dart';
 import 'package:proto/pages/login/login_form.dart';
 import 'package:proto/pages/login/login_or_signup.dart';
 import 'package:proto/pages/ordersPage/orders_list.dart';
+import 'package:proto/pages/registrationForm/registration_stepper_page.dart';
 import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/profile.dart';
-import 'package:proto/pages/registrationForm/register_stepper.dart';
+import 'package:proto/pages/registrationForm/register_manual_stepper.dart';
 import 'package:proto/pages/registrationOLD/register.dart';
 import 'package:proto/pages/sendMoney/contct_list.dart';
 import 'package:proto/pages/sendMoney/enteramount.dart';
@@ -76,7 +77,7 @@ class RouteGenerator {
                     value: SystemUiOverlayStyle(
                         statusBarColor: Colors.teal[400],
                         systemNavigationBarColor: Colors.white),
-                    child: BaseForm())));
+                    child: const BaseForm())));
       case '/contactList':
         return CupertinoPageRoute(
             fullscreenDialog: true,
@@ -87,6 +88,9 @@ class RouteGenerator {
                         statusBarColor: Colors.white,
                         systemNavigationBarColor: Colors.white),
                     child: ContactsListPage())));
+      case '/stepregister':
+        return MaterialPageRoute(
+            builder: (ctx) => const RegistrationStepperForm());
       case '/enterphone':
         return MaterialPageRoute(builder: (ctx) => EnterPhoneNumberPage());
       case '/qrscanner':
