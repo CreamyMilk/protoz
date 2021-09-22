@@ -1,41 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:proto/models/product.dart';
 import 'package:proto/pages/homeDash/homedashboard.dart';
-import 'package:proto/pages/login/loginForm.dart';
-import 'package:proto/pages/login/loginOrSignup.dart';
-import 'package:proto/pages/ordersPage/ordersList.dart';
+import 'package:proto/pages/login/login_form.dart';
+import 'package:proto/pages/login/login_or_signup.dart';
+import 'package:proto/pages/ordersPage/orders_list.dart';
 import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/profile.dart';
-import 'package:proto/pages/registrationForm/registerStepper.dart';
+import 'package:proto/pages/registrationForm/register_stepper.dart';
 import 'package:proto/pages/registrationOLD/register.dart';
-import 'package:proto/pages/sendMoney/contctList.dart';
+import 'package:proto/pages/sendMoney/contct_list.dart';
 import 'package:proto/pages/sendMoney/enteramount.dart';
-import 'package:proto/pages/sendMoney/enterphoneNumber.dart';
+import 'package:proto/pages/sendMoney/enterphone_number.dart';
 import 'package:proto/pages/sendMoney/pinentrypage.dart';
-import 'package:proto/pages/services/blConsoltants.dart';
+import 'package:proto/pages/services/bl_consoltants.dart';
 import 'package:proto/pages/services/blPage.dart';
 import 'package:proto/pages/services/blVets.dart';
-import 'package:proto/pages/services/blVetsCalls.dart';
-import 'package:proto/pages/buyerpages/categoriesList.dart';
-import 'package:proto/pages/buyerpages/ProductDetails.dart';
-import 'package:proto/pages/sellerpages/stockList.dart';
-import 'package:proto/pages/transactionPage.dart';
-import 'package:proto/providers/addproductProvider.dart';
-import 'package:proto/providers/loginProvider.dart';
-import 'package:proto/providers/stepperFormProvider.dart';
-import 'package:proto/pages/sellerpages/newProducts.dart';
-import 'package:proto/pages/buyerpages/productsList.dart';
-import 'package:proto/widgets/tab_controler.dart';
-import 'package:proto/widgets/youtubeWebView.dart';
+import 'package:proto/pages/services/bl_vets_calls.dart';
+import 'package:proto/pages/buyerpages/categories_list.dart';
+import 'package:proto/pages/buyerpages/product_details.dart';
+import 'package:proto/pages/sellerpages/stock_list.dart';
+import 'package:proto/pages/transaction_page.dart';
+import 'package:proto/providers/addproduct_provider.dart';
+import 'package:proto/providers/login_provider.dart';
+import 'package:proto/providers/stepper_form_provider.dart';
+import 'package:proto/pages/sellerpages/new_products.dart';
+import 'package:proto/pages/buyerpages/products_list.dart';
 import 'package:provider/provider.dart';
-import 'package:proto/pages/wallet/walletsTab.dart';
+import 'package:proto/pages/wallet/wallets_tab.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     // Getting arguments passed in while calling Navigator.pushNamed
-    final args = settings.arguments;
-    print(args);
+    final Object? args = settings.arguments;
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (ctx) => LogoPage());
@@ -47,29 +45,28 @@ class RouteGenerator {
                 create: (context) => LoginFormProvider(),
                 child: LoginFormPage()));
       case '/addProduct':
-        return CupertinoPageRoute(
-            builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
-                  value: SystemUiOverlayStyle(
+        if (args != null) {
+          return CupertinoPageRoute(
+              builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
+                  value: const SystemUiOverlayStyle(
                       statusBarColor: Colors.transparent,
                       statusBarIconBrightness: Brightness.dark,
                       systemNavigationBarColor: Colors.white),
                   child: ChangeNotifierProvider<AddProductFormProvider>(
-                    create: (context) => AddProductFormProvider(),
-                    child: AddProductsPage(
-                      initalProduct: args,
-                    ),
-                  ),
-                ));
-      case '/home':
-        return CupertinoPageRoute(
-            builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
-                value: SystemUiOverlayStyle(
-                    statusBarColor: Colors.transparent,
-                    statusBarIconBrightness: Brightness.dark,
-                    systemNavigationBarColor: Colors.white),
-                child: ChangeNotifierProvider<AddProductFormProvider>(
-                    create: (context) => AddProductFormProvider(),
-                    child: BaseTabView())));
+                      create: (context) => AddProductFormProvider(),
+                      child: AddProductsPage(initalProduct: args as Product))));
+        } else {
+          return CupertinoPageRoute(
+              builder: (ctx) => AnnotatedRegion<SystemUiOverlayStyle>(
+                  value: const SystemUiOverlayStyle(
+                      statusBarColor: Colors.transparent,
+                      statusBarIconBrightness: Brightness.dark,
+                      systemNavigationBarColor: Colors.white),
+                  child: ChangeNotifierProvider<AddProductFormProvider>(
+                      create: (context) => AddProductFormProvider(),
+                      child: const AddProductsPage())));
+        }
+
       case '/kraform':
         return MaterialPageRoute(
             builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
@@ -85,7 +82,7 @@ class RouteGenerator {
             builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
                 create: (context) => KraFormProvider(),
                 child: AnnotatedRegion<SystemUiOverlayStyle>(
-                    value: SystemUiOverlayStyle(
+                    value: const SystemUiOverlayStyle(
                         statusBarColor: Colors.white,
                         systemNavigationBarColor: Colors.white),
                     child: ContactsListPage())));
@@ -94,11 +91,9 @@ class RouteGenerator {
       case '/pin':
         return MaterialPageRoute(builder: (ctx) => EnterPinPage());
       case '/enteramount':
-        return MaterialPageRoute(builder: (ctx) => EnterAmountPage());
+        return MaterialPageRoute(builder: (ctx) => const EnterAmountPage());
       case '/transaction':
         return MaterialPageRoute(builder: (ctx) => TransactionClass());
-      case '/youtube':
-        return MaterialPageRoute(builder: (ctx) => YoutubeWebView());
       case '/bl':
         return MaterialPageRoute(builder: (ctx) => BLPage());
       case '/blconsoltants':
@@ -110,7 +105,12 @@ class RouteGenerator {
       case '/sellpage':
         return MaterialPageRoute(builder: (ctx) => InventoryList());
       case '/pdetails':
-        return CupertinoPageRoute(builder: (ctx) => ProductDetails(p: args));
+        if (args != null) {
+          return CupertinoPageRoute(
+              builder: (ctx) => ProductDetails(p: args as Product));
+        } else {
+          return _errorRoute();
+        }
       case '/products':
         return MaterialPageRoute(builder: (ctx) => ProductList());
       case '/register':
@@ -119,12 +119,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (ctx) => ListTilezz());
       case '/dashboard':
         return MaterialPageRoute(
-            builder: (ctx) => SmallerTextFactor(DashboardPage()));
+            builder: (ctx) => const SmallerTextFactor(DashboardPage()));
       case '/orders':
         return MaterialPageRoute(
-            builder: (ctx) => SmallerTextFactor(OrdersList()));
+            builder: (ctx) => const SmallerTextFactor(OrdersList()));
       case '/profile':
-        return MaterialPageRoute(builder: (ctx) => ProfilePage());
+        return MaterialPageRoute(builder: (ctx) => const ProfilePage());
       case '/walletspage':
         return MaterialPageRoute(builder: (ctx) => WalletsTab());
       default:
@@ -136,9 +136,9 @@ class RouteGenerator {
     return MaterialPageRoute(builder: (_) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Error'),
+          title: const Text('Error'),
         ),
-        body: Center(
+        body: const Center(
           child: Text('ERROR'),
         ),
       );
@@ -147,7 +147,7 @@ class RouteGenerator {
 }
 
 class SmallerTextFactor extends StatelessWidget {
-  const SmallerTextFactor(this.child, {Key key}) : super(key: key);
+  const SmallerTextFactor(this.child, {Key? key}) : super(key: key);
   final Widget child;
   @override
   Widget build(BuildContext context) {

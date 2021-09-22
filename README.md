@@ -6,8 +6,5 @@
 - [x] Users Can login
 - [x] Send Funds 
 - [x] Send Funds using QR code
-- [ ] Add Products
-- [ ] Create Payment requests(Invoices)
-
-
- 
+- [x] Add Products
+- [x] Create Payment requests(Invoices)
