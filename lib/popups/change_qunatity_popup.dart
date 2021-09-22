@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class ChangeQunatityPopUp extends StatelessWidget {
   const ChangeQunatityPopUp({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
+    return AlertDialog(
       title: const Text(
         'Stock Editor',
       ),
@@ -30,7 +30,7 @@ class ChangeQunatityPopUp extends StatelessWidget {
                   "New ",
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 30,
                 width: 120,
                 child: TextField(

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class ErrorPopUP extends StatelessWidget {
   const ErrorPopUP({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
+    return AlertDialog(
       title: const Text('Network Error'),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: const <Widget>[
           Text("Kindly Connect to a stable network connection"),
           Text("and try again later")
         ],
@@ -40,13 +40,13 @@ class ErrorPopUP extends StatelessWidget {
 class CannontReigsterPopUp extends StatelessWidget {
   final String message;
 
-  const CannontReigsterPopUp({Key key, @required this.message})
+  const CannontReigsterPopUp({Key? key, required this.message})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
+    return AlertDialog(
       title: const Text('Error Register Account'),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -70,12 +70,12 @@ class CannontReigsterPopUp extends StatelessWidget {
 class CustomErrorPopup extends StatelessWidget {
   final String message;
 
-  const CustomErrorPopup({Key key, @required this.message}) : super(key: key);
+  const CustomErrorPopup({Key? key, required this.message}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
+    return AlertDialog(
       title: const Text('Custom Error'),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[Text(message)],

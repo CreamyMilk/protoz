@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class UnregisteredPopUp extends StatelessWidget {
   const UnregisteredPopUp({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
+    return AlertDialog(
       title: const Text('User does not have a wallet'),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children:const <Widget>[
           Text("User is not registerd in the AgroCRM app"),
         ],
       ),

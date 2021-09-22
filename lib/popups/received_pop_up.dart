@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 class ReceivedPopup extends StatelessWidget {
   final String message;
   const ReceivedPopup({
-    Key key,
-    @required this.message,
+    Key? key,
+    required this.message,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
+    return AlertDialog(
       title: const Text('You Have Received Money'),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("$message"),
+          Text(message),
         ],
       ),
       actions: <Widget>[

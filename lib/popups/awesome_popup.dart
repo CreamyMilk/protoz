@@ -4,29 +4,29 @@ import 'dart:ui';
 
 class AwesomePopup extends StatelessWidget {
   const AwesomePopup({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-      child: new CupertinoAlertDialog(
+      child: CupertinoAlertDialog(
         title: const Text('Confirm Payment'),
-        content: new Column(
+        content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[],
+          children: const <Widget>[],
         ),
         actions: <Widget>[
-          new MaterialButton(
+          MaterialButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
             textColor: Colors.red,
             child: const Text('Edit'),
           ),
-          new MaterialButton(
+          MaterialButton(
             onPressed: () {
               Navigator.of(context).pop();
             },

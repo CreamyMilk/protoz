@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class SuccesfulSentMoneyPopUp extends StatelessWidget {
   const SuccesfulSentMoneyPopUp({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
+    return AlertDialog(
       title: const Text('Sent successful'),
-      content: new Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: const <Widget>[
           Text("Transaction was successful"),
         ],
       ),

@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 
-class AppProductPopUp extends StatelessWidget {
-  const AppProductPopUp({
-    Key key,
+class RegistrationPopUp extends StatelessWidget {
+  const RegistrationPopUp({
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
-      title: const Text('Added Succesfully'),
-      content: new Column(
+    return AlertDialog(
+      title: const Text('Request Sent Sucessfully'),
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text("Product Has been added to the public store front"),
+        children: const <Widget>[
+          Text("Kindly Enter your PIN to authorize Payment"),
         ],
       ),
       actions: <Widget>[
         MaterialButton(
           onPressed: () {
-            Navigator.of(context).pushNamed("/home");
+            Navigator.of(context).pushNamed("/login");
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Exit'),
+          child: const Text('Payment Complete'),
         ),
         MaterialButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Add Another Product'),
+          child: const Text('Exit'),
         ),
       ],
     );
