@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'package:proto/main.dart';
 
 class DepositStruct {
-  final int amount;
+  final String amount;
   final String walletName;
   final String phoneNumber;
   DepositStruct(
@@ -18,7 +18,7 @@ class DepositStruct {
 Future sendDepositRequest(DepositStruct dep) async {
   try {
     final response = await http.post(
-      Uri.parse("${Constants.API_BASE}/wallet/deposit"),
+      Uri.parse("${Constants.API_BASE}wallet/deposit"),
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
@@ -33,6 +33,7 @@ Future sendDepositRequest(DepositStruct dep) async {
       ),
     );
     dynamic myjson = json.decode(response.body);
+    print(myjson);
     return myjson;
   } catch (err) {
     ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(
