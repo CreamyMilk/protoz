@@ -18,12 +18,12 @@ class AddProductFormProvider extends ChangeNotifier {
   TextEditingController priceController = TextEditingController();
   GlobalKey<FormState> productFormKey = GlobalKey<FormState>();
 
-  int categoryID;
+  int? categoryID;
 
   bool showError = false;
   bool loading = false;
   bool isEdit = false;
-  Product globalProduct;
+  Product? globalProduct;
 
   void setCategory(int value) {
     categoryID = value;
@@ -59,7 +59,7 @@ class AddProductFormProvider extends ChangeNotifier {
     notifyListeners();
     try {
       final response = await (isEdit ? put : post)(
-        (Constants.API_BASE + (isEdit ? "store/update" : "store/add")),
+        Uri.parse(Constants.API_BASE + (isEdit ? "store/update" : "store/add")),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",
@@ -68,7 +68,7 @@ class AddProductFormProvider extends ChangeNotifier {
           //ensure that the user has bothe the socketID and the USER ID
           {
             "categoryID": categoryID,
-            "productID": isEdit ? globalProduct.productID : null,
+            "productID": isEdit ? globalProduct!.productID : null,
             "ownerID": box.get(Constants.UserIDStore),
             "productname": productNameController.text,
             "image": imageController.text,
@@ -90,7 +90,7 @@ class AddProductFormProvider extends ChangeNotifier {
       } else {
         loading = false;
         showCupertinoDialog(
-            context: navigatorKey.currentContext,
+            context: navigatorKey.currentContext!,
             builder: (context) => AlertDialog(
                     actions: [
                       MaterialButton(
@@ -108,7 +108,7 @@ class AddProductFormProvider extends ChangeNotifier {
       }
     } catch (error) {
       showCupertinoDialog(
-        context: navigatorKey.currentContext,
+        context: navigatorKey.currentContext!,
         builder: (context) => AlertDialog(
           actions: [
             MaterialButton(

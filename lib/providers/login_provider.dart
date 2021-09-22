@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/popups/errorPopup.dart';
+import 'package:proto/popups/error_popup.dart';
 
 class LoginFormProvider extends ChangeNotifier {
   TextEditingController usernameController = TextEditingController();
@@ -32,7 +32,7 @@ class LoginFormProvider extends ChangeNotifier {
   }
 
   String zerototwo(String phone) {
-    if (phone.length > 0) {
+    if (phone.isNotEmpty) {
       if (phone[0] == "0") {
         return "254${phone.substring(1)}";
       } else if (phone[0] == "+") {
@@ -58,7 +58,7 @@ class LoginFormProvider extends ChangeNotifier {
   Future sendLoginRequest(BuildContext ctx) async {
     try {
       final response = await post(
-        (Constants.API_BASE + "login"),
+        Uri.parse(Constants.API_BASE + "login"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",
@@ -85,7 +85,7 @@ class LoginFormProvider extends ChangeNotifier {
         box.put(Constants.NotifcationTopicStore, myjson["phonenumber"]);
         if (Platform.isAndroid) {
           FirebaseMessaging.instance.subscribeToTopic(myjson["walletname"]);
-          FirebaseMessaging.instance.getToken().then((String token) {
+          FirebaseMessaging.instance.getToken().then((String? token) {
             box.put(Constants.RawFCMTokenStore, token);
           });
         }

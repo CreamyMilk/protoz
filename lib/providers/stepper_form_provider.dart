@@ -7,8 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/popups/errorPopup.dart';
-import 'package:proto/popups/registrationPopup.dart';
+import 'package:proto/popups/error_popup.dart';
+import 'package:proto/popups/registration_popup.dart';
 
 class KraFormProvider extends ChangeNotifier {
   TextEditingController fnController = TextEditingController();
@@ -41,18 +41,18 @@ class KraFormProvider extends ChangeNotifier {
   int activePage = 0;
   bool isLoading = false;
 
-  String firstName;
-  String middleName;
-  String lastName;
-  String day;
-  String month;
-  String idd;
-  String year;
-  String countrycode;
-  String phoneNumber;
-  String password;
-  String role = "DEFAULT";
-  bool terms = true;
+  late String firstName;
+  late String middleName;
+  late String lastName;
+  late String day;
+  late String month;
+  late String idd;
+  late String year;
+  late String countrycode;
+  late String phoneNumber;
+  late String password;
+  late String role = "DEFAULT";
+  late bool terms = true;
 
   void nameFields(String a, String b) {
     firstName = a;
@@ -83,7 +83,7 @@ class KraFormProvider extends ChangeNotifier {
   }
 
   void nfSubmit() {
-    if (nameKey.currentState.validate()) {
+    if (nameKey.currentState!.validate()) {
       firstName = fnController.text;
       middleName = mnContorller.text;
       lastName = lnController.text;
@@ -93,14 +93,14 @@ class KraFormProvider extends ChangeNotifier {
   }
 
   void passwordFormSubmit() {
-    if (passwordFormKey.currentState.validate()) {
+    if (passwordFormKey.currentState!.validate()) {
       password = passwordController.text;
       increment();
     }
   }
 
   void idSubmit() {
-    if (idKey.currentState.validate()) {
+    if (idKey.currentState!.validate()) {
       year = yController.text;
       month = mController.text;
       day = dController.text;
@@ -110,7 +110,7 @@ class KraFormProvider extends ChangeNotifier {
   }
 
   void bfSubmit() {
-    if (birthKey.currentState.validate()) {
+    if (birthKey.currentState!.validate()) {
       year = yController.text;
       month = mController.text;
       day = dController.text;
@@ -124,7 +124,7 @@ class KraFormProvider extends ChangeNotifier {
   }
 
   void phSubmit() {
-    if (phoneKey.currentState.validate()) {
+    if (phoneKey.currentState!.validate()) {
       countrycode = cnController.text;
       phoneNumber = phController.text;
       increment();
@@ -166,7 +166,7 @@ class KraFormProvider extends ChangeNotifier {
     }
 
     String zerototwo(String phone) {
-      if (phone.length > 0) {
+      if (phone.isNotEmpty) {
         if (phone[0] == "0") {
           return "254${phone.substring(1)}";
         } else if (phone[0] == "+") {
@@ -195,13 +195,13 @@ class KraFormProvider extends ChangeNotifier {
           "email": "me@mailer.com",
           "fcmtoken": "FCMTOKENSAMPLE$accName",
           "informaladdress": "Machakos",
-          "xcords": "$dob",
+          "xcords": dob,
           "ycords": "0.0",
           "role": role
         },
       );
       final response = await post(
-        (Constants.API_BASE + "treg"),
+        Uri.parse(Constants.API_BASE + "treg"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",
