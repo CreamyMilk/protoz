@@ -9,12 +9,14 @@ import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/utils/type_extensions.dart';
 
 class ProductList extends StatelessWidget {
+  const ProductList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           color: Colors.black87,
           onPressed: () {
             Navigator.of(context).pop();
@@ -36,7 +38,6 @@ class ProductList extends StatelessWidget {
             dynamic categoryID = box.get(Constants.ChoosenCategory);
             String title = "No Category Name";
             for (int i = 0; i < c.length; i++) {
-              print(categoryID);
               if (c[i]["categoryid"] == categoryID) {
                 title = (c[i]["categoryname"]);
               }
@@ -49,7 +50,7 @@ class ProductList extends StatelessWidget {
           future: getProductsList(),
           builder: (context, projectSnap) {
             if (projectSnap.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (projectSnap.data == null) {
@@ -92,7 +93,7 @@ class ProductListItem extends StatelessWidget {
     double cardSize = 110;
     return Card(
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
         height: cardSize,
         width: screenWidth(context, percent: 0.9),
         color: Colors.white70,
@@ -126,70 +127,68 @@ class ProductListItem extends StatelessWidget {
               ),
             ),
             const XMargin(10),
-            Container(
-              child: Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        p.name,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontSize: 20),
-                      ),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    child: Text(
+                      p.name,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 20),
                     ),
-                    Flexible(
-                      child: Text(
-                        p.packingType,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: 15, color: Colors.blueGrey),
-                      ),
+                  ),
+                  Flexible(
+                    child: Text(
+                      p.packingType,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          const TextStyle(fontSize: 15, color: Colors.blueGrey),
                     ),
-                    const YMargin(5),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(children: [
-                                TextSpan(
-                                    text: "Ksh.",
-                                    style: TextStyle(
-                                        color: Colors.deepPurple[200],
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13)),
-                                TextSpan(
-                                  text: p.price.toString().addCommas,
-                                  style: const TextStyle(
-                                      color: Colors.deepPurple,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18),
-                                )
-                              ])),
-                          Spacer(),
-                          Hero(
-                            tag: p.heroName!,
-                            child: MaterialButton(
-                              color: Colors.green[700],
-                              onPressed: () {
-                                Navigator.pushNamed(context, "/pdetails",
-                                    arguments: p);
-                              },
-                              child: Text(
-                                "Buy ",
+                  ),
+                  const YMargin(5),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(children: [
+                              TextSpan(
+                                  text: "Ksh.",
+                                  style: TextStyle(
+                                      color: Colors.deepPurple[200],
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13)),
+                              TextSpan(
+                                text: p.price.toString().addCommas,
                                 style: const TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
+                                    color: Colors.deepPurple,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18),
+                              )
+                            ])),
+                        const Spacer(),
+                        Hero(
+                          tag: p.heroName!,
+                          child: MaterialButton(
+                            color: Colors.green[700],
+                            onPressed: () {
+                              Navigator.pushNamed(context, "/pdetails",
+                                  arguments: p);
+                            },
+                            child: const Text(
+                              "Buy ",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             )
           ],

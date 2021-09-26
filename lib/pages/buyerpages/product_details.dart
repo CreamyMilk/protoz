@@ -50,9 +50,9 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Checkout",
-                  style: const TextStyle(color: Colors.black, fontSize: 20),
+                const Text(
+                  "Pay",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
                 Text(
                   "Ksh. $totalString",
@@ -66,7 +66,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           color: Colors.black,
         ),
         centerTitle: true,
@@ -80,16 +80,19 @@ class _ProductDetailsState extends State<ProductDetails> {
       body: SafeArea(
           child: Column(
         children: [
-          SizedBox(height: 10),
+          const YMargin(10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Hero(
                 tag: widget.p.productID.toString() + "hero",
-                child: CachedNetworkImage(
-                  imageUrl: widget.p.image,
-                  width: screenWidth(context, percent: 0.5),
-                  height: screenWidth(context, percent: 0.5),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: CachedNetworkImage(
+                    imageUrl: widget.p.image,
+                    width: screenWidth(context, percent: 0.5),
+                    height: screenWidth(context, percent: 0.5),
+                  ),
                 ),
               ),
               Column(

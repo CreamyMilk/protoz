@@ -24,7 +24,10 @@ class BuyProductPopup extends StatelessWidget {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[],
+          children: <Widget>[
+            Text("Quantity: ($quantity) ${p.name}"),
+            Text("Total:    Ksh.${p.price * quantity}")
+          ],
         ),
         actions: <Widget>[
           MaterialButton(
