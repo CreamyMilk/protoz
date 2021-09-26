@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:proto/utils/sizedMargins.dart';
 
 class BLConsoltantsList extends StatelessWidget {
   const BLConsoltantsList({Key? key}) : super(key: key);
@@ -33,9 +34,7 @@ class BLConsoltantsList extends StatelessWidget {
                 imageUrl:
                     "https://burgerfarms.com/wp-content/gallery/fertilizers-plant-food/Organic-Fertilizers.JPG",
               ),
-              SizedBox(
-                height: 1,
-              ),
+              const YMargin(1),
               BLConsoltantsTile(
                 barColor: Colors.greenAccent,
                 gradient: Colors.greenAccent[100]!,
@@ -83,8 +82,8 @@ class BLConsoltantsTile extends StatelessWidget {
       },
       child: Container(
         height: 80,
-        margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-        padding: EdgeInsets.all(8),
+        margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
@@ -95,7 +94,7 @@ class BLConsoltantsTile extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               color: barColor,
               width: 3,
               height: 90,
@@ -108,7 +107,7 @@ class BLConsoltantsTile extends StatelessWidget {
                 height: 50,
               ),
             ),
-            SizedBox(width: 20),
+            const XMargin(20),
             Column(
               children: [
                 Text(name,
@@ -116,13 +115,11 @@ class BLConsoltantsTile extends StatelessWidget {
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
                         fontSize: 25.0)),
-                Text("Description")
+                const Text("Description")
               ],
             ),
-            SizedBox(
-              width: 10,
-            ),
-            Spacer(),
+            const XMargin(10),
+            const Spacer(),
           ],
         ),
       ),

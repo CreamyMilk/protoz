@@ -7,11 +7,11 @@ class BlVets extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {},
           )
         ],
-        title: Text("BD Page"),
+        title: const Text("BD Page"),
       ),
       body: Column(
         children: [

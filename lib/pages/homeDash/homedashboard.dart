@@ -55,7 +55,7 @@ class _DashboardPageState extends State<DashboardPage> {
         path: "/bl",
         imageUrl:
             "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
-        name: "Profile / Settings"),
+        name: "Profile / Help"),
   ];
 
   @override

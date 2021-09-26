@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
+import 'package:proto/main.dart';
 import "package:qr_flutter/qr_flutter.dart";
 
 class ProfilePage extends StatelessWidget {
@@ -32,11 +33,11 @@ class ProfilePage extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onPressed: () {
-                  logout(context);
+                  logoutHandler();
                 })
           ],
           title:
-              Text("Profile Page", style: const TextStyle(color: Colors.black)),
+              const Text("Profile Page", style: TextStyle(color: Colors.black)),
         ),
         body: SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -46,7 +47,7 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(height: 10),
                 const Text(
                   "👋 Payment QR Code ",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 20,
                   ),
                 ),
@@ -79,17 +80,20 @@ class ProfilePage extends StatelessWidget {
               ],
             )));
   }
+}
 
-  void logout(BuildContext ctx) {
-    Box<dynamic> box = Hive.box(Constants.UserBoxName);
-    box.put(Constants.IsLoggedInStore, false);
-    box.put(Constants.TransactionsStore, []);
-    box.put(Constants.BalanceStore, 0);
-    box.put(Constants.TotalOrdersStore, 0);
-    if (Platform.isAndroid) {
-      FirebaseMessaging.instance.unsubscribeFromTopic(
-          box.get(Constants.NotifcationTopicStore, defaultValue: "."));
-    }
-    Navigator.of(ctx).pushReplacementNamed("/startup");
+logoutHandler() {
+  Box<dynamic> box = Hive.box(Constants.UserBoxName);
+  if (Platform.isAndroid) {
+    FirebaseMessaging.instance
+        .unsubscribeFromTopic(
+            box.get(Constants.NotifcationTopicStore, defaultValue: "."))
+        .then((value) => {box.clear()});
   }
+  box.put(Constants.IsLoggedInStore, false);
+  box.put(Constants.TransactionsStore, []);
+  box.put(Constants.BalanceStore, 0);
+  box.put(Constants.TotalOrdersStore, 0);
+  box.clear();
+  Navigator.of(navigatorKey.currentContext!).pushReplacementNamed("/startup");
 }

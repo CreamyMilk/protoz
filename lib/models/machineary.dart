@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Machinery {
   final int modelNo;
   final String? heroName;

@@ -2,23 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:proto/models/product.dart';
+import 'package:proto/pages/blPages/bl_consoltants.dart';
+import 'package:proto/pages/blPages/bl_page.dart';
+import 'package:proto/pages/blPages/bl_vets.dart';
+import 'package:proto/pages/blPages/bl_vets_calls.dart';
 import 'package:proto/pages/homeDash/homedashboard.dart';
 import 'package:proto/pages/login/login_form.dart';
 import 'package:proto/pages/login/login_or_signup.dart';
 import 'package:proto/pages/ordersPage/orders_list.dart';
 import 'package:proto/pages/registrationForm/registration_stepper_page.dart';
 import 'package:proto/pages/startup/logopage.dart';
-import 'package:proto/pages/profile.dart';
+import 'package:proto/pages/blPages/profile.dart';
 import 'package:proto/pages/registrationForm/register_manual_stepper.dart';
 import 'package:proto/pages/registrationOLD/register.dart';
 import 'package:proto/pages/sendMoney/contct_list.dart';
 import 'package:proto/pages/sendMoney/enteramount.dart';
 import 'package:proto/pages/sendMoney/enterphone_number.dart';
 import 'package:proto/pages/sendMoney/pinentrypage.dart';
-import 'package:proto/pages/services/bl_consoltants.dart';
-import 'package:proto/pages/services/blPage.dart';
-import 'package:proto/pages/services/blVets.dart';
-import 'package:proto/pages/services/bl_vets_calls.dart';
 import 'package:proto/pages/buyerpages/categories_list.dart';
 import 'package:proto/pages/buyerpages/product_details.dart';
 import 'package:proto/pages/sellerpages/stock_list.dart';
@@ -68,7 +68,6 @@ class RouteGenerator {
                       create: (context) => AddProductFormProvider(),
                       child: const AddProductsPage())));
         }
-
       case '/kraform':
         return MaterialPageRoute(
             builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
@@ -102,13 +101,13 @@ class RouteGenerator {
       case '/transaction':
         return MaterialPageRoute(builder: (ctx) => const TransactionClass());
       case '/bl':
-        return MaterialPageRoute(builder: (ctx) => BLPage());
+        return MaterialPageRoute(builder: (ctx) => const BLPage());
       case '/blconsoltants':
-        return MaterialPageRoute(builder: (ctx) => BLConsoltantsList());
+        return MaterialPageRoute(builder: (ctx) => const BLConsoltantsList());
       case '/blvets':
         return MaterialPageRoute(builder: (ctx) => BlVets());
       case '/vetsCalls':
-        return MaterialPageRoute(builder: (ctx) => BlVetsCall());
+        return MaterialPageRoute(builder: (ctx) => const BlVetsCall());
       case '/sellpage':
         return MaterialPageRoute(builder: (ctx) => InventoryList());
       case '/pdetails':

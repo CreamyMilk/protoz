@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Product {
   final int productID;
   final String? heroName;
