@@ -40,7 +40,7 @@ class _LoginOrSignupState extends State<LoginOrSignup>
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Farming for good & wealth.',
                     textAlign: TextAlign.center,
                     style: TextStyle(

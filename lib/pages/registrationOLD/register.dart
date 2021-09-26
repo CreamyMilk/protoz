@@ -47,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Text("Complete Registration",
-                  style: TextStyle(color: Colors.black, fontSize: 20)),
+                  style: const TextStyle(color: Colors.black, fontSize: 20)),
             ],
           ),
         ),
@@ -61,7 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Column(
         children: [
           // Text("Kindly Fill in your information below",
-          //     style: TextStyle(
+          //     style: const TextStyle(
           //         fontWeight: FontWeight.w500,
           //         fontSize: 20,
           //         color: Colors.teal[400])),
@@ -100,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   autofocus: false),
             ),
           ),
-          const YMargin(30),
+          YMargin(30),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
@@ -295,7 +295,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   const YMargin(5),
                 ]),
           ),
-          SizedBox(height: 30),
+          const YMargin(30),
           SizedBox(
               width: screenWidth(context, percent: 0.85),
               child: Row(

@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Padding(
+          const Padding(
             padding: const EdgeInsets.all(8.0),
             child: Hero(
                 tag: "logo",
@@ -34,13 +34,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     text: TextSpan(children: const [
                       TextSpan(
                           text: "WELCOME TO\n",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w300,
                               fontSize: 30.0)),
                       TextSpan(
                           text: "AGRO CRM",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w400,
                               fontSize: 25.0)),
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   minWidth: MediaQuery.of(context).size.width * 0.8,
                   height: 50,
                   color: Colors.yellow,
-                  child: Text(
+                  child: const Text(
                     "Login as member",
                     style: TextStyle(color: Colors.black),
                   ),
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.of(context).pushNamed('/home');
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 MaterialButton(

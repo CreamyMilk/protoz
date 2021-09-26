@@ -36,28 +36,29 @@ class _EnterPinPageState extends State<EnterPinPage> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
+        title: const Text(
           "Enter Pin",
-          style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black87),
+          style: const TextStyle(
+              fontWeight: FontWeight.w300, color: Colors.black87),
         ),
       ),
       body: Column(
         children: [
-          Spacer(),
+          const Spacer(),
           RichText(
               textAlign: TextAlign.center,
               text: TextSpan(children: [
                 TextSpan(
                     text: pincode,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         letterSpacing: 10,
                         fontWeight: FontWeight.w400,
                         fontSize: 35.0)),
               ])),
-          Spacer(),
+          const Spacer(),
           loading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : AnimatedContainer(
                   duration: Duration(seconds: 1),
                   height: 50,
@@ -104,10 +105,9 @@ class _EnterPinPageState extends State<EnterPinPage> {
                   });
                 }
               },
-              rightIcon: Icon(Icons.backspace_outlined,
+              rightIcon: const Icon(Icons.backspace_outlined,
                   size: 20, color: Colors.black54),
               onKeyboardTap: (String text) {
-                print(text);
                 setState(
                   () {
                     if (pincode.length < 4) {
@@ -149,7 +149,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
         box.put(Constants.BalanceStore, myjson["newbalance"]);
         showCupertinoDialog(
             context: ctx,
-            builder: (BuildContext context) => SuccesfulSentMoneyPopUp());
+            builder: (BuildContext context) => const SuccesfulSentMoneyPopUp());
         // Navigator.of(ctx).pushNamed("/home");
       } else {
         setState(() {
@@ -158,7 +158,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
 
         showCupertinoDialog(
             context: ctx,
-            builder: (BuildContext context) => CannontReigsterPopUp(
+            builder: (BuildContext context) => const CustomErrorPopup(
                 message: "Error while sending payment request"));
       }
     } catch (err) {
@@ -167,8 +167,11 @@ class _EnterPinPageState extends State<EnterPinPage> {
       });
 
       showCupertinoDialog(
-          context: ctx,
-          builder: (BuildContext context) => CannontReigsterPopUp(message: ""));
+        context: ctx,
+        builder: (BuildContext context) => const CustomErrorPopup(
+          message: "",
+        ),
+      );
     }
   }
 }

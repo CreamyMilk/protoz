@@ -37,20 +37,19 @@ class ErrorPopUP extends StatelessWidget {
   }
 }
 
-class CannontReigsterPopUp extends StatelessWidget {
+class CannotLoginPopUp extends StatelessWidget {
   final String message;
 
-  const CannontReigsterPopUp({Key? key, required this.message})
-      : super(key: key);
+  const CannotLoginPopUp({Key? key, required this.message}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Error Register Account'),
+      title: const Text('Login Error Account'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Kindly confirm the form details and try again"),
+          const Text("Kindly confirm the enterd details and try again"),
           Text(message)
         ],
       ),

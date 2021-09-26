@@ -96,7 +96,7 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
                     color: Colors.green,
                     child: const Text(
                       "Close",
-                      style: TextStyle(fontSize: 17, color: Colors.white),
+                      style: const TextStyle(fontSize: 17, color: Colors.white),
                     ),
                     autofocus: false,
                   ),

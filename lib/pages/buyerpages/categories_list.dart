@@ -46,7 +46,7 @@ class _ListTilezzState extends State<ListTilezz> {
         backgroundColor: Colors.black,
         title: Text(
           "Categories",
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
       ),
       body: SafeArea(
@@ -136,7 +136,7 @@ class ListTileNew extends StatelessWidget {
             ),
             SizedBox(width: 20),
             Text(name,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
                     fontSize: 25.0)),

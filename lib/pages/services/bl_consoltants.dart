@@ -112,7 +112,7 @@ class BLConsoltantsTile extends StatelessWidget {
             Column(
               children: [
                 Text(name,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
                         fontSize: 25.0)),

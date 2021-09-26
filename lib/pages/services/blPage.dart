@@ -17,7 +17,7 @@ class BLPage extends StatelessWidget {
         centerTitle: true,
         title: Text(
           "BD page",
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
       ),
       body: Column(
@@ -27,7 +27,7 @@ class BLPage extends StatelessWidget {
               dense: true,
               title: Text(
                 "FAQ",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),
@@ -42,7 +42,7 @@ class BLPage extends StatelessWidget {
           ListTile(
               title: Text(
                 "Training Videos",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),
@@ -57,7 +57,7 @@ class BLPage extends StatelessWidget {
           ListTile(
               title: Text(
                 "Consoltants",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),
@@ -72,7 +72,7 @@ class BLPage extends StatelessWidget {
           ListTile(
               title: Text(
                 "Profile",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),

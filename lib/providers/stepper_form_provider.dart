@@ -208,7 +208,6 @@ class KraFormProvider extends ChangeNotifier {
         },
         body: req,
       );
-      print("req $req");
       var myjson = json.decode(response.body);
       if (myjson["status"] == 0) {
         isLoading = false;
@@ -223,19 +222,12 @@ class KraFormProvider extends ChangeNotifier {
       } else {
         isLoading = false;
         notifyListeners();
-        showCupertinoDialog(
-          context: ctx,
-          builder: (BuildContext context) => CannontReigsterPopUp(
-            message: myjson["message"],
-          ),
-        );
       }
     } catch (err) {
       isLoading = false;
-      print("msEE HAUNA WIFI");
       showCupertinoDialog(
         context: ctx,
-        builder: (BuildContext context) => ErrorPopUP(),
+        builder: (BuildContext context) => const ErrorPopUP(),
       );
     }
   }

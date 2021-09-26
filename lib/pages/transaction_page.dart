@@ -32,7 +32,7 @@ class TransactionClass extends StatelessWidget {
                     ),
                     Text(
                       "Favorite",
-                      style: TextStyle(fontSize: 9, color: Colors.black),
+                      style: const TextStyle(fontSize: 9, color: Colors.black),
                     ),
                   ],
                 ),
@@ -56,11 +56,13 @@ class TransactionClass extends StatelessWidget {
                       ),
                       Text(
                         "REVERSE",
-                        style: TextStyle(fontSize: 10, color: Colors.black),
+                        style:
+                            const TextStyle(fontSize: 10, color: Colors.black),
                       ),
                       Text(
                         "Transcation",
-                        style: TextStyle(fontSize: 10, color: Colors.black),
+                        style:
+                            const TextStyle(fontSize: 10, color: Colors.black),
                       ),
                     ],
                   ),
@@ -82,7 +84,7 @@ class TransactionClass extends StatelessWidget {
                     ),
                     Text(
                       "Reminder",
-                      style: TextStyle(fontSize: 9, color: Colors.black),
+                      style: const TextStyle(fontSize: 9, color: Colors.black),
                     ),
                   ],
                 ),
@@ -114,7 +116,8 @@ class TransactionClass extends StatelessWidget {
         backgroundColor: Colors.white,
         title: Text(
           "25-Feb-2020",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
+          style:
+              const TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
         ),
       ),
       body: Center(
@@ -141,7 +144,7 @@ class TransactionClass extends StatelessWidget {
                     children: [
                       Text(
                         "KINYUA JOTHAM",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w300,
                             fontSize: 18),
@@ -154,14 +157,15 @@ class TransactionClass extends StatelessWidget {
                           text: TextSpan(children: [
                             TextSpan(
                                 text: "+Ksh.",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 15.0)),
                             TextSpan(
-                                text:
-                                    amount.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
-                                style: TextStyle(
+                                text: amount.toString().replaceAllMapped(
+                                    RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                                    (Match m) => '${m[1]},'),
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400,
                                     fontSize: 24.0)),
@@ -182,12 +186,12 @@ class TransactionClass extends StatelessWidget {
                       children: const [
                         Text(
                           "Transacrion ID",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.grey, fontWeight: FontWeight.w100),
                         ),
                         Text(
                           "0xLGODAT",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w700),
                         )
                       ],

@@ -19,14 +19,14 @@ class SuccesfulSentMoneyPopUp extends StatelessWidget {
       actions: <Widget>[
         MaterialButton(
           onPressed: () {
-            Navigator.of(context).pushNamed("/dashboard");
+            Navigator.of(context).pushReplacementNamed("/dashboard");
           },
           textColor: Theme.of(context).primaryColor,
           child: const Text('Go Home'),
         ),
         MaterialButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).popUntil(ModalRoute.withName('/contactList'));
           },
           textColor: Theme.of(context).primaryColor,
           child: const Text('Exit'),

@@ -223,7 +223,7 @@ class _RegistrationStepperFormState extends State<RegistrationStepperForm> {
             OutlinedButton(
               onPressed: cancel,
               child: const Text('Back',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.red,
                   )),
             ),

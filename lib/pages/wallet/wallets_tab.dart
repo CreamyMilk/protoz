@@ -35,7 +35,7 @@ class _WalletsTabState extends State<WalletsTab> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          WalletsAppBar(),
+          const WalletsAppBar(),
           ValueListenableBuilder(
             valueListenable: Hive.box(Constants.UserBoxName).listenable(),
             builder: (BuildContext context, Box<dynamic> box, Widget? child) {
@@ -95,7 +95,7 @@ class _WalletsTabState extends State<WalletsTab> {
                             children: [
                               TextSpan(
                                   text: "${toMe ? "+" : "-"} Ksh.\n",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w300,
                                       fontSize: 10.0)),
@@ -164,7 +164,7 @@ class WalletsAppBar extends StatelessWidget {
       centerTitle: true,
       title: Text(
         "Your Wallet",
-        style: TextStyle(color: Colors.black87),
+        style: const TextStyle(color: Colors.black87),
       ),
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: false,
@@ -271,7 +271,7 @@ showQRDialog(BuildContext context, String token) => showCupertinoDialog(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("CLOSE", style: TextStyle(color: Colors.red)))
+                child: Text("CLOSE", style: const TextStyle(color: Colors.red)))
           ],
           elevation: 4,
           title: SizedBox(

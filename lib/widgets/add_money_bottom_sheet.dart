@@ -71,7 +71,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
         Icon(Icons.add, size: 17),
         Text(
           "Wallet Deposit",
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
         ),
         SizedBox()
       ],
@@ -84,7 +84,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
               alignment: Alignment.centerLeft,
               child: Text(
                 "Ksh :",
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
                 ),
@@ -109,7 +109,8 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
               alignment: Alignment.centerRight,
               child: Text(
                 "Phone",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
               ),
             ),
             Align(
@@ -145,7 +146,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
     );
     Text lowCashText = const Text(
       "Running low on Cash ?",
-      style: TextStyle(
+      style: const TextStyle(
           color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 13),
     );
     TextFormField phoneTextFieldArea = TextFormField(

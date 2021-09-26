@@ -34,7 +34,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -57,19 +57,19 @@ class _LoginFormPageState extends State<LoginFormPage> {
                     ),
                     const YMargin(50),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                               color: Colors.grey[600]!.withOpacity(0.3),
-                              offset: Offset(0, 13),
+                              offset: const Offset(0, 13),
                               blurRadius: 30)
                         ],
                       ),
                       child: Container(
                         width: screenWidth(context, percent: 0.8),
-                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: TextField(
                             controller: hbox.usernameController,
                             keyboardType: TextInputType.number,
@@ -92,19 +92,19 @@ class _LoginFormPageState extends State<LoginFormPage> {
                     ),
                     const YMargin(30),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                               color: Colors.grey[600]!.withOpacity(0.3),
-                              offset: Offset(0, 13),
+                              offset: const Offset(0, 13),
                               blurRadius: 50)
                         ],
                       ),
                       child: Container(
                         width: screenWidth(context, percent: 0.8),
-                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: TextField(
                             controller: hbox.passwordController,
                             obscureText: true,
@@ -141,12 +141,12 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         ],
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         hbox.loading
-                            ? CircularProgressIndicator()
+                            ? const CircularProgressIndicator()
                             : Container(
                                 height: 50,
                                 width: screenWidth(context, percent: 0.8),
@@ -156,7 +156,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                                     BoxShadow(
                                         color:
                                             Colors.grey[400]!.withOpacity(0.5),
-                                        offset: Offset(0, 13),
+                                        offset: const Offset(0, 13),
                                         blurRadius: 30)
                                   ],
                                 ),

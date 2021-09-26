@@ -90,14 +90,14 @@ class LoginFormProvider extends ChangeNotifier {
           });
         }
         box.put(Constants.IsLoggedInStore, true);
-        Navigator.of(ctx).pushNamed("/dashboard");
+        Navigator.of(ctx).pushReplacementNamed("/dashboard");
       } else {
         loading = false;
         passwordController.text = "";
         notifyListeners();
         showCupertinoDialog(
           context: ctx,
-          builder: (BuildContext context) => CannontReigsterPopUp(
+          builder: (BuildContext context) => CannotLoginPopUp(
             message: myjson["message"],
           ),
         );

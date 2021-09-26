@@ -41,7 +41,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
         elevation: 0,
         title: Text(
           "",
-          style: TextStyle(color: Colors.blueGrey),
+          style: const TextStyle(color: Colors.blueGrey),
         ),
       ),
       body: Column(children: [
@@ -51,14 +51,15 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
             text: TextSpan(children: [
               TextSpan(
                   text: "Ksh.",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w300,
                       fontSize: 20.0)),
               TextSpan(
-                  text:
-                      amount.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
-                  style: TextStyle(
+                  text: amount.replaceAllMapped(
+                      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                      (Match m) => '${m[1]},'),
+                  style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
                       fontSize: 35.0)),

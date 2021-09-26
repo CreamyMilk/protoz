@@ -73,10 +73,11 @@ class NameForm extends StatelessWidget {
                   color: Colors.teal[400])),
           const YMargin(15),
           Text("Whats is your name ?",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
           const YMargin(15),
           Text("Just as it appears on your National ID",
-              style: TextStyle(fontSize: 12, color: Colors.grey)),
+              style: const TextStyle(fontSize: 12, color: Colors.grey)),
           const YMargin(50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
@@ -193,10 +194,10 @@ class BirthForm extends StatelessWidget {
       child: Column(children: [
         const YMargin(30),
         Text("Whats is your date of birth?",
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
+            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
         const YMargin(15),
         Text("Just as it appears on your National ID",
-            style: TextStyle(fontSize: 12, color: Colors.grey)),
+            style: const TextStyle(fontSize: 12, color: Colors.grey)),
         const YMargin(50),
         CupertinoButton(
           child: Text("From Calender"),
@@ -299,10 +300,11 @@ class NumberForm extends StatelessWidget {
                   color: Colors.teal[400])),
           const YMargin(15),
           const Text("Whats is your Phone Number ?",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
           const YMargin(15),
           const Text("Recommeded to use Safaricom number",
-              style: TextStyle(fontSize: 12, color: Colors.grey)),
+              style: const TextStyle(fontSize: 12, color: Colors.grey)),
           const YMargin(50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
@@ -392,9 +394,10 @@ class IdentificationForm extends StatelessWidget {
                   color: Colors.teal[400])),
           const YMargin(15),
           Text("Whats your Identification Card Number ?",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
           const YMargin(15),
-          Text("", style: TextStyle(fontSize: 12, color: Colors.grey)),
+          Text("", style: const TextStyle(fontSize: 12, color: Colors.grey)),
           const YMargin(50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
@@ -508,10 +511,11 @@ class PasswordForm extends StatelessWidget {
                   color: Colors.teal[400])),
           const YMargin(15),
           Text("Kndly Enter your preferd password ?",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
           const YMargin(15),
           Text("Don't share your password with any one",
-              style: TextStyle(fontSize: 12, color: Colors.grey)),
+              style: const TextStyle(fontSize: 12, color: Colors.grey)),
           const YMargin(50),
           Container(
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
@@ -623,10 +627,11 @@ class _RoleFormState extends State<RoleForm> {
                 fontSize: 19,
                 color: Colors.teal[400])),
         const YMargin(15),
-        Text("Kindly choose the role you are registering for",
+        const Text("Kindly choose the role you are registering for",
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
         const YMargin(15),
-        Text("Select One", style: TextStyle(fontSize: 12, color: Colors.grey)),
+        const Text("Select One",
+            style: TextStyle(fontSize: 12, color: Colors.grey)),
         const YMargin(50),
         Container(
           padding: EdgeInsets.only(left: 60, right: 60),
@@ -916,7 +921,7 @@ class _DoubleCheckPageState extends State<DoubleCheckPage> {
                 maxLines: 1,
               ),
             ),
-            SizedBox(width: 5),
+            const XMargin(5),
           ]),
         ),
         const YMargin(10),

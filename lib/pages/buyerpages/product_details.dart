@@ -31,8 +31,8 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
-    String totalString =
-        totalPrice.toStringAsFixed(2).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
+    String totalString = totalPrice.toStringAsFixed(2).replaceAllMapped(
+        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton.extended(
@@ -52,11 +52,11 @@ class _ProductDetailsState extends State<ProductDetails> {
               children: [
                 Text(
                   "Checkout",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
+                  style: const TextStyle(color: Colors.black, fontSize: 20),
                 ),
                 Text(
                   "Ksh. $totalString",
-                  style: TextStyle(fontSize: 22, color: Colors.black),
+                  style: const TextStyle(fontSize: 22, color: Colors.black),
                 ),
               ],
             ),
@@ -74,7 +74,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         elevation: 0,
         title: Text(
           widget.p.name,
-          style: TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.black),
         ),
       ),
       body: SafeArea(
@@ -101,7 +101,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           children: [
                             Text(widget.p.name,
                                 overflow: TextOverflow.clip,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20)),
@@ -125,7 +125,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Quantity",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 22)),
@@ -155,7 +155,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               child: Center(
                                   child: Text(
                                 "0$quantity",
-                                style: TextStyle(fontSize: 22),
+                                style: const TextStyle(fontSize: 22),
                               ))),
                           FloatingActionButton(
                               splashColor: Colors.white,
@@ -186,7 +186,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     //tileColor: Colors.pink,
                     onTap: () {},
                     title: Text("Delivery Cost",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 22)),
@@ -210,7 +210,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   children: [
                     Text(
                       "Total:",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
                         fontSize: 25,
@@ -218,7 +218,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Text(
                       totalString,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.teal,
                         fontWeight: FontWeight.w500,
                         fontSize: 30,

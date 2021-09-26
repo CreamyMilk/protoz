@@ -41,7 +41,7 @@ class ProductList extends StatelessWidget {
                 title = (c[i]["categoryname"]);
               }
             }
-            return Text(title, style: TextStyle(color: Colors.black87));
+            return Text(title, style: const TextStyle(color: Colors.black87));
           },
         ),
       ),
@@ -137,14 +137,15 @@ class ProductListItem extends StatelessWidget {
                       child: Text(
                         p.name,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
                     Flexible(
                       child: Text(
                         p.packingType,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 15, color: Colors.blueGrey),
+                        style: const TextStyle(
+                            fontSize: 15, color: Colors.blueGrey),
                       ),
                     ),
                     const YMargin(5),
@@ -162,7 +163,7 @@ class ProductListItem extends StatelessWidget {
                                         fontSize: 13)),
                                 TextSpan(
                                   text: p.price.toString().addCommas,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.deepPurple,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18),
@@ -179,7 +180,7 @@ class ProductListItem extends StatelessWidget {
                               },
                               child: Text(
                                 "Buy ",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white, fontSize: 20),
                               ),
                             ),

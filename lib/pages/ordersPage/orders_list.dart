@@ -62,7 +62,7 @@ class _OrdersListState extends State<OrdersList> {
                               textAlign: TextAlign.end,
                               text: TextSpan(
                                 children: [
-                                  TextSpan(
+                                  const TextSpan(
                                       text: "Ksh.\n",
                                       style: TextStyle(
                                           color: Colors.black,
@@ -70,7 +70,7 @@ class _OrdersListState extends State<OrdersList> {
                                           fontSize: 10.0)),
                                   TextSpan(
                                     text:
-                                        "${singleOrder["total"].toString().addCommas}",
+                                        " ${singleOrder["total"].toString().addCommas}",
                                     style: TextStyle(
                                         color: Colors.green[400],
                                         fontWeight: FontWeight.w300,

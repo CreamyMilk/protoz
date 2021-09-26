@@ -65,7 +65,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
               child: Center(
                 child: Text(
                   "Clear All ",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Colors.white60,
                   ),
@@ -225,7 +225,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                             children: const [
                               Text(
                                 "Submit",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 20, color: Colors.white),
                               ),
                             ],

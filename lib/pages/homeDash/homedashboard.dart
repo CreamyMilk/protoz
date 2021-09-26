@@ -67,9 +67,9 @@ class _DashboardPageState extends State<DashboardPage> {
         body: CustomScrollView(
             //controller: n,
             slivers: [
-              DashboardSliverAppBar(),
+              const DashboardSliverAppBar(),
               SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisSpacing: 0,
                     crossAxisCount: 2,
                     //childAspectRatio: 1,
@@ -103,7 +103,7 @@ class DashboardSliverAppBar extends StatelessWidget {
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
       actions: [
-        QrCodeScannerIcon(),
+        const QrCodeScannerIcon(),
         IconButton(
             onPressed: () {},
             icon: const Icon(
@@ -167,37 +167,56 @@ class DashboardSliverAppBar extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("Current Orders",
-                              style: TextStyle(
-                                  fontSize: 10, color: Colors.black87)),
-                          const YMargin(3),
-                          ValueListenableBuilder(
-                            valueListenable:
-                                Hive.box(Constants.UserBoxName).listenable(),
-                            builder: (BuildContext context, Box<dynamic> box,
-                                Widget? child) {
-                              return Text(
-                                "Ksh.${box.get(Constants.TotalOrdersStore, defaultValue: "00").toString().addCommas}.00",
-                                textScaleFactor: 1,
-                                overflow: TextOverflow.ellipsis,
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed("/orders");
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Unfulfiled Orders",
                                 style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.w100),
-                              );
-                            },
-                          ),
-                        ],
+                                    fontSize: 10, color: Colors.black87)),
+                            const YMargin(3),
+                            ValueListenableBuilder(
+                              valueListenable:
+                                  Hive.box(Constants.UserBoxName).listenable(),
+                              builder: (BuildContext context, Box<dynamic> box,
+                                  Widget? child) {
+                                return RichText(
+                                  textAlign: TextAlign.end,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text:
+                                            "(${(box.get(Constants.OrdersListStore, defaultValue: []) as List).length}",
+                                        style: const TextStyle(
+                                            color: Colors.blueGrey,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 18.0),
+                                      ),
+                                      TextSpan(
+                                        text:
+                                            "Total Ksh.${box.get(Constants.TotalOrdersStore, defaultValue: "00").toString().addCommas}.00",
+                                        style: const TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w100),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       FloatingActionButton(
                         heroTag: "sd",
                         mini: true,
                         backgroundColor: Colors.white,
-                        child: Icon(Icons.add, color: Colors.green),
+                        child: const Icon(Icons.add, color: Colors.green),
                         onPressed: () {
                           depositModalBottomSheet(context);
                         },

@@ -30,7 +30,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
         elevation: 0,
         title: Text(
           "",
-          style: TextStyle(color: Colors.blueGrey),
+          style: const TextStyle(color: Colors.blueGrey),
         ),
       ),
       body: Column(children: [
@@ -40,13 +40,13 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
             text: TextSpan(children: [
               TextSpan(
                   text: "",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w300,
                       fontSize: 20.0)),
               TextSpan(
                   text: phoneNumber,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
                       fontSize: 35.0)),

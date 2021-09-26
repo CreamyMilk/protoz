@@ -5,7 +5,6 @@ class AwesomeFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SpeedDial(
-      
       backgroundColor: Colors.white,
       foregroundColor: Colors.black87,
       heroTag: "tabFab",
@@ -35,7 +34,7 @@ class AwesomeFab extends StatelessWidget {
           onTap: () {},
           label: 'My Orders',
           labelStyle:
-              TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+              const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
           labelBackgroundColor: Colors.lightGreen,
         ),
         SpeedDialChild(

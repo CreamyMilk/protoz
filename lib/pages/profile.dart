@@ -35,7 +35,8 @@ class ProfilePage extends StatelessWidget {
                   logout(context);
                 })
           ],
-          title: Text("Profile Page", style: TextStyle(color: Colors.black)),
+          title:
+              Text("Profile Page", style: const TextStyle(color: Colors.black)),
         ),
         body: SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -45,7 +46,7 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(height: 10),
                 const Text(
                   "👋 Payment QR Code ",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                   ),
                 ),
@@ -70,7 +71,7 @@ class ProfilePage extends StatelessWidget {
                   onPressed: () {},
                   color: Colors.black38,
                   child: const Text("Create Custom Invoice",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                       )),
                 ),

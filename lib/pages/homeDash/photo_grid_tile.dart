@@ -57,7 +57,7 @@ class PhotoGridTile extends StatelessWidget {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 20,
                                     ),
@@ -90,7 +90,7 @@ class PhotoGridTile extends StatelessWidget {
                               Text(
                                 '>>',
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 22,
                                 ),

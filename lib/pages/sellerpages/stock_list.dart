@@ -25,7 +25,7 @@ class _InventoryListState extends State<InventoryList> {
         },
         label: Text(
           "New ",
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
         icon: Icon(
           Icons.add,
@@ -51,7 +51,7 @@ class _InventoryListState extends State<InventoryList> {
           )
         ],
         title: (Text("Current Stock",
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
             ))),
         backgroundColor: Colors.white,
@@ -267,13 +267,13 @@ class ShoppingCartRow extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text("Quantity:  $quantity",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 18)),
                                 ),
                                 Text(
                                   "x \$${product.price}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w200,
                                       fontSize: 20),
                                 ),
@@ -281,13 +281,13 @@ class ShoppingCartRow extends StatelessWidget {
                             ),
                             Text(
                               product.name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w400),
                             ),
                             const SizedBox(height: 9),
                             Text(
                               product.description,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.blueGrey),

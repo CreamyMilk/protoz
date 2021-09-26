@@ -17,7 +17,7 @@ class ChangeQunatityPopUp extends StatelessWidget {
         children: <Widget>[
           Text(
             "Current := 900",
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,

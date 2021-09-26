@@ -54,7 +54,8 @@ class ContactsListPage extends StatelessWidget {
         ),
         title: const Text(
           "Send Money",
-          style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black87),
+          style: const TextStyle(
+              fontWeight: FontWeight.w300, color: Colors.black87),
         ),
       ),
       body: SizedBox(
@@ -109,7 +110,7 @@ class ContactsListPage extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Personal Contacts",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                       ),
                     ))),
@@ -127,7 +128,7 @@ class ContactsListPage extends StatelessWidget {
                         foregroundColor: foregroundColor[2],
                         child: Text(
                           "BR",
-                          style: TextStyle(fontSize: 10),
+                          style: const TextStyle(fontSize: 10),
                         ),
                         minRadius: 20,
                         maxRadius: 20,
@@ -216,14 +217,14 @@ class FavoriteTile extends StatelessWidget {
             children: [
               CircleAvatar(
                 foregroundColor: Colors.blue,
-                child: const Text("JK", style: TextStyle(fontSize: 11)),
+                child: const Text("JK", style: const TextStyle(fontSize: 11)),
                 backgroundColor: Colors.blue[50],
                 minRadius: 18,
                 maxRadius: 18,
               ),
               const YMargin(2),
               const Text("John",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 10,
                   ))
             ],

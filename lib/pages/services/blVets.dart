@@ -18,7 +18,7 @@ class BlVets extends StatelessWidget {
           ListTile(
               title: Text(
                 "Cattle",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                 ),
               ),
@@ -30,7 +30,7 @@ class BlVets extends StatelessWidget {
           ListTile(
               title: Text(
                 "Horses",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                 ),
               ),
@@ -43,7 +43,7 @@ class BlVets extends StatelessWidget {
           ListTile(
               title: Text(
                 "Dogs",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                 ),
               ),

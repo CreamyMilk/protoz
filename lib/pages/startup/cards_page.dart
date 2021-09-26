@@ -116,7 +116,8 @@ class ProductListingItem extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomLeft,
             child: Text(prodname,
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20.0)),
+                style: const TextStyle(
+                    fontWeight: FontWeight.w400, fontSize: 20.0)),
           ),
         ),
       ]),

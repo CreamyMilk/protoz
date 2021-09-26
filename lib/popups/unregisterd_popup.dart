@@ -12,7 +12,7 @@ class UnregisteredPopUp extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children:const <Widget>[
+        children: const <Widget>[
           Text("User is not registerd in the AgroCRM app"),
         ],
       ),
