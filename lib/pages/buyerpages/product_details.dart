@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:proto/models/product.dart';
 import 'package:proto/pages/buyerpages/buy_popup.dart';
 import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/widgets/image_with_default.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({Key? key, required this.p}) : super(key: key);
@@ -86,14 +87,9 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               Hero(
                 tag: widget.p.productID.toString() + "hero",
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: CachedNetworkImage(
-                    imageUrl: widget.p.image,
-                    width: screenWidth(context, percent: 0.5),
-                    height: screenWidth(context, percent: 0.5),
-                  ),
-                ),
+                child: ImgWithDefault(
+                    imageDimension: screenWidth(context, percent: 0.5),
+                    url: widget.p.image),
               ),
               Column(
                 children: [
@@ -112,35 +108,32 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ])),
                 ],
               ),
-              SizedBox(
-                width: 15,
-              )
+              const XMargin(15),
             ],
           ),
-          SizedBox(height: 35),
+          const YMargin(15),
           Column(
             children: [
-              Divider(),
+              const Divider(),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15.0, right: 10),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Quantity",
-                            style: const TextStyle(
+                        const Text("Quantity",
+                            style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 22)),
-                        SizedBox(
-                          width: 3,
-                        ),
+                        const XMargin(3),
                         Row(children: [
                           FloatingActionButton(
                             splashColor: Colors.black,
                             heroTag: "sdfjdfkjdsf",
                             backgroundColor: Colors.yellow,
-                            child: Icon(Icons.remove, color: Colors.black),
+                            child:
+                                const Icon(Icons.remove, color: Colors.black),
                             mini: true,
                             onPressed: () {
                               if (quantity > 1) {
@@ -164,7 +157,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               splashColor: Colors.white,
                               heroTag: "dsfkjdsfkjdf",
                               backgroundColor: Colors.yellow,
-                              child: Icon(Icons.add, color: Colors.black),
+                              child: const Icon(Icons.add, color: Colors.black),
                               mini: true,
                               onPressed: () {
                                 if (quantity < widget.p.stock) {

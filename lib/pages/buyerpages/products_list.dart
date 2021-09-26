@@ -7,6 +7,7 @@ import 'package:proto/pages/buyerpages/get_categories_future.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/utils/type_extensions.dart';
+import 'package:proto/widgets/image_with_default.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -107,22 +108,8 @@ class ProductListItem extends StatelessWidget {
                 },
                 child: Hero(
                   tag: p.productID.toString() + "hero",
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: CachedNetworkImage(
-                      errorWidget:
-                          (BuildContext ctx, String word, dynamic anything) {
-                        return Image.network(
-                            Constants.getProductPlaceHolderURL(),
-                            width: imageDimension,
-                            height: imageDimension);
-                      },
-                      imageUrl: p.image,
-                      width: imageDimension,
-                      height: imageDimension,
-                      // color: Colors.pink,
-                    ),
-                  ),
+                  child: ImgWithDefault(
+                      imageDimension: imageDimension, url: p.image),
                 ),
               ),
             ),

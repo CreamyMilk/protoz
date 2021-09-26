@@ -86,12 +86,26 @@ class AddProductFormProvider extends ChangeNotifier {
         ),
       );
       var myjson = json.decode(response.body);
-      print(myjson);
       if (myjson["status"] == 0) {
-        print(myjson);
         loading = false;
         notifyListeners();
         clearAll();
+        showCupertinoDialog(
+            context: navigatorKey.currentContext!,
+            builder: (context) => AlertDialog(
+                    actions: [
+                      MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        },
+                        textColor: Theme.of(context).primaryColor,
+                        child: const Text('Close'),
+                      ),
+                    ],
+                    title: Text(
+                        " ${isEdit ? "Product Updated" : "Created Product"}"),
+                    content: Text(myjson["message"])));
       } else {
         loading = false;
         showCupertinoDialog(
@@ -106,7 +120,7 @@ class AddProductFormProvider extends ChangeNotifier {
                         child: const Text('Close'),
                       ),
                     ],
-                    title: Text("Minor Issue."),
+                    title: const Text("Minor Issue."),
                     content: Text(myjson["message"])));
         notifyListeners();
         //clearAll();
@@ -124,7 +138,7 @@ class AddProductFormProvider extends ChangeNotifier {
               child: const Text('Close'),
             ),
           ],
-          title: Text("Error in the Form"),
+          title: const Text("Error in the Form"),
           content: Text(
             "[RESOLVE]:$error",
           ),
