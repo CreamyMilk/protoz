@@ -65,7 +65,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
               child: Center(
                 child: Text(
                   "Clear All ",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     color: Colors.white60,
                   ),
@@ -214,7 +214,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                     ? const CircularProgressIndicator()
                     : FloatingActionButton.extended(
                         backgroundColor: Colors.green,
-                        shape: RoundedRectangleBorder(),
+                        shape: const RoundedRectangleBorder(),
                         onPressed: () {
                           hbox.sendAddProductRequest(context);
                         },
@@ -225,7 +225,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
                             children: const [
                               Text(
                                 "Submit",
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontSize: 20, color: Colors.white),
                               ),
                             ],
