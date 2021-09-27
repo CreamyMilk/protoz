@@ -37,6 +37,7 @@ Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
                     MaterialButton(
                       onPressed: () {
                         Navigator.of(context).pop();
+                        Navigator.of(context).pop();
                       },
                       textColor: Theme.of(context).primaryColor,
                       child: const Text('Close'),
@@ -52,6 +53,7 @@ Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
                     MaterialButton(
                       onPressed: () {
                         Navigator.of(context).pop();
+                        Navigator.of(context).pop();
                       },
                       textColor: Theme.of(context).primaryColor,
                       child: const Text('Continue Shopping'),
@@ -62,6 +64,6 @@ Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
     }
   } catch (error) {
     // ignore: avoid_print
-    print(error);
+//print(error);
   }
 }

@@ -28,14 +28,12 @@ class _ListTilezzState extends State<ListTilezz> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: Icon(Icons.search, color: Colors.black),
-            onPressed: () {
-              print("Seraching");
-            },
+            icon: const Icon(Icons.search, color: Colors.black),
+            onPressed: () {},
           )
         ],
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           color: Colors.white,
           onPressed: () {
             Navigator.of(context).pop();
@@ -44,9 +42,9 @@ class _ListTilezzState extends State<ListTilezz> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.black,
-        title: Text(
+        title: const Text(
           "Categories",
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: SafeArea(
@@ -95,20 +93,20 @@ class ListTileNew extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      padding: EdgeInsets.all(8),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
               color: Colors.grey[400]!.withOpacity(0.3),
-              offset: Offset(0, 13),
+              offset: const Offset(0, 13),
               blurRadius: 30)
         ],
         // borderRadius: BorderRadius.circular(10),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
             begin: Alignment.bottomRight,
             end: Alignment.centerLeft,
-            colors: const [Colors.white70, Colors.white]),
+            colors: [Colors.white70, Colors.white]),
       ),
       child: InkWell(
         onTap: () {
@@ -119,7 +117,7 @@ class ListTileNew extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               color: barColor,
               width: 3,
               height: 90,
@@ -130,20 +128,19 @@ class ListTileNew extends StatelessWidget {
                 imageUrl: imageUrl,
                 width: 60,
                 height: 60,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
-            SizedBox(width: 20),
+            const XMargin(20),
             Text(name,
                 style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
                     fontSize: 25.0)),
-            SizedBox(
-              width: 10,
-            ),
-            Spacer(),
+            const XMargin(10),
+            const Spacer(),
           ],
         ),
       ),

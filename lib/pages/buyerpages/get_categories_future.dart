@@ -18,7 +18,7 @@ Future getLatestCategories() async {
       box.put(Constants.ProductCategoriesStore, myjson["categories"]);
     }
   } catch (err) {
-    print("Brah no internert");
+    //print("Brah no internert");
   }
 }
 
@@ -43,7 +43,7 @@ Future getProductsList() async {
       return myjson["products"];
     }
   } catch (err) {
-    print("Brah no internert");
+    //print("Brah no internert");
     return null;
   }
 }

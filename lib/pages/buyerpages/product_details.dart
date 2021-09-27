@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/models/product.dart';
 import 'package:proto/pages/buyerpages/buy_popup.dart';
 import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/type_extensions.dart';
 import 'package:proto/widgets/image_with_default.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -32,8 +32,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
-    String totalString = totalPrice.toStringAsFixed(2).replaceAllMapped(
-        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
+    String totalString = totalPrice.toStringAsFixed(2).addCommas;
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton.extended(
@@ -87,9 +86,12 @@ class _ProductDetailsState extends State<ProductDetails> {
             children: [
               Hero(
                 tag: widget.p.productID.toString() + "hero",
-                child: ImgWithDefault(
-                    imageDimension: screenWidth(context, percent: 0.5),
-                    url: widget.p.image),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: ImgWithDefault(
+                      imageDimension: screenWidth(context, percent: 0.5),
+                      url: widget.p.image),
+                ),
               ),
               Column(
                 children: [
@@ -178,11 +180,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                   child: ListTile(
                     dense: true,
                     visualDensity:
-                        VisualDensity(horizontal: .001, vertical: .001),
+                        const VisualDensity(horizontal: .001, vertical: .001),
                     //tileColor: Colors.pink,
                     onTap: () {},
-                    title: Text("Delivery Cost",
-                        style: const TextStyle(
+                    title: const Text("Delivery Cost",
+                        style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 22)),
@@ -199,14 +201,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                margin: EdgeInsets.only(top: 40),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.only(top: 40),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Total:",
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
                         fontSize: 25,
