@@ -121,7 +121,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
             rightIcon:
                 Icon(Icons.backspace_outlined, size: 20, color: Colors.black54),
             onKeyboardTap: (String text) {
-              print(text);
+              //print(text);
               setState(
                 () {
                   if (amount == "0") {

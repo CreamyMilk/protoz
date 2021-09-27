@@ -12,6 +12,8 @@ import 'package:proto/utils/sizedMargins.dart';
 import 'package:proto/widgets/keypadwidget.dart';
 
 class EnterPinPage extends StatefulWidget {
+  const EnterPinPage({Key? key}) : super(key: key);
+
   @override
   _EnterPinPageState createState() => _EnterPinPageState();
 }
@@ -38,8 +40,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
         elevation: 0,
         title: const Text(
           "Enter Pin",
-          style: const TextStyle(
-              fontWeight: FontWeight.w300, color: Colors.black87),
+          style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black87),
         ),
       ),
       body: Column(
@@ -60,7 +61,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
           loading
               ? const CircularProgressIndicator()
               : AnimatedContainer(
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                   height: 50,
                   width: screenWidth(context, percent: 0.8),
                   decoration: BoxDecoration(
@@ -70,7 +71,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
                     boxShadow: [
                       BoxShadow(
                           color: Colors.grey[400]!.withOpacity(0.3),
-                          offset: Offset(0, 13),
+                          offset: const Offset(0, 13),
                           blurRadius: 30)
                     ],
                   ),
@@ -141,7 +142,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
         ),
       );
       var myjson = json.decode(response.body);
-      print(myjson);
+      //print(myjson);
       if (myjson["status"] == 0) {
         setState(() {
           loading = false;

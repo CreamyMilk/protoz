@@ -103,7 +103,7 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
             rightIcon:
                 Icon(Icons.backspace_outlined, size: 20, color: Colors.black54),
             onKeyboardTap: (String text) {
-              print(text);
+              //print(text);
               setState(
                 () {
                   if (phoneNumber == "0") {

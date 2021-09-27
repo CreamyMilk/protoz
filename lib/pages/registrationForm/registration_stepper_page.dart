@@ -202,7 +202,7 @@ class _RegistrationStepperFormState extends State<RegistrationStepperForm> {
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.arrow_forward),
         onPressed: () {
-          print("ehllo");
+          //print("ehllo");
         },
         label: const Text("Complete Registration"),
       ),

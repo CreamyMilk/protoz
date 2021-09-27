@@ -89,7 +89,7 @@ class VerifyPaymentCard extends StatelessWidget {
             //   onPressed: () {}),
             ExpansionTile(
               onExpansionChanged: (bool currentState) {
-                print(currentState);
+                //print(currentState);
               },
               backgroundColor: Colors.white,
               title: Text(
