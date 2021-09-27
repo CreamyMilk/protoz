@@ -25,7 +25,7 @@ Future getMachineStock() async {
       return myjson["products"];
     }
   } catch (err) {
-    print("Brah no internert");
+    //print("Brah no internert");
     return null;
   }
 }

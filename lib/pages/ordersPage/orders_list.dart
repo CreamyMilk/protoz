@@ -53,7 +53,7 @@ class _OrdersListState extends State<OrdersList> {
                           var singleOrder = orders[index];
                           return ListTile(
                             onTap: () {
-                              print("hello Mr order");
+                              //print("hello Mr order");
                             },
                             dense: true,
                             subtitle: Text("${singleOrder["buyer"]}"),

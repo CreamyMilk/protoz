@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Spacer(),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                     boxShadow: [
                       BoxShadow(
                           color: Colors.grey[400]!.withOpacity(0.5),
-                          offset: Offset(0, 13),
+                          offset: const Offset(0, 13),
                           blurRadius: 30)
                     ],
                   ),
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                     boxShadow: [
                       BoxShadow(
                           color: Colors.grey[400]!.withOpacity(0.3),
-                          offset: Offset(0, 13),
+                          offset: const Offset(0, 13),
                           blurRadius: 30)
                     ],
                   ),

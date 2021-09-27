@@ -34,7 +34,7 @@ class _LoginOrSignupState extends State<LoginOrSignup>
         padding: const EdgeInsets.all(12),
         child: Stack(
           children: [
-            WadsLayout(),
+            const WadsLayout(),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

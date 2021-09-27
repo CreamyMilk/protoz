@@ -8,6 +8,8 @@ import 'package:proto/pages/logistics_seller/get_machine_stock.dart';
 const _startColumnWidth = 45.0;
 
 class MachineInventory extends StatefulWidget {
+  const MachineInventory({Key? key}) : super(key: key);
+
   @override
   _MachineInventoryState createState() => _MachineInventoryState();
 }
@@ -23,7 +25,7 @@ class _MachineInventoryState extends State<MachineInventory> {
         onPressed: () {
           Navigator.of(context).pushNamed("/addProduct");
         },
-        label: Text(
+        label: const Text(
           "New ",
           style: const TextStyle(color: Colors.white),
         ),
@@ -53,7 +55,7 @@ class _MachineInventoryState extends State<MachineInventory> {
           child: Container(
         child: Stack(children: [
           Container(
-              margin: EdgeInsets.only(top: 16),
+              margin: const EdgeInsets.only(top: 16),
               height: MediaQuery.of(context).size.height * .9,
               child: FutureBuilder(
                   future: getMachineStock(),
@@ -64,7 +66,8 @@ class _MachineInventoryState extends State<MachineInventory> {
                         child: CircularProgressIndicator(),
                       );
                     } else if (projectSnap.data == null) {
-                      return Center(child: Text("Sadly you have no products"));
+                      return const Center(
+                          child: Text("Sadly you have no products"));
                     } else if (projectSnap.data != null) {
                       return ListView.builder(
                           itemCount: (projectSnap.data as List).length,

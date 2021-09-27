@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proto/utils/sizedMargins.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -17,7 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: [
           const Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Hero(
                 tag: "logo",
                 child: Icon(
@@ -31,23 +32,21 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 RichText(
                     textAlign: TextAlign.center,
-                    text: TextSpan(children: const [
+                    text: const TextSpan(children: [
                       TextSpan(
                           text: "WELCOME TO\n",
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w300,
                               fontSize: 30.0)),
                       TextSpan(
                           text: "AGRO CRM",
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w400,
                               fontSize: 25.0)),
                     ])),
-                SizedBox(
-                  height: 50,
-                ),
+                const YMargin(50),
                 MaterialButton(
                   minWidth: MediaQuery.of(context).size.width * 0.8,
                   height: 50,
@@ -60,9 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.of(context).pushNamed('/home');
                   },
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const YMargin(10),
                 MaterialButton(
                   minWidth: MediaQuery.of(context).size.width * 0.8,
                   height: 50,
