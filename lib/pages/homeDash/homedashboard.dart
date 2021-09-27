@@ -175,7 +175,7 @@ class DashboardSliverAppBar extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text("Unfulfiled Orders",
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontSize: 10, color: Colors.black87)),
                             const YMargin(3),
                             ValueListenableBuilder(
@@ -189,7 +189,7 @@ class DashboardSliverAppBar extends StatelessWidget {
                                     children: [
                                       TextSpan(
                                         text:
-                                            "(${(box.get(Constants.OrdersListStore, defaultValue: []) as List).length}",
+                                            "(${(box.get(Constants.OrdersListStore, defaultValue: []) as List).length}) Orders\n",
                                         style: const TextStyle(
                                             color: Colors.blueGrey,
                                             fontWeight: FontWeight.w300,
@@ -199,7 +199,7 @@ class DashboardSliverAppBar extends StatelessWidget {
                                         text:
                                             "Total Ksh.${box.get(Constants.TotalOrdersStore, defaultValue: "00").toString().addCommas}.00",
                                         style: const TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 10,
                                             color: Colors.black87,
                                             fontWeight: FontWeight.w100),
                                       ),

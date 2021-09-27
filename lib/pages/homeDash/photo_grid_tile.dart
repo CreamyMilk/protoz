@@ -44,40 +44,38 @@ class PhotoGridTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Expanded(
-                          child: Container(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 16, top: 8, bottom: 8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    prodname,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 20,
-                                    ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 16, top: 8, bottom: 8),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  prodname,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 4),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Text(
-                                          'Go to',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color:
-                                                  Colors.grey.withOpacity(0.8)),
-                                        ),
-                                      ],
-                                    ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(
+                                        'Go to',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color:
+                                                Colors.grey.withOpacity(0.8)),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -90,7 +88,7 @@ class PhotoGridTile extends StatelessWidget {
                               Text(
                                 '>>',
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 22,
                                 ),
