@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BlVets extends StatelessWidget {
+  const BlVets({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,42 +18,41 @@ class BlVets extends StatelessWidget {
       body: Column(
         children: [
           ListTile(
-              title: Text(
+              title: const Text(
                 "Cattle",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 30,
                 ),
               ),
-              trailing: Icon(Icons.mode_comment_outlined),
+              trailing: const Icon(Icons.mode_comment_outlined),
               onTap: () {
                 Navigator.of(context).pushNamed("/vetsCalls");
               }),
-          Divider(),
+          const Divider(),
           ListTile(
-              title: Text(
+              title: const Text(
                 "Horses",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 30,
                 ),
               ),
-              trailing: Icon(Icons.mode_comment_outlined),
+              trailing: const Icon(Icons.mode_comment_outlined),
               onTap: () {
                 Navigator.of(context).pushNamed("/vetsCalls");
-                print("Oya");
               }),
-          Divider(),
+          const Divider(),
           ListTile(
-              title: Text(
+              title: const Text(
                 "Dogs",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 30,
                 ),
               ),
-              trailing: Icon(Icons.mode_comment_outlined),
+              trailing: const Icon(Icons.mode_comment_outlined),
               onTap: () {
                 Navigator.of(context).pushNamed("/vetsCalls");
               }),
-          Divider(),
+          const Divider(),
         ],
       ),
     );

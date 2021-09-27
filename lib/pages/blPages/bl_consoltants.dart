@@ -78,7 +78,7 @@ class BLConsoltantsTile extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed(routeName);
-        print("Zukes");
+        // print("Zukes");
       },
       child: Container(
         height: 80,

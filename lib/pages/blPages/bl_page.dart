@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proto/pages/blPages/profile.dart';
+import 'package:proto/utils/sizedMargins.dart';
 
 class BLPage extends StatelessWidget {
   const BLPage({Key? key}) : super(key: key);
@@ -10,12 +11,6 @@ class BLPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          )
-        ],
         elevation: 0,
         centerTitle: true,
         title: const Text(
@@ -25,6 +20,22 @@ class BLPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          const Divider(),
+          ListTile(
+            title: const Text(
+              "My Purchases",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+            trailing: const Icon(
+              Icons.arrow_forward_ios_sharp,
+              size: 20,
+            ),
+            onTap: () {
+              Navigator.of(context).pushNamed("/pastpurchases");
+            },
+          ),
           const Divider(),
           ListTile(
             title: const Text(
@@ -70,16 +81,18 @@ class BLPage extends StatelessWidget {
               Navigator.of(context).pushNamed("/blconsoltants");
             },
           ),
-          const Divider(),
-          OutlinedButton.icon(
+          const YMargin(10),
+          OutlinedButton(
             onPressed: () {
               logoutHandler();
             },
-            icon: const Icon(Icons.logout_rounded),
-            label: const Text(
-              "Log Out",
-              style: TextStyle(color: Colors.red),
-            ),
+            child: Row(children: const [
+              Text(
+                "Log Out",
+                style: TextStyle(color: Colors.red, fontSize: 15),
+              ),
+              Icon(Icons.login_rounded, color: Colors.black),
+            ]),
           ),
         ],
       ),

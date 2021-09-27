@@ -72,11 +72,10 @@ class ProfilePage extends StatelessWidget {
                   onPressed: () {},
                   color: Colors.black38,
                   child: const Text("Create Custom Invoice",
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
                       )),
                 ),
-                SizedBox(height: 100),
               ],
             )));
   }
