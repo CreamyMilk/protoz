@@ -23,16 +23,16 @@ class TransactionClass extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(19)),
-                      child: Icon(Icons.star_border_rounded,
+                      child: const Icon(Icons.star_border_rounded,
                           size: 20, color: Colors.black45),
                     ),
-                    Text(
+                    const Text(
                       "Favorite",
-                      style: const TextStyle(fontSize: 9, color: Colors.black),
+                      style: TextStyle(fontSize: 9, color: Colors.black),
                     ),
                   ],
                 ),
@@ -40,56 +40,55 @@ class TransactionClass extends StatelessWidget {
               GestureDetector(
                 onTap: () {},
                 child: Container(
-                  margin: EdgeInsets.only(left: 20, right: 10),
+                  margin: const EdgeInsets.only(left: 20, right: 10),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(19)),
-                        child: Icon(Icons.refresh_outlined,
+                        child: const Icon(Icons.refresh_outlined,
                             size: 20, color: Colors.black87),
                       ),
-                      Text(
+                      const Text(
                         "REVERSE",
-                        style:
-                            const TextStyle(fontSize: 10, color: Colors.black),
+                        style: TextStyle(fontSize: 10, color: Colors.black),
                       ),
-                      Text(
+                      const Text(
                         "Transcation",
-                        style:
-                            const TextStyle(fontSize: 10, color: Colors.black),
+                        style: TextStyle(fontSize: 10, color: Colors.black),
                       ),
                     ],
                   ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 10),
+                margin: const EdgeInsets.only(left: 10),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(19)),
-                      child: Icon(Icons.timer, size: 20, color: Colors.black45),
+                      child: const Icon(Icons.timer,
+                          size: 20, color: Colors.black45),
                     ),
-                    Text(
+                    const Text(
                       "Reminder",
-                      style: const TextStyle(fontSize: 9, color: Colors.black),
+                      style: TextStyle(fontSize: 9, color: Colors.black),
                     ),
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
             ]),
       ),
       backgroundColor: Colors.white,
@@ -104,7 +103,7 @@ class TransactionClass extends StatelessWidget {
         ],
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.grey,
           ),
@@ -114,10 +113,9 @@ class TransactionClass extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           "25-Feb-2020",
-          style:
-              const TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
         ),
       ),
       body: Center(
@@ -128,36 +126,34 @@ class TransactionClass extends StatelessWidget {
           child: Card(
             clipBehavior: Clip.antiAlias,
             elevation: 2,
-            margin: EdgeInsets.symmetric(horizontal: 30),
+            margin: const EdgeInsets.symmetric(horizontal: 30),
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(100.0)),
-              padding: EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 20),
               height: MediaQuery.of(context).size.height * 0.42,
               width: MediaQuery.of(context).size.width,
               child: Column(children: [
-                HeaderAvatar(),
+                const HeaderAvatar(),
                 Container(
-                  margin: EdgeInsets.only(top: 30),
+                  margin: const EdgeInsets.only(top: 30),
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         "KINYUA JOTHAM",
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w300,
                             fontSize: 18),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      const YMargin(10),
                       RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(children: [
-                            TextSpan(
+                            const TextSpan(
                                 text: "+Ksh.",
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 15.0)),
@@ -170,13 +166,11 @@ class TransactionClass extends StatelessWidget {
                                     fontWeight: FontWeight.w400,
                                     fontSize: 24.0)),
                           ])),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      const YMargin(10),
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Align(
@@ -186,12 +180,12 @@ class TransactionClass extends StatelessWidget {
                       children: const [
                         Text(
                           "Transacrion ID",
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.grey, fontWeight: FontWeight.w100),
                         ),
                         Text(
                           "0xLGODAT",
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w700),
                         )
                       ],
@@ -239,12 +233,12 @@ class HeaderAvatar extends StatelessWidget {
                       ),
                       label: Text("SEND MONEY")))),
           Transform.translate(
-            offset: Offset(0, 25),
+            offset: const Offset(0, 25),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: CircleAvatar(
                 foregroundColor: Colors.blue,
-                child: Text("JK"),
+                child: const Text("JK"),
                 backgroundColor: Colors.blue[50],
                 minRadius: 15,
                 maxRadius: 30,

@@ -91,21 +91,22 @@ class AddProductFormProvider extends ChangeNotifier {
         notifyListeners();
         clearAll();
         showCupertinoDialog(
-            context: navigatorKey.currentContext!,
-            builder: (context) => AlertDialog(
-                    actions: [
-                      MaterialButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pop();
-                        },
-                        textColor: Theme.of(context).primaryColor,
-                        child: const Text('Close'),
-                      ),
-                    ],
-                    title: Text(
-                        " ${isEdit ? "Product Updated" : "Created Product"}"),
-                    content: Text(myjson["message"])));
+          context: navigatorKey.currentContext!,
+          builder: (context) => AlertDialog(
+            actions: [
+              MaterialButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+                textColor: Theme.of(context).primaryColor,
+                child: const Text('Close'),
+              ),
+            ],
+            title: Text(" ${isEdit ? "Product Updated" : "Created Product"}"),
+            content: Text(myjson["message"]),
+          ),
+        );
       } else {
         loading = false;
         showCupertinoDialog(

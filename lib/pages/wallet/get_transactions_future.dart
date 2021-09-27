@@ -26,7 +26,7 @@ Future getLatestTransaction() async {
       box.put(Constants.TransactionsStore, myjson["transactions"]);
     }
   } catch (err) {
-    print("Brah no internert");
+//print("Brah no internert");
   }
 }
 
@@ -51,6 +51,6 @@ Future getLatestBalance() async {
       box.put(Constants.BalanceStore, myjson["balance"]);
     }
   } catch (err) {
-    print("Brah no internert");
+//print("Brah no internert");
   }
 }

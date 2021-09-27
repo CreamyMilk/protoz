@@ -10,6 +10,7 @@ import 'package:proto/pages/homeDash/homedashboard.dart';
 import 'package:proto/pages/login/login_form.dart';
 import 'package:proto/pages/login/login_or_signup.dart';
 import 'package:proto/pages/ordersPage/orders_list.dart';
+import 'package:proto/pages/past_purchases/past_purchase_list.dart';
 import 'package:proto/pages/registrationForm/registration_stepper_page.dart';
 import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/blPages/profile.dart';
@@ -94,8 +95,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (ctx) => EnterPhoneNumberPage());
       case '/qrscanner':
         return MaterialPageRoute(builder: (ctx) => const QRCodeScannerPage());
+      case '/pastpurchases':
+        return MaterialPageRoute(builder: (ctx) => const PastPurchasePage());
       case '/pin':
-        return MaterialPageRoute(builder: (ctx) => EnterPinPage());
+        return MaterialPageRoute(builder: (ctx) => const EnterPinPage());
       case '/enteramount':
         return MaterialPageRoute(builder: (ctx) => const EnterAmountPage());
       case '/transaction':

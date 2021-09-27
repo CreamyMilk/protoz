@@ -61,7 +61,7 @@ class Constants {
     Box box = Hive.box(UserBoxName);
     String wid = box.get(WalletNameStore, defaultValue: "");
     if (wid == "") {
-      print("You Need to login bro");
+      //print("You Need to login bro");
     }
     return wid;
   }
@@ -70,7 +70,7 @@ class Constants {
     Box box = Hive.box(UserBoxName);
     String phone = box.get(PhoneNumberStore, defaultValue: "");
     if (phone == "") {
-      print("You have no stored phoneNumber meed to login bro");
+      // print("You have no stored phoneNumber meed to login bro");
     }
     return phone;
   }
@@ -79,7 +79,7 @@ class Constants {
     Box box = Hive.box(UserBoxName);
     String wid = box.get(WalletNameStore, defaultValue: "");
     if (wid == "") {
-      print("You dont have any store creds so login first");
+      //  print("You dont have any store creds so login first");
       return false;
     }
     return true;
@@ -89,7 +89,7 @@ class Constants {
     Box box = Hive.box(UserBoxName);
     String balance = box.get(BalanceStore, defaultValue: "");
     if (balance == "") {
-      print("You don't have any walletBalance");
+      //   print("You don't have any walletBalance");
       return "N/A";
     }
     return balance.addCommas;
@@ -98,11 +98,11 @@ class Constants {
   //Must zero out all keys
   static Future<bool> logout() async {
     try {
-      int clearINT = await Hive.box(UserBoxName).clear();
-      print("[LOGOUT INT] $clearINT");
+      await Hive.box(UserBoxName).clear();
+      //  print("[LOGOUT INT] $clearINT");
       return true;
     } catch (err) {
-      print("[LOGOUT ERROR] $err");
+      //   print("[LOGOUT ERROR] $err");
       return false;
     }
   }
