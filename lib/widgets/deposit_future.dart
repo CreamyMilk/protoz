@@ -33,7 +33,7 @@ Future sendDepositRequest(DepositStruct dep) async {
       ),
     );
     dynamic myjson = json.decode(response.body);
-    print(myjson);
+//print(myjson);
     return myjson;
   } catch (err) {
     ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(

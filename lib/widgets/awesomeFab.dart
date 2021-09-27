@@ -21,7 +21,7 @@ class AwesomeFab extends StatelessWidget {
             Navigator.of(context).pushNamed("/sellpage");
             // storeP.switchRents();
             // settingModalBottomSheet(context, '1');
-            print("STK push sent");
+            //print("STK push sent");
           },
           label: 'My Profile',
           labelStyle:
@@ -43,7 +43,7 @@ class AwesomeFab extends StatelessWidget {
               Icon(Icons.account_balance_wallet_outlined, color: Colors.black),
           backgroundColor: Colors.yellowAccent,
           onTap: () {
-            print("STK push sent");
+            //print("STK push sent");
           },
           label: 'My Wallet',
           labelStyle:

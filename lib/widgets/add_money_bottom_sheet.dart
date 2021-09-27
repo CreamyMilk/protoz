@@ -128,7 +128,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
     TextField amountTextFieldArea = TextField(
       autofocus: true,
       onChanged: (value) {
-        print(value);
+        //print(value);
         setState(() {
           depositAmount = value;
         });
@@ -181,7 +181,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
             ),
           );
           Navigator.of(context).pop();
-          print("send");
+          //print("send");
         },
         color: Colors.greenAccent[400],
         child: Text(
