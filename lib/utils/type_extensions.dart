@@ -19,7 +19,7 @@ extension PostFrameCallback on VoidCallback {
 }
 
 // ignore: todo
-//So +254(1|7)xxxx should be 0(1|7)xxxx TODO
+//So +254(1|7)xxxx should be 0(1|7)xxxx TODO :do stuff
 extension PhoneNumberBasedExtensions on String {
   String get as07 =>
       replaceAll(RegExp(r"\s+"), "").replaceAll(RegExp(r"\+"), "");
