@@ -61,7 +61,7 @@ class CowryButton extends StatelessWidget {
                 height: height ?? 64,
                 width: width ?? double.infinity,
                 child: AnimatedSwitcher(
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   child: !isLoading
                       ? (child ??
                           Text(
@@ -75,11 +75,11 @@ class CowryButton extends StatelessWidget {
                           ))
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             SizedBox(
                               height: 25,
                               width: 25,
-                              child: const CircularProgressIndicator(
+                              child: CircularProgressIndicator(
                                 strokeWidth: 2,
                                 valueColor:
                                     AlwaysStoppedAnimation(Colors.amber),
@@ -140,7 +140,7 @@ class CowryOutlinedButton extends StatelessWidget {
         absorbing: disabled == true,
         child: AnimatedOpacity(
           opacity: disabled ? 0.5 : 1,
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           child: TouchableOpacity(
             onTap: (isLoading) ? null : onPressed,
             child: Container(
@@ -155,7 +155,7 @@ class CowryOutlinedButton extends StatelessWidget {
               ),
               width: width ?? double.infinity,
               child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 child: !isLoading
                     ? (child ??
                         Text(
@@ -168,11 +168,11 @@ class CowryOutlinedButton extends StatelessWidget {
                         ))
                     : Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           SizedBox(
                             height: 25,
                             width: 25,
-                            child: const CircularProgressIndicator(
+                            child: CircularProgressIndicator(
                               strokeWidth: 2,
                               valueColor: AlwaysStoppedAnimation(Colors.white),
                             ),

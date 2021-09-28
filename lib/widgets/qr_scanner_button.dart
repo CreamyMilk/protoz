@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer';
 import 'dart:io';
@@ -96,7 +96,7 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
                     color: Colors.green,
                     child: const Text(
                       "Close",
-                      style: const TextStyle(fontSize: 17, color: Colors.white),
+                      style: TextStyle(fontSize: 17, color: Colors.white),
                     ),
                     autofocus: false,
                   ),

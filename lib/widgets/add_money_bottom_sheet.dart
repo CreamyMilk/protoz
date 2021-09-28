@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/utils/type_extensions.dart';
 import 'package:proto/widgets/deposit_future.dart';
 
@@ -71,7 +71,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
         Icon(Icons.add, size: 17),
         Text(
           "Wallet Deposit",
-          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
         ),
         SizedBox()
       ],
@@ -84,7 +84,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
               alignment: Alignment.centerLeft,
               child: Text(
                 "Ksh :",
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
                 ),
@@ -109,8 +109,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
               alignment: Alignment.centerRight,
               child: Text(
                 "Phone",
-                style:
-                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
               ),
             ),
             Align(
@@ -146,7 +145,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
     );
     Text lowCashText = const Text(
       "Running low on Cash ?",
-      style: const TextStyle(
+      style: TextStyle(
           color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 13),
     );
     TextFormField phoneTextFieldArea = TextFormField(
@@ -167,29 +166,27 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
       ),
       keyboardType: TextInputType.number,
     );
-    Container sendButton = Container(
-      child: MaterialButton(
-        elevation: 0,
-        height: 60,
-        minWidth: MediaQuery.of(context).size.width * .95,
-        onPressed: () async {
-          sendDepositRequest(
-            DepositStruct(
-              amount: depositAmount,
-              walletName: walletName,
-              phoneNumber: mobile,
-            ),
-          );
-          Navigator.of(context).pop();
-          //print("send");
-        },
-        color: Colors.greenAccent[400],
-        child: Text(
-          "Deposit ${depositAmount.addCommas}",
-          style: const TextStyle(fontSize: 17, color: Colors.white),
-        ),
-        autofocus: false,
+    MaterialButton sendButton = MaterialButton(
+      elevation: 0,
+      height: 60,
+      minWidth: MediaQuery.of(context).size.width * .95,
+      onPressed: () async {
+        sendDepositRequest(
+          DepositStruct(
+            amount: depositAmount,
+            walletName: walletName,
+            phoneNumber: mobile,
+          ),
+        );
+        Navigator.of(context).pop();
+        //print("send");
+      },
+      color: Colors.greenAccent[400],
+      child: Text(
+        "Deposit ${depositAmount.addCommas}",
+        style: const TextStyle(fontSize: 17, color: Colors.white),
       ),
+      autofocus: false,
     );
     return SingleChildScrollView(
       child: Padding(
