@@ -7,7 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
 import 'package:proto/providers/addproduct_provider.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/widgets/image_selector.dart';
 import 'package:provider/provider.dart';
 

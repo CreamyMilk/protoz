@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/providers/login_provider.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:provider/provider.dart';
 
 class LoginFormPage extends StatefulWidget {

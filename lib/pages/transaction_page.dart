@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 
 class TransactionClass extends StatelessWidget {
   final String amount = "15000.00";
@@ -218,8 +218,6 @@ class HeaderAvatar extends StatelessWidget {
       ),
       width: screenWidth(context),
       child: Stack(
-        // ignore: deprecated_member_use
-        overflow: Overflow.visible,
         children: [
           Align(
               alignment: Alignment.topCenter,

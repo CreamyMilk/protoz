@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);

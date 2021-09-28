@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/utils/type_extensions.dart';
 
 class OrdersList extends StatefulWidget {
@@ -26,8 +26,8 @@ class _OrdersListState extends State<OrdersList> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Orders Section"),
-          bottom: TabBar(
-            tabs: const [
+          bottom: const TabBar(
+            tabs: [
               Tab(text: "Due"),
               Tab(text: "Completed"),
             ],
@@ -46,7 +46,7 @@ class _OrdersListState extends State<OrdersList> {
                     return ListView.separated(
                       itemCount: orders.length,
                       separatorBuilder: (BuildContext ctx, int idx) {
-                        return Divider();
+                        return const Divider();
                       },
                       itemBuilder: (BuildContext ctx, int index) {
                         if (index < orders.length) {

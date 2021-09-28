@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/models/product.dart';
 import 'package:proto/pages/buyerpages/buy_popup.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/utils/type_extensions.dart';
 import 'package:proto/widgets/image_with_default.dart';
 
@@ -84,15 +84,10 @@ class _ProductDetailsState extends State<ProductDetails> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Hero(
-                tag: widget.p.productID.toString() + "hero",
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: ImgWithDefault(
-                      imageDimension: screenWidth(context, percent: 0.5),
-                      url: widget.p.image),
-                ),
-              ),
+              ImgWithDefault(
+                  radius: 50,
+                  imageDimension: screenWidth(context, percent: 0.5),
+                  url: widget.p.image),
               Column(
                 children: [
                   SizedBox(

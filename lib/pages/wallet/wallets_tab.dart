@@ -11,7 +11,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/pages/wallet/get_transactions_future.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/widgets/qr_scanner_button.dart';
 
 class WalletsTab extends StatefulWidget {
@@ -68,7 +68,7 @@ class _WalletsTabState extends State<WalletsTab> {
                           isPurchase
                               ? showQRDialog(
                                   context, transaction["transactionid"])
-                              : print("This is something else");
+                              : null;
                         },
                         leading: CircleAvatar(
                           child: Icon(
@@ -142,17 +142,17 @@ class WalletsAppBar extends StatelessWidget {
       backgroundColor: Colors.white,
       leading: Center(
         child: IconButton(
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
       ),
       actions: [
-        QrCodeScannerIcon(),
+        const QrCodeScannerIcon(),
         IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.notifications_active_outlined,
               size: 19,
               color: Colors.black26,
@@ -162,9 +162,9 @@ class WalletsAppBar extends StatelessWidget {
       floating: false,
       pinned: true,
       centerTitle: true,
-      title: Text(
+      title: const Text(
         "Your Wallet",
-        style: const TextStyle(color: Colors.black87),
+        style: TextStyle(color: Colors.black87),
       ),
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: false,
@@ -176,7 +176,7 @@ class WalletsAppBar extends StatelessWidget {
                 colors: [Colors.tealAccent[400]!, Colors.tealAccent[400]!]),
           ),
           child: Container(
-            padding: EdgeInsets.only(top: 30.0, left: 14.0, bottom: 8.0),
+            padding: const EdgeInsets.only(top: 30.0, left: 14.0, bottom: 8.0),
             child: Column(
               children: [
                 const YMargin(90),
@@ -271,7 +271,7 @@ showQRDialog(BuildContext context, String token) => showCupertinoDialog(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("CLOSE", style: const TextStyle(color: Colors.red)))
+                child: const Text("CLOSE", style: TextStyle(color: Colors.red)))
           ],
           elevation: 4,
           title: SizedBox(

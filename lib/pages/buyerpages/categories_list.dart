@@ -4,8 +4,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/pages/buyerpages/get_categories_future.dart';
-import 'package:proto/utils/sizedMargins.dart';
-import 'package:proto/widgets/awesomeFab.dart';
+import 'package:proto/utils/sized_margins.dart';
+import 'package:proto/widgets/awesome_fab.dart';
 
 class ListTilezz extends StatefulWidget {
   const ListTilezz({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _ListTilezzState extends State<ListTilezz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: AwesomeFab(),
+      floatingActionButton: const AwesomeFab(),
       appBar: AppBar(
         actions: [
           IconButton(

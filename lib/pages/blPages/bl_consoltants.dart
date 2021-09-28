@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 
 class BLConsoltantsList extends StatelessWidget {
   const BLConsoltantsList({Key? key}) : super(key: key);

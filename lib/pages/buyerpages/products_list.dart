@@ -4,7 +4,7 @@ import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
 import 'package:proto/pages/buyerpages/get_categories_future.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/utils/type_extensions.dart';
 import 'package:proto/widgets/image_with_default.dart';
 

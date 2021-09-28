@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proto/pages/blPages/profile.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 
 class BLPage extends StatelessWidget {
   const BLPage({Key? key}) : super(key: key);
@@ -81,18 +81,20 @@ class BLPage extends StatelessWidget {
               Navigator.of(context).pushNamed("/blconsoltants");
             },
           ),
-          const YMargin(10),
-          OutlinedButton(
-            onPressed: () {
-              logoutHandler();
-            },
-            child: Row(children: const [
-              Text(
-                "Log Out",
-                style: TextStyle(color: Colors.red, fontSize: 15),
-              ),
-              Icon(Icons.login_rounded, color: Colors.black),
-            ]),
+          const YMargin(50),
+          FittedBox(
+            child: OutlinedButton(
+              onPressed: () {
+                logoutHandler();
+              },
+              child: Row(children: const [
+                Text(
+                  "Log Out",
+                  style: TextStyle(color: Colors.red, fontSize: 15),
+                ),
+                Icon(Icons.login_rounded, color: Colors.black),
+              ]),
+            ),
           ),
         ],
       ),

@@ -6,10 +6,10 @@ import 'package:proto/pages/homeDash/photo_grid_tile.dart';
 import 'package:proto/pages/ordersPage/fetch_orders_future.dart';
 import 'package:proto/pages/startup/cards_page.dart';
 import 'package:proto/pages/wallet/get_transactions_future.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/utils/type_extensions.dart';
 import 'package:proto/widgets/add_money_bottom_sheet.dart';
-import 'package:proto/widgets/awesomeFab.dart';
+import 'package:proto/widgets/awesome_fab.dart';
 import 'package:proto/widgets/qr_scanner_button.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -62,32 +62,33 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     //TextStyle collButton = TextStyle(fontSize: 15, color: Colors.black);
     return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
-        floatingActionButton: AwesomeFab(),
-        body: CustomScrollView(
-            //controller: n,
-            slivers: [
-              const DashboardSliverAppBar(),
-              SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 0,
-                    crossAxisCount: 2,
-                    //childAspectRatio: 1,
-                    crossAxisSpacing: 0),
-                delegate:
-                    SliverChildBuilderDelegate((BuildContext ctx, int index) {
-                  if (index < 5) {
-                    return PhotoGridTile(
-                      prodname: sampleData[index].name,
-                      route: sampleData[index].path,
-                      imageUrl: sampleData[index].imageUrl,
-                      productID: index,
-                    );
-                  }
-                  return null;
-                }),
-              ),
-            ]));
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButton: const AwesomeFab(),
+      body: CustomScrollView(
+        //controller: n,
+        slivers: [
+          const DashboardSliverAppBar(),
+          SliverGrid(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 0,
+                crossAxisCount: 2,
+                //childAspectRatio: 1,
+                crossAxisSpacing: 0),
+            delegate: SliverChildBuilderDelegate((BuildContext ctx, int index) {
+              if (index < 5) {
+                return PhotoGridTile(
+                  prodname: sampleData[index].name,
+                  route: sampleData[index].path,
+                  imageUrl: sampleData[index].imageUrl,
+                  productID: index,
+                );
+              }
+              return null;
+            }),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -161,7 +162,7 @@ class DashboardSliverAppBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const YMargin(115),
+                const YMargin(110),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
@@ -174,34 +175,35 @@ class DashboardSliverAppBar extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Unfulfiled Orders",
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.black87)),
-                            const YMargin(3),
                             ValueListenableBuilder(
                               valueListenable:
                                   Hive.box(Constants.UserBoxName).listenable(),
                               builder: (BuildContext context, Box<dynamic> box,
                                   Widget? child) {
                                 return RichText(
-                                  textAlign: TextAlign.end,
+                                  textAlign: TextAlign.start,
                                   text: TextSpan(
                                     children: [
+                                      const TextSpan(
+                                          text: "Unfulfiled Orders\n",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w200,
+                                              color: Colors.blueGrey)),
                                       TextSpan(
                                         text:
-                                            "(${(box.get(Constants.OrdersListStore, defaultValue: []) as List).length}) Orders\n",
+                                            "(${(box.get(Constants.OrdersListStore, defaultValue: []) as List).length})Orders\n",
                                         style: const TextStyle(
                                             color: Colors.blueGrey,
                                             fontWeight: FontWeight.w300,
-                                            fontSize: 18.0),
+                                            fontSize: 15),
                                       ),
                                       TextSpan(
                                         text:
-                                            "Total Ksh.${box.get(Constants.TotalOrdersStore, defaultValue: "00").toString().addCommas}.00",
+                                            "Total Ksh.${box.get(Constants.TotalOrdersStore, defaultValue: "00").toString().addCommas}",
                                         style: const TextStyle(
-                                            fontSize: 10,
-                                            color: Colors.black87,
-                                            fontWeight: FontWeight.w100),
+                                            fontSize: 11,
+                                            color: Colors.blueGrey),
                                       ),
                                     ],
                                   ),

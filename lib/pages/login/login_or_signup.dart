@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/widgets/corry_button.dart';
 import 'package:proto/widgets/ic_ward.dart';
 

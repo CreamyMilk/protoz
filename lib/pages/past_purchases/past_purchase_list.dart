@@ -15,12 +15,14 @@ class PastPurchasePage extends StatelessWidget {
           if (snapshot.hasData) {
             List<PPurchase> myPurchases = snapshot.data!;
             return Center(
-              child: ListView.builder(itemBuilder: (BuildContext ctx, int idx) {
-                return PastPurchaseTile(purchase: myPurchases[idx]);
-              }),
+              child: ListView.builder(
+                  itemCount: myPurchases.length,
+                  itemBuilder: (BuildContext ctx, int idx) {
+                    return PastPurchaseTile(purchase: myPurchases[idx]);
+                  }),
             );
           }
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );
@@ -28,13 +30,21 @@ class PastPurchasePage extends StatelessWidget {
 }
 
 class PPurchase {
-  PPurchase(this.settlementCode, this.status, this.orderID, this.productID,
-      this.productName, this.totalAmount, this.timeDue);
+  PPurchase(
+      {required this.settlementCode,
+      required this.status,
+      required this.orderID,
+      required this.productID,
+      required this.productName,
+      required this.productQuantity,
+      required this.totalAmount,
+      required this.timeDue});
   final String settlementCode;
   final String status;
   final String orderID;
   final String productID;
   final String productName;
+  final String productQuantity;
   final String totalAmount;
   final String timeDue;
 }
@@ -44,14 +54,25 @@ class PastPurchaseTile extends StatelessWidget {
   final PPurchase purchase;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListTile(
+      title: Text(purchase.productName),
+      subtitle: Text("Quantity :${purchase.productQuantity}"),
+    );
   }
 }
 
 Future<List<PPurchase>> getPastPurchases() async {
-  List<PPurchase> myPurchases = [];
-  Future.delayed(
-    const Duration(seconds: 12),
-  );
+  List<PPurchase> myPurchases = [
+    PPurchase(
+        settlementCode: "12",
+        status: "12",
+        orderID: "orderI1212D",
+        productID: "",
+        productName: "Sample Purchase",
+        totalAmount: "",
+        timeDue: "",
+        productQuantity: '22')
+  ];
+  await Future.delayed(const Duration(seconds: 2));
   return myPurchases;
 }

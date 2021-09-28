@@ -27,9 +27,9 @@ class _MachineInventoryState extends State<MachineInventory> {
         },
         label: const Text(
           "New ",
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
-        icon: Icon(
+        icon: const Icon(
           Icons.add,
           color: Colors.white,
         ),
@@ -39,20 +39,21 @@ class _MachineInventoryState extends State<MachineInventory> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.search_off,
               color: Colors.black,
             ),
           )
         ],
-        title: (Text("Machinery",
-            style: const TextStyle(
-              color: Colors.black,
-            ))),
+        title: (const Text(
+          "Machinery",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        )),
         backgroundColor: Colors.white,
       ),
       body: SafeArea(
-          child: Container(
         child: Stack(children: [
           Container(
               margin: const EdgeInsets.only(top: 16),
@@ -89,26 +90,27 @@ class _MachineInventoryState extends State<MachineInventory> {
                             );
                           });
                     } else {
-                      return Center(
+                      return const Center(
                           child: Text("Classificataion of conncetion failed"));
                     }
                   }))
         ]),
-      )),
+      ),
     );
   }
 }
 
 class ShoppingCartRow extends StatelessWidget {
-  const ShoppingCartRow({
-    required this.product,
-    required this.quantity,
-    required this.onPressed,
-  });
-
   final Machinery product;
   final int quantity;
   final VoidCallback onPressed;
+
+  const ShoppingCartRow({
+    Key? key,
+    required this.product,
+    required this.quantity,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

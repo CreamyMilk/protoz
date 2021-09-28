@@ -8,6 +8,8 @@ import 'package:proto/pages/sellerpages/get_products_futures.dart';
 const _startColumnWidth = 45.0;
 
 class InventoryList extends StatefulWidget {
+  const InventoryList({Key? key}) : super(key: key);
+
   @override
   _InventoryListState createState() => _InventoryListState();
 }
@@ -23,11 +25,11 @@ class _InventoryListState extends State<InventoryList> {
         onPressed: () {
           Navigator.of(context).pushNamed("/addProduct");
         },
-        label: Text(
+        label: const Text(
           "New ",
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
-        icon: Icon(
+        icon: const Icon(
           Icons.add,
           color: Colors.white,
         ),
@@ -35,7 +37,7 @@ class _InventoryListState extends State<InventoryList> {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.close, color: Colors.black),
+          icon: const Icon(Icons.close, color: Colors.black),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -44,66 +46,65 @@ class _InventoryListState extends State<InventoryList> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.search_off,
               color: Colors.white,
             ),
           )
         ],
-        title: (Text("Current Stock",
-            style: const TextStyle(
+        title: (const Text("Current Stock",
+            style: TextStyle(
               color: Colors.black,
             ))),
         backgroundColor: Colors.white,
       ),
       body: SafeArea(
-          child: Container(
-        child: Stack(children: [
-          Container(
-              margin: EdgeInsets.only(top: 16),
-              height: MediaQuery.of(context).size.height * .9,
-              child: FutureBuilder(
-                  future: getCurrentStock(),
-                  builder: (context, projectSnap) {
-                    if (projectSnap.connectionState ==
-                        ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (projectSnap.data == null) {
-                      return Center(child: Text("Sadly you have no products"));
-                    } else if (projectSnap.data != null) {
-                      return ListView.builder(
-                          itemCount: (projectSnap.data as List).length,
-                          itemBuilder: (context, index) {
-                            var item = (projectSnap.data as List)[index];
-                            return ShoppingCartRow(
-                              product: Product(
-                                image: item["image"],
-                                categoryID: item["categoryID"],
-                                productID: item["productID"],
-                                packingType: item["packingtype"],
-                                description: item["description"],
-                                name: item["productname"],
-                                stock: item["stock"],
-                                price: item["price"],
-                              ),
-                              quantity: item["stock"],
-                              onPressed: () {},
-                            );
-                          });
-                    } else {
-                      return Center(child: Text("A Network Error has occured"));
-                    }
-                  }))
-        ]),
-      )),
+          child: Stack(children: [
+        Container(
+            margin: const EdgeInsets.only(top: 16),
+            height: MediaQuery.of(context).size.height * .9,
+            child: FutureBuilder(
+                future: getCurrentStock(),
+                builder: (context, projectSnap) {
+                  if (projectSnap.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (projectSnap.data == null) {
+                    return const Center(
+                        child: Text("Sadly you have no products"));
+                  } else if (projectSnap.data != null) {
+                    return ListView.builder(
+                        itemCount: (projectSnap.data as List).length,
+                        itemBuilder: (context, index) {
+                          var item = (projectSnap.data as List)[index];
+                          return ShoppingCartRow(
+                            product: Product(
+                              image: item["image"],
+                              categoryID: item["categoryID"],
+                              productID: item["productID"],
+                              packingType: item["packingtype"],
+                              description: item["description"],
+                              name: item["productname"],
+                              stock: item["stock"],
+                              price: item["price"],
+                            ),
+                            quantity: item["stock"],
+                            onPressed: () {},
+                          );
+                        });
+                  } else {
+                    return const Center(
+                        child: Text("A Network Error has occured"));
+                  }
+                }))
+      ])),
     );
   }
 }
 
 class ShoppingCartSummary extends StatelessWidget {
-  const ShoppingCartSummary();
+  const ShoppingCartSummary({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +149,7 @@ class ShoppingCartSummary extends StatelessWidget {
                 MergeSemantics(
                   child: Row(
                     children: [
-                      Text("Subtotal:"),
+                      const Text("Subtotal:"),
                       Expanded(
                         child: Text(
                           "\$\${((storeP.totalPrice) * 0.95).toStringAsFixed(2)}",
@@ -163,7 +164,7 @@ class ShoppingCartSummary extends StatelessWidget {
                 MergeSemantics(
                   child: Row(
                     children: [
-                      Text("Shipping:"),
+                      const Text("Shipping:"),
                       Expanded(
                         child: Text(
                           "\$\${((storeP.totalPrice) * 0.03).toStringAsFixed(2)}",
@@ -178,7 +179,7 @@ class ShoppingCartSummary extends StatelessWidget {
                 MergeSemantics(
                   child: Row(
                     children: [
-                      Text("Tax:"),
+                      const Text("Tax:"),
                       Expanded(
                         child: Text(
                           "\$\${((storeP.totalPrice) * 0.02).toStringAsFixed(2)}",
@@ -199,15 +200,16 @@ class ShoppingCartSummary extends StatelessWidget {
 }
 
 class ShoppingCartRow extends StatelessWidget {
-  const ShoppingCartRow({
-    required this.product,
-    required this.quantity,
-    required this.onPressed,
-  });
-
   final Product product;
   final int quantity;
   final VoidCallback onPressed;
+
+  const ShoppingCartRow(
+      {Key? key,
+      required this.product,
+      required this.quantity,
+      required this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

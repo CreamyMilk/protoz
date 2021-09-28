@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 
 class RegistrationStepperForm extends StatefulWidget {
   const RegistrationStepperForm({Key? key}) : super(key: key);
@@ -223,11 +223,11 @@ class _RegistrationStepperFormState extends State<RegistrationStepperForm> {
             OutlinedButton(
               onPressed: cancel,
               child: const Text('Back',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.red,
                   )),
             ),
-            Spacer(),
+            const Spacer(),
             OutlinedButton(
               onPressed: continued,
               child: const Text('Continue'),

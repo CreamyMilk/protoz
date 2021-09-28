@@ -64,6 +64,6 @@ Future sendAddProductRequest(Product p, int quantity, bool delivery) async {
     }
   } catch (error) {
     // ignore: avoid_print
-//print(error);
+    print(error);
   }
 }
