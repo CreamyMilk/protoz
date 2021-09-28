@@ -3,7 +3,8 @@ import 'package:flutter/physics.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
+import 'package:proto/utils/type_extensions.dart';
 
 class VerifyPaymentCard extends StatelessWidget {
   const VerifyPaymentCard({
@@ -26,9 +27,9 @@ class VerifyPaymentCard extends StatelessWidget {
     int currentBalance = userBox.get(Constants.BalanceStore);
     return DraggableCard(
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.fastLinearToSlowEaseIn,
-        padding: EdgeInsets.only(top: 10.0),
+        padding: const EdgeInsets.only(top: 10.0),
         color: Colors.white,
         width: MediaQuery.of(context).size.width * 0.7,
         child: Column(
@@ -40,25 +41,41 @@ class VerifyPaymentCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Send",
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.w300),
                   ),
-                  Text(
-                    "Ksh.${amount.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.w300),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Ksh.${amount.toString().addCommas}",
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          const TextSpan(
+                            text: ".00",
+                            style: TextStyle(
+                                color: Colors.blueGrey,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w300),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                  //Text("0.00001 BTC"),
-                  SizedBox(height: 30),
+                  const YMargin(30),
                   Text("To: $receiverPhone",
                       style: const TextStyle(
                         color: Colors.grey,
                       )),
-
                   Row(children: [
                     Text(
                       receiverName,
@@ -67,63 +84,60 @@ class VerifyPaymentCard extends StatelessWidget {
                           fontSize: 20.0,
                           fontWeight: FontWeight.w300),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
-                        icon: Icon(Icons.edit_outlined,
+                        icon: const Icon(Icons.edit_outlined,
                             color: Colors.black, size: 15),
                         onPressed: () {
                           Navigator.of(context).pop();
+                          Navigator.of(context).pop();
                         }),
                   ]),
-                  SizedBox(height: 30),
-                  Text(
-                      "Fees: ${fees.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.0",
+                  const YMargin(30),
+                  Text("Fees: ${fees.toString().addCommas}.00",
                       style: const TextStyle(
                         color: Colors.grey,
                       )),
                 ],
               ),
             ),
-            //    IconButton(
-            //    icon: Icon(Icons.add, color: Colors.white),
-            //   onPressed: () {}),
             ExpansionTile(
+              collapsedIconColor: Colors.greenAccent[400],
               onExpansionChanged: (bool currentState) {
                 //print(currentState);
               },
               backgroundColor: Colors.white,
-              title: Text(
+              title: const Text(
                 "DETAILS",
-                style: const TextStyle(
+                style: TextStyle(
                     color: Colors.black38,
                     fontSize: 15.0,
-                    fontWeight: FontWeight.w500),
+                    fontWeight: FontWeight.w800),
               ),
               children: <Widget>[
                 ListTile(
-                    trailing: Text(
-                        "Ksh.${currentBalance.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                    trailing: Text("Ksh.${currentBalance.toString().addCommas}",
                         style: const TextStyle(color: Colors.green)),
-                    title: Text(
+                    title: const Text(
                       "Inital Balance",
-                      style: const TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.black),
                     )),
                 ListTile(
                     trailing: Text(
-                        "- Ksh.${(amount + fees).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                        "- Ksh.${(amount + fees).toString().addCommas}",
                         style: const TextStyle(color: Colors.blue)),
-                    title: Text(
+                    title: const Text(
                       "Transaction",
-                      style: const TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.black),
                     )),
-                Divider(),
+                const Divider(),
                 ListTile(
                     trailing: Text(
-                        "Ksh.${((currentBalance) - (amount + fees)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                        "Ksh.${((currentBalance) - (amount + fees)).toString().addCommas}",
                         style: const TextStyle(color: Colors.green)),
-                    title: Text(
+                    title: const Text(
                       "Final Balance",
-                      style: const TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.black),
                     )),
               ],
             ),
@@ -164,12 +178,10 @@ class ConfirmPage extends StatelessWidget {
                 blurRadius: 30)
           ],
         ),
-        // ignore: deprecated_member_use
-        child: FlatButton(
+        child: TextButton(
           onPressed: () async {
             Navigator.of(context).pushNamed("/pin");
           },
-          color: Colors.transparent,
           child: Text(
             "Continue   ->",
             style: GoogleFonts.nunito(

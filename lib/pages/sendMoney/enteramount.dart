@@ -9,7 +9,8 @@ import 'package:proto/constants.dart';
 import 'package:proto/pages/sendMoney/confirmdetails.dart';
 import 'package:proto/popups/error_popup.dart';
 import 'package:proto/popups/unregisterd_popup.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
+import 'package:proto/utils/type_extensions.dart';
 import 'package:proto/widgets/keypadwidget.dart';
 
 class EnterAmountPage extends StatefulWidget {
@@ -36,39 +37,42 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          "",
-          style: const TextStyle(color: Colors.blueGrey),
+        title: const Text(
+          "Amount",
+          style: TextStyle(color: Colors.blueGrey),
         ),
       ),
       body: Column(children: [
-        Spacer(),
+        const Spacer(),
         RichText(
             textAlign: TextAlign.center,
             text: TextSpan(children: [
-              TextSpan(
+              const TextSpan(
                   text: "Ksh.",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w300,
                       fontSize: 20.0)),
               TextSpan(
-                  text: amount.replaceAllMapped(
-                      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-                      (Match m) => '${m[1]},'),
+                  text: amount.addCommas,
                   style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
                       fontSize: 35.0)),
             ])),
-        Spacer(),
+        const Spacer(),
         loading
-            ? CircularProgressIndicator()
+            ? const CircularProgressIndicator()
             : AnimatedContainer(
-                duration: Duration(seconds: 1),
+                duration: const Duration(seconds: 1),
                 height: 50,
                 width: screenWidth(context, percent: 0.8),
                 decoration: BoxDecoration(
@@ -82,8 +86,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
                         blurRadius: 30)
                   ],
                 ),
-                // ignore: deprecated_member_use
-                child: FlatButton(
+                child: TextButton(
                   onPressed: amount.length > 1
                       ? () async {
                           await box.put(Constants.AmountToSendStore, amount);
@@ -93,7 +96,6 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
                           });
                         }
                       : () {},
-                  color: Colors.transparent,
                   child: Text(
                     amount.length > 1 ? "Continue   ->" : "Enter Amount",
                     style: GoogleFonts.nunito(
@@ -118,8 +120,8 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
                 });
               }
             },
-            rightIcon:
-                Icon(Icons.backspace_outlined, size: 20, color: Colors.black54),
+            rightIcon: const Icon(Icons.backspace_outlined,
+                size: 20, color: Colors.black54),
             onKeyboardTap: (String text) {
               //print(text);
               setState(
@@ -174,7 +176,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
         });
         showCupertinoDialog(
             context: ctx,
-            builder: (BuildContext context) => UnregisteredPopUp());
+            builder: (BuildContext context) => const UnregisteredPopUp());
       } else {
         setState(() {
           loading = false;
@@ -192,7 +194,7 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
       });
 
       showCupertinoDialog(
-          context: ctx, builder: (BuildContext context) => ErrorPopUP());
+          context: ctx, builder: (BuildContext context) => const ErrorPopUP());
     }
   }
 }

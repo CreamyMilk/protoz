@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/widgets/keypadwidget.dart';
 
 class EnterPhoneNumberPage extends StatefulWidget {
+  const EnterPhoneNumberPage({Key? key}) : super(key: key);
+
   @override
   _EnterPhoneNumberPageState createState() => _EnterPhoneNumberPageState();
 }
@@ -26,21 +28,26 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(
+            icon: const Icon(Icons.close, color: Colors.black),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          "",
-          style: const TextStyle(color: Colors.blueGrey),
+        title: const Text(
+          "Mobile Number",
+          style: TextStyle(color: Colors.blueGrey),
         ),
       ),
       body: Column(children: [
-        Spacer(),
+        const Spacer(),
         RichText(
             textAlign: TextAlign.center,
             text: TextSpan(children: [
-              TextSpan(
+              const TextSpan(
                   text: "",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w300,
                       fontSize: 20.0)),
@@ -51,9 +58,9 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
                       fontWeight: FontWeight.w400,
                       fontSize: 35.0)),
             ])),
-        Spacer(),
+        const Spacer(),
         AnimatedContainer(
-          duration: Duration(seconds: 1),
+          duration: const Duration(seconds: 1),
           height: 50,
           width: screenWidth(context, percent: 0.8),
           decoration: BoxDecoration(
@@ -63,19 +70,17 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
             boxShadow: [
               BoxShadow(
                   color: Colors.grey[400]!.withOpacity(0.3),
-                  offset: Offset(0, 13),
+                  offset: const Offset(0, 13),
                   blurRadius: 30)
             ],
           ),
-          // ignore: deprecated_member_use
-          child: FlatButton(
+          child: TextButton(
             onPressed: phoneNumber.length > 9
                 ? () {
                     box.put(Constants.ReceiverNumberStore, phoneNumber);
                     Navigator.of(context).pushNamed("/enteramount");
                   }
                 : () {},
-            color: Colors.transparent,
             child: Text(
               phoneNumber.length > 9 ? "Continue  ->" : "Enter Phone Number",
               style: GoogleFonts.nunito(
@@ -100,8 +105,8 @@ class _EnterPhoneNumberPageState extends State<EnterPhoneNumberPage> {
                 });
               }
             },
-            rightIcon:
-                Icon(Icons.backspace_outlined, size: 20, color: Colors.black54),
+            rightIcon: const Icon(Icons.backspace_outlined,
+                size: 20, color: Colors.black54),
             onKeyboardTap: (String text) {
               //print(text);
               setState(

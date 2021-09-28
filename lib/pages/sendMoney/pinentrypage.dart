@@ -8,7 +8,7 @@ import 'package:http/http.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/popups/error_popup.dart';
 import 'package:proto/popups/successful_sent.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/widgets/keypadwidget.dart';
 
 class EnterPinPage extends StatefulWidget {
@@ -75,8 +75,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
                           blurRadius: 30)
                     ],
                   ),
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
+                  child: TextButton(
                     onPressed: pincode.length > 1
                         ? () {
                             setState(() {
@@ -85,7 +84,6 @@ class _EnterPinPageState extends State<EnterPinPage> {
                             _sendMoneyRequest(pincode, context);
                           }
                         : () {},
-                    color: Colors.transparent,
                     child: Text(
                       pincode.length != 4 ? "Enter Pin " : "Send Now  ->",
                       style: GoogleFonts.nunito(

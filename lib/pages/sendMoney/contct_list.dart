@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/widgets/add_money_bottom_sheet.dart';
-import 'package:proto/widgets/qr_scanner_button.dart';
 
 class ContactsListPage extends StatelessWidget {
   final List<Color> lightColors = [
@@ -54,15 +53,14 @@ class ContactsListPage extends StatelessWidget {
         ),
         title: const Text(
           "Send Money",
-          style: const TextStyle(
-              fontWeight: FontWeight.w300, color: Colors.black87),
+          style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black87),
         ),
       ),
       body: SizedBox(
         height: screenHeight(context),
         child: ListView(
           children: [
-            YMargin(10),
+            const YMargin(10),
             Column(
               children: [
                 StyledActionListTile(
@@ -103,19 +101,19 @@ class ContactsListPage extends StatelessWidget {
                 ),
               ],
             ),
-            Divider(),
-            Padding(
+            const Divider(),
+            const Padding(
                 padding: EdgeInsets.only(left: 15, bottom: 10),
                 child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Personal Contacts",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                       ),
                     ))),
             ListView.builder(
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 itemCount: 7,
                 shrinkWrap: true,
                 itemExtent: 60,
@@ -126,9 +124,9 @@ class ContactsListPage extends StatelessWidget {
                       offset: const Offset(0, -5),
                       child: CircleAvatar(
                         foregroundColor: foregroundColor[2],
-                        child: Text(
+                        child: const Text(
                           "BR",
-                          style: const TextStyle(fontSize: 10),
+                          style: TextStyle(fontSize: 10),
                         ),
                         minRadius: 20,
                         maxRadius: 20,
@@ -138,14 +136,15 @@ class ContactsListPage extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).pushNamed("/enteramount");
                     },
-                    contentPadding: EdgeInsets.only(left: 10, bottom: 12.0),
+                    contentPadding:
+                        const EdgeInsets.only(left: 10, bottom: 12.0),
                     minLeadingWidth: 30,
                     // horizontalTitleGap: 0.1,
                     // minVerticalPadding: 0.0,
                     // visualDensity: VisualDensity(horizontal: .1,vertical: 0.1),
                     dense: true,
-                    title: Text("Bob Ross"),
-                    subtitle: Text("0781212121"),
+                    title: const Text("Bob Ross"),
+                    subtitle: const Text("0781212121"),
                   );
                 }),
           ],
@@ -212,19 +211,19 @@ class FavoriteTile extends StatelessWidget {
         Navigator.of(context).pushNamed("/enteramount");
       },
       child: Container(
-          margin: EdgeInsets.all(10.0),
+          margin: const EdgeInsets.all(10.0),
           child: Column(
             children: [
               CircleAvatar(
                 foregroundColor: Colors.blue,
-                child: const Text("JK", style: const TextStyle(fontSize: 11)),
+                child: const Text("JK", style: TextStyle(fontSize: 11)),
                 backgroundColor: Colors.blue[50],
                 minRadius: 18,
                 maxRadius: 18,
               ),
               const YMargin(2),
               const Text("John",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 10,
                   ))
             ],
