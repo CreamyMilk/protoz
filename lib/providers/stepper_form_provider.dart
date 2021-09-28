@@ -162,7 +162,7 @@ class KraFormProvider extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     Widget _buildPopupDialog(BuildContext context) {
-      return RegistrationPopUp();
+      return const RegistrationPopUp();
     }
 
     String zerototwo(String phone) {

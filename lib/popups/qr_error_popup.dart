@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:proto/utils/sizedMargins.dart';
+import 'package:proto/utils/sized_margins.dart';
 
 showErrorDialog(BuildContext context, {String? error}) => showCupertinoDialog(
     context: context,
     builder: (BuildContext context) {
       return Dialog(
         elevation: 0,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(12.0))),
         child: SizedBox(
           width: screenWidth(context, percent: 0.6),

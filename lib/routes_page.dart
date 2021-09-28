@@ -14,8 +14,6 @@ import 'package:proto/pages/past_purchases/past_purchase_list.dart';
 import 'package:proto/pages/registrationForm/registration_stepper_page.dart';
 import 'package:proto/pages/startup/logopage.dart';
 import 'package:proto/pages/blPages/profile.dart';
-import 'package:proto/pages/registrationForm/register_manual_stepper.dart';
-import 'package:proto/pages/registrationOLD/register.dart';
 import 'package:proto/pages/sendMoney/contct_list.dart';
 import 'package:proto/pages/sendMoney/enteramount.dart';
 import 'package:proto/pages/sendMoney/enterphone_number.dart';
@@ -39,14 +37,14 @@ class RouteGenerator {
     final Object? args = settings.arguments;
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (ctx) => LogoPage());
+        return MaterialPageRoute(builder: (ctx) => const LogoPage());
       case '/startup':
-        return MaterialPageRoute(builder: (ctx) => LoginOrSignup());
+        return MaterialPageRoute(builder: (ctx) => const LoginOrSignup());
       case '/login':
         return MaterialPageRoute(
             builder: (ctx) => ChangeNotifierProvider<LoginFormProvider>(
                 create: (context) => LoginFormProvider(),
-                child: LoginFormPage()));
+                child: const LoginFormPage()));
       case '/addProduct':
         if (args != null) {
           return CupertinoPageRoute(
@@ -69,15 +67,6 @@ class RouteGenerator {
                       create: (context) => AddProductFormProvider(),
                       child: const AddProductsPage())));
         }
-      case '/kraform':
-        return MaterialPageRoute(
-            builder: (ctx) => ChangeNotifierProvider<KraFormProvider>(
-                create: (context) => KraFormProvider(),
-                child: AnnotatedRegion<SystemUiOverlayStyle>(
-                    value: SystemUiOverlayStyle(
-                        statusBarColor: Colors.teal[400],
-                        systemNavigationBarColor: Colors.white),
-                    child: const BaseForm())));
       case '/contactList':
         return CupertinoPageRoute(
             fullscreenDialog: true,
@@ -92,7 +81,8 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (ctx) => const RegistrationStepperForm());
       case '/enterphone':
-        return MaterialPageRoute(builder: (ctx) => EnterPhoneNumberPage());
+        return MaterialPageRoute(
+            builder: (ctx) => const EnterPhoneNumberPage());
       case '/qrscanner':
         return MaterialPageRoute(builder: (ctx) => const QRCodeScannerPage());
       case '/pastpurchases':
@@ -108,11 +98,11 @@ class RouteGenerator {
       case '/blconsoltants':
         return MaterialPageRoute(builder: (ctx) => const BLConsoltantsList());
       case '/blvets':
-        return MaterialPageRoute(builder: (ctx) => BlVets());
+        return MaterialPageRoute(builder: (ctx) => const BlVets());
       case '/vetsCalls':
         return MaterialPageRoute(builder: (ctx) => const BlVetsCall());
       case '/sellpage':
-        return MaterialPageRoute(builder: (ctx) => InventoryList());
+        return MaterialPageRoute(builder: (ctx) => const InventoryList());
       case '/pdetails':
         if (args != null) {
           return CupertinoPageRoute(
@@ -121,11 +111,9 @@ class RouteGenerator {
           return _errorRoute();
         }
       case '/products':
-        return MaterialPageRoute(builder: (ctx) => ProductList());
-      case '/register':
-        return MaterialPageRoute(builder: (ctx) => RegisterPage());
+        return MaterialPageRoute(builder: (ctx) => const ProductList());
       case '/categories':
-        return MaterialPageRoute(builder: (ctx) => ListTilezz());
+        return MaterialPageRoute(builder: (ctx) => const ListTilezz());
       case '/dashboard':
         return MaterialPageRoute(
             builder: (ctx) => const SmallerTextFactor(DashboardPage()));
@@ -135,7 +123,7 @@ class RouteGenerator {
       case '/profile':
         return MaterialPageRoute(builder: (ctx) => const ProfilePage());
       case '/walletspage':
-        return MaterialPageRoute(builder: (ctx) => WalletsTab());
+        return MaterialPageRoute(builder: (ctx) => const WalletsTab());
       default:
         return _errorRoute();
     }
