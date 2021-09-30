@@ -1,10 +1,8 @@
-import 'dart:convert';
+import 'package:cloudinary_public/cloudinary_public.dart';
 import 'dart:io';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:proto/constants.dart';
 import 'package:proto/main.dart';
 
 Future<File?> pickImg() async {
@@ -48,24 +46,14 @@ Future<File?> pickImg() async {
 
 Future<String?> uploadProductImage(File img) async {
   String txt = "";
+  final cloudinary = CloudinaryPublic('agrocr', 'gotcha', cache: false);
   try {
-    var url = Uri.parse(Constants.IMAGES_UPLOAD_SERVER);
-    var request = http.MultipartRequest('POST', url);
-    request.files.add(http.MultipartFile(
-      'file',
-      img.readAsBytes().asStream(),
-      img.lengthSync(),
-      filename: img.path.split("/").last,
-    ));
-    request.fields["productID"] = "1";
+    CloudinaryResponse response = await cloudinary.uploadFile(
+      CloudinaryFile.fromFile(img.path,
+          resourceType: CloudinaryResourceType.Image),
+    );
 
-    var res = await request.send();
-    final hresponse = await http.Response.fromStream(res);
-    final myjson = await json.decode(hresponse.body);
-
-    if (myjson["url"] != null) {
-      return myjson["url"];
-    }
+    return response.secureUrl;
   } catch (err) {
     if (err == SocketException) {
       txt = "They was issue connectiong to the internet.";
