@@ -99,134 +99,139 @@ class DashboardSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
-    return SliverAppBar(
-      elevation: 0,
-      backgroundColor: Colors.white,
-      automaticallyImplyLeading: false,
-      actions: [
-        const QrCodeScannerIcon(),
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications_active_outlined,
-              size: 19,
-              color: Colors.black26,
-            )),
-      ],
-      expandedHeight: 160,
-      floating: false,
-      pinned: true,
-      title: ValueListenableBuilder(
-        valueListenable: Hive.box(Constants.UserBoxName).listenable(),
-        builder: (BuildContext context, Box<dynamic> box, Widget? child) {
-          String userName =
-              "${box.get(Constants.FullnameStore, defaultValue: "")}";
-          return now.hour < 12
-              ? Text(
-                  "Good Morning,\n$userName",
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
-              : now.hour < 20
-                  ? Text(
-                      "Good Afternoon,\n$userName ",
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  : Text("Good Evening,\n$userName",
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ));
-        },
-      ),
-      flexibleSpace: FlexibleSpaceBar(
-        centerTitle: false,
-        background: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomRight,
-                colors: [Colors.white, Colors.white]),
-          ),
-          child: SizedBox(
-            height: 150,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const YMargin(110),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushNamed("/orders");
-                        },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ValueListenableBuilder(
-                              valueListenable:
-                                  Hive.box(Constants.UserBoxName).listenable(),
-                              builder: (BuildContext context, Box<dynamic> box,
-                                  Widget? child) {
-                                return RichText(
-                                  textAlign: TextAlign.start,
-                                  text: TextSpan(
-                                    children: [
-                                      const TextSpan(
-                                          text: "Unfulfiled Orders\n",
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w200,
-                                              color: Colors.blueGrey)),
-                                      TextSpan(
-                                        text:
-                                            "(${(box.get(Constants.OrdersListStore, defaultValue: []) as List).length})Orders\n",
-                                        style: const TextStyle(
-                                            color: Colors.blueGrey,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 15),
-                                      ),
-                                      TextSpan(
-                                        text:
-                                            "Total Ksh.${box.get(Constants.TotalOrdersStore, defaultValue: "00").toString().addCommas}",
-                                        style: const TextStyle(
-                                            fontSize: 11,
-                                            color: Colors.blueGrey),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: SliverAppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        actions: [
+          const QrCodeScannerIcon(),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications_active_outlined,
+                size: 19,
+                color: Colors.black,
+              )),
+        ],
+        expandedHeight: 160,
+        floating: false,
+        pinned: true,
+        title: ValueListenableBuilder(
+          valueListenable: Hive.box(Constants.UserBoxName).listenable(),
+          builder: (BuildContext context, Box<dynamic> box, Widget? child) {
+            String userName =
+                "${box.get(Constants.FullnameStore, defaultValue: "")}";
+            return now.hour < 12
+                ? Text(
+                    "Good Morning,\n$userName",
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                : now.hour < 20
+                    ? Text(
+                        "Good Afternoon,\n$userName ",
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
                         ),
-                      ),
-                      const Spacer(),
-                      FloatingActionButton(
-                        heroTag: "sd",
-                        mini: true,
-                        backgroundColor: Colors.white,
-                        child: const Icon(Icons.add, color: Colors.green),
-                        onPressed: () {
-                          depositModalBottomSheet(context);
-                        },
-                      ),
-                    ],
+                      )
+                    : Text("Good Evening,\n$userName",
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ));
+          },
+        ),
+        flexibleSpace: FlexibleSpaceBar(
+          centerTitle: false,
+          background: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomRight,
+                  colors: [Colors.white, Colors.white]),
+            ),
+            child: SizedBox(
+              height: 150,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const YMargin(110),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushNamed("/orders");
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ValueListenableBuilder(
+                                valueListenable: Hive.box(Constants.UserBoxName)
+                                    .listenable(),
+                                builder: (BuildContext context,
+                                    Box<dynamic> box, Widget? child) {
+                                  return RichText(
+                                    textAlign: TextAlign.start,
+                                    text: TextSpan(
+                                      children: [
+                                        const TextSpan(
+                                            text: "Unfulfiled Orders\n",
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w200,
+                                                color: Colors.blueGrey)),
+                                        TextSpan(
+                                          text:
+                                              "(${(box.get(Constants.OrdersListStore, defaultValue: []) as List).length}) Orders\n",
+                                          style: const TextStyle(
+                                              color: Colors.blueGrey,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 17),
+                                        ),
+                                        TextSpan(
+                                          text:
+                                              "Total Ksh.${box.get(Constants.TotalOrdersStore, defaultValue: "00").toString().addCommas}",
+                                          style: const TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.blueGrey),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Spacer(),
+                        FloatingActionButton(
+                          heroTag: "sd",
+                          mini: true,
+                          backgroundColor: Colors.white,
+                          child: const Icon(Icons.add, color: Colors.green),
+                          onPressed: () {
+                            depositModalBottomSheet(context);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

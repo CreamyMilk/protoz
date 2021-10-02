@@ -38,8 +38,8 @@ class ProductList extends StatelessWidget {
             dynamic categoryID = box.get(Constants.ChoosenCategory);
             String title = "No Category Name";
             for (int i = 0; i < c.length; i++) {
-              if (c[i]["categoryid"] == categoryID) {
-                title = (c[i]["categoryname"]);
+              if (c[i]["ID"] == categoryID) {
+                title = (c[i]["CatergoryName"]);
               }
             }
             return Text(title, style: const TextStyle(color: Colors.black87));
@@ -62,8 +62,8 @@ class ProductList extends StatelessWidget {
                     var item = (projectSnap.data as List)[index];
                     return ProductListItem(
                         p: Product(
-                      productID: item["productID"],
-                      heroName: item["productID"].toString() + "i",
+                      productID: item["ID"],
+                      heroName: item["ID"].toString() + "i",
                       name: item["productname"],
                       price: item["price"],
                       image: item["image"],

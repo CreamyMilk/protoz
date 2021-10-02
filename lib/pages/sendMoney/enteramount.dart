@@ -150,17 +150,18 @@ class _EnterAmountPageState extends State<EnterAmountPage> {
         body: jsonEncode(
           //ensure that the user has bothe the socketID and the USER ID
           {
-            "phonenumber":
-                Constants.zerototwo(box.get(Constants.ReceiverNumberStore)),
+            "phonenumber": box.get(Constants.ReceiverNumberStore),
             "amount": int.parse(box.get(Constants.AmountToSendStore))
           },
         ),
       );
       var myjson = json.decode(response.body);
       if (myjson["status"] == 0) {
+        box.put(Constants.ReceiverAddressStore, myjson["wallet_address"]);
         setState(() {
           loading = false;
         });
+
         Navigator.of(ctx).push(MaterialPageRoute(builder: (contxt) {
           return ConfirmPage(
             amount: int.parse(box.get(Constants.AmountToSendStore)),

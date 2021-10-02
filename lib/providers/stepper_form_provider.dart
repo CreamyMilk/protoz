@@ -165,20 +165,6 @@ class KraFormProvider extends ChangeNotifier {
       return const RegistrationPopUp();
     }
 
-    String zerototwo(String phone) {
-      if (phone.isNotEmpty) {
-        if (phone[0] == "0") {
-          return "254${phone.substring(1)}";
-        } else if (phone[0] == "+") {
-          return phone.substring(1);
-        } else {
-          return phone;
-        }
-      } else {
-        return "0000000000";
-      }
-    }
-
     newSingleSubmit();
     String dob = getBirth();
     try {
@@ -190,7 +176,7 @@ class KraFormProvider extends ChangeNotifier {
           "lname": lnController.text,
           "idnumber": idController.text,
           "photourl": "https://google.com",
-          "phone": zerototwo(phController.text),
+          "phone": phController.text,
           "password": passwordController.text,
           "email": "me@mailer.com",
           "fcmtoken": "FCMTOKENSAMPLE$accName",

@@ -60,8 +60,9 @@ class _WalletsTabState extends State<WalletsTab> {
                       var transaction = trans[index];
                       //   print(transaction);
                       bool toMe = (transaction["to"] ==
-                          box.get(Constants.PhoneNumberStore));
-                      bool isPurchase = (transaction["typeid"] == 3);
+                          box.get(Constants.WalletNameStore));
+                      bool isPurchase = (transaction["typename"] == "PURCHASE");
+                      // bool isDeposit = (transaction["typename"] == "DEPOSIT");
                       return ListTile(
                         dense: true,
                         onTap: () {
@@ -87,8 +88,8 @@ class _WalletsTabState extends State<WalletsTab> {
                         // heros: index,
 
                         title: Text(
-                            "${toMe ? transaction["from"] : transaction["fromName"]}"),
-                        subtitle: Text("${transaction["transactionid"]}"),
+                            "${toMe ? transaction["from"] : transaction["typename"]}"),
+                        subtitle: Text("${transaction["trackid"]}"),
                         trailing: RichText(
                           textAlign: TextAlign.end,
                           text: TextSpan(

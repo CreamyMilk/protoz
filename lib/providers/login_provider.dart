@@ -31,20 +31,6 @@ class LoginFormProvider extends ChangeNotifier {
     }
   }
 
-  String zerototwo(String phone) {
-    if (phone.isNotEmpty) {
-      if (phone[0] == "0") {
-        return "254${phone.substring(1)}";
-      } else if (phone[0] == "+") {
-        return phone.substring(1);
-      } else {
-        return phone;
-      }
-    } else {
-      return "0000000000";
-    }
-  }
-
   String getInitals(String l) {
     List<String> name = l.split(" ");
     if (name.length > 1) {
@@ -58,7 +44,7 @@ class LoginFormProvider extends ChangeNotifier {
   Future sendLoginRequest(BuildContext ctx) async {
     try {
       final response = await post(
-        Uri.parse(Constants.API_BASE + "login"),
+        Uri.parse(Constants.API_BASE + "auth/login"),
         headers: {
           "Accept": "application/json",
           "content-type": "application/json",
@@ -66,7 +52,7 @@ class LoginFormProvider extends ChangeNotifier {
         body: jsonEncode(
           //ensure that the user has bothe the socketID and the USER ID
           {
-            "phonenumber": zerototwo(usernameController.text),
+            "phone": usernameController.text,
             "password": passwordController.text
           },
         ),
@@ -74,15 +60,13 @@ class LoginFormProvider extends ChangeNotifier {
       var myjson = json.decode(response.body);
       if (myjson["status"] == 0) {
         var box = Hive.box(Constants.UserBoxName);
-        String initals = getInitals(myjson["fullname"]);
         box.put(Constants.FullnameStore, myjson["fullname"]);
-        box.put(Constants.InitalsStore, initals);
         box.put(Constants.PhoneNumberStore, myjson["phonenumber"]);
         box.put(Constants.WalletNameStore, myjson["walletname"]);
         box.put(Constants.BalanceStore, myjson["balance"]);
         box.put(Constants.RoleStore, myjson["role"]);
         box.put(Constants.UserIDStore, myjson["userid"]);
-        box.put(Constants.NotifcationTopicStore, myjson["phonenumber"]);
+        // box.put(Constants.NotifcationTopicStore, myjson["phonenumber"]);
         if (Platform.isAndroid) {
           FirebaseMessaging.instance.subscribeToTopic(myjson["walletname"]);
           FirebaseMessaging.instance.getToken().then((String? token) {
@@ -105,6 +89,12 @@ class LoginFormProvider extends ChangeNotifier {
     } catch (err) {
       loading = false;
       notifyListeners();
+      showCupertinoDialog(
+        context: ctx,
+        builder: (BuildContext context) => CannotLoginPopUp(
+          message: err.toString(),
+        ),
+      );
     }
   }
 }

@@ -133,7 +133,7 @@ class _EnterPinPageState extends State<EnterPinPage> {
           //ensure that the user has bothe the socketID and the USER ID
           {
             "from": box.get(Constants.WalletNameStore),
-            "to": Constants.zerototwo(box.get(Constants.ReceiverNumberStore)),
+            "to": box.get(Constants.ReceiverAddressStore),
             "amount": int.parse(box.get(Constants.AmountToSendStore)),
             "pin": pin
           },

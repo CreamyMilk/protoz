@@ -31,8 +31,8 @@ class _AddProductsPageState extends State<AddProductsPage> {
     isLoaded = false;
     c.forEach((t) {
       temp.add(DropdownMenuItem<int>(
-        value: t["categoryid"],
-        child: Text(t["categoryname"]),
+        value: t["ID"],
+        child: Text(t["CatergoryName"]),
       ));
     });
     super.initState();

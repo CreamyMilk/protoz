@@ -19,7 +19,7 @@ class QrCodeScannerIcon extends StatelessWidget {
         },
         icon: const Icon(
           Icons.qr_code_outlined,
-          color: Colors.black26,
+          color: Colors.black,
           size: 19,
         ));
   }

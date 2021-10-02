@@ -1,15 +1,14 @@
 // ignore_for_file: constant_identifier_names
-
 import 'package:hive/hive.dart';
 import 'package:proto/utils/type_extensions.dart';
 
 class Constants {
-  static const String API_BASE = "http://35.189.74.247:3000/";
+  static const String API_BASE = "http://192.168.0.24:3000/api/v1/";
   static const String IMAGES_UPLOAD_SERVER =
       "http://192.168.0.24:4000/formstuff";
   static const String UserBoxName = "user";
-  static const String IsLoggedInStore = "isloggedinbool";
   static const String UserTypeStore = "usertype";
+  static const String IsLoggedInStore = "isloggedinbool";
 
   static const String FullnameStore = "name";
   static const String PhoneNumberStore = "phonenumber";
@@ -27,26 +26,13 @@ class Constants {
   static const String AllUserNotifcationTopic = "all";
 
   static const String ReceiverNumberStore = "sendstore";
+  static const String ReceiverAddressStore = "senderAddress";
   static const String AmountToSendStore = "amountstore";
 
   static const String ProductCategoriesStore = "categoreieslist";
 
   static const String ChoosenCategory = "choosencategory";
   static const String PlaceHolderURl = "placeurl";
-
-  static String zerototwo(String phone) {
-    if (phone.isNotEmpty) {
-      if (phone[0] == "0") {
-        return "254${phone.substring(1)}";
-      } else if (phone[0] == "+") {
-        return phone.substring(1);
-      } else {
-        return phone;
-      }
-    } else {
-      return "0000000000";
-    }
-  }
 
   //Implement backend to do this
   static String getProductPlaceHolderURL() {

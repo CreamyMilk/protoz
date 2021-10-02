@@ -88,11 +88,17 @@ logoutHandler() {
         .unsubscribeFromTopic(
             box.get(Constants.NotifcationTopicStore, defaultValue: "."))
         .then((value) => {box.clear()});
+
+    FirebaseMessaging.instance
+        .unsubscribeFromTopic(
+            box.get(Constants.WalletNameStore, defaultValue: "."))
+        .then((value) => {box.clear()});
   }
   box.put(Constants.IsLoggedInStore, false);
   box.put(Constants.TransactionsStore, []);
   box.put(Constants.BalanceStore, 0);
   box.put(Constants.TotalOrdersStore, 0);
   box.clear();
-  Navigator.of(navigatorKey.currentContext!).pushReplacementNamed("/startup");
+  Navigator.pushNamedAndRemoveUntil(
+      navigatorKey.currentContext!, "/startup", (predicatestuff) => false);
 }

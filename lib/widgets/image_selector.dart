@@ -44,6 +44,45 @@ Future<File?> pickImg() async {
   }
 }
 
+Future<File?> cameraImg() async {
+  String txt = "";
+  try {
+    final XFile? image =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      File? croppedFile = await ImageCropper.cropImage(
+          sourcePath: image.path,
+          aspectRatioPresets: [
+            CropAspectRatioPreset.square,
+            CropAspectRatioPreset.ratio3x2,
+            CropAspectRatioPreset.original,
+            CropAspectRatioPreset.ratio4x3,
+            CropAspectRatioPreset.ratio16x9
+          ],
+          androidUiSettings: const AndroidUiSettings(
+              toolbarTitle: 'ID Photo Cropper',
+              toolbarColor: Colors.deepOrange,
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.square,
+              lockAspectRatio: false),
+          iosUiSettings: const IOSUiSettings(
+            minimumAspectRatio: 1.0,
+          ));
+      if (croppedFile != null) {
+        return croppedFile;
+      }
+    } else {
+      txt = "You didn't pick an image please try again";
+      imageErrorSnack(txt);
+      return null;
+    }
+  } catch (err) {
+    txt = "Seems you denied us some permissions";
+    imageErrorSnack(txt);
+    return null;
+  }
+}
+
 Future<String?> uploadProductImage(File img) async {
   String txt = "";
   final cloudinary = CloudinaryPublic('agrocr', 'gotcha', cache: false);

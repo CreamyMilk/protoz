@@ -82,7 +82,7 @@ class _InventoryListState extends State<InventoryList> {
                             product: Product(
                               image: item["image"],
                               categoryID: item["categoryID"],
-                              productID: item["productID"],
+                              productID: item["ID"],
                               packingType: item["packingtype"],
                               description: item["description"],
                               name: item["productname"],

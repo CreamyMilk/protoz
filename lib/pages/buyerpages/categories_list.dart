@@ -61,10 +61,10 @@ class _ListTilezzState extends State<ListTilezz> {
                       return ListTileNew(
                           barColor: Colors.greenAccent,
                           gradient: Colors.greenAccent[100]!,
-                          categoryId: category["categoryid"],
+                          categoryId: category["ID"],
                           routeName: "/products",
-                          name: category["categoryname"],
-                          imageUrl: category["image"]);
+                          name: category["CatergoryName"],
+                          imageUrl: category["CatergoryImage"]);
                     });
               }),
         ),

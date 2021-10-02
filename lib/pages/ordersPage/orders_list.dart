@@ -90,7 +90,7 @@ class _OrdersListState extends State<OrdersList> {
               ),
             ],
           ),
-          const Text("Ola Comrade")
+          const Text("None Completed")
         ]),
       ),
     );
