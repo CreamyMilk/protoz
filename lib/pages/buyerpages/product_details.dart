@@ -32,7 +32,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
-    String totalString = totalPrice.toStringAsFixed(2).addCommas;
+    String totalString = totalPrice.toString().addCommas;
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton.extended(
@@ -73,7 +73,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          widget.p.name,
+          " ${widget.p.name}",
           style: const TextStyle(color: Colors.black),
         ),
       ),
@@ -95,13 +95,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text(widget.p.name,
+                            Text("${widget.p.name}  ",
                                 overflow: TextOverflow.clip,
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20)),
-                            Text(widget.p.packingType),
+                            const YMargin(10),
+                            Text("Packing Type:\n${widget.p.packingType}"),
                           ])),
                 ],
               ),

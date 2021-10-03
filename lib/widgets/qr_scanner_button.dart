@@ -63,45 +63,50 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
     if (Platform.isAndroid) {
       controller!.pauseCamera();
     }
-    controller!.resumeCamera();
+    if (!Platform.isLinux && !Platform.isAndroid) {
+      controller!.resumeCamera();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Scan QR Code"),
       ),
       body: Column(
         children: <Widget>[
-          Expanded(flex: 5, child: _buildQrView(context)),
           Expanded(
-            flex: 1,
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  if (result != null)
-                    Text('Scanned Data: ${result!.code}')
-                  else
-                    const Text(''),
-                  MaterialButton(
-                    elevation: 0,
-                    height: 60,
-                    minWidth: screenWidth(context, percent: .90),
-                    onPressed: () async {
-                      Navigator.of(context).pop();
-                    },
-                    color: Colors.green,
-                    child: const Text(
-                      "Close",
-                      style: TextStyle(fontSize: 17, color: Colors.white),
-                    ),
-                    autofocus: false,
+              flex: 5,
+              child: Platform.isAndroid
+                  ? _buildQrView(context)
+                  : Container(
+                      color: Colors.black,
+                    )),
+          FittedBox(
+            child: Column(
+              children: <Widget>[
+                if (result != null)
+                  Text('Scanned Data: ${result!.code}')
+                else
+                  const Text(''),
+                MaterialButton(
+                  elevation: 0,
+                  height: 60,
+                  minWidth: screenWidth(context, percent: .90),
+                  onPressed: () async {
+                    Navigator.of(context).pop();
+                  },
+                  color: Colors.green,
+                  child: const Text(
+                    "Exit",
+                    style: TextStyle(fontSize: 17, color: Colors.white),
                   ),
-                ],
-              ),
+                  autofocus: false,
+                ),
+                const YMargin(10),
+              ],
             ),
           )
         ],

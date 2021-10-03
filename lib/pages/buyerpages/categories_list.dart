@@ -125,6 +125,7 @@ class ListTileNew extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 1.0),
               child: CachedNetworkImage(
+                fit: BoxFit.fill,
                 imageUrl: imageUrl,
                 width: 60,
                 height: 60,

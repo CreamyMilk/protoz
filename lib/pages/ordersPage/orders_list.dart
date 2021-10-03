@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
+import 'package:proto/pages/ordersPage/order_popup.dart';
 import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/utils/type_extensions.dart';
 
@@ -53,11 +54,17 @@ class _OrdersListState extends State<OrdersList> {
                           var singleOrder = orders[index];
                           return ListTile(
                             onTap: () {
+                              showCupertinoDialog(
+                                  context: context,
+                                  builder: (ctx) {
+                                    return const ParseOrdersPopup();
+                                  });
                               //print("hello Mr order");
                             },
                             dense: true,
-                            subtitle: Text("${singleOrder["buyer"]}"),
-                            title: Text("Nfts Green (${singleOrder["eid"]})"),
+                            title: Text("(${singleOrder["pname"]})"),
+                            subtitle:
+                                Text("Quantity ${singleOrder["quantity"]}"),
                             trailing: RichText(
                               textAlign: TextAlign.end,
                               text: TextSpan(

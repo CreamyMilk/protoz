@@ -25,6 +25,8 @@ class _AddProductsPageState extends State<AddProductsPage> {
 
   File? img;
   bool isLoaded = false;
+  bool pictureLoading = false;
+  String? productImageURl;
   @override
   void initState() {
     dynamic c = box.get(Constants.ProductCategoriesStore).toList();
@@ -87,6 +89,56 @@ class _AddProductsPageState extends State<AddProductsPage> {
               children: [
                 Row(
                   children: [
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            File? f = await pickImg();
+                            if (f != null) {
+                              setState(() {
+                                pictureLoading = true;
+                              });
+                              String? url = await uploadProductImage(f);
+                              if (url != null) {
+                                //Append to images if their is an array of images later
+                                setState(() {
+                                  pictureLoading = false;
+                                  productImageURl = url;
+                                });
+                              }
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              transformAlignment: Alignment.centerLeft,
+                              decoration: BoxDecoration(
+                                color: Colors.green[50],
+                              ),
+                              height: 105,
+                              width: 105,
+                              child: productImageURl == null
+                                  ? pictureLoading
+                                      ? const Center(
+                                          child: CircularProgressIndicator())
+                                      : const Icon(Icons.person,
+                                          color: Colors.black)
+                                  : Stack(
+                                      children: [
+                                        Image.network(productImageURl!,
+                                            fit: BoxFit.fill),
+                                        hbox.isEdit
+                                            ? const Icon(Icons.edit,
+                                                color: Colors.black)
+                                            : const SizedBox(),
+                                      ],
+                                    ),
+                            ),
+                          ),
+                        ),
+                        const Text("Profile Photo")
+                      ],
+                    ),
                     hbox.isEdit
                         ? Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -161,16 +213,16 @@ class _AddProductsPageState extends State<AddProductsPage> {
                       hintText: "Product Name",
                       border: OutlineInputBorder(),
                     )),
-                const YMargin(15),
-                TextField(
-                    controller: hbox.imageController,
-                    keyboardType: TextInputType.url,
-                    decoration: const InputDecoration(
-                      suffixIcon: Icon(Icons.camera_alt_outlined),
-                      labelText: "Image src",
-                      hintText: "Image url",
-                      border: OutlineInputBorder(),
-                    )),
+                // const YMargin(15),
+                // TextField(
+                //     controller: hbox.imageController,
+                //     keyboardType: TextInputType.url,
+                //     decoration: const InputDecoration(
+                //       suffixIcon: Icon(Icons.camera_alt_outlined),
+                //       labelText: "Image src",
+                //       hintText: "Image url",
+                //       border: OutlineInputBorder(),
+                //     )),
                 const YMargin(15),
                 TextField(
                     controller: hbox.packingController,

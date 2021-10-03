@@ -231,7 +231,7 @@ class _RegistrationStepperFormState extends State<RegistrationStepperForm> {
                           children: [
                             GestureDetector(
                               onTap: () async {
-                                File? f = await cameraImg();
+                                File? f = await pickImg();
                                 if (f != null) {
                                   setState(() {
                                     idLoading = true;

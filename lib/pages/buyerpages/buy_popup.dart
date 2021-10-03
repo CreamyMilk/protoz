@@ -4,6 +4,7 @@ import 'package:proto/models/product.dart';
 import 'dart:ui';
 
 import 'package:proto/pages/buyerpages/buy_product_future.dart';
+import 'package:proto/utils/type_extensions.dart';
 
 class BuyProductPopup extends StatelessWidget {
   const BuyProductPopup({
@@ -25,8 +26,10 @@ class BuyProductPopup extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("Quantity: ($quantity) ${p.name}"),
-            Text("Total:    Ksh.${p.price * quantity}")
+            Text("Name        :  ${p.name}"),
+            Text("Quantity  :  ( $quantity ) "),
+            Text(
+                "Total          :  Ksh. ${(p.price * quantity).toString().addCommas}")
           ],
         ),
         actions: <Widget>[

@@ -102,7 +102,7 @@ class _WalletsTabState extends State<WalletsTab> {
                                       fontSize: 10.0)),
                               TextSpan(
                                 text:
-                                    "${transaction["amount"].toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}.00",
+                                    "${transaction["amount"].toString().addCommas} ",
                                 style: TextStyle(
                                     color: isPurchase
                                         ? Colors.blueGrey
@@ -156,7 +156,7 @@ class WalletsAppBar extends StatelessWidget {
             icon: const Icon(
               Icons.notifications_active_outlined,
               size: 19,
-              color: Colors.black26,
+              color: Colors.black,
             )),
       ],
       expandedHeight: 220,
@@ -206,7 +206,11 @@ class WalletsAppBar extends StatelessWidget {
                                   builder: (BuildContext context,
                                       Box<dynamic> box, Widget? child) {
                                     return Text(
-                                      "${box.get(Constants.BalanceStore, defaultValue: "00").toString().addCommas}.00",
+                                      box
+                                          .get(Constants.BalanceStore,
+                                              defaultValue: "00")
+                                          .toString()
+                                          .addCommas,
                                       textScaleFactor: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(
@@ -217,7 +221,7 @@ class WalletsAppBar extends StatelessWidget {
                                   }),
                               FloatingActionButton(
                                 mini: true,
-                                heroTag: null,
+                                heroTag: "tabFab",
                                 backgroundColor: Colors.black,
                                 onPressed: () {
                                   Navigator.of(context)
@@ -239,7 +243,7 @@ class WalletsAppBar extends StatelessWidget {
                             builder: (BuildContext context, Box<dynamic> box,
                                 Widget? child) {
                               return Text(
-                                "Account :${box.get(Constants.WalletNameStore, defaultValue: "00").toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]} ')}",
+                                "Account :${box.get(Constants.PhoneNumberStore, defaultValue: "00").toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]} ')}",
                                 textScaleFactor: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(

@@ -67,7 +67,7 @@ class ContactsListPage extends StatelessWidget {
                   color: Colors.blue[600]!,
                   icondata: Icons.dialpad_rounded,
                   textColor: Colors.blue[900]!,
-                  myText: "Enter Phone Number",
+                  myText: "Send to Phone Number",
                   ontap: () {
                     Navigator.of(context).pushNamed("/enterphone");
                   },
@@ -78,7 +78,7 @@ class ContactsListPage extends StatelessWidget {
                   textColor: Colors.greenAccent[700]!,
                   myText: "Send To Mpesa",
                   ontap: () {
-                    Navigator.of(context).pushNamed("/enterphone");
+                    // Navigator.of(context).pushNamed("/enterphone");
                   },
                 ),
                 StyledActionListTile(
@@ -114,7 +114,7 @@ class ContactsListPage extends StatelessWidget {
                     ))),
             ListView.builder(
                 physics: const ScrollPhysics(),
-                itemCount: 7,
+                itemCount: 0,
                 shrinkWrap: true,
                 itemExtent: 60,
                 itemBuilder: (context, index) {

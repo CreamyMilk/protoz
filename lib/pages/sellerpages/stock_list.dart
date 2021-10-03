@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:proto/models/product.dart';
 import 'package:proto/pages/sellerpages/get_products_futures.dart';
+import 'package:proto/utils/type_extensions.dart';
 
 const _startColumnWidth = 45.0;
 
@@ -213,102 +214,109 @@ class ShoppingCartRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 5),
-      child: Row(
-        key:
-            ValueKey<int>(product.productID), //Changed Types for better parsing
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: _startColumnWidth,
-            child: IconButton(
-              icon: const Icon(
-                Icons.edit_outlined,
-                color: Colors.black,
-                size: 15,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, "/addProduct", arguments: product);
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 5),
+        child: Row(
+          key: ValueKey<int>(
+              product.productID), //Changed Types for better parsing
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: _startColumnWidth,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.edit_outlined,
+                  color: Colors.black,
+                  size: 15,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/addProduct",
+                      arguments: product);
+                },
               ),
-              onPressed: () {
-                Navigator.pushNamed(context, "/addProduct", arguments: product);
-              },
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsetsDirectional.only(end: 16),
-              child: Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          color: Colors.white,
-                          width: 70,
-                          height: 70,
-                          child: CachedNetworkImage(
-                            imageUrl: product.image,
-                            height: 70,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(end: 16),
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            color: Colors.white,
                             width: 70,
-                            placeholder: (context, String p) {
-                              return Card(
-                                  child: Container(
-                                height: 70,
-                                width: 70,
-                                color: Colors.grey[50],
-                              ));
-                            },
-                          )
-                          // excludeFromSemantics: true,
+                            height: 70,
+                            child: CachedNetworkImage(
+                              fit: BoxFit.fill,
+                              imageUrl: product.image,
+                              height: 70,
+                              width: 70,
+                              placeholder: (context, String p) {
+                                return Card(
+                                    child: Container(
+                                  height: 70,
+                                  width: 70,
+                                  color: Colors.grey[50],
+                                ));
+                              },
+                            )
+                            // excludeFromSemantics: true,
+                            ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text("Quantity:  $quantity",
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 18)),
+                                  ),
+                                  Text(
+                                    "x \$${product.price.toString().addCommas}",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w200,
+                                        fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                ":: ${product.name}  ::",
+                                style: const TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w400),
+                              ),
+                              const SizedBox(height: 9),
+                              Text(
+                                "Descrption:\n${product.description}",
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.blueGrey),
+                              ),
+                            ],
                           ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text("Quantity:  $quantity",
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 18)),
-                                ),
-                                Text(
-                                  "x \$${product.price}",
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w200,
-                                      fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              product.name,
-                              style: const TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w400),
-                            ),
-                            const SizedBox(height: 9),
-                            Text(
-                              product.description,
-                              style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.blueGrey),
-                            ),
-                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  const Divider(
-                    color: Colors.brown,
-                    height: 10,
-                  ),
-                ],
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    const Divider(
+                      color: Colors.brown,
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
