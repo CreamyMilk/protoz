@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:proto/utils/type_extensions.dart';
 
 class Constants {
-  static const String API_BASE = "http://server.appagric.com:3000/api/v1/";
+  static const String API_BASE = "http://192.168.0.24:3000/api/v1/";
   static const String IMAGES_UPLOAD_SERVER =
       "http://192.168.0.24:4000/formstuff";
   static const String UserBoxName = "user";

@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.w300,
                               fontSize: 30.0)),
                       TextSpan(
-                          text: "AGRO CRM",
+                          text: "APP AGRIC",
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w400,

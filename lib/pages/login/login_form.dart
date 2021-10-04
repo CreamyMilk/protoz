@@ -40,9 +40,9 @@ class _LoginFormPageState extends State<LoginFormPage> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
                         Text(
-                          "Agro ",
+                          "AppAgric",
                           style: GoogleFonts.nunito(
-                              color: Colors.tealAccent[400],
+                              color: Colors.green,
                               fontSize: 30,
                               fontWeight: FontWeight.w800),
                         ),
@@ -62,7 +62,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.grey[600]!.withOpacity(0.3),
+                              color: Colors.grey[600]!.withOpacity(0.2),
                               offset: const Offset(0, 13),
                               blurRadius: 30)
                         ],
@@ -97,7 +97,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.grey[600]!.withOpacity(0.3),
+                              color: Colors.grey[600]!.withOpacity(0.2),
                               offset: const Offset(0, 13),
                               blurRadius: 50)
                         ],
@@ -111,7 +111,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Enter Password',
+                              hintText: 'Enter Pin',
                               hintStyle: TextStyle(
                                 fontSize: 18,
                                 color: Colors.grey[500],
@@ -151,7 +151,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                                 height: 50,
                                 width: screenWidth(context, percent: 0.8),
                                 decoration: BoxDecoration(
-                                  color: Colors.tealAccent[400],
+                                  color: Colors.green,
                                   boxShadow: [
                                     BoxShadow(
                                         color:
@@ -171,7 +171,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
                                     "Submit",
                                     style: GoogleFonts.nunito(
                                         color: Colors.white,
-                                        fontSize: 15,
+                                        fontSize: 19,
                                         fontWeight: FontWeight.w400),
                                   ),
                                 ),

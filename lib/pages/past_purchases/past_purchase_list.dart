@@ -1,4 +1,13 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:proto/models/past_purchase.dart';
+import 'package:proto/pages/past_purchases/future_get_purchase.dart';
+import 'package:proto/utils/sized_margins.dart';
+import 'package:proto/utils/type_extensions.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class PastPurchasePage extends StatelessWidget {
   const PastPurchasePage({Key? key}) : super(key: key);
@@ -9,16 +18,18 @@ class PastPurchasePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Past Purchases"),
       ),
-      body: FutureBuilder<List<PPurchase>>(
+      body: FutureBuilder<PastPurchasesResponse?>(
         future: getPastPurchases(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
-            List<PPurchase> myPurchases = snapshot.data!;
+            PastPurchasesResponse myPurchases = snapshot.data!;
             return Center(
-              child: ListView.builder(
-                  itemCount: myPurchases.length,
+              child: ListView.separated(
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const Divider(),
+                  itemCount: myPurchases.purchases.length,
                   itemBuilder: (BuildContext ctx, int idx) {
-                    return PastPurchaseTile(purchase: myPurchases[idx]);
+                    return PurchasesTile(p: myPurchases.purchases[idx]);
                   }),
             );
           }
@@ -29,50 +40,95 @@ class PastPurchasePage extends StatelessWidget {
   }
 }
 
-class PPurchase {
-  PPurchase(
-      {required this.settlementCode,
-      required this.status,
-      required this.orderID,
-      required this.productID,
-      required this.productName,
-      required this.productQuantity,
-      required this.totalAmount,
-      required this.timeDue});
-  final String settlementCode;
-  final String status;
-  final String orderID;
-  final String productID;
-  final String productName;
-  final String productQuantity;
-  final String totalAmount;
-  final String timeDue;
-}
-
-class PastPurchaseTile extends StatelessWidget {
-  const PastPurchaseTile({Key? key, required this.purchase}) : super(key: key);
-  final PPurchase purchase;
+class PurchasesTile extends StatelessWidget {
+  const PurchasesTile({Key? key, required this.p}) : super(key: key);
+  final Purchases p;
   @override
   Widget build(BuildContext context) {
+    DateTime deadlineTime =
+        DateTime.fromMillisecondsSinceEpoch(p.Deadline * 1000);
+    String dateStr = DateFormat('MMM-d-y  hh:mm a').format(deadlineTime);
     return ListTile(
-      title: Text(purchase.productName),
-      subtitle: Text("Quantity :${purchase.productQuantity}"),
-    );
+        title: Text(p.pname),
+        subtitle:
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text("Quantity ${p.Quantity}\nDue [$dateStr] "),
+          const YMargin(10),
+          Chip(
+              label: Text(
+                p.Status,
+                style: const TextStyle(color: Colors.orange),
+              ),
+              backgroundColor: Colors.orange[50]),
+        ]),
+        trailing: RichText(
+          textAlign: TextAlign.end,
+          text: TextSpan(
+            children: [
+              const TextSpan(
+                  text: "Ksh.\n",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 10.0)),
+              TextSpan(
+                text: p.total.toString().addCommas,
+                style: TextStyle(
+                    color: Colors.greenAccent[400],
+                    fontWeight: FontWeight.w300,
+                    fontSize: 18.0),
+              ),
+            ],
+          ),
+        ),
+        onTap: () {
+          showOrderQrDialog(context, p.code);
+        });
   }
 }
 
-Future<List<PPurchase>> getPastPurchases() async {
-  List<PPurchase> myPurchases = [
-    PPurchase(
-        settlementCode: "12",
-        status: "12",
-        orderID: "orderI1212D",
-        productID: "",
-        productName: "Sample Purchase",
-        totalAmount: "",
-        timeDue: "",
-        productQuantity: '22')
-  ];
-  await Future.delayed(const Duration(seconds: 2));
-  return myPurchases;
-}
+showOrderQrDialog(BuildContext context, String token) => showCupertinoDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: AlertDialog(
+          actions: [
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("CLOSE", style: TextStyle(color: Colors.red)))
+          ],
+          elevation: 4,
+          title: SizedBox(
+            width: screenWidth(context, percent: 0.2),
+            height: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  "🤌Sellers should  🤳 Scan this\nto receive thier Payment",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                    fontSize: 18,
+                  ),
+                ),
+                const YMargin(20),
+                QrImage(
+                  data: token,
+                  padding: EdgeInsets.zero,
+                  version: 5,
+                  foregroundColor: Colors.orange,
+                  size: 180.0,
+                ),
+                const YMargin(12),
+                Text(token),
+              ],
+            ),
+          ),
+        ),
+      );
+    });

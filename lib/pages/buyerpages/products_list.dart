@@ -7,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/utils/type_extensions.dart';
 import 'package:proto/widgets/image_with_default.dart';
+import 'package:proto/pages/buyerpages/search_page.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -24,9 +25,11 @@ class ProductList extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          )
+            icon: const Icon(Icons.search, color: Colors.black),
+            onPressed: () {
+              showSearch(context: context, delegate: ProductSearchDelegate());
+            },
+          ),
         ],
         elevation: 1,
         backgroundColor: Colors.white,

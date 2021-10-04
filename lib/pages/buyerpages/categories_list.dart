@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/pages/buyerpages/get_categories_future.dart';
+import 'package:proto/pages/buyerpages/search_page.dart';
 import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/widgets/awesome_fab.dart';
 
@@ -28,8 +29,10 @@ class _ListTilezzState extends State<ListTilezz> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: const Icon(Icons.search, color: Colors.black),
-            onPressed: () {},
+            icon: const Icon(Icons.search, color: Colors.white),
+            onPressed: () {
+              showSearch(context: context, delegate: ProductSearchDelegate());
+            },
           )
         ],
         leading: IconButton(
