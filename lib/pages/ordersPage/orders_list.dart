@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/pages/ordersPage/order_popup.dart';
+import 'package:proto/popups/order_popup.dart';
 import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/utils/type_extensions.dart';
 

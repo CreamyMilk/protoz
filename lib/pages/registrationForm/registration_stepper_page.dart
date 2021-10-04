@@ -131,7 +131,6 @@ class _RegistrationStepperFormState extends State<RegistrationStepperForm> {
                       children: <Widget>[
                         const YMargin(10),
                         TextFormField(
-                          textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
                             labelText: 'Full Name',
                           ),
@@ -143,7 +142,6 @@ class _RegistrationStepperFormState extends State<RegistrationStepperForm> {
                           },
                         ),
                         TextFormField(
-                          textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
                             labelText: 'Store Name',
                           ),
@@ -155,7 +153,6 @@ class _RegistrationStepperFormState extends State<RegistrationStepperForm> {
                           },
                         ),
                         TextFormField(
-                          textInputAction: TextInputAction.done,
                           onFieldSubmitted: (String p) {
                             _pickDOB(context);
                           },

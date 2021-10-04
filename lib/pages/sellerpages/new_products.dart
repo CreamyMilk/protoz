@@ -26,7 +26,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
   File? img;
   bool isLoaded = false;
   bool pictureLoading = false;
-  String? productImageURl;
+  //String? productImageURl;
   @override
   void initState() {
     dynamic c = box.get(Constants.ProductCategoriesStore).toList();
@@ -46,6 +46,7 @@ class _AddProductsPageState extends State<AddProductsPage> {
     if (widget.initalProduct != null && !isLoaded) {
       hbox.initalizeEditFields(widget.initalProduct!);
       isLoaded = true;
+      //productImageURl = hbox.imageController.text;
     }
     return Scaffold(
       backgroundColor: Colors.white,
@@ -103,7 +104,8 @@ class _AddProductsPageState extends State<AddProductsPage> {
                                 //Append to images if their is an array of images later
                                 setState(() {
                                   pictureLoading = false;
-                                  productImageURl = url;
+                                  hbox.imageController.text = url;
+                                  //productImageURl = url;
                                 });
                               }
                             }
@@ -117,75 +119,29 @@ class _AddProductsPageState extends State<AddProductsPage> {
                               ),
                               height: 105,
                               width: 105,
-                              child: productImageURl == null
+                              child: hbox.imageController.text == ""
                                   ? pictureLoading
                                       ? const Center(
                                           child: CircularProgressIndicator())
-                                      : const Icon(Icons.person,
+                                      : const Icon(Icons.add,
                                           color: Colors.black)
                                   : Stack(
                                       children: [
-                                        Image.network(productImageURl!,
+                                        Image.network(hbox.imageController.text,
                                             fit: BoxFit.fill),
                                         hbox.isEdit
-                                            ? const Icon(Icons.edit,
-                                                color: Colors.black)
+                                            ? const Center(
+                                                child: Icon(Icons.edit,
+                                                    color: Colors.black),
+                                              )
                                             : const SizedBox(),
                                       ],
                                     ),
                             ),
                           ),
                         ),
-                        const Text("Profile Photo")
+                        const Text("Product Photo")
                       ],
-                    ),
-                    hbox.isEdit
-                        ? Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              transformAlignment: Alignment.centerLeft,
-                              decoration: BoxDecoration(
-                                color: Colors.green[50],
-                              ),
-                              height: 105,
-                              width: 105,
-                              child: Image.network(hbox.imageController.text,
-                                  fit: BoxFit.scaleDown),
-                            ),
-                          )
-                        : const SizedBox(),
-                    GestureDetector(
-                      onTap: () async {
-                        File? f = await pickImg();
-                        if (f != null) {
-                          setState(() {
-                            img = f;
-                          });
-                          String? url = await uploadProductImage(f);
-                          if (url != null) {
-                            //Append to images if their is an array of images later
-                            hbox.setImageUrl(url);
-                          }
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                            transformAlignment: Alignment.centerLeft,
-                            decoration: BoxDecoration(
-                              color: Colors.green[50],
-                            ),
-                            height: 105,
-                            width: 105,
-                            child: img == null
-                                ? const Icon(Icons.add, color: Colors.black)
-                                : Image.file(
-                                    img!,
-                                    fit: BoxFit.fill,
-                                    height: 105,
-                                    width: 105,
-                                  )),
-                      ),
                     ),
                   ],
                 ),
