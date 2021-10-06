@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
+import 'package:proto/main.dart';
+import 'package:proto/popups/scanned_settlement.dart';
 import 'package:proto/utils/sized_margins.dart';
+import 'package:proto/widgets/settlement_future.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer';
 import 'dart:io';
@@ -27,6 +31,14 @@ class QrCodeScannerIcon extends StatelessWidget {
 
 void parseQrCode(Barcode? qrData, BuildContext ctx) async {
   var box = Hive.box(Constants.UserBoxName);
+  if (qrData != null && qrData.code.startsWith("Px")) {
+    Navigator.of(ctx).pop();
+    showCupertinoDialog(
+        context: navigatorKey.currentContext!,
+        builder: (BuildContext context) => const DetectedSettlementPopup());
+    settleRequest(qrData.code);
+    return;
+  }
   if (qrData != null && qrData.code.startsWith("SM")) {
     List<String> values = qrData.code.split("|");
     if (values.length == 3) {

@@ -33,3 +33,33 @@ Future<PastPurchasesResponse?> getPastPurchases() async {
   }
   return null;
 }
+
+Future<PastPurchasesResponse?> searchPastPurchases(String q) async {
+  var box = Hive.box(Constants.UserBoxName);
+  try {
+    final response = await post(
+      Uri.parse(Constants.API_BASE + "invoice/search"),
+      headers: {
+        "Accept": "application/json",
+        "content-type": "application/json",
+      },
+      body: jsonEncode(
+        //ensure that the user has bothe the socketID and the USER ID
+        {
+          "walletname": box.get(Constants.WalletNameStore),
+          "query": q,
+        },
+      ),
+    );
+    var myjson = json.decode(response.body);
+    PastPurchasesResponse resp;
+
+    if (myjson["status"] == 0) {
+      resp = PastPurchasesResponse.fromJson(myjson);
+      return resp;
+    }
+  } catch (err) {
+    return null;
+  }
+  return null;
+}

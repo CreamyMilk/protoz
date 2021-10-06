@@ -25,50 +25,40 @@ class _LogoPageState extends State<LogoPage> {
     getLatestCategories();
     if (Platform.isAndroid) {
       FirebaseMessaging.onMessage.listen((event) {
-        if (event.data["type"] == "role") {
-          String role = event.data["content"].trim();
-          switch (role) {
-            case "Farmer":
-              //store id
-
-              // Navigator.of(navigatorKey.currentContext)
-              //     .pushNamed("/addProduct");
-              break;
-            default:
-              Navigator.of(navigatorKey.currentContext!).pushNamed("/login");
-              break;
-          }
-        } else if (event.data["type"] == "received") {
-          showCupertinoDialog(
-              context: navigatorKey.currentContext!,
-              builder: (context) => AlertDialog(
-                  title: const Text("Funds Received"),
-                  content: Text("Ksh${event.data["amount"]}")));
+        if (event.data["type"] == "registration") {
+          Navigator.of(navigatorKey.currentContext!).pushNamed("/login");
         } else if (event.data["type"] == "deposit") {
           showCupertinoDialog(
               context: navigatorKey.currentContext!,
               builder: (context) => AlertDialog(
                   title: const Text("Deposit Successfuly"),
                   content: Text("Ksh${event.data["amount"]}")));
-        } else if (event.data["type"] == "order") {
+        } else if (event.data["type"] == "orderplace") {
           showCupertinoDialog(
               context: navigatorKey.currentContext!,
               builder: (context) => AlertDialog(
                   title: Text("Order Placed for ${event.data["prodname"]}"),
                   content: Text(
                       "Ksh${event.data["amount"]}\n Quantity :${event.data["quantity"]}")));
-        } else {
+        } else if (event.data["type"] == "ordercomplete") {
           showCupertinoDialog(
               context: navigatorKey.currentContext!,
-              builder: (context) => AlertDialog(
-                  title: const Text("Action Complete"),
-                  content: Text(" ${event.data}")));
+              builder: (context) => const AlertDialog(
+                  title: Text("Order Complete"),
+                  content: Text("seller has been payed for the product")));
+        } else if (event.data["type"] == "sellerwin") {
+          showCupertinoDialog(
+              context: navigatorKey.currentContext!,
+              builder: (context) => const AlertDialog(
+                  title: Text("Invoice Settled Succesfully"),
+                  content: Text("Funds have been depoisted to your wallet")));
         }
-        //Opened Nofication when app is active
+
         getLatestBalance();
         getCurrentOrders();
         getLatestTransaction();
       });
+
       FirebaseMessaging.instance.getToken().then((String? token) {
         hiveBox.put(Constants.RawFCMTokenStore, token!);
       });

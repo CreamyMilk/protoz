@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:proto/models/past_purchase.dart';
 import 'package:proto/pages/past_purchases/future_get_purchase.dart';
+import 'package:proto/pages/past_purchases/past_purchases_search.dart';
 import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/utils/type_extensions.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -17,6 +18,15 @@ class PastPurchasePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Past Purchases"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search, color: Colors.white),
+            onPressed: () {
+              showSearch(
+                  context: context, delegate: PastPurchasesSearchDelegate());
+            },
+          )
+        ],
       ),
       body: FutureBuilder<PastPurchasesResponse?>(
         future: getPastPurchases(),
