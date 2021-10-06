@@ -22,7 +22,7 @@
         </intent>
     </queries>
    <application
-        android:label="aVroCrm"
+        android:label="appAgric"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
