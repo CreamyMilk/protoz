@@ -34,27 +34,27 @@ class _DashboardPageState extends State<DashboardPage> {
     Services(
         path: "/categories",
         imageUrl:
-            "https://africasustainabilitymatters.com/wp-content/uploads/2020/11/Twiga_2.jpg",
+            "https://res.cloudinary.com/agrocr/image/upload/v1633494084/Twiga_2_g0f7uw.jpg",
         name: "Buy / Nunua"),
     Services(
         path: "/sellpage",
         imageUrl:
-            "https://s3.amazonaws.com/newhobbyfarms.com/2020/01/9-plows-jeff-piper-flickr-e.jpg",
+            "https://res.cloudinary.com/agrocr/image/upload/v1633494134/9-plows-jeff-piper-flickr-e_p7xef7.jpg",
         name: "Sell / Uza Bidha"),
     Services(
         path: "/walletspage",
         imageUrl:
-            "https://www.who.int/images/default-source/departments/health-financing/health-financing-and-uhc-(8).tmb-1200v.jpg?sfvrsn=add44264_6",
+            "https://res.cloudinary.com/agrocr/image/upload/v1633494175/health-financing-and-uhc-_8_.tmb-1200v_h2ige2.jpg",
         name: "Wallet / Pochi"),
     Services(
         path: "/orders",
         imageUrl:
-            "https://asmtech.com/wp-content/uploads/2018/03/What-we-do-_-Consultancy-1024x683.jpeg",
+            "https://res.cloudinary.com/agrocr/image/upload/v1633494233/What-we-do-_-Consultancy-1024x683_s2drap.jpg",
         name: "Orders / Kazi"),
     Services(
         path: "/bl",
         imageUrl:
-            "https://www.michiganstateuniversityonline.com/wp-content/uploads/sites/3/2014/04/logistics-fundamentals-supply-chain.jpg",
+            "https://res.cloudinary.com/agrocr/image/upload/v1633494282/logistics-fundamentals-supply-chain_rarqvj.jpg",
         name: "Profile / Help"),
   ];
 

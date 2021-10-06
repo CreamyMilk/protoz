@@ -1,11 +1,11 @@
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:proto/utils/type_extensions.dart';
+import 'package:proto/utils/sized_margins.dart';
+import 'package:proto/popups/order_popup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:proto/constants.dart';
-import 'package:proto/popups/order_popup.dart';
-import 'package:proto/utils/sized_margins.dart';
-import 'package:proto/utils/type_extensions.dart';
 
 class OrdersList extends StatefulWidget {
   const OrdersList({Key? key}) : super(key: key);
@@ -23,14 +23,14 @@ class _OrdersListState extends State<OrdersList> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 1,
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Orders Section"),
           bottom: const TabBar(
             tabs: [
-              Tab(text: "Due"),
-              Tab(text: "Completed"),
+              Tab(text: "All"),
+              //Tab(text: "Completed"),
             ],
           ),
         ),
@@ -97,7 +97,7 @@ class _OrdersListState extends State<OrdersList> {
               ),
             ],
           ),
-          const Text("None Completed")
+          // const Text("None Completed")
         ]),
       ),
     );
