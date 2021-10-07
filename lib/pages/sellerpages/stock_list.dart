@@ -281,7 +281,7 @@ class ShoppingCartRow extends StatelessWidget {
                                             fontSize: 18)),
                                   ),
                                   Text(
-                                    "x \$${product.price.toString().addCommas}",
+                                    "x Ksh.${product.price.toString().addCommas}",
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w200,
                                         fontSize: 20),

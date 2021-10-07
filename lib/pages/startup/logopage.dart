@@ -38,8 +38,7 @@ class _LogoPageState extends State<LogoPage> {
               context: navigatorKey.currentContext!,
               builder: (context) => AlertDialog(
                   title: Text("Order Placed for ${event.data["prodname"]}"),
-                  content: Text(
-                      "Ksh${event.data["amount"]}\n Quantity :${event.data["quantity"]}")));
+                  content: const Text("")));
         } else if (event.data["type"] == "ordercomplete") {
           showCupertinoDialog(
               context: navigatorKey.currentContext!,
@@ -99,7 +98,7 @@ class _LogoPageState extends State<LogoPage> {
   Widget build(BuildContext context) {
     autoNavigate(context);
     return const Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(8.0),
