@@ -8,3 +8,4 @@
 - [x] Send Funds using QR code
 - [x] Add Products
 - [x] Create Payment requests(Invoices)
+- [ ] 
