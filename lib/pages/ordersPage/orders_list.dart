@@ -4,7 +4,6 @@ import 'package:proto/utils/sized_margins.dart';
 import 'package:proto/popups/order_popup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 
 class OrdersList extends StatefulWidget {

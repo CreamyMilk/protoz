@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:proto/models/machineary.dart';
 import 'package:proto/pages/logistics_seller/get_machine_stock.dart';
 

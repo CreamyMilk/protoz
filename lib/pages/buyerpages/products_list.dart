@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
 import 'package:proto/pages/buyerpages/get_categories_future.dart';

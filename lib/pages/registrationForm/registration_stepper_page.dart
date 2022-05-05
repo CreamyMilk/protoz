@@ -456,34 +456,6 @@ class _RegistrationStepperFormState extends State<RegistrationStepperForm> {
     setState(() => _currentStep = step);
   }
 
-  Widget controlz(BuildContext context,
-      {VoidCallback? onStepContinue, VoidCallback? onStepCancel}) {
-    return Column(
-      children: [
-        const YMargin(30),
-        Row(
-          children: <Widget>[
-            OutlinedButton(
-              onPressed: cancel,
-              child: const Text('Back',
-                  style: TextStyle(
-                    color: Colors.red,
-                  )),
-            ),
-            const Spacer(),
-            stages[_currentStep]
-                //_currentStep != 4
-                ? OutlinedButton(
-                    onPressed: continued,
-                    child: const Text('Continue'),
-                  )
-                : const YMargin(1),
-          ],
-        ),
-      ],
-    );
-  }
-
   continued() {
     _currentStep < 4 ? setState(() => _currentStep += 1) : null;
     if (_currentStep == 4) {
@@ -495,5 +467,34 @@ class _RegistrationStepperFormState extends State<RegistrationStepperForm> {
 
   cancel() {
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
+  }
+
+  Widget controlz(BuildContext context, ControlsDetails details) {
+    {
+      return Column(
+        children: [
+          const YMargin(30),
+          Row(
+            children: <Widget>[
+              OutlinedButton(
+                onPressed: cancel,
+                child: const Text('Back',
+                    style: TextStyle(
+                      color: Colors.red,
+                    )),
+              ),
+              const Spacer(),
+              stages[_currentStep]
+                  //_currentStep != 4
+                  ? OutlinedButton(
+                      onPressed: continued,
+                      child: const Text('Continue'),
+                    )
+                  : const YMargin(1),
+            ],
+          ),
+        ],
+      );
+    }
   }
 }

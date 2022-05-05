@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:io';
-import 'package:hive/hive.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/routes_page.dart';

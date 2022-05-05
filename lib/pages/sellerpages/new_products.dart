@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:hive/hive.dart';
 import 'package:proto/constants.dart';
 import 'package:proto/models/product.dart';
